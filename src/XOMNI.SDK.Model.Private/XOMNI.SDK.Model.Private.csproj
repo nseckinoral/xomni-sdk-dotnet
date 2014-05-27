@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45D332E2-8A46-422B-B1F4-0CA31E206B56}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XOMNI.SDK.Model.Private</RootNamespace>
+    <AssemblyName>XOMNI.SDK.Model.Private</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile158</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\XOMNI.SDK.Model\XOMNI.SDK.Model.csproj">
+      <Project>{243e5b10-0058-4407-846c-e7743c38cac3}</Project>
+      <Name>XOMNI.SDK.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Asset\Asset.cs" />
+    <Compile Include="Asset\ImageAsset.cs" />
+    <Compile Include="Asset\RelatedAsset.cs" />
+    <Compile Include="Asset\RelatedImageAsset.cs" />
+    <Compile Include="Asset\ResizedAsset.cs" />
+    <Compile Include="Auth\Principal.cs" />
+    <Compile Include="Catalog\Category.cs" />
+    <Compile Include="Catalog\Dimension.cs" />
+    <Compile Include="Catalog\Item.cs" />
+    <Compile Include="Catalog\ItemPopularityRecordDto.cs" />
+    <Compile Include="Catalog\ItemSearch.cs" />
+    <Compile Include="Catalog\ItemSearchRequest.cs" />
+    <Compile Include="Catalog\ItemSearchResponse.cs" />
+    <Compile Include="Catalog\MailTemplate.cs" />
+    <Compile Include="Catalog\MultipleItemSearchResult.cs" />
+    <Compile Include="Catalog\Price.cs" />
+    <Compile Include="Catalog\Summary.cs" />
+    <Compile Include="Catalog\TrendingItemDto.cs" />
+    <Compile Include="Catalog\Weight.cs" />
+    <Compile Include="Metering\BaseMeteringSummary.cs" />
+    <Compile Include="Metering\CounterTypes.cs" />
+    <Compile Include="Metering\DailySummary.cs" />
+    <Compile Include="Metering\Log\AddedShoppingCartItemMeteringLog.cs" />
+    <Compile Include="Metering\Log\AddedWishlistItemMeteringLog.cs" />
+    <Compile Include="Metering\Log\BaseMeteringLog.cs" />
+    <Compile Include="Metering\Log\ItemLikeMeteringLog.cs" />
+    <Compile Include="Metering\Log\ItemShareInteractionMeteringLog.cs" />
+    <Compile Include="Metering\Log\ItemShareMeteringLog.cs" />
+    <Compile Include="Metering\Log\ItemShareResponseMeteringLog.cs" />
+    <Compile Include="Metering\Log\ItemViewMeteringLog.cs" />
+    <Compile Include="Metering\Log\MeteringLogContainer.cs" />
+    <Compile Include="Metering\Log\OmniShareMeteringLog.cs" />
+    <Compile Include="Metering\Log\RemovedShoppingCartItemMeteringLog.cs" />
+    <Compile Include="Metering\Log\RemovedWishlistItemMeteringLog.cs" />
+    <Compile Include="Metering\Log\ShoppingCartByCreatedDateMeteringLog.cs" />
+    <Compile Include="Metering\Log\ShoppingCartByLastAccessedDateMeteringLog.cs" />
+    <Compile Include="Metering\Log\SocialPlatformProfileMeteringLog.cs" />
+    <Compile Include="Metering\Log\TrendingItemMeteringLog.cs" />
+    <Compile Include="Metering\Log\WishlistByCreatedDateMeteringLog.cs" />
+    <Compile Include="Metering\Log\WishlistByLastAccessedDateMeteringLog.cs" />
+    <Compile Include="Metering\MonthlySummary.cs" />
+    <Compile Include="Metering\PeriodTypes.cs" />
+    <Compile Include="Metering\WeeklySummary.cs" />
+    <Compile Include="Metering\YearlySummary.cs" />
+    <Compile Include="Passbook\PassbookTemplate.cs" />
+    <Compile Include="Passbook\PassbookTemplateRequest.cs" />
+    <Compile Include="PII\LoyaltyUser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PII\LoyaltyUserMetadata.cs" />
+    <Compile Include="PII\PIIUser.cs" />
+    <Compile Include="PII\Wishlist.cs" />
+    <Compile Include="PII\WishlistItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tenant\TenantAsset.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="XOMNI.SDK.Model.Private.nuspec" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

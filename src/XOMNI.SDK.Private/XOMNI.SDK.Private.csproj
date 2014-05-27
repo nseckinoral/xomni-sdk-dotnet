@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EC2D1B4A-CB17-46F9-AACF-EA4E980BC34C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XOMNI.SDK.Private</RootNamespace>
+    <AssemblyName>XOMNI.SDK.Private</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile158</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\XOMNI.SDK.Private.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\XOMNI.SDK.Private.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ApiAccess\Auth\Principal.cs" />
+    <Compile Include="ApiAccess\Catalog\Brand.cs" />
+    <Compile Include="ApiAccess\Catalog\Currency.cs" />
+    <Compile Include="ApiAccess\Catalog\DimensionType.cs" />
+    <Compile Include="ApiAccess\Catalog\DynamicAttribute.cs" />
+    <Compile Include="ApiAccess\Catalog\DynamicAttributeType.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemDynamicAttribute\DynamicAttribute.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemPrice\BatchPrice.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemTagMapping.cs" />
+    <Compile Include="ApiAccess\Catalog\MailTemplate.cs" />
+    <Compile Include="ApiAccess\Catalog\Price.cs" />
+    <Compile Include="ApiAccess\Catalog\Summary.cs" />
+    <Compile Include="ApiAccess\Catalog\TrendingItem.cs" />
+    <Compile Include="ApiAccess\Catalog\WeightType.cs" />
+    <Compile Include="ApiAccess\Catalog\IAssetMetadata.cs" />
+    <Compile Include="ApiAccess\Catalog\UnitType.cs" />
+    <Compile Include="ApiAccess\Metering\Meterings.cs" />
+    <Compile Include="ApiAccess\Metering\SummaryMeterings.cs" />
+    <Compile Include="ApiAccess\Passbook\PassbookBarcodeType.cs" />
+    <Compile Include="ApiAccess\Passbook\PassbookTemplate.cs" />
+    <Compile Include="ApiAccess\PII\Loyalty.cs" />
+    <Compile Include="ApiAccess\PII\LoyaltyMetadata.cs" />
+    <Compile Include="ApiAccess\Tenant\TenantAssets.cs" />
+    <Compile Include="Asset\AssetManagement.cs" />
+    <Compile Include="Asset\DocumentAssetManagement.cs" />
+    <Compile Include="Asset\ImageAssetManagement.cs" />
+    <Compile Include="Asset\TemporaryStorageManagement.cs" />
+    <Compile Include="Asset\VideoAssetManagement.cs" />
+    <Compile Include="Auth\PrincipalManagement.cs" />
+    <Compile Include="Catalog\BaseAssetManagement.cs" />
+    <Compile Include="Catalog\BrandManagement.cs" />
+    <Compile Include="Catalog\CategoryManagement.cs" />
+    <Compile Include="Catalog\CurrencyManagement.cs" />
+    <Compile Include="Catalog\DimensionTypeManagement.cs" />
+    <Compile Include="Catalog\DocumentManagement.cs" />
+    <Compile Include="Catalog\DynamicAttributeManagement.cs" />
+    <Compile Include="Catalog\DynamicAttributeTypeManagement.cs" />
+    <Compile Include="Catalog\IAssetRelation.cs" />
+    <Compile Include="Catalog\ImageManagement.cs" />
+    <Compile Include="Catalog\ItemManagement.cs" />
+    <Compile Include="ApiAccess\AssetBase.cs" />
+    <Compile Include="ApiAccess\Asset\Documents.cs" />
+    <Compile Include="ApiAccess\Asset\Images.cs" />
+    <Compile Include="ApiAccess\Asset\Temp.cs" />
+    <Compile Include="ApiAccess\Asset\Videos.cs" />
+    <Compile Include="ApiAccess\Catalog\BrandAsset\Document.cs" />
+    <Compile Include="ApiAccess\Catalog\BrandAsset\Image.cs" />
+    <Compile Include="ApiAccess\Catalog\BrandAsset\Video.cs" />
+    <Compile Include="ApiAccess\Catalog\CatalogAssetBase.cs" />
+    <Compile Include="ApiAccess\Catalog\CategoryAsset\Document.cs" />
+    <Compile Include="ApiAccess\Catalog\CategoryAsset\Image.cs" />
+    <Compile Include="ApiAccess\Catalog\CategoryAsset\Video.cs" />
+    <Compile Include="ApiAccess\Catalog\CategoryMetadata.cs" />
+    <Compile Include="ApiAccess\Catalog\DocumentMetadata.cs" />
+    <Compile Include="ApiAccess\Catalog\ImageMetadata.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemAsset\Document.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemAsset\Image.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemAsset\Video.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemMetadata.cs" />
+    <Compile Include="ApiAccess\Catalog\RelatedItems.cs" />
+    <Compile Include="ApiAccess\Catalog\Category.cs" />
+    <Compile Include="ApiAccess\Catalog\TagMetadata.cs" />
+    <Compile Include="ApiAccess\Catalog\Item.cs" />
+    <Compile Include="ApiAccess\Catalog\Tag.cs" />
+    <Compile Include="Catalog\ItemTagMappingManagement.cs" />
+    <Compile Include="Catalog\MailTemplateManagement.cs" />
+    <Compile Include="Catalog\PriceManagement.cs" />
+    <Compile Include="Catalog\SummaryManagement.cs" />
+    <Compile Include="Catalog\TagManagement.cs" />
+    <Compile Include="Catalog\TrendingItemManagement.cs" />
+    <Compile Include="Catalog\UnitTypeManagement.cs" />
+    <Compile Include="Catalog\VideoManagement.cs" />
+    <Compile Include="Catalog\WeightTypeManagement.cs" />
+    <Compile Include="Metering\Log\AddedShoppingCartItemMeteringManagement.cs" />
+    <Compile Include="Metering\Log\AddedWishlistItemMeteringManagement.cs" />
+    <Compile Include="Metering\Log\ItemLikeMeteringManagement.cs" />
+    <Compile Include="Metering\Log\ItemShareInteractionMeteringManagement.cs" />
+    <Compile Include="Metering\Log\ItemShareMeteringManagement.cs" />
+    <Compile Include="Metering\Log\ItemShareResponseMeteringManagement.cs" />
+    <Compile Include="Metering\Log\ItemViewMeteringManagement.cs" />
+    <Compile Include="Metering\Log\OmniShareFromCustomerDeviceToCustomerDeviceMeteringManagement.cs" />
+    <Compile Include="Metering\Log\OmniShareFromCustomerDeviceToInStoreDeviceMeteringManagement.cs" />
+    <Compile Include="Metering\Log\OmniShareFromInStoreDeviceToCustomerDeviceMeteringManagement.cs" />
+    <Compile Include="Metering\Log\OmniShareFromInStoreDeviceToInStoreDeviceMeteringManagement.cs" />
+    <Compile Include="Metering\Log\OmniShareMeteringManagement.cs" />
+    <Compile Include="Metering\Log\RemovedShoppingCartItemMeteringManagement.cs" />
+    <Compile Include="Metering\Log\RemovedWishlistItemMeteringManagement.cs" />
+    <Compile Include="Metering\Log\ShoppingCartByCreatedDateMeteringManagement.cs" />
+    <Compile Include="Metering\Log\ShoppingCartByLastAccessedDateMeteringManagement.cs" />
+    <Compile Include="Metering\Log\TrendingItemMeteringManagement.cs" />
+    <Compile Include="Metering\Log\WishlistByLastAccessedDateMeteringManagement.cs" />
+    <Compile Include="Metering\MeteringBaseManagement.cs" />
+    <Compile Include="Metering\SummaryMeteringManagement.cs" />
+    <Compile Include="Metering\Log\WishlistByCreatedDateMeteringManagement.cs" />
+    <Compile Include="Passbook\PassbookBarcodeTypeManagement.cs" />
+    <Compile Include="Passbook\PassbookTemplateManagement.cs" />
+    <Compile Include="PII\LoyaltyManagement.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ApiAccess\Catalog\VideoMetadata.cs" />
+    <Compile Include="Tenant\TenantAssetManagement.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="XOMNI.SDK.Private.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO">
+      <HintPath>..\..\packages\Microsoft.Bcl.1.1.8\lib\portable-net40+sl5+win8+wp8+wpa81\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\..\packages\Microsoft.Bcl.1.1.8\lib\portable-net40+sl5+win8+wp8+wpa81\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\..\packages\Microsoft.Bcl.1.1.8\lib\portable-net40+sl5+win8+wp8+wpa81\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XOMNI.SDK.Core\XOMNI.SDK.Core.csproj">
+      <Project>{4d4ce902-3479-43ce-9f11-b02493b99a13}</Project>
+      <Name>XOMNI.SDK.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XOMNI.SDK.Model.Private\XOMNI.SDK.Model.Private.csproj">
+      <Project>{45d332e2-8a46-422b-b1f4-0ca31e206b56}</Project>
+      <Name>XOMNI.SDK.Model.Private</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XOMNI.SDK.Model\XOMNI.SDK.Model.csproj">
+      <Project>{243e5b10-0058-4407-846c-e7743c38cac3}</Project>
+      <Name>XOMNI.SDK.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

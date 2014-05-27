@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{552BB227-AA43-45A3-AB91-0718AF486F63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XOMNI.SDK.Model.Public</RootNamespace>
+    <AssemblyName>XOMNI.SDK.Model.Public</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile158</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\XOMNI.SDK.Model\XOMNI.SDK.Model.csproj">
+      <Project>{243e5b10-0058-4407-846c-e7743c38cac3}</Project>
+      <Name>XOMNI.SDK.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Asset\Asset.cs" />
+    <Compile Include="Catalog\Category.cs" />
+    <Compile Include="Catalog\Dimension.cs" />
+    <Compile Include="Catalog\Item.cs" />
+    <Compile Include="Catalog\ItemDynamicProperties.cs" />
+    <Compile Include="Catalog\ItemStaticProperties.cs" />
+    <Compile Include="Catalog\Price.cs" />
+    <Compile Include="Catalog\Weight.cs" />
+    <Compile Include="PII\LoyaltyUser.cs" />
+    <Compile Include="PII\LoyaltyUserMetadata.cs" />
+    <Compile Include="PII\PIIQRTicket.cs" />
+    <Compile Include="PII\PIISession.cs" />
+    <Compile Include="PII\PIIUser.cs" />
+    <Compile Include="PII\PIIUserForRequest.cs" />
+    <Compile Include="PII\Wishlist.cs" />
+    <Compile Include="PII\WishlistItem.cs" />
+    <Compile Include="PII\WishlistItemInfo.cs" />
+    <Compile Include="PII\WishlistMergeRequest.cs" />
+    <Compile Include="PII\WishlistMergeResponse.cs" />
+    <Compile Include="PII\WishlistMergeType.cs" />
+    <Compile Include="PII\WishlistSearchRequest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="XOMNI.SDK.Model.Public.nuspec" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/XomniCloud/xomni-sdk-dotnet/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/XomniCloud/xomni-sdk-dotnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright XOMNI Inc. 2014</copyright>
+    <tags>xomni xomni-sdk-dotnet</tags>
+    <dependencies>
+      <dependency id="XOMNI.SDK.Core" version="$version$" />
+      <dependency id="XOMNI.SDK.Model.Private" version="$version$" />
+    </dependencies>
+  </metadata>
+</package>
