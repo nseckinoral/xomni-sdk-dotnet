@@ -101,7 +101,7 @@ namespace XOMNI.SDK.Private.Catalog
             return relatedItemsApi.AddRelationAsync(itemId, relatedItems, direction, this.ApiCredential);
         }
 
-        public Task<AssetRelationMapping> RelateImageAsync(int brandId, AssetRelation assetRelation)
+        public Task<AssetRelationMapping> RelateImageAsync(int itemId, AssetRelation assetRelation)
         {
             return GetAssetApi(AssetContentType.Image).PostRelationAsync(brandId, assetRelation, this.ApiCredential);
         }
