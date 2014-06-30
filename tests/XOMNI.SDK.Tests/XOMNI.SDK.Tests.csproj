@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{26856F14-3CA5-4A0F-B285-08C838DD451A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XOMNI.SDK.Tests</RootNamespace>
+    <AssemblyName>XOMNI.SDK.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\lib-tests\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\lib-tests\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WindowsAzure.Storage.4.1.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="XOMNI.Common">
+      <HintPath>..\..\lib-tests\XOMNI.Wrapper.Facebook\XOMNI.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="XOMNI.Data">
+      <HintPath>..\..\lib-tests\XOMNI.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="XOMNI.Resources">
+      <HintPath>..\..\lib-tests\XOMNI.Wrapper.Facebook\XOMNI.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="XOMNI.Wrapper">
+      <HintPath>..\..\lib-tests\XOMNI.Wrapper.Facebook\XOMNI.Wrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="XOMNI.Wrapper.Facebook">
+      <HintPath>..\..\lib-tests\XOMNI.Wrapper.Facebook\XOMNI.Wrapper.Facebook.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Management\Configuration\ImageSizeProfileManagementFixture.cs" />
+    <Compile Include="Management\Configuration\TrendingActionTypesManagementFixture.cs" />
+    <Compile Include="Management\Social\FacebookDisplayTypesManagementFixture.cs" />
+    <Compile Include="Management\Social\FacebookResponseTypesManagementFixture.cs" />
+    <Compile Include="Management\Security\LicenseManagementFixture.cs" />
+    <Compile Include="Management\Security\PrivateApiUserManagementFixture.cs" />
+    <Compile Include="Management\Configuration\StoreManagementFixture.cs" />
+    <Compile Include="Management\Configuration\SettingManagementFixture.cs" />
+    <Compile Include="Management\Storage\AssetManagementFixture.cs" />
+    <Compile Include="Private\Asset\AssetManagementFixture.cs" />
+    <Compile Include="Private\Asset\TemporaryStorageManagementFixture.cs" />
+    <Compile Include="Private\Auth\PrincipalManagementFixture.cs" />
+    <Compile Include="Private\Catalog\BaseCRUDManagementFixture.cs" />
+    <Compile Include="Private\Catalog\BrandAssetManagementFixture.cs" />
+    <Compile Include="Private\Catalog\BrandManagementFixture.cs" />
+    <Compile Include="Private\Catalog\CatalogAssetBaseFixture.cs" />
+    <Compile Include="Private\Catalog\CategoryManagementFixture.cs" />
+    <Compile Include="Private\Catalog\CurrencyManagementFixture.cs" />
+    <Compile Include="Private\Catalog\DimensionTypeManagementFixture.cs" />
+    <Compile Include="Private\Catalog\DocumentManagementFixture.cs" />
+    <Compile Include="Private\Catalog\DynamicAttributeManagementFixture.cs" />
+    <Compile Include="Private\Catalog\DynamicAttributeTypeManagementFixture.cs" />
+    <Compile Include="Private\Catalog\ImageManagementFixture.cs" />
+    <Compile Include="Private\Catalog\ItemManagementFixture.cs" />
+    <Compile Include="Private\Catalog\ItemMetadataAssetManagementFixture.cs" />
+    <Compile Include="Private\Catalog\MailTemplateManagementFixture.cs" />
+    <Compile Include="Private\Catalog\SummaryManagementFixture.cs" />
+    <Compile Include="Private\Catalog\TagManagementFixture.cs" />
+    <Compile Include="Private\Catalog\TagMetadataManagementFixture.cs" />
+    <Compile Include="Private\Catalog\TrendingItemManagementFixture.cs" />
+    <Compile Include="Private\Catalog\UnitTypeManagementFixture.cs" />
+    <Compile Include="Private\Catalog\VideoManagementFixture.cs" />
+    <Compile Include="Private\Catalog\WeightTypeManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\AddedShoppingCartItemManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\AddedWishlistItemManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\BaseMeteringManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\ItemLikeManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\ItemShareInteractionManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\ItemShareManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\ItemShareResponseManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\ItemViewManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\AddedShoppingCartItemMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\AddedWishlistItemMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\BaseMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\ItemLikeMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\ItemShareInteractionMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\ItemShareMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\ItemShareResponseMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\ItemViewMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\OmniShareMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\RemovedShoppingCartItemMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\RemovedWishlistItemMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\ShoppingCartByCreatedDateMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\ShoppingCartByLastAccessedDateMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\SocialPlatformProfileMeteringLogEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\TrendingItemMeteringLogEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\WishlistByCreatedDateMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\MeteringEntities\WishlistByLastAccessedDateMeteringEntity.cs" />
+    <Compile Include="Private\Metering\Log\OmniShareFromCustomerDeviceToCustomerDeviceManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\OmniShareFromCustomerDeviceToInStoreDeviceManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\OmniShareFromInStoreDeviceToCustomerDeviceManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\OmniShareFromInStoreDeviceToInStoreDeviceManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\OmniShareManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\RemovedShoppingCartItemManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\RemovedWishlistItemManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\ShoppingCartByCreatedDateManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\ShoppingCartByLastAccessedDateManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\TrendingItemMeteringManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\WishlistByCreatedDateMeteringManagementFixture.cs" />
+    <Compile Include="Private\Metering\Log\WishlistByLastAccessedDateManagementFixture.cs" />
+    <Compile Include="Private\Metering\SummaryMeteringManagementFixture.cs" />
+    <Compile Include="Private\Passbook\PassbookBarcodeTypeFixture.cs" />
+    <Compile Include="Private\Passbook\PassbookTemplateManagementFixture.cs" />
+    <Compile Include="Private\PII\LoyaltyManagementFixture.cs" />
+    <Compile Include="Private\Tenant\TenantAssetManagementFixture.cs" />
+    <Compile Include="SDKFixtureBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\XOMNI.SDK.Core\XOMNI.SDK.Core.csproj">
+      <Project>{4d4ce902-3479-43ce-9f11-b02493b99a13}</Project>
+      <Name>XOMNI.SDK.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\XOMNI.SDK.Management\XOMNI.SDK.Management.csproj">
+      <Project>{f37cdec3-d6de-4cef-9955-2e67661e09d8}</Project>
+      <Name>XOMNI.SDK.Management</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\XOMNI.SDK.Model.Management\XOMNI.SDK.Model.Management.csproj">
+      <Project>{2b601927-01f9-4969-8b3c-64d3a4886b88}</Project>
+      <Name>XOMNI.SDK.Model.Management</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\XOMNI.SDK.Model.Private\XOMNI.SDK.Model.Private.csproj">
+      <Project>{45d332e2-8a46-422b-b1f4-0ca31e206b56}</Project>
+      <Name>XOMNI.SDK.Model.Private</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\XOMNI.SDK.Model\XOMNI.SDK.Model.csproj">
+      <Project>{243e5b10-0058-4407-846c-e7743c38cac3}</Project>
+      <Name>XOMNI.SDK.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\XOMNI.SDK.Private\XOMNI.SDK.Private.csproj">
+      <Project>{ec2d1b4a-cb17-46f9-aacf-ea4e980bc34c}</Project>
+      <Name>XOMNI.SDK.Private</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="TestAssets\AppleWWDRCA.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestAssets\passbook.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Management\System\" />
+    <Folder Include="Management\Tenant\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestAssets\bigTestImage.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAssets\icon%402x.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAssets\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAssets\logo%402x.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAssets\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAssets\strip%402x.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAssets\strip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAssets\testImage.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

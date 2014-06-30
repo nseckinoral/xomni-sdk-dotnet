@@ -176,4 +176,3 @@ FakesAssemblies/
 # Custom
 artifacts/
 nuget.exe
-tests/
