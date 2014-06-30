@@ -74,6 +74,9 @@
     <None Include="XOMNI.SDK.Model.Public.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>PowerShell -NoProfile -NoLogo -ExecutionPolicy unrestricted -Command "$(SolutionDir)/scripts/copy-binaries.ps1 $(TargetDir)$(TargetName).dll"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
