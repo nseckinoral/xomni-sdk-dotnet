@@ -50,5 +50,16 @@ namespace XOMNI.SDK.Core.Management
         {
             return ApiAccess.GetByIdAsync(id, base.ApiCredential);
         }
+
+        /// <summary>
+        /// Returns a paged list of entity
+        /// </summary>
+        /// <param name="skip">The number of items in the collection to skip before executing a select.</param>
+        /// <param name="take">The number of items that should be fetched from the collection.</param>
+        /// <returns>CountedCollectionContainer of entity</returns>
+        public virtual Task<Model.CountedCollectionContainer<T>> GetAllAsync(int skip, int take)
+        {
+            return ApiAccess.GetAllAsync(skip, take, base.ApiCredential);
+        }
     }
 }
