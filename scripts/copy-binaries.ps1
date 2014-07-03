@@ -3,21 +3,29 @@ param(
     [string]$assemblyPath
 )
 
-$binariesPath = $env:XOMNI_SDK_BINARIES_DIR
-if($binariesPath -eq $null)
+$copyPaths = @()
+$semiColonSeperatedBinariesDir = $env:XOMNI_SDK_BINARIES_DIR
+if($semiColonSeperatedBinariesDir -eq $null)
 {
-    Write-Host $binariesPath
-    $binariesPath = "c:\xomni-binaries"
+    $copyPaths += "c:\xomni-binaries"
+}
+else
+{
+    $copyPaths = $semiColonSeperatedBinariesDir.split(';')
 }
 
-if(Test-Path $binariesPath)
-{
-    $fileNameToCopy = (Split-Path $assemblyPath -Leaf)
-    $fullDestinationPath = (Join-Path $binariesPath $fileNameToCopy)
-    if(Test-Path $fullDestinationPath)
-    {
-        Remove-Item $fullDestinationPath
-    }
+$copyPaths | foreach {
     
-    Copy-Item $assemblyPath -Destination $binariesPath
+    $binariesPath = $_
+    if(Test-Path $binariesPath)
+    {
+        $fileNameToCopy = (Split-Path $assemblyPath -Leaf)
+        $fullDestinationPath = (Join-Path $binariesPath $fileNameToCopy)
+        if(Test-Path $fullDestinationPath)
+        {
+            Remove-Item $fullDestinationPath
+        }
+    
+        Copy-Item $assemblyPath -Destination $binariesPath
+    }
 }
