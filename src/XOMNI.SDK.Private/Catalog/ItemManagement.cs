@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Model;
 using XOMNI.SDK.Model.Asset;
 using XOMNI.SDK.Model.Catalog;
-using XOMNI.SDK.Core.ApiAccess;
 using XOMNI.SDK.Core.Management;
 using XOMNI.SDK.Private.ApiAccess.Catalog;
 using XOMNI.SDK.Private.ApiAccess.Catalog.ItemAsset;
@@ -16,10 +13,13 @@ namespace XOMNI.SDK.Private.Catalog
 {
     public class ItemManagement : BaseCRUDSkipTakeManagement<Model.Private.Catalog.Item>, IAssetRelation
     {
-        private ItemMetadata itemMetadataApi;
-        private RelatedItems relatedItemsApi;
-        private BatchPrice batchPriceApi;
-        private Price priceApi;
+        private readonly ItemMetadata itemMetadataApi;
+        private readonly RelatedItems relatedItemsApi;
+        private readonly BatchPrice batchPriceApi;
+        private readonly Price priceApi;
+        private readonly ItemGroup itemGroup;
+        private readonly ItemUngroup itemUngroup;
+        private readonly ItemMove itemMove;
 
         private XOMNI.SDK.Private.ApiAccess.Catalog.ItemDynamicAttribute.DynamicAttribute itemDynamicAttributeApi;
 
@@ -30,6 +30,9 @@ namespace XOMNI.SDK.Private.Catalog
             batchPriceApi = new BatchPrice();
             itemDynamicAttributeApi = new ApiAccess.Catalog.ItemDynamicAttribute.DynamicAttribute();
             priceApi = new Price();
+            itemGroup = new ItemGroup();
+            itemUngroup = new ItemUngroup();
+            itemMove = new ItemMove();
         }
 
         public async Task<ItemMetaData> AddMetadataAsync(int itemId, string metadataKey, string metadataValue)
@@ -239,6 +242,35 @@ namespace XOMNI.SDK.Private.Catalog
         public Task<List<Model.Catalog.DynamicAttribute>> UpdateDynamicAttributesAsync(int itemId, List<Model.Catalog.DynamicAttribute> dynamicAttributeList)
         {
             return itemDynamicAttributeApi.UpdateItemDynamicAttributesAsync(itemId, dynamicAttributeList, this.ApiCredential);
+        }
+
+        /// <summary>
+        /// Makes the variant items of the default item master (in other words, ugroups them).
+        /// </summary>
+        /// <param name="defaultItemId">The id of the default item which will be used to ungroup its variant items.</param>
+        public Task UngroupItemsAsync(int defaultItemId)
+        {
+            return itemUngroup.UngroupItemsAsync(defaultItemId, base.ApiCredential);
+        }
+
+        /// <summary>
+        /// Moves variant items under a sepecified default item.
+        /// </summary>
+        /// <param name="defaultItemId">The id of the default item to move the variants item under.</param>
+        /// <param name="variantItemIds">The ids of the items to move.</param>
+        public Task GroupItemsAsync(int defaultItemId, IEnumerable<int> variantItemIds)
+        {
+            return itemGroup.GroupItemsAsync(defaultItemId, variantItemIds, base.ApiCredential);
+        }
+
+        /// <summary>
+        /// Moves variant items under a different default item.
+        /// </summary>
+        /// <param name="defaultItemId">The id of the default item to move the variant items under.</param>
+        /// <param name="variantItemIds">The ids of the items to move.</param>
+        public Task MoveItems(int defaultItemId, IEnumerable<int> variantItemIds)
+        {
+            return itemMove.MoveItemsAsync(defaultItemId, variantItemIds, base.ApiCredential);
         }
     }
 }
