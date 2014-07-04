@@ -268,7 +268,7 @@ namespace XOMNI.SDK.Private.Catalog
         /// </summary>
         /// <param name="defaultItemId">The id of the default item to move the variant items under.</param>
         /// <param name="variantItemIds">The ids of the items to move.</param>
-        public Task MoveItems(int defaultItemId, IEnumerable<int> variantItemIds)
+        public Task MoveItemsAsync(int defaultItemId, IEnumerable<int> variantItemIds)
         {
             return itemMove.MoveItemsAsync(defaultItemId, variantItemIds, base.ApiCredential);
         }
