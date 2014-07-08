@@ -68,6 +68,7 @@ namespace XOMNI.SDK.Tests.Private.Asset
             await tempAssetBusiness.DeleteAsync(tempFileName);
 
             var assets3 = await imageAssetManagement.GetAssets(skip, take, null);
+            Assert.IsTrue(assets.Results.TrueForAll(t => t.AssetUrl.StartsWith("http")), "Asset Urls should contain storage account");
             Assert.AreEqual(assets.TotalCount + 1, assets3.TotalCount, "Total asset count did not match.");
 
             var assets4 = await imageAssetManagement.GetAssets(skip, take, "image");
@@ -130,6 +131,7 @@ namespace XOMNI.SDK.Tests.Private.Asset
             var assets2 = await documentAssetManagement.GetAssets(skip, take, null);
 
             Assert.AreEqual(assets.TotalCount + 1, assets2.TotalCount, "Total asset count did not match.");
+            Assert.IsTrue(assets.Results.TrueForAll(t => t.AssetUrl.StartsWith("http")), "Asset Urls should contain storage account");
 
             await relator.UnrelateDocumentAsync(sampleBrandId, newAssetRelation.AssetId);
             await tempAssetBusiness.DeleteAsync(tempFileName);
@@ -170,6 +172,7 @@ namespace XOMNI.SDK.Tests.Private.Asset
             var assets2 = await videoAssetManagement.GetAssets(skip, take, null);
 
             Assert.AreEqual(assets.TotalCount + 1, assets2.TotalCount, "Total asset count did not match.");
+            Assert.IsTrue(assets.Results.TrueForAll(t => t.AssetUrl.StartsWith("http")), "Asset Urls should contain storage account");
 
             await relator.UnrelateVideoAsync(sampleBrandId, newAssetRelation.AssetId);
             await tempAssetBusiness.DeleteAsync(tempFileName);

@@ -81,6 +81,8 @@ namespace XOMNI.SDK.Tests.Private.Catalog
             var assets = await CatalogAssetBaseBusiness.GetImagesAsync(relatedId);
 
             Assert.AreEqual(2, assets.Count, "Asset counts did not match");
+            Assert.IsTrue(assets[0].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
+            Assert.IsTrue(assets[1].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
             Assert.AreEqual(false, assets[0].IsDefault, "API returned wrong default asset value");
             Assert.AreEqual(true, assets[1].IsDefault, "API returned wrong default asset value");
             Assert.AreEqual(fileName, assets[0].OriginalFilename, "Orginal file name value is wrong");
@@ -145,6 +147,8 @@ namespace XOMNI.SDK.Tests.Private.Catalog
             Assert.AreEqual(fileName1, assets[1].OriginalFilename, "Orginal file name value is wrong");
             Assert.AreEqual("image/jpeg", assets[0].ContentMimeType, "Content MIME Type value is wrong");
             Assert.AreEqual("image/jpeg", assets[1].ContentMimeType, "Content MIME Type  value is wrong");
+            Assert.IsTrue(assets[0].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
+            Assert.IsTrue(assets[1].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
 
             await CatalogAssetBaseBusiness.UnrelateImageAsync(relatedId, assets[0].AssetId);
             await CatalogAssetBaseBusiness.UnrelateImageAsync(relatedId, assets[1].AssetId);
@@ -212,7 +216,8 @@ namespace XOMNI.SDK.Tests.Private.Catalog
             Assert.AreEqual(fileName1, assets[1].OriginalFilename, "Orginal file name value is wrong");
             Assert.AreEqual("image/jpeg", assets[0].ContentMimeType, "Content MIME Type value is wrong");
             Assert.AreEqual("image/jpeg", assets[1].ContentMimeType, "Content MIME Type  value is wrong");
-
+            Assert.IsTrue(assets[0].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
+            Assert.IsTrue(assets[1].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
 
             await CatalogAssetBaseBusiness.UpdateDocumentRelation(relatedId, assets[0].AssetId, true);
 
@@ -270,6 +275,8 @@ namespace XOMNI.SDK.Tests.Private.Catalog
             Assert.AreEqual(fileName1, assets[1].OriginalFilename, "Orginal file name value is wrong");
             Assert.AreEqual("image/jpeg", assets[0].ContentMimeType, "Content MIME Type value is wrong");
             Assert.AreEqual("image/jpeg", assets[1].ContentMimeType, "Content MIME Type  value is wrong");
+            Assert.IsTrue(assets[0].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
+            Assert.IsTrue(assets[1].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
 
             await CatalogAssetBaseBusiness.UnrelateDocumentAsync(relatedId, assets[0].AssetId);
             await CatalogAssetBaseBusiness.UnrelateDocumentAsync(relatedId, assets[1].AssetId);
@@ -337,7 +344,8 @@ namespace XOMNI.SDK.Tests.Private.Catalog
             Assert.AreEqual(fileName1, assets[1].OriginalFilename, "Orginal file name value is wrong");
             Assert.AreEqual("image/jpeg", assets[0].ContentMimeType, "Content MIME Type value is wrong");
             Assert.AreEqual("image/jpeg", assets[1].ContentMimeType, "Content MIME Type  value is wrong");
-
+            Assert.IsTrue(assets[0].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
+            Assert.IsTrue(assets[1].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
 
             await CatalogAssetBaseBusiness.UpdateVideoRelation(relatedId, assets[0].AssetId, true);
 
@@ -395,6 +403,8 @@ namespace XOMNI.SDK.Tests.Private.Catalog
             Assert.AreEqual(fileName1, assets[1].OriginalFilename, "Orginal file name value is wrong");
             Assert.AreEqual("image/jpeg", assets[0].ContentMimeType, "Content MIME Type value is wrong");
             Assert.AreEqual("image/jpeg", assets[1].ContentMimeType, "Content MIME Type  value is wrong");
+            Assert.IsTrue(assets[0].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
+            Assert.IsTrue(assets[1].AssetUrl.StartsWith("http"), "Asset Urls should contain storage account");
 
             await CatalogAssetBaseBusiness.UnrelateVideoAsync(relatedId, assets[0].AssetId);
             await CatalogAssetBaseBusiness.UnrelateVideoAsync(relatedId, assets[1].AssetId);
