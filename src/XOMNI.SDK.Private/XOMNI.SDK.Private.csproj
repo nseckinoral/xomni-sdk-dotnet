@@ -42,6 +42,7 @@
     <Compile Include="..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ApiAccess\Asset\Assets.cs" />
     <Compile Include="ApiAccess\Auth\Principal.cs" />
     <Compile Include="ApiAccess\Catalog\Brand.cs" />
     <Compile Include="ApiAccess\Catalog\ItemGroup.cs" />
