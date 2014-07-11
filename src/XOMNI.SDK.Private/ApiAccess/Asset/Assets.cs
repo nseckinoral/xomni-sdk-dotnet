@@ -26,16 +26,16 @@ namespace XOMNI.SDK.Private.ApiAccess.Asset
             get { return "/private/storage/assets/{0}/relations"; }
         }
 
-        public Task<AssetRelations> GetAssetRelationsAsync(int assetId, ApiBasicCredential credential)
+        internal Task<AssetRelations> GetAssetRelationsAsync(int assetId, ApiBasicCredential credential)
         {
             return HttpProvider.GetAsync<AssetRelations>(GenerateUrl(String.Format(AssetRelationBaseUrl, assetId)), credential);
         }
 
-        public Task DeleteAssetAsync(int assetId, bool force, ApiBasicCredential credential)
+        internal Task DeleteAssetAsync(int assetId, bool force, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("force", force.ToString());
-            return HttpProvider.DeleteAsync(GenerateUrl(String.Format(AssetRelationBaseUrl, assetId), additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(String.Format(SingleOperationBaseUrl, assetId), additionalParameters), credential);
         }
     }
 }
