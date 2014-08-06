@@ -66,6 +66,7 @@
     <Compile Include="ApiAccess\Configuration\Store.cs" />
     <Compile Include="ApiAccess\Configuration\Settings.cs" />
     <Compile Include="ApiAccess\Storage\Assets.cs" />
+    <Compile Include="ApiAccess\Tenant\Devices.cs" />
     <Compile Include="Configuration\ImageSizeProfileManagement.cs" />
     <Compile Include="Configuration\TrendingActionTypesManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Configuration\StoreManagement.cs" />
     <Compile Include="Storage\AssetManagement.cs" />
     <Compile Include="Configuration\SettingsManagement.cs" />
+    <Compile Include="Tenant\DeviceManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -84,7 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiAccess\System\" />
-    <Folder Include="ApiAccess\Tenant\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Threading.Tasks">
