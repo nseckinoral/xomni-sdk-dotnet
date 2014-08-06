@@ -59,6 +59,7 @@
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Security\ApiUser.cs" />
     <Compile Include="Security\ApiUserRight.cs" />
+    <Compile Include="Tenant\Device.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="User\" />
