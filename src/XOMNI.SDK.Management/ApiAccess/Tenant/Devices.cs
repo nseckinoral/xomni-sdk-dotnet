@@ -40,9 +40,11 @@ namespace XOMNI.SDK.Management.ApiAccess.Tenant
             return HttpProvider.PutAsync<XOMNI.SDK.Model.Management.Tenant.Device>(GenerateUrl(String.Format(SingleOperationBaseUrl, device.DeviceId)), device, credential);
         }
 
-        internal Task DeleteAsync(string deviceId, ApiBasicCredential credential)
+        internal Task DeleteAsync(string deviceId, int relatedPublicApiUserId, ApiBasicCredential credential)
         {
-            return HttpProvider.DeleteAsync(GenerateUrl(String.Format(SingleOperationBaseUrl, deviceId)), credential);
+            Dictionary<string, string> additionalQueryString = new Dictionary<string, string>();
+            additionalQueryString.Add("relatedPublicApiUserId", relatedPublicApiUserId.ToString());
+            return HttpProvider.DeleteAsync(GenerateUrl(String.Format(SingleOperationBaseUrl, deviceId), additionalQueryString), credential);
         }
 
         internal Task<XOMNI.SDK.Model.Management.Tenant.Device> GetAsync(string deviceId, int relatedPublicApiUserId, ApiBasicCredential credential)
