@@ -32,14 +32,14 @@ namespace XOMNI.SDK.Management.Tenant
             return devicesApi.UpdateAsync(device, this.ApiCredential);
         }
 
-        public Task DeleteAsync(string deviceId, int relatedPublicApiUserId)
+        public Task DeleteAsync(string deviceId, int relatedLicenceId)
         {
-            return devicesApi.DeleteAsync(deviceId, relatedPublicApiUserId, this.ApiCredential);
+            return devicesApi.DeleteAsync(deviceId, relatedLicenceId, this.ApiCredential);
         }
 
-        public Task<XOMNI.SDK.Model.Management.Tenant.Device> GetAsync(string deviceId, int relatedPublicApiUserId)
+        public Task<XOMNI.SDK.Model.Management.Tenant.Device> GetAsync(string deviceId, int relatedLicenceId)
         {
-            return devicesApi.GetAsync(deviceId, relatedPublicApiUserId, this.ApiCredential);
+            return devicesApi.GetAsync(deviceId, relatedLicenceId, this.ApiCredential);
         }
     }
 }
