@@ -12,6 +12,7 @@ namespace XOMNI.SDK.Model.Management.Tenant
         public int? DeviceTypeId { get; set; }
         public string DeviceTypeDescription { get; set; }
         public DateTime? ExpirationDate { get; set; }
-        public int RelatedPublicApiUserId { get; set; }
+        public int RelatedLicenceId { get; set; }
+        public string RelatedLicenceName { get; set; }
     }
 }
