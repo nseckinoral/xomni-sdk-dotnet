@@ -8,7 +8,7 @@ using XOMNI.SDK.Model.Management.Company;
 
 namespace XOMNI.SDK.Management.Company
 {
-    public class DeviceTypeManagement : BaseCRUDManagement<DeviceType>
+    public class DeviceTypeManagement : BaseCRUDSkipTakeManagement<DeviceType>
     {
         protected override Core.ApiAccess.CRUDApiAccessBase<DeviceType> ApiAccess
         {
