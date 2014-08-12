@@ -48,6 +48,7 @@
     <Compile Include="..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Company\DeviceType.cs" />
     <Compile Include="Configuration\TrendingActionTypeValue.cs" />
     <Compile Include="Configuration\ImageSizeProfile.cs" />
     <Compile Include="Configuration\TrendingActionType.cs" />
@@ -59,7 +60,7 @@
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Security\ApiUser.cs" />
     <Compile Include="Security\ApiUserRight.cs" />
-    <Compile Include="Tenant\Device.cs" />
+    <Compile Include="Company\Device.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="User\" />
