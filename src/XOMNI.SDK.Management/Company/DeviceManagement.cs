@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
-using XOMNI.SDK.Management.ApiAccess.Tenant;
+using XOMNI.SDK.Management.ApiAccess.Company;
 using XOMNI.SDK.Model;
 
-namespace XOMNI.SDK.Management.Tenant
+namespace XOMNI.SDK.Management.Company
 {
     public class DeviceManagement : ManagementBase
     {
@@ -17,17 +17,17 @@ namespace XOMNI.SDK.Management.Tenant
             devicesApi = new Devices();
         }
 
-        public Task<CountedCollectionContainer<XOMNI.SDK.Model.Management.Tenant.Device>> GetAllAsync(int skip, int take)
+        public Task<CountedCollectionContainer<XOMNI.SDK.Model.Management.Company.Device>> GetAllAsync(int skip, int take)
         {
             return devicesApi.GetAllAsync(skip, take, this.ApiCredential);
         }
 
-        public Task<XOMNI.SDK.Model.Management.Tenant.Device> CreateAsync(XOMNI.SDK.Model.Management.Tenant.Device device)
+        public Task<XOMNI.SDK.Model.Management.Company.Device> AddAsync(XOMNI.SDK.Model.Management.Company.Device device)
         {
             return devicesApi.CreateAsync(device, this.ApiCredential);
         }
 
-        public Task<XOMNI.SDK.Model.Management.Tenant.Device> UpdateAsync(XOMNI.SDK.Model.Management.Tenant.Device device)
+        public Task<XOMNI.SDK.Model.Management.Company.Device> UpdateAsync(XOMNI.SDK.Model.Management.Company.Device device)
         {
             return devicesApi.UpdateAsync(device, this.ApiCredential);
         }
@@ -37,7 +37,7 @@ namespace XOMNI.SDK.Management.Tenant
             return devicesApi.DeleteAsync(deviceId, relatedLicenceId, this.ApiCredential);
         }
 
-        public Task<XOMNI.SDK.Model.Management.Tenant.Device> GetAsync(string deviceId, int relatedLicenceId)
+        public Task<XOMNI.SDK.Model.Management.Company.Device> GetAsync(string deviceId, int relatedLicenceId)
         {
             return devicesApi.GetAsync(deviceId, relatedLicenceId, this.ApiCredential);
         }

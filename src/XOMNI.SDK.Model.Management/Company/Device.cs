@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace XOMNI.SDK.Model.Management.Tenant
+namespace XOMNI.SDK.Model.Management.Company
 {
     public class Device
     {

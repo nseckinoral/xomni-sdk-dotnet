@@ -56,6 +56,7 @@
     <Compile Include="..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ApiAccess\Company\DeviceTypes.cs" />
     <Compile Include="ApiAccess\Configuration\ImageSizeProfile.cs" />
     <Compile Include="ApiAccess\Configuration\TrendingActionTypes.cs" />
     <Compile Include="ApiAccess\Security\LicenceAudit.cs" />
@@ -66,7 +67,8 @@
     <Compile Include="ApiAccess\Configuration\Store.cs" />
     <Compile Include="ApiAccess\Configuration\Settings.cs" />
     <Compile Include="ApiAccess\Storage\Assets.cs" />
-    <Compile Include="ApiAccess\Tenant\Devices.cs" />
+    <Compile Include="ApiAccess\Company\Devices.cs" />
+    <Compile Include="Company\DeviceTypeManagement.cs" />
     <Compile Include="Configuration\ImageSizeProfileManagement.cs" />
     <Compile Include="Configuration\TrendingActionTypesManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,7 +79,7 @@
     <Compile Include="Configuration\StoreManagement.cs" />
     <Compile Include="Storage\AssetManagement.cs" />
     <Compile Include="Configuration\SettingsManagement.cs" />
-    <Compile Include="Tenant\DeviceManagement.cs" />
+    <Compile Include="Company\DeviceManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
