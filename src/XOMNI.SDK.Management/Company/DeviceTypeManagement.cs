@@ -12,7 +12,7 @@ namespace XOMNI.SDK.Management.Company
     {
         protected override Core.ApiAccess.CRUDApiAccessBase<DeviceType> ApiAccess
         {
-            get { return new Core.ApiAccess.CRUDApiAccessBase<DeviceType>(); }
+            get { return new DeviceTypes(); }
         }
     }
 }

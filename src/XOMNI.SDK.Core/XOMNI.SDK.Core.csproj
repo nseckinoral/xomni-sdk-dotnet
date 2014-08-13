@@ -51,6 +51,7 @@
     <Compile Include="Exception\BadRequestException.cs" />
     <Compile Include="Exception\ConflictException.cs" />
     <Compile Include="Exception\ExceptionBase.cs" />
+    <Compile Include="Exception\ForbiddenException.cs" />
     <Compile Include="Exception\InternalServerErrorException.cs" />
     <Compile Include="Exception\NotFoundException.cs" />
     <Compile Include="Exception\RequestEntityTooLargeException.cs" />

@@ -150,6 +150,8 @@ namespace XOMNI.SDK.Core.Providers
                             throw ExceptionBase.Create<RequestEntityTooLargeException>(responseContent);
                         case HttpStatusCode.Unauthorized:
                             throw ExceptionBase.Create<UnauthorizedException>(responseContent);
+                        case HttpStatusCode.Forbidden:
+                            throw ExceptionBase.Create<ForbiddenException>(responseContent);
                         default:
                             var exception = ExceptionBase.Create<UnhandledHttpException>(responseContent);
                             exception.HttpStatusCode = response.StatusCode;
