@@ -13,21 +13,12 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
     {
         protected override string SingleOperationBaseUrl
         {
-            get { return "/private/catalog/dynamicattributetype"; }
+            get { return "/private/catalog/dynamicattributetypes/{0}"; }
         }
 
         protected override string ListOperationBaseUrl
         {
             get { return "/private/catalog/dynamicattributetypes"; }
         }
-
-        //public Task<CountedCollectionContainer<SDK.Model.Catalog.DynamicAttributeType>> GetAllDynamicAttributeTypesAsync(int skip, int take, ApiBasicCredential credential)
-        //{
-        //    Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
-        //    additionalParameters.Add("skip", skip.ToString());
-        //    additionalParameters.Add("take", take.ToString());
-
-        //    return HttpProvider.GetAsync<CountedCollectionContainer<SDK.Model.Catalog.DynamicAttributeType>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
-        //}
     }
 }
