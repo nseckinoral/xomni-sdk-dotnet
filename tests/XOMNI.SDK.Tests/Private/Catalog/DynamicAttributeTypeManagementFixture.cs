@@ -33,7 +33,7 @@ namespace XOMNI.SDK.Tests.Private.Catalog
         {
             var createdItem = await dynamicAttributeManagementFixture.CreateItem();
 
-            var dynamicAttributeTypes = await dynamicAttributeTypeManagement.GetAllDynamicAttributeTypesAsync(Skip, Take);
+            var dynamicAttributeTypes = await dynamicAttributeTypeManagement.GetAllAsync(Skip, Take);
             Assert.IsTrue(dynamicAttributeTypes.TotalCount > 1, "Total dynamic attribute type count did not match.");
 
             foreach (var item in dynamicAttributeTypes.Results)
