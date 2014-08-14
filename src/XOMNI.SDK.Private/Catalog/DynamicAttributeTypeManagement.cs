@@ -9,18 +9,15 @@ using XOMNI.SDK.Private.ApiAccess.Catalog;
 
 namespace XOMNI.SDK.Private.Catalog
 {
-    public class DynamicAttributeTypeManagement : ManagementBase
+    public class DynamicAttributeTypeManagement : BaseCRUDManagement<XOMNI.SDK.Model.Private.Catalog.DynamicAttributeType>
     {
         private DynamicAttributeType dynamicAttributeTypeApiAccess;
-
-        public DynamicAttributeTypeManagement()
+        protected override Core.ApiAccess.CRUDApiAccessBase<Model.Private.Catalog.DynamicAttributeType> ApiAccess
         {
-            dynamicAttributeTypeApiAccess = new DynamicAttributeType();
-        }
-
-        public Task<CountedCollectionContainer<SDK.Model.Catalog.DynamicAttributeType>> GetAllDynamicAttributeTypesAsync(int skip, int take)
-        {
-            return dynamicAttributeTypeApiAccess.GetAllDynamicAttributeTypesAsync(skip, take, this.ApiCredential);
+            get
+            {
+                return new ApiAccess.Catalog.DynamicAttributeType(); 
+            }
         }
     }
 }

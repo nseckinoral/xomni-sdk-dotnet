@@ -56,6 +56,8 @@
     <Compile Include="Auth\Principal.cs" />
     <Compile Include="Catalog\Category.cs" />
     <Compile Include="Catalog\Dimension.cs" />
+    <Compile Include="Catalog\DynamicAttributeType.cs" />
+    <Compile Include="Catalog\DynamicAttributeTypeOptions.cs" />
     <Compile Include="Catalog\Item.cs" />
     <Compile Include="Catalog\ItemPopularityRecordDto.cs" />
     <Compile Include="Catalog\ItemSearch.cs" />

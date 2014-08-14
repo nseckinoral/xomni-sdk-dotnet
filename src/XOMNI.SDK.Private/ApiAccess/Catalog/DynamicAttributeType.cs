@@ -9,7 +9,7 @@ using XOMNI.SDK.Model;
 
 namespace XOMNI.SDK.Private.ApiAccess.Catalog
 {
-    public class DynamicAttributeType : ApiAccessBase
+    public class DynamicAttributeType : CRUDApiAccessBase<Model.Private.Catalog.DynamicAttributeType>
     {
         protected override string SingleOperationBaseUrl
         {
@@ -21,13 +21,13 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             get { return "/private/catalog/dynamicattributetypes"; }
         }
 
-        public Task<CountedCollectionContainer<SDK.Model.Catalog.DynamicAttributeType>> GetAllDynamicAttributeTypesAsync(int skip, int take, ApiBasicCredential credential)
-        {
-            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
-            additionalParameters.Add("skip", skip.ToString());
-            additionalParameters.Add("take", take.ToString());
+        //public Task<CountedCollectionContainer<SDK.Model.Catalog.DynamicAttributeType>> GetAllDynamicAttributeTypesAsync(int skip, int take, ApiBasicCredential credential)
+        //{
+        //    Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+        //    additionalParameters.Add("skip", skip.ToString());
+        //    additionalParameters.Add("take", take.ToString());
 
-            return HttpProvider.GetAsync<CountedCollectionContainer<SDK.Model.Catalog.DynamicAttributeType>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
-        }
+        //    return HttpProvider.GetAsync<CountedCollectionContainer<SDK.Model.Catalog.DynamicAttributeType>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
+        //}
     }
 }
