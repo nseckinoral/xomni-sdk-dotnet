@@ -9,10 +9,10 @@ namespace XOMNI.SDK.Model.Private.Catalog
     public enum DynamicAttributeTypeOptions : byte
     {
         NotInitialized = 0,
-        Retrievable,
-        Filterable,
-        Searchable,
-        Facetable,
-        Sortable,
+        Retrievable = 1,
+        Filterable = 2,
+        Searchable = 4,
+        Facetable = 8,
+        Sortable = 16,
     }
 }
