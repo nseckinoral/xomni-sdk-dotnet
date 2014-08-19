@@ -8,6 +8,7 @@ using XOMNI.SDK.Core.Management;
 using XOMNI.SDK.Private.ApiAccess.Catalog;
 using XOMNI.SDK.Private.ApiAccess.Catalog.ItemAsset;
 using XOMNI.SDK.Private.ApiAccess.Catalog.ItemPrice;
+using XOMNI.SDK.Private.ApiAccess.Catalog.ItemStoreMetadata;
 
 namespace XOMNI.SDK.Private.Catalog
 {
@@ -20,6 +21,7 @@ namespace XOMNI.SDK.Private.Catalog
         private readonly ItemGroup itemGroup;
         private readonly ItemUngroup itemUngroup;
         private readonly ItemMove itemMove;
+        private readonly ItemStoreMetadata itemStoreMetadataApi;
 
         private XOMNI.SDK.Private.ApiAccess.Catalog.ItemDynamicAttribute.DynamicAttribute itemDynamicAttributeApi;
 
@@ -33,6 +35,7 @@ namespace XOMNI.SDK.Private.Catalog
             itemGroup = new ItemGroup();
             itemUngroup = new ItemUngroup();
             itemMove = new ItemMove();
+            itemStoreMetadataApi = new ItemStoreMetadata();
         }
 
         public async Task<ItemMetaData> AddMetadataAsync(int itemId, string metadataKey, string metadataValue)
@@ -271,6 +274,32 @@ namespace XOMNI.SDK.Private.Catalog
         public Task MoveItemsAsync(int defaultItemId, IEnumerable<int> variantItemIds)
         {
             return itemMove.MoveItemsAsync(defaultItemId, variantItemIds, base.ApiCredential);
+        }
+
+
+        public Task<Model.Private.Catalog.InStoreMetadata> AddInStoreMetadataAsync(int itemId, Model.Private.Catalog.InStoreMetadata inStoreMetadata)
+        {
+            return itemStoreMetadataApi.AddInStoreMetadataAsync(itemId, inStoreMetadata, this.ApiCredential);
+        }
+
+        public Task<Model.Private.Catalog.InStoreMetadata> UpdateInStoreMetadataAsync(int itemId, Model.Private.Catalog.InStoreMetadata inStoreMetadata)
+        {
+            return itemStoreMetadataApi.UpdateInStoreMetadataAsync(itemId, inStoreMetadata, this.ApiCredential);
+        }
+
+        public Task<List<Model.Private.Catalog.InStoreMetadata>> GetAllInStoreMetadataAsync(int itemId)
+        {
+            return itemStoreMetadataApi.GetAllInStoreMetadataAsync(itemId, this.ApiCredential);
+        }
+
+        public Task DeleteInStoreMetadataAsync(int itemId, string metadataKey)
+        {
+            return itemStoreMetadataApi.DeleteInStoreMetadataAsync(itemId, metadataKey, this.ApiCredential);
+        }
+
+        public Task ClearInStoreMetadataAsync(int itemId)
+        {
+            return itemStoreMetadataApi.ClearInStoreMetadataAsync(itemId, this.ApiCredential);
         }
     }
 }
