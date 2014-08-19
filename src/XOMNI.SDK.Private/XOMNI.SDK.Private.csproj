@@ -53,6 +53,7 @@
     <Compile Include="ApiAccess\Catalog\ItemDynamicAttribute\DynamicAttribute.cs" />
     <Compile Include="ApiAccess\Catalog\ItemMove.cs" />
     <Compile Include="ApiAccess\Catalog\ItemPrice\BatchPrice.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemStoreMetadata\ItemStoreMetadata.cs" />
     <Compile Include="ApiAccess\Catalog\ItemTagMapping.cs" />
     <Compile Include="ApiAccess\Catalog\ItemUngroup.cs" />
     <Compile Include="ApiAccess\Catalog\MailTemplate.cs" />

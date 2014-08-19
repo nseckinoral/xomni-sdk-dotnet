@@ -69,6 +69,7 @@
     <Compile Include="Catalog\DynamicAttribute.cs" />
     <Compile Include="Catalog\DynamicAttributeType.cs" />
     <Compile Include="Catalog\DynamicNavigation.cs" />
+    <Compile Include="Catalog\InStoreMetadata.cs" />
     <Compile Include="Catalog\Item.cs" />
     <Compile Include="Catalog\ItemCompare.cs" />
     <Compile Include="Catalog\ItemDynamicProperties.cs" />
