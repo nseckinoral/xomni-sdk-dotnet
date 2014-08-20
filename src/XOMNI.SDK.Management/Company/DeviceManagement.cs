@@ -56,7 +56,7 @@ namespace XOMNI.SDK.Management.Company
 
         public Task DeleteMetadataAsync(string deviceId, int relatedLicenceId, string metadataKey)
         {
-            return deviceMetadataApi.DeleteAsync(deviceId, relatedLicenceId, this.ApiCredential);
+            return deviceMetadataApi.DeleteAsync(deviceId, relatedLicenceId, metadataKey, this.ApiCredential);
         }
 
         public Task ClearMetadataAsync(string deviceId, int relatedLicenceId)
