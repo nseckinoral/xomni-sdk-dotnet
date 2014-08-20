@@ -12,9 +12,11 @@ namespace XOMNI.SDK.Management.Company
     public class DeviceManagement : ManagementBase
     {
         private Devices devicesApi;
+        private DeviceMetadata deviceMetadataApi;
         public DeviceManagement()
         {
             devicesApi = new Devices();
+            deviceMetadataApi = new DeviceMetadata();
         }
 
         public Task<CountedCollectionContainer<XOMNI.SDK.Model.Management.Company.Device>> GetAllAsync(int skip, int take)
@@ -40,6 +42,31 @@ namespace XOMNI.SDK.Management.Company
         public Task<XOMNI.SDK.Model.Management.Company.Device> GetAsync(string deviceId, int relatedLicenceId)
         {
             return devicesApi.GetAsync(deviceId, relatedLicenceId, this.ApiCredential);
+        }
+
+        public Task<Metadata> CreateMetadataAsync(string deviceId, int relatedLicenceId, Metadata metadata)
+        {
+            return deviceMetadataApi.CreateAsync(deviceId, relatedLicenceId, metadata, this.ApiCredential);
+        }
+
+        public Task<Metadata> UpdateMetadataAsync(string deviceId, int relatedLicenceId, Metadata metadata)
+        {
+            return deviceMetadataApi.UpdateAsync(deviceId, relatedLicenceId, metadata, this.ApiCredential);
+        }
+
+        public Task DeleteMetadataAsync(string deviceId, int relatedLicenceId, string metadataKey)
+        {
+            return deviceMetadataApi.DeleteAsync(deviceId, relatedLicenceId, this.ApiCredential);
+        }
+
+        public Task ClearDeviceMetadataAsync(string deviceId, int relatedLicenceId)
+        {
+            return deviceMetadataApi.DeleteAsync(deviceId, relatedLicenceId, this.ApiCredential);
+        }
+
+        public Task<List<Metadata>> GetMetadata(string deviceId, int relatedLicenceId)
+        {
+            return deviceMetadataApi.GetAsync(deviceId, relatedLicenceId, this.ApiCredential);
         }
     }
 }
