@@ -18,7 +18,7 @@ namespace XOMNI.SDK.Management.ApiAccess.Company
 
         protected override string ListOperationBaseUrl
         {
-            get { return "/management/company/licences/{0}/devices/{0}/metadata"; }
+            get { return "/management/company/licences/{0}/devices/{1}/metadata"; }
         }
 
         internal Task<Metadata> CreateAsync(string deviceId, int licenceId, Metadata metadata, ApiBasicCredential credential)
