@@ -70,6 +70,7 @@
     <Compile Include="Catalog\Summary.cs" />
     <Compile Include="Catalog\TrendingItemDto.cs" />
     <Compile Include="Catalog\Weight.cs" />
+    <Compile Include="Company\Store.cs" />
     <Compile Include="Metering\BaseMeteringSummary.cs" />
     <Compile Include="Metering\CounterTypes.cs" />
     <Compile Include="Metering\DailySummary.cs" />
@@ -111,6 +112,7 @@
   <ItemGroup>
     <None Include="XOMNI.SDK.Model.Private.nuspec" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>PowerShell -NoProfile -NoLogo -ExecutionPolicy unrestricted -Command "$(SolutionDir)/scripts/copy-binaries.ps1 $(TargetDir)$(TargetName).dll"</PostBuildEvent>

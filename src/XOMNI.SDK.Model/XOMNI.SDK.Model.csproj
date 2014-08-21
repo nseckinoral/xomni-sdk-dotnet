@@ -95,6 +95,7 @@
     <Compile Include="Catalog\UnitType.cs" />
     <Compile Include="Catalog\WeightMinMax.cs" />
     <Compile Include="Catalog\WeightType.cs" />
+    <Compile Include="Company\Store.cs" />
     <Compile Include="CountedCollectionContainer.cs" />
     <Compile Include="DebugInfo.cs" />
     <Compile Include="Location.cs" />

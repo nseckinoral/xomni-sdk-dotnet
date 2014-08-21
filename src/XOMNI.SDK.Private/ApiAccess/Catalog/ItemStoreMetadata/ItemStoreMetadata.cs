@@ -31,16 +31,26 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemStoreMetadata
             return HttpProvider.PutAsync<InStoreMetadata>(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), InStoreMetadata, credential);
         }
 
-        public Task DeleteInStoreMetadataAsync(int itemId, string metadataKey, ApiBasicCredential credential)
+        public Task DeleteInStoreMetadataAsync(int itemId, int storeId, string metadataKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("storeId", storeId.ToString());
             additionalParameters.Add("metadataKey", metadataKey);
 
             return HttpProvider.DeleteAsync(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId), additionalParameters), credential);
         }
 
+        public Task ClearInStoreMetadataAsync(int itemId, int storeId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("storeId", storeId.ToString());
+
+            return HttpProvider.DeleteAsync(GenerateUrl(string.Format(ListOperationBaseUrl, itemId), additionalParameters), credential);
+        }
+
         public Task ClearInStoreMetadataAsync(int itemId, ApiBasicCredential credential)
         {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             return HttpProvider.DeleteAsync(GenerateUrl(string.Format(ListOperationBaseUrl, itemId)), credential);
         }
 

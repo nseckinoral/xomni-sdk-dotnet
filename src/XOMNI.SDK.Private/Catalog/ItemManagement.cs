@@ -292,9 +292,13 @@ namespace XOMNI.SDK.Private.Catalog
             return itemStoreMetadataApi.GetAllInStoreMetadataAsync(itemId, this.ApiCredential);
         }
 
-        public Task DeleteInStoreMetadataAsync(int itemId, string metadataKey)
+        public Task DeleteInStoreMetadataAsync(int itemId, int storeId, string metadataKey)
         {
-            return itemStoreMetadataApi.DeleteInStoreMetadataAsync(itemId, metadataKey, this.ApiCredential);
+            return itemStoreMetadataApi.DeleteInStoreMetadataAsync(itemId, storeId, metadataKey, this.ApiCredential);
+        }
+        public Task ClearInStoreMetadataAsync(int itemId, int storeId)
+        {
+            return itemStoreMetadataApi.ClearInStoreMetadataAsync(itemId, storeId, this.ApiCredential);
         }
 
         public Task ClearInStoreMetadataAsync(int itemId)
