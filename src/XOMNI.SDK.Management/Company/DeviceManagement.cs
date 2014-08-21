@@ -44,7 +44,7 @@ namespace XOMNI.SDK.Management.Company
             return devicesApi.GetAsync(deviceId, relatedLicenceId, this.ApiCredential);
         }
 
-        public Task<Metadata> CreateMetadataAsync(string deviceId, int relatedLicenceId, Metadata metadata)
+        public Task<Metadata> AddMetadataAsync(string deviceId, int relatedLicenceId, Metadata metadata)
         {
             return deviceMetadataApi.CreateAsync(deviceId, relatedLicenceId, metadata, this.ApiCredential);
         }
@@ -64,7 +64,7 @@ namespace XOMNI.SDK.Management.Company
             return deviceMetadataApi.DeleteAsync(deviceId, relatedLicenceId, this.ApiCredential);
         }
 
-        public Task<List<Metadata>> GetMetadata(string deviceId, int relatedLicenceId)
+        public Task<List<Metadata>> GetMetadataAsync(string deviceId, int relatedLicenceId)
         {
             return deviceMetadataApi.GetAsync(deviceId, relatedLicenceId, this.ApiCredential);
         }
