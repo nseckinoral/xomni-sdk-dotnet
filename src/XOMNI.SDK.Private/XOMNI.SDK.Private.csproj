@@ -63,6 +63,7 @@
     <Compile Include="ApiAccess\Catalog\WeightType.cs" />
     <Compile Include="ApiAccess\Catalog\IAssetMetadata.cs" />
     <Compile Include="ApiAccess\Catalog\UnitType.cs" />
+    <Compile Include="ApiAccess\Company\Store.cs" />
     <Compile Include="ApiAccess\Metering\Meterings.cs" />
     <Compile Include="ApiAccess\Metering\SummaryMeterings.cs" />
     <Compile Include="ApiAccess\Passbook\PassbookBarcodeType.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Catalog\UnitTypeManagement.cs" />
     <Compile Include="Catalog\VideoManagement.cs" />
     <Compile Include="Catalog\WeightTypeManagement.cs" />
+    <Compile Include="Company\StoreManagement.cs" />
     <Compile Include="Metering\Log\AddedShoppingCartItemMeteringManagement.cs" />
     <Compile Include="Metering\Log\AddedWishlistItemMeteringManagement.cs" />
     <Compile Include="Metering\Log\ItemLikeMeteringManagement.cs" />
