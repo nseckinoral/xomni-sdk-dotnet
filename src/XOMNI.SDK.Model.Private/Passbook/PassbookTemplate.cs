@@ -34,6 +34,6 @@ namespace XOMNI.SDK.Model.Private.Passbook
         public string BackFieldPlaceholder1 { get; set; }
         public string BackFieldPlaceholder2 { get; set; }
         public string BackFieldPlaceholder3 { get; set; }
-        public Currency Currency { get; set; }
+        public PriceType PriceType { get; set; }
     }
 }

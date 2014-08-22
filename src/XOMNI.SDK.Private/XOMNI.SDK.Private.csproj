@@ -46,7 +46,7 @@
     <Compile Include="ApiAccess\Auth\Principal.cs" />
     <Compile Include="ApiAccess\Catalog\Brand.cs" />
     <Compile Include="ApiAccess\Catalog\ItemGroup.cs" />
-    <Compile Include="ApiAccess\Catalog\Currency.cs" />
+    <Compile Include="ApiAccess\Catalog\PriceType.cs" />
     <Compile Include="ApiAccess\Catalog\DimensionType.cs" />
     <Compile Include="ApiAccess\Catalog\DynamicAttribute.cs" />
     <Compile Include="ApiAccess\Catalog\DynamicAttributeType.cs" />
@@ -81,7 +81,7 @@
     <Compile Include="Catalog\BaseAssetManagement.cs" />
     <Compile Include="Catalog\BrandManagement.cs" />
     <Compile Include="Catalog\CategoryManagement.cs" />
-    <Compile Include="Catalog\CurrencyManagement.cs" />
+    <Compile Include="Catalog\PriceTypeManagement.cs" />
     <Compile Include="Catalog\DimensionTypeManagement.cs" />
     <Compile Include="Catalog\DocumentManagement.cs" />
     <Compile Include="Catalog\DynamicAttributeManagement.cs" />

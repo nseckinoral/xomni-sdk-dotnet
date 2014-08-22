@@ -8,7 +8,7 @@ namespace XOMNI.SDK.Model.Catalog
 {
     public class PriceMinMax : MinMax<double?>
     {
-        public int CurrencyId { get; set; }
-        public string CurrencySymbol { get; set; }
+        public int PriceTypeId { get; set; }
+        public string PriceTypeSymbol { get; set; }
     }
 }

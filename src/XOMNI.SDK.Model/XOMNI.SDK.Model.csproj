@@ -63,7 +63,7 @@
     <Compile Include="Catalog\Brand.cs" />
     <Compile Include="Catalog\Category.cs" />
     <Compile Include="Catalog\CategoryMetaData.cs" />
-    <Compile Include="Catalog\Currency.cs" />
+    <Compile Include="Catalog\PriceType.cs" />
     <Compile Include="Catalog\DimensionMinMax.cs" />
     <Compile Include="Catalog\DimensionType.cs" />
     <Compile Include="Catalog\DynamicAttribute.cs" />
