@@ -6,16 +6,16 @@ using XOMNI.SDK.Core.ApiAccess;
 
 namespace XOMNI.SDK.Private.ApiAccess.Catalog
 {
-    internal class Currency : CRUDApiAccessBase<Model.Catalog.Currency>
+    internal class PriceType : CRUDApiAccessBase<Model.Catalog.PriceType>
     {
         protected override string SingleOperationBaseUrl
         {
-            get { return "/private/catalog/currency/{0}"; }
+            get { return "/private/catalog/pricetype/{0}"; }
         }
 
         protected override string ListOperationBaseUrl
         {
-            get { return "/private/catalog/currencies"; }
+            get { return "/private/catalog/pricetypes"; }
         }
     }
 }

@@ -90,7 +90,7 @@ namespace XOMNI.SDK.Tests.Private.Catalog
 
             sampleItem.Prices = new List<Model.Private.Catalog.Price>()
             {
-                new Model.Private.Catalog.Price() { CurrencyId= 1, NormalPrice= 50 },
+                new Model.Private.Catalog.Price() { PriceTypeId= 1, NormalPrice= 50 },
             };
 
             sampleItem.Metadata = new List<Metadata>()
@@ -215,41 +215,41 @@ namespace XOMNI.SDK.Tests.Private.Catalog
         {
             var sampleItem = await CreateSampleItem();
             ItemManagement itemManagement = new ItemManagement();
-            CurrencyManagement currencyManagement = new CurrencyManagement();
-            Currency initialTestCurrency = null;
-            Currency testCurrency = null;
+            PriceTypeManagement priceTypeManagement = new PriceTypeManagement();
+            PriceType initialTestPriceType = null;
+            PriceType testPriceType = null;
 
             Assert.IsNotNull(sampleItem.Prices, "Prices collection in an item could not be null.");
 
-            bool createNewCurrency = false;
+            bool createNewPriceType = false;
             try
             {
-                var currencies = await currencyManagement.GetAllAsync(0, 10);
-                initialTestCurrency = currencies.Results.FirstOrDefault();
+                var priceTypes = await priceTypeManagement.GetAllAsync(0, 10);
+                initialTestPriceType = priceTypes.Results.FirstOrDefault();
             }
             catch (NotFoundException nex)
             {
-                createNewCurrency = true;
+                createNewPriceType = true;
             }
 
-            if (createNewCurrency)
+            if (createNewPriceType)
             {
-                initialTestCurrency = await currencyManagement.AddAsync(new Currency()
+                initialTestPriceType = await priceTypeManagement.AddAsync(new PriceType()
                     {
-                        Description = "Initial Test Currency",
-                        CurrencySymbol = ":)"
+                        Description = "Initial Test Price Type",
+                        PriceTypeSymbol = ":)"
                     });
             }
 
-            testCurrency = await currencyManagement.AddAsync(new Currency()
+            testPriceType = await priceTypeManagement.AddAsync(new PriceType()
             {
-                Description = "Test Currency",
-                CurrencySymbol = ":("
+                Description = "Test Price Type",
+                PriceTypeSymbol = ":("
             });
 
             sampleItem.Prices.Add(new Model.Private.Catalog.Price()
                 {
-                    CurrencyId = initialTestCurrency.Id,
+                    PriceTypeId = initialTestPriceType.Id,
                     DiscountPrice = 10,
                     ItemId = sampleItem.Id,
                     NormalPrice = 20,
@@ -261,14 +261,14 @@ namespace XOMNI.SDK.Tests.Private.Catalog
 
             var price = sampleItem.Prices[0];
 
-            Assert.AreEqual(initialTestCurrency.Id, price.CurrencyId, "Currency of the price should be initialcurrency");
+            Assert.AreEqual(initialTestPriceType.Id, price.PriceTypeId, "Price Type of the price should be initial price Type");
             Assert.AreEqual(10, price.DiscountPrice, "Discount price should be 10");
             Assert.AreEqual(20, price.NormalPrice, "Normal Price should be 20");
 
             sampleItem.Prices.Clear();
             sampleItem.Prices.Add(new Model.Private.Catalog.Price()
                 {
-                    CurrencyId = testCurrency.Id,
+                    PriceTypeId = testPriceType.Id,
                     DiscountPrice = 20,
                     NormalPrice = 30,
                     ItemId = sampleItem.Id
@@ -278,7 +278,7 @@ namespace XOMNI.SDK.Tests.Private.Catalog
             var prices = await itemManagement.UpdatePricesAsync(sampleItem.Id, sampleItem.Prices);
 
             Assert.AreEqual(1, prices.Count, "Length of result collection should be 1");
-            Assert.AreEqual(testCurrency.Id, prices[0].CurrencyId, "Currency id should equal to testCurrency ");
+            Assert.AreEqual(testPriceType.Id, prices[0].PriceTypeId, "Price Type id should equal to testPriceType ");
             Assert.AreEqual(20, prices[0].DiscountPrice, "Discount price should be 20");
             Assert.AreEqual(30, prices[0].NormalPrice, "Normal price should be 30");
             Assert.AreEqual(sampleItem.Id, prices[0].ItemId, "Item id should be id of the sample item");
@@ -286,7 +286,7 @@ namespace XOMNI.SDK.Tests.Private.Catalog
             prices = (await itemManagement.GetByIdAsync(sampleItem.Id)).Prices;
 
             Assert.AreEqual(1, prices.Count, "Length of result collection should be 1");
-            Assert.AreEqual(testCurrency.Id, prices[0].CurrencyId, "Currency id should equal to testCurrency ");
+            Assert.AreEqual(testPriceType.Id, prices[0].PriceTypeId, "PriceType id should equal to testPriceType ");
             Assert.AreEqual(20, prices[0].DiscountPrice, "Discount price should be 20");
             Assert.AreEqual(30, prices[0].NormalPrice, "Normal price should be 30");
             Assert.AreEqual(sampleItem.Id, prices[0].ItemId, "Item id should be id of the sample item");
@@ -303,8 +303,8 @@ namespace XOMNI.SDK.Tests.Private.Catalog
 
             try
             {
-                //Check for the invalid currency ID
-                sampleItem.Prices[0].CurrencyId = int.MaxValue;
+                //Check for the invalid PriceType ID
+                sampleItem.Prices[0].PriceTypeId = int.MaxValue;
                 prices = await itemManagement.UpdatePricesAsync(sampleItem.Id, sampleItem.Prices);
             }
             catch (BadRequestException)
@@ -313,10 +313,10 @@ namespace XOMNI.SDK.Tests.Private.Catalog
             }
 
             await itemManagement.DeleteAsync(sampleItem.Id);
-            await currencyManagement.DeleteAsync(testCurrency.Id);
-            if (createNewCurrency)
+            await priceTypeManagement.DeleteAsync(testPriceType.Id);
+            if (createNewPriceType)
             {
-                await currencyManagement.DeleteAsync(initialTestCurrency.Id);
+                await priceTypeManagement.DeleteAsync(initialTestPriceType.Id);
             }
 
         }

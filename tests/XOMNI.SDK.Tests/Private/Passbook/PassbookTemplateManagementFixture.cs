@@ -19,14 +19,14 @@ namespace XOMNI.SDK.Tests.Private.Passbook
     {
         SDK.Private.Passbook.PassbookTemplateManagement passbookTemplateManagement = null;
         SDK.Private.Tenant.TenantAssetManagement assetManagement = null;
-        CurrencyManagement currencyManagement = null;
+        PriceTypeManagement priceTypeManagement = null;
         TenantAsset iconImage, iconRetinaImage, logoImage, logoRetinaImage, stripImage, stripRetinaImage;
-        Currency sampleCurrency = null;
+        PriceType samplePriceType = null;
         public override void Init()
         {
             base.Init();
             passbookTemplateManagement = new SDK.Private.Passbook.PassbookTemplateManagement();
-            currencyManagement = new CurrencyManagement();
+            priceTypeManagement = new PriceTypeManagement();
             assetManagement = new SDK.Private.Tenant.TenantAssetManagement();
             iconImage = UploadAsset(@"TestAssets/icon.png").Result;
             iconRetinaImage = UploadAsset(@"TestAssets/icon@2x.png").Result;
@@ -34,9 +34,9 @@ namespace XOMNI.SDK.Tests.Private.Passbook
             logoRetinaImage = UploadAsset(@"TestAssets/logo@2x.png").Result;
             stripImage = UploadAsset(@"TestAssets/strip.png").Result;
             stripRetinaImage = UploadAsset(@"TestAssets/strip@2x.png").Result;
-            sampleCurrency = currencyManagement.AddAsync(new Currency()
+            samplePriceType = priceTypeManagement.AddAsync(new PriceType()
                 {
-                    CurrencySymbol = "test",
+                    PriceTypeSymbol = "test",
                     Description = "test",
                 }).Result;
         }
@@ -51,12 +51,12 @@ namespace XOMNI.SDK.Tests.Private.Passbook
             DeleteAsset(logoRetinaImage).Wait();
             DeleteAsset(stripImage).Wait();
             DeleteAsset(stripRetinaImage).Wait();
-            DeleteCurrency(sampleCurrency).Wait();
+            DeletePriceType(samplePriceType).Wait();
         }
 
-        private Task DeleteCurrency(Currency sampleCurrency)
+        private Task DeletePriceType(PriceType samplePriceType)
         {
-            return currencyManagement.DeleteAsync(sampleCurrency.Id);
+            return priceTypeManagement.DeleteAsync(samplePriceType.Id);
         }
 
         private Task DeleteAsset(TenantAsset asset)
@@ -109,7 +109,7 @@ namespace XOMNI.SDK.Tests.Private.Passbook
             try
             {
                 request = CreateSampleRequest();
-                request.CurrencyId = int.MaxValue;
+                request.PriceTypeId = int.MaxValue;
                 await passbookTemplateManagement.AddAsync(request);
                 Assert.Fail("Bad request exception should have been thrown");
             }
@@ -125,9 +125,9 @@ namespace XOMNI.SDK.Tests.Private.Passbook
         public async Task UpdateAsyncTest()
         {
             TenantAsset testImage = UploadAsset(@"TestAssets/strip.png").Result;
-            Currency testCurrency = currencyManagement.AddAsync(new Currency()
+            PriceType testPriceType = priceTypeManagement.AddAsync(new PriceType()
                 {
-                    CurrencySymbol = "test2",
+                    PriceTypeSymbol = "test2",
                     Description = "test1",
                 }).Result;
             int iconImageAssetId = 0;
@@ -162,7 +162,7 @@ namespace XOMNI.SDK.Tests.Private.Passbook
             request.LogoRetinaImageAssetId = testImage.Id;
             request.StripImageAssetId = testImage.Id;
             request.StripRetinaImageAssetId = testImage.Id;
-            request.CurrencyId = testCurrency.Id;
+            request.PriceTypeId = testPriceType.Id;
             response = await passbookTemplateManagement.UpdateAsync(request);
             CompareRequestAndResponse(request, response);
             try
@@ -189,7 +189,7 @@ namespace XOMNI.SDK.Tests.Private.Passbook
             try
             {
                 request.IconImageAssetId = iconImageAssetId;
-                request.CurrencyId = int.MaxValue;
+                request.PriceTypeId = int.MaxValue;
                 await passbookTemplateManagement.UpdateAsync(request);
                 Assert.Fail("Bad request exception should have been thrown");
             }
@@ -199,7 +199,7 @@ namespace XOMNI.SDK.Tests.Private.Passbook
 
             await passbookTemplateManagement.DeleteAsync(response.Id);
             await passbookTemplateManagement.DeleteAsync(response2.Id);
-            await currencyManagement.DeleteAsync(testCurrency.Id);
+            await priceTypeManagement.DeleteAsync(testPriceType.Id);
             await assetManagement.DeleteAsync(testImage.Id);
         }
 
@@ -303,7 +303,7 @@ namespace XOMNI.SDK.Tests.Private.Passbook
                 LogoRetinaImageAssetId = logoRetinaImage.Id,
                 StripImageAssetId = stripImage.Id,
                 StripRetinaImageAssetId = stripRetinaImage.Id,
-                CurrencyId = sampleCurrency.Id
+                PriceTypeId = samplePriceType.Id
             };
             return request;
         }

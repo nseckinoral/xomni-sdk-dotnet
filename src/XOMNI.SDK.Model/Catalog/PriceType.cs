@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace XOMNI.SDK.Model.Catalog
 {
-    public class Currency
+    public class PriceType
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public string CurrencySymbol { get; set; }
+        public string PriceTypeSymbol { get; set; }
     }
 }

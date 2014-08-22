@@ -125,7 +125,7 @@
     <Compile Include="Private\Catalog\BrandManagementFixture.cs" />
     <Compile Include="Private\Catalog\CatalogAssetBaseFixture.cs" />
     <Compile Include="Private\Catalog\CategoryManagementFixture.cs" />
-    <Compile Include="Private\Catalog\CurrencyManagementFixture.cs" />
+    <Compile Include="Private\Catalog\PriceTypesManagementFixture.cs" />
     <Compile Include="Private\Catalog\DimensionTypeManagementFixture.cs" />
     <Compile Include="Private\Catalog\DocumentManagementFixture.cs" />
     <Compile Include="Private\Catalog\DynamicAttributeManagementFixture.cs" />
