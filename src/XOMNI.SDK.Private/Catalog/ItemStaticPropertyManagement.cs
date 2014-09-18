@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Model;
 using XOMNI.SDK.Model.Catalog;
 
 namespace XOMNI.SDK.Private.Catalog
@@ -17,9 +18,9 @@ namespace XOMNI.SDK.Private.Catalog
             itemStaticPropertyApi = new ApiAccess.Catalog.ItemStaticProperty();
         }
 
-        public Task<List<Model.Private.Catalog.ItemStaticProperty>> GetAllAsync()
+        public Task<CountedCollectionContainer<Model.Private.Catalog.ItemStaticProperty>> GetAllAsync(int skip, int take)
         {
-            return itemStaticPropertyApi.GetAllAsync(this.ApiCredential);
+            return itemStaticPropertyApi.GetAllAsync(skip, take, this.ApiCredential);
         }
 
         public Task<Model.Private.Catalog.ItemStaticProperty> GetAsync(string propertyName)

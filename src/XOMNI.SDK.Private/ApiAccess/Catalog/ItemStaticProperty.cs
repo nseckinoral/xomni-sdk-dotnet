@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.ApiAccess;
 using XOMNI.SDK.Core.Providers;
+using XOMNI.SDK.Model;
 
 namespace XOMNI.SDK.Private.ApiAccess.Catalog
 {
@@ -18,9 +19,12 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             get { return "/private/catalog/itemstaticproperties"; }
         }
 
-        public Task<List<Model.Private.Catalog.ItemStaticProperty>> GetAllAsync(ApiBasicCredential credential)
+        public Task<CountedCollectionContainer<Model.Private.Catalog.ItemStaticProperty>> GetAllAsync(int skip, int take, ApiBasicCredential credential)
         {
-            return HttpProvider.GetAsync<List<Model.Private.Catalog.ItemStaticProperty>>(GenerateUrl(ListOperationBaseUrl), credential);
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("skip", skip.ToString());
+            additionalParameters.Add("take", take.ToString());
+            return HttpProvider.GetAsync<CountedCollectionContainer<Model.Private.Catalog.ItemStaticProperty>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
         public Task<Model.Private.Catalog.ItemStaticProperty> GetAsync(string propertyName, ApiBasicCredential credential)
