@@ -57,13 +57,14 @@
     <Compile Include="Catalog\Category.cs" />
     <Compile Include="Catalog\Dimension.cs" />
     <Compile Include="Catalog\DynamicAttributeType.cs" />
-    <Compile Include="Catalog\DynamicAttributeTypeOptions.cs" />
+    <Compile Include="Catalog\CatalogDataOptions.cs" />
     <Compile Include="Catalog\InStoreMetadata.cs" />
     <Compile Include="Catalog\Item.cs" />
     <Compile Include="Catalog\ItemPopularityRecordDto.cs" />
     <Compile Include="Catalog\ItemSearch.cs" />
     <Compile Include="Catalog\ItemSearchRequest.cs" />
     <Compile Include="Catalog\ItemSearchResponse.cs" />
+    <Compile Include="Catalog\ItemStaticProperty.cs" />
     <Compile Include="Catalog\MailTemplate.cs" />
     <Compile Include="Catalog\MultipleItemSearchResult.cs" />
     <Compile Include="Catalog\Price.cs" />

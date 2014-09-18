@@ -6,7 +6,7 @@ using System.Text;
 namespace XOMNI.SDK.Model.Private.Catalog
 {
     [Flags]
-    public enum DynamicAttributeTypeOptions : byte
+    public enum CatalogDataOptions : byte
     {
         NotInitialized = 0,
         Retrievable = 1,

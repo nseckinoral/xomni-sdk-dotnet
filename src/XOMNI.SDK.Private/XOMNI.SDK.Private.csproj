@@ -46,6 +46,7 @@
     <Compile Include="ApiAccess\Auth\Principal.cs" />
     <Compile Include="ApiAccess\Catalog\Brand.cs" />
     <Compile Include="ApiAccess\Catalog\ItemGroup.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemStaticProperty.cs" />
     <Compile Include="ApiAccess\Catalog\PriceType.cs" />
     <Compile Include="ApiAccess\Catalog\DimensionType.cs" />
     <Compile Include="ApiAccess\Catalog\DynamicAttribute.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Catalog\BaseAssetManagement.cs" />
     <Compile Include="Catalog\BrandManagement.cs" />
     <Compile Include="Catalog\CategoryManagement.cs" />
+    <Compile Include="Catalog\ItemStaticPropertyManagement.cs" />
     <Compile Include="Catalog\PriceTypeManagement.cs" />
     <Compile Include="Catalog\DimensionTypeManagement.cs" />
     <Compile Include="Catalog\DocumentManagement.cs" />
