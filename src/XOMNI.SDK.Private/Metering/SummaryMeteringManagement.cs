@@ -14,24 +14,24 @@ namespace XOMNI.SDK.Private.Metering
         public CounterTypes CounterType { get; private set; }
         private ApiAccess.Metering.SummaryMeterings apiAccess = new ApiAccess.Metering.SummaryMeterings();
 
-        public async Task<List<DailyCountSummary>> GetDailySummary(CounterTypes counterType, DateTime startDate, DateTime endDate)
+        public Task<List<DailyCountSummary>> GetDailySummaryAsync(CounterTypes counterType, DateTime startDate, DateTime endDate)
         {
-            return await apiAccess.GetAsync<List<DailyCountSummary>>(counterType, PeriodTypes.Daily, startDate, endDate, this.ApiCredential);
+            return apiAccess.GetAsync<List<DailyCountSummary>>(counterType, PeriodTypes.Daily, startDate, endDate, this.ApiCredential);
         }
 
-        public async Task<List<WeeklyCountSummary>> GetWeeklySummary(CounterTypes counterType, DateTime startDate, DateTime endDate)
+        public Task<List<WeeklyCountSummary>> GetWeeklySummaryAsync(CounterTypes counterType, DateTime startDate, DateTime endDate)
         {
-            return await apiAccess.GetAsync<List<WeeklyCountSummary>>(counterType, PeriodTypes.Weekly, startDate, endDate, this.ApiCredential);
+            return apiAccess.GetAsync<List<WeeklyCountSummary>>(counterType, PeriodTypes.Weekly, startDate, endDate, this.ApiCredential);
         }
 
-        public async Task<List<MonthlyCountSummary>> GetMonthlySummary(CounterTypes counterType, DateTime startDate, DateTime endDate)
+        public Task<List<MonthlyCountSummary>> GetMonthlySummaryAsync(CounterTypes counterType, DateTime startDate, DateTime endDate)
         {
-            return await apiAccess.GetAsync<List<MonthlyCountSummary>>(counterType, PeriodTypes.Monthly, startDate, endDate, this.ApiCredential);
+            return apiAccess.GetAsync<List<MonthlyCountSummary>>(counterType, PeriodTypes.Monthly, startDate, endDate, this.ApiCredential);
         }
 
-        public async Task<List<YearlyCountSummary>> GetYearlySummary(CounterTypes counterType, DateTime startDate, DateTime endDate)
+        public Task<List<YearlyCountSummary>> GetYearlySummaryAsync(CounterTypes counterType, DateTime startDate, DateTime endDate)
         {
-            return await apiAccess.GetAsync<List<YearlyCountSummary>>(counterType, PeriodTypes.Yearly, startDate, endDate, this.ApiCredential);
+            return apiAccess.GetAsync<List<YearlyCountSummary>>(counterType, PeriodTypes.Yearly, startDate, endDate, this.ApiCredential);
         }
     }
 }

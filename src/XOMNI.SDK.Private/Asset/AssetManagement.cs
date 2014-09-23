@@ -28,7 +28,7 @@ namespace XOMNI.SDK.Private.Asset
 
         protected virtual Task<CountedCollectionContainer<T>> GetAssetsInternal<T>(int skip, int take, string fileName = null)
         {
-            return AssetApi.Get<T>(skip, take, this.ApiCredential, fileName);
+            return AssetApi.GetAsync<T>(skip, take, this.ApiCredential, fileName);
         }
 
         public virtual Task<AssetRelations> GetAssetRelationsAsync(int assetId)

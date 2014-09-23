@@ -27,9 +27,9 @@ namespace XOMNI.SDK.Management.Configuration
         /// To fetch all of the settings.
         /// </summary>
         /// <returns>Current settings</returns>
-        public async Task<Settings> GetSettingsAsync()
+        public Task<Settings> GetSettingsAsync()
         {
-            return await tenantSettingsApi.GetAsync(this.ApiCredential);
+            return tenantSettingsApi.GetAsync(this.ApiCredential);
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace XOMNI.SDK.Management.Configuration
         /// </summary>
         /// <param name="tenantSettings">Settings to be updated</param>
         /// <returns>Updated settings</returns>
-        public async Task<Settings> UpdateSettingsAsync(Settings tenantSettings)
+        public Task<Settings> UpdateSettingsAsync(Settings tenantSettings)
         {
-            return await tenantSettingsApi.UpdateAsync(tenantSettings, this.ApiCredential);
+            return tenantSettingsApi.UpdateAsync(tenantSettings, this.ApiCredential);
         }
     }
 }

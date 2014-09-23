@@ -24,15 +24,15 @@ namespace XOMNI.SDK.Management.Security
         {
             get { return new ApiAccess.Security.LicenceAudit(); }
         }
-        
+
         /// <summary>
         /// Adds a new license
         /// </summary>
         /// <param name="entity">License to be added</param>
         /// <returns>Added license</returns>
-        public override async Task<License> AddAsync(License entity)
+        public override Task<License> AddAsync(License entity)
         {
-            return await base.AddAsync(entity);
+            return base.AddAsync(entity);
         }
 
         /// <summary>
@@ -40,9 +40,9 @@ namespace XOMNI.SDK.Management.Security
         /// </summary>
         /// <param name="id">Licence id</param>
         /// <returns></returns>
-        public override async Task DeleteAsync(int id)
+        public override Task DeleteAsync(int id)
         {
-            await base.DeleteAsync(id);
+            return base.DeleteAsync(id);
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace XOMNI.SDK.Management.Security
         /// <param name="skip">The number of licences in the collection to skip before executing a select.</param>
         /// <param name="take">The number of licences that should be fetched from the collection.</param>
         /// <returns>CountedCollectionContainer of license</returns>
-        public override async Task<Model.CountedCollectionContainer<License>> GetAllAsync(int skip, int take)
+        public override Task<Model.CountedCollectionContainer<License>> GetAllAsync(int skip, int take)
         {
-            return await base.GetAllAsync(skip, take);
+            return base.GetAllAsync(skip, take);
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace XOMNI.SDK.Management.Security
         /// </summary>
         /// <param name="id">License id</param>
         /// <returns>Fetched license</returns>
-        public override async Task<License> GetByIdAsync(int id)
+        public override Task<License> GetByIdAsync(int id)
         {
-            return await base.GetByIdAsync(id);
+            return base.GetByIdAsync(id);
         }
 
         /// <summary>
@@ -71,29 +71,29 @@ namespace XOMNI.SDK.Management.Security
         /// </summary>
         /// <param name="entity">License to be updated</param>
         /// <returns>Updated license</returns>
-        public override async Task<License> UpdateAsync(License entity)
+        public override Task<License> UpdateAsync(License entity)
         {
-            return await base.UpdateAsync(entity);
+            return base.UpdateAsync(entity);
         }
 
         /// <summary>
         /// To fetch unassigned licenses
         /// </summary>
         /// <returns>Unassigned licenses</returns>
-        public async Task<List<License>> GetUnassignedLicences()
+        public Task<List<License>> GetUnassignedLicences()
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("onlyUnassignedUsers", true.ToString());
-            return await ApiAccess.GetByCustomListOperationUrlAsync(additionalParameters, this.ApiCredential);
+            return ApiAccess.GetByCustomListOperationUrlAsync(additionalParameters, this.ApiCredential);
         }
 
         /// <summary>
         /// To fetch licenses audit logs
         /// </summary>
         /// <returns>Audit logs.</returns>
-        public async Task<CountedCollectionContainer<LicenseAuditLog>> GetAuditLogsAsync(int skip, int take)
+        public Task<CountedCollectionContainer<LicenseAuditLog>> GetAuditLogsAsync(int skip, int take)
         {
-            return await AuditApiAccess.GetAsync(skip, take, this.ApiCredential);
+            return AuditApiAccess.GetAsync(skip, take, this.ApiCredential);
         }
     }
 }

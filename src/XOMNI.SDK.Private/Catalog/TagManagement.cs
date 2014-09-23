@@ -20,38 +20,35 @@ namespace XOMNI.SDK.Private.Catalog
             tagMetadataApi = new TagMetadata();
         }
 
-        public async Task<TagMetaData> AddMetadataAsync(int tagId, string metadataKey, string metadataValue)
+        public Task<TagMetaData> AddMetadataAsync(int tagId, string metadataKey, string metadataValue)
         {
             var metadata = CreateTagMetadata(tagId, metadataKey, metadataValue);
-            TagMetaData createdMetadata = await tagMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
-            return createdMetadata;
+            return tagMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
         }
 
-        public async Task<List<Metadata>> GetAllMetadataAsync(int tagId)
+        public Task<List<Metadata>> GetAllMetadataAsync(int tagId)
         {
-            List<Metadata> tagMetadataList = await tagMetadataApi.GetAllMetadataAsync(tagId, this.ApiCredential);
-            return tagMetadataList;
+            return tagMetadataApi.GetAllMetadataAsync(tagId, this.ApiCredential);
         }
 
-        public async Task DeleteMetadataAsync(int tagId, string metadataKey)
+        public Task DeleteMetadataAsync(int tagId, string metadataKey)
         {
             if (String.IsNullOrEmpty(metadataKey))
             {
                 throw new ArgumentNullException("metadataKey");
             }
-            await tagMetadataApi.DeleteMetadataAsync(tagId, metadataKey, this.ApiCredential);
+            return tagMetadataApi.DeleteMetadataAsync(tagId, metadataKey, this.ApiCredential);
         }
 
-        public async Task<TagMetaData> UpdateMetadataAsync(int tagId, string metadataKey, string updatedMetadataValue)
+        public Task<TagMetaData> UpdateMetadataAsync(int tagId, string metadataKey, string updatedMetadataValue)
         {
             var metadata = CreateTagMetadata(tagId, metadataKey, updatedMetadataValue);
-            TagMetaData updatedMetadata = await tagMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
-            return updatedMetadata;
+            return tagMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
         }
 
-        public async Task ClearMetadataAsync(int tagId)
+        public Task ClearMetadataAsync(int tagId)
         {
-            await tagMetadataApi.ClearMetadataAsync(tagId, this.ApiCredential);
+            return tagMetadataApi.ClearMetadataAsync(tagId, this.ApiCredential);
         }
 
         private TagMetaData CreateTagMetadata(int tagId, string metadataKey, string metadataValue)

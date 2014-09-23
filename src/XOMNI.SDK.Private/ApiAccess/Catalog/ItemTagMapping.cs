@@ -49,7 +49,7 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             return HttpProvider.GetAsync<List<XOMNI.SDK.Model.Catalog.ItemTagMapping>>(GenerateUrl(ListOperationBaseUrl), credential);
         }
 
-        public Task<CountedCollectionContainer<XOMNI.SDK.Model.Catalog.ItemTagMapping>> GetAll(int skip, int take, ApiBasicCredential credential)
+        public Task<CountedCollectionContainer<XOMNI.SDK.Model.Catalog.ItemTagMapping>> GetAllAsync(int skip, int take, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("skip", skip.ToString());

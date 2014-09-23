@@ -34,9 +34,9 @@ namespace XOMNI.SDK.Private.Catalog
             return apiAccess.GetByTagIdAsync(tagId, base.ApiCredential);
         }
 
-        public Task<CountedCollectionContainer<XOMNI.SDK.Model.Catalog.ItemTagMapping>> GetAll(int skip, int take)
+        public Task<CountedCollectionContainer<XOMNI.SDK.Model.Catalog.ItemTagMapping>> GetAllAsync(int skip, int take)
         {
-            return apiAccess.GetAll(skip, take, base.ApiCredential);
+            return apiAccess.GetAllAsync(skip, take, base.ApiCredential);
         }
     }
 }

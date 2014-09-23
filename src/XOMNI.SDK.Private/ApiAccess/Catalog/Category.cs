@@ -44,12 +44,12 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
         }
 
-        public Task<Model.Private.Catalog.CategoryTree> GetCategoryTree(ApiBasicCredential credential)
+        public Task<Model.Private.Catalog.CategoryTree> GetCategoryTreeAsync(ApiBasicCredential credential)
         {
             return HttpProvider.GetAsync<Model.Private.Catalog.CategoryTree>(GenerateUrl(ListOperationBaseUrl), credential);
         }
 
-        public Task<XOMNI.SDK.Model.Private.Catalog.Category> GetById(int categoryId, ApiBasicCredential credential)
+        public Task<XOMNI.SDK.Model.Private.Catalog.Category> GetByIdAsync(int categoryId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("categoryId", categoryId.ToString());

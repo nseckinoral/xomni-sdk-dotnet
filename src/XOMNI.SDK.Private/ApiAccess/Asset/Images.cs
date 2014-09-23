@@ -20,14 +20,14 @@ namespace XOMNI.SDK.Private.ApiAccess.Asset
             get { return "/private/asset/images"; }
         }
 
-        public virtual async Task PostResizableFlag(int assetId, ApiBasicCredential credential)
+        public virtual Task PostResizableFlagAsync(int assetId, ApiBasicCredential credential)
         {
-            await HttpProvider.PostAsync(GenerateUrl(SingleOperationBaseUrl) + "/"+assetId+"/resize", null, credential);
+            return HttpProvider.PostAsync(GenerateUrl(SingleOperationBaseUrl) + "/" + assetId + "/resize", null, credential);
         }
 
-        public virtual async Task DeleteResizableFlag(int assetId, ApiBasicCredential credential)
+        public virtual Task DeleteResizableFlagAsync(int assetId, ApiBasicCredential credential)
         {
-            await HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl) + "/" + assetId + "/resize", credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl) + "/" + assetId + "/resize", credential);
         }
     }
 }

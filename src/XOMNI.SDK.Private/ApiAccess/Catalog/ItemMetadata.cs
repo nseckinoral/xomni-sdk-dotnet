@@ -22,33 +22,31 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             get { return "/private/catalog/itemmetadata"; }
         }
 
-        public async Task<ItemMetaData> AddMetadataAsync(ItemMetaData itemMetadata, ApiBasicCredential credential)
+        public Task<ItemMetaData> AddMetadataAsync(ItemMetaData itemMetadata, ApiBasicCredential credential)
         {
-            ItemMetaData createdMetadata = await HttpProvider.PostAsync<ItemMetaData>(GenerateUrl(SingleOperationBaseUrl), itemMetadata, credential);
-            return createdMetadata;
+            return HttpProvider.PostAsync<ItemMetaData>(GenerateUrl(SingleOperationBaseUrl), itemMetadata, credential);
         }
 
-        public async Task DeleteMetadataAsync(int itemId, string metadataKey, ApiBasicCredential credential)
+        public Task DeleteMetadataAsync(int itemId, string metadataKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("itemId", itemId.ToString());
             additionalParameters.Add("metadataKey", metadataKey);
 
-            await HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task ClearMetadataAsync(int itemId, ApiBasicCredential credential)
+        public Task ClearMetadataAsync(int itemId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("itemId", itemId.ToString());
 
-            await HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task<ItemMetaData> UpdateMetadataAsync(ItemMetaData itemMetadata, ApiBasicCredential credential)
+        public Task<ItemMetaData> UpdateMetadataAsync(ItemMetaData itemMetadata, ApiBasicCredential credential)
         {
-            ItemMetaData updatedMetadata = await HttpProvider.PutAsync<ItemMetaData>(GenerateUrl(SingleOperationBaseUrl), itemMetadata, credential);
-            return updatedMetadata;
+            return HttpProvider.PutAsync<ItemMetaData>(GenerateUrl(SingleOperationBaseUrl), itemMetadata, credential);
         }
 
         public async Task<List<Metadata>> GetAllMetadataAsync(int itemId, ApiBasicCredential credential)

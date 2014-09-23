@@ -25,9 +25,9 @@ namespace XOMNI.SDK.Management.Configuration
         /// To fetch all of the trending action types.
         /// </summary>
         /// <returns>Current trending action types</returns>
-        public async Task<List<TrendingActionTypeValue>> GetAsync()
+        public Task<List<TrendingActionTypeValue>> GetAsync()
         {
-            return await trendingActionTypeApi.GetAsync(this.ApiCredential);
+            return trendingActionTypeApi.GetAsync(this.ApiCredential);
         }
 
         /// <summary>
@@ -35,9 +35,9 @@ namespace XOMNI.SDK.Management.Configuration
         /// </summary>
         /// <param name="trendingActionTypeValues">TrendingActionTypes to be updated</param>
         /// <returns>Updated settings</returns>
-        public async Task<List<TrendingActionTypeValue>> UpdateAsync(List<TrendingActionTypeValue> trendingActionTypeValues)
+        public Task<List<TrendingActionTypeValue>> UpdateAsync(List<TrendingActionTypeValue> trendingActionTypeValues)
         {
-            return await trendingActionTypeApi.UpdateAsync(trendingActionTypeValues, this.ApiCredential);
+            return trendingActionTypeApi.UpdateAsync(trendingActionTypeValues, this.ApiCredential);
         }
     }
 }

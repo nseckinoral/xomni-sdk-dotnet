@@ -32,38 +32,35 @@ namespace XOMNI.SDK.Private.Catalog
         /// <returns>Created metadata instance.</returns>
         /// <exception cref="XOMNI.SDK.Core.Exception.NotFoundException">Given category not found in backend.</exception>
         /// <exception cref="XOMNI.SDK.Core.Exception.ConflictException">Given metadata key already exists in category metadata collection.</exception>
-        public async Task<CategoryMetaData> AddMetadataAsync(int categoryId, string metadataKey, string metadataValue)
+        public Task<CategoryMetaData> AddMetadataAsync(int categoryId, string metadataKey, string metadataValue)
         {
             var metadata = CreateCategoryMetadata(categoryId, metadataKey, metadataValue);
-            var createdMetadata = await categoryMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
-            return createdMetadata;
+            return categoryMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
         }
 
-        public async Task DeleteMetadataAsync(int categoryId, string metadataKey)
+        public Task DeleteMetadataAsync(int categoryId, string metadataKey)
         {
             if (String.IsNullOrEmpty(metadataKey))
             {
                 throw new ArgumentNullException("metadataKey");
             }
-            await categoryMetadataApi.DeleteMetadataAsync(categoryId, metadataKey, this.ApiCredential);
+            return categoryMetadataApi.DeleteMetadataAsync(categoryId, metadataKey, this.ApiCredential);
         }
 
-        public async Task ClearMetadataAsync(int categoryId)
+        public Task ClearMetadataAsync(int categoryId)
         {
-            await categoryMetadataApi.ClearMetadataAsync(categoryId, this.ApiCredential);
+            return categoryMetadataApi.ClearMetadataAsync(categoryId, this.ApiCredential);
         }
 
-        public async Task<List<Metadata>> GetAllMetadataAsync(int categoryId)
+        public Task<List<Metadata>> GetAllMetadataAsync(int categoryId)
         {
-            List<Metadata> categoryMetadataList = await categoryMetadataApi.GetAllMetadataAsync(categoryId, this.ApiCredential);
-            return categoryMetadataList;
+            return categoryMetadataApi.GetAllMetadataAsync(categoryId, this.ApiCredential);
         }
 
-        public async Task<CategoryMetaData> UpdateMetadataAsync(int categoryId, string metadataKey, string updatedMetadataValue)
+        public Task<CategoryMetaData> UpdateMetadataAsync(int categoryId, string metadataKey, string updatedMetadataValue)
         {
             var metadata = CreateCategoryMetadata(categoryId, metadataKey, updatedMetadataValue);
-            CategoryMetaData updatedMetadata = await categoryMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
-            return updatedMetadata;
+            return categoryMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
         }
 
         private CategoryMetaData CreateCategoryMetadata(int categoryId, string metadataKey, string metadataValue)
@@ -141,7 +138,7 @@ namespace XOMNI.SDK.Private.Catalog
             return GetAssetApi(AssetContentType.Document).GetRelationAsync<Model.Private.Asset.RelatedAsset>(categoryId, this.ApiCredential);
         }
 
-        public Task<AssetRelationMapping> UpdateImageRelation(int categoryId, int assetId, bool isDefault)
+        public Task<AssetRelationMapping> UpdateImageRelationAsync(int categoryId, int assetId, bool isDefault)
         {
             AssetRelationMapping mapping = new AssetRelationMapping()
             {
@@ -153,7 +150,7 @@ namespace XOMNI.SDK.Private.Catalog
             return GetAssetApi(AssetContentType.Image).PutRelationAsync(mapping, this.ApiCredential);
         }
 
-        public Task<AssetRelationMapping> UpdateVideoRelation(int categoryId, int assetId, bool isDefault)
+        public Task<AssetRelationMapping> UpdateVideoRelationAsync(int categoryId, int assetId, bool isDefault)
         {
             AssetRelationMapping mapping = new AssetRelationMapping()
             {
@@ -165,7 +162,7 @@ namespace XOMNI.SDK.Private.Catalog
             return GetAssetApi(AssetContentType.Video).PutRelationAsync(mapping, this.ApiCredential);
         }
 
-        public Task<AssetRelationMapping> UpdateDocumentRelation(int categoryId, int assetId, bool isDefault)
+        public Task<AssetRelationMapping> UpdateDocumentRelationAsync(int categoryId, int assetId, bool isDefault)
         {
             AssetRelationMapping mapping = new AssetRelationMapping()
             {
@@ -208,12 +205,12 @@ namespace XOMNI.SDK.Private.Catalog
 
         public Task<Model.Private.Catalog.CategoryTree> GetCategoryTreeAsync()
         {
-            return categoryApi.GetCategoryTree(this.ApiCredential);
+            return categoryApi.GetCategoryTreeAsync(this.ApiCredential);
         }
 
         public Task<XOMNI.SDK.Model.Private.Catalog.Category> GetCategoryAsync(int categoryId)
         {
-            return categoryApi.GetById(categoryId, this.ApiCredential);
+            return categoryApi.GetByIdAsync(categoryId, this.ApiCredential);
         }
     }
 }

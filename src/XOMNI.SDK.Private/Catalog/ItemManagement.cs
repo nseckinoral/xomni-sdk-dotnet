@@ -38,38 +38,35 @@ namespace XOMNI.SDK.Private.Catalog
             itemStoreMetadataApi = new ItemStoreMetadata();
         }
 
-        public async Task<ItemMetaData> AddMetadataAsync(int itemId, string metadataKey, string metadataValue)
+        public Task<ItemMetaData> AddMetadataAsync(int itemId, string metadataKey, string metadataValue)
         {
             var metadata = CreateItemMetadata(itemId, metadataKey, metadataValue);
-            ItemMetaData createdMetadata = await itemMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
-            return createdMetadata;
+            return itemMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
         }
 
-        public async Task DeleteMetadataAsync(int itemId, string metadataKey)
+        public Task DeleteMetadataAsync(int itemId, string metadataKey)
         {
             if (String.IsNullOrEmpty(metadataKey))
             {
                 throw new ArgumentNullException("metadataKey");
             }
-            await itemMetadataApi.DeleteMetadataAsync(itemId, metadataKey, this.ApiCredential);
+            return itemMetadataApi.DeleteMetadataAsync(itemId, metadataKey, this.ApiCredential);
         }
 
-        public async Task ClearMetadataAsync(int itemId)
+        public Task ClearMetadataAsync(int itemId)
         {
-            await itemMetadataApi.ClearMetadataAsync(itemId, this.ApiCredential);
+            return itemMetadataApi.ClearMetadataAsync(itemId, this.ApiCredential);
         }
 
-        public async Task<ItemMetaData> UpdateMetadataAsync(int itemId, string metadataKey, string updatedMetadataValue)
+        public Task<ItemMetaData> UpdateMetadataAsync(int itemId, string metadataKey, string updatedMetadataValue)
         {
             var metadata = CreateItemMetadata(itemId, metadataKey, updatedMetadataValue);
-            ItemMetaData updatedMetadata = await itemMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
-            return updatedMetadata;
+            return itemMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
         }
 
-        public async Task<List<Metadata>> GetAllMetadataAsync(int itemId)
+        public Task<List<Metadata>> GetAllMetadataAsync(int itemId)
         {
-            List<Metadata> itemMetadataList = await itemMetadataApi.GetAllMetadataAsync(itemId, this.ApiCredential);
-            return itemMetadataList;
+            return itemMetadataApi.GetAllMetadataAsync(itemId, this.ApiCredential);
         }
 
         private ItemMetaData CreateItemMetadata(int itemId, string metadataKey, string metadataValue)
@@ -167,7 +164,7 @@ namespace XOMNI.SDK.Private.Catalog
             return GetAssetApi(AssetContentType.Document).GetRelationAsync<Model.Private.Asset.RelatedAsset>(itemId, this.ApiCredential);
         }
 
-        public Task<AssetRelationMapping> UpdateImageRelation(int itemId, int assetId, bool isDefault)
+        public Task<AssetRelationMapping> UpdateImageRelationAsync(int itemId, int assetId, bool isDefault)
         {
             AssetRelationMapping mapping = new AssetRelationMapping()
             {
@@ -179,7 +176,7 @@ namespace XOMNI.SDK.Private.Catalog
             return GetAssetApi(AssetContentType.Image).PutRelationAsync(mapping, this.ApiCredential);
         }
 
-        public Task<AssetRelationMapping> UpdateVideoRelation(int itemId, int assetId, bool isDefault)
+        public Task<AssetRelationMapping> UpdateVideoRelationAsync(int itemId, int assetId, bool isDefault)
         {
             AssetRelationMapping mapping = new AssetRelationMapping()
             {
@@ -191,7 +188,7 @@ namespace XOMNI.SDK.Private.Catalog
             return GetAssetApi(AssetContentType.Video).PutRelationAsync(mapping, this.ApiCredential);
         }
 
-        public Task<AssetRelationMapping> UpdateDocumentRelation(int itemId, int assetId, bool isDefault)
+        public Task<AssetRelationMapping> UpdateDocumentRelationAsync(int itemId, int assetId, bool isDefault)
         {
             AssetRelationMapping mapping = new AssetRelationMapping()
             {
@@ -222,7 +219,7 @@ namespace XOMNI.SDK.Private.Catalog
             get { return new ApiAccess.Catalog.Item(); }
         }
 
-        public async Task<XOMNI.SDK.Model.Private.Catalog.MultipleItemSearchResult> Search(XOMNI.SDK.Model.Private.Catalog.ItemSearchRequest itemSearchRequest, bool includeItemMetadata = false)
+        public async Task<XOMNI.SDK.Model.Private.Catalog.MultipleItemSearchResult> SearchAsync(XOMNI.SDK.Model.Private.Catalog.ItemSearchRequest itemSearchRequest, bool includeItemMetadata = false)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("includeItemMetadata", includeItemMetadata.ToString());
@@ -237,7 +234,7 @@ namespace XOMNI.SDK.Private.Catalog
             return batchPriceApi.UpdateItemPricesAsync(itemId, priceList, this.ApiCredential);
         }
 
-        public Task<List<Model.Private.Catalog.Price>> GetAllPrices(int itemId)
+        public Task<List<Model.Private.Catalog.Price>> GetAllPricesAsync(int itemId)
         {
             return priceApi.GetByItemIdAsync(itemId, this.ApiCredential);
         }

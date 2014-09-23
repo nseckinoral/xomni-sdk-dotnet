@@ -74,7 +74,7 @@ namespace XOMNI.SDK.Private.Catalog
             return GetAssetApi(AssetContentType.Document).GetRelationAsync<Model.Private.Asset.RelatedAsset>(brandId, this.ApiCredential);
         }
 
-        public Task<AssetRelationMapping> UpdateImageRelation(int brandId, int assetId, bool isDefault)
+        public Task<AssetRelationMapping> UpdateImageRelationAsync(int brandId, int assetId, bool isDefault)
         {
             AssetRelationMapping mapping = new AssetRelationMapping()
             {
@@ -86,7 +86,7 @@ namespace XOMNI.SDK.Private.Catalog
             return GetAssetApi(AssetContentType.Image).PutRelationAsync(mapping, this.ApiCredential);
         }
 
-        public Task<AssetRelationMapping> UpdateVideoRelation(int brandId, int assetId, bool isDefault)
+        public Task<AssetRelationMapping> UpdateVideoRelationAsync(int brandId, int assetId, bool isDefault)
         {
             AssetRelationMapping mapping = new AssetRelationMapping()
             {
@@ -98,7 +98,7 @@ namespace XOMNI.SDK.Private.Catalog
             return GetAssetApi(AssetContentType.Video).PutRelationAsync(mapping, this.ApiCredential);
         }
 
-        public Task<AssetRelationMapping> UpdateDocumentRelation(int brandId, int assetId, bool isDefault)
+        public Task<AssetRelationMapping> UpdateDocumentRelationAsync(int brandId, int assetId, bool isDefault)
         {
             AssetRelationMapping mapping = new AssetRelationMapping()
             {
@@ -124,9 +124,9 @@ namespace XOMNI.SDK.Private.Catalog
             }
         }
 
-        public async Task<CountedCollectionContainer<Model.Catalog.Brand>> GetByCategoryIdAsync(int categoryId, int skip, int take)
+        public Task<CountedCollectionContainer<Model.Catalog.Brand>> GetByCategoryIdAsync(int categoryId, int skip, int take)
         {
-            return await ((Private.ApiAccess.Catalog.Brand)ApiAccess).GetByCategoryIdAsync(categoryId, skip, take, this.ApiCredential);
+            return ((Private.ApiAccess.Catalog.Brand)ApiAccess).GetByCategoryIdAsync(categoryId, skip, take, this.ApiCredential);
         }
 
         protected override CRUDApiAccessBase<Model.Catalog.Brand> ApiAccess

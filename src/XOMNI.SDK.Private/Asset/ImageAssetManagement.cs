@@ -16,12 +16,12 @@ namespace XOMNI.SDK.Private.Asset
 
         public virtual async Task SetResizableFlag(int assetId)
         {
-            await ((Images)AssetApi).PostResizableFlag(assetId, base.ApiCredential);
+            await ((Images)AssetApi).PostResizableFlagAsync(assetId, base.ApiCredential);
         }
 
         public virtual async Task RemoveResizableFlag(int assetId)
         {
-            await ((Images)AssetApi).DeleteResizableFlag(assetId, base.ApiCredential);
+            await ((Images)AssetApi).DeleteResizableFlagAsync(assetId, base.ApiCredential);
         }
 
         public Task<Model.CountedCollectionContainer<Model.Private.Asset.ImageAsset>> GetAssets(int skip, int take, string fileName = null)

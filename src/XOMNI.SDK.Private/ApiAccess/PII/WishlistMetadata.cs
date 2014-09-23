@@ -16,41 +16,38 @@ namespace XOMNI.SDK.Private.ApiAccess.PII
         {
             get { return "/private/pii/wishlistmetadata"; }
         }
-        public async Task<List<Model.Private.PII.WishlistMetadata>> GetAllMetadataAsync(Guid wishlistUniqueKey, ApiBasicCredential credential)
+        public Task<List<Model.Private.PII.WishlistMetadata>> GetAllMetadataAsync(Guid wishlistUniqueKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>
             {
                 {"wishlistUniqueKey", wishlistUniqueKey.ToString("D")}
             };
-            List<Model.Private.PII.WishlistMetadata> loyaltyMetadataList =
-                await HttpProvider.GetAsync<List<Model.Private.PII.WishlistMetadata>>(
-                    GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
-            return loyaltyMetadataList;
+            return HttpProvider.GetAsync<List<Model.Private.PII.WishlistMetadata>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
-        public async Task<Model.Private.PII.WishlistMetadata> AddMetadataAsync(Model.Private.PII.WishlistMetadata wishlistMetadata, ApiBasicCredential credential)
+        public Task<Model.Private.PII.WishlistMetadata> AddMetadataAsync(Model.Private.PII.WishlistMetadata wishlistMetadata, ApiBasicCredential credential)
         {
-            return await HttpProvider.PostAsync<Model.Private.PII.WishlistMetadata>(GenerateUrl(SingleOperationBaseUrl), wishlistMetadata, credential);
+            return HttpProvider.PostAsync<Model.Private.PII.WishlistMetadata>(GenerateUrl(SingleOperationBaseUrl), wishlistMetadata, credential);
         }
-        public async Task<Model.Private.PII.WishlistMetadata> UpdateMetadataAsync(Model.Private.PII.WishlistMetadata wishlistMetadata, ApiBasicCredential credential)
+        public Task<Model.Private.PII.WishlistMetadata> UpdateMetadataAsync(Model.Private.PII.WishlistMetadata wishlistMetadata, ApiBasicCredential credential)
         {
-            return await HttpProvider.PutAsync<Model.Private.PII.WishlistMetadata>(GenerateUrl(SingleOperationBaseUrl), wishlistMetadata, credential);
+            return HttpProvider.PutAsync<Model.Private.PII.WishlistMetadata>(GenerateUrl(SingleOperationBaseUrl), wishlistMetadata, credential);
         }
-        public async Task DeleteMetadataAsync(Guid wishlistUniqueKey, string metadataKey, ApiBasicCredential credential)
+        public Task DeleteMetadataAsync(Guid wishlistUniqueKey, string metadataKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>
             {
                 { "wishlistUniqueKey", wishlistUniqueKey.ToString("D") },
                 { "metadataKey", metadataKey }
             };
-            await HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
         }
-        public async Task ClearMetadataAsync(Guid wishlistUniqueKey, ApiBasicCredential credential)
+        public Task ClearMetadataAsync(Guid wishlistUniqueKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>
             {
                 { "wishlistUniqueKey", wishlistUniqueKey.ToString("D") }
             };
-            await HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
     }
 }

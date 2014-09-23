@@ -19,40 +19,37 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             get { return "/private/catalog/imagemetadata"; }
         }
 
-        public async Task<AssetMetadata> AddMetadataAsync(AssetMetadata assetMetadata, ApiBasicCredential credential)
+        public Task<AssetMetadata> AddMetadataAsync(AssetMetadata assetMetadata, ApiBasicCredential credential)
         {
-            AssetMetadata createdMetadata = await HttpProvider.PostAsync<AssetMetadata>(GenerateUrl(SingleOperationBaseUrl), assetMetadata, credential);
-            return createdMetadata;
+            return HttpProvider.PostAsync<AssetMetadata>(GenerateUrl(SingleOperationBaseUrl), assetMetadata, credential);
         }
 
-        public async Task DeleteMetadataAsync(int assetId, string metadataKey, ApiBasicCredential credential)
+        public Task DeleteMetadataAsync(int assetId, string metadataKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("assetId", assetId.ToString());
             additionalParameters.Add("metadataKey", metadataKey.ToString());
 
-            await HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task ClearMetadataAsync(int assetId, ApiBasicCredential credential)
+        public Task ClearMetadataAsync(int assetId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("assetId", assetId.ToString());
-            await HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task<AssetMetadata> UpdateMetadataAsync(AssetMetadata assetMetadata, ApiBasicCredential credential)
+        public Task<AssetMetadata> UpdateMetadataAsync(AssetMetadata assetMetadata, ApiBasicCredential credential)
         {
-            AssetMetadata updatedMetadata = await HttpProvider.PutAsync<AssetMetadata>(GenerateUrl(SingleOperationBaseUrl), assetMetadata, credential);
-            return updatedMetadata;
+            return HttpProvider.PutAsync<AssetMetadata>(GenerateUrl(SingleOperationBaseUrl), assetMetadata, credential);
         }
 
-        public async Task<List<Metadata>> GetAllMetadataAsync(int assetId, ApiBasicCredential credential)
+        public Task<List<Metadata>> GetAllMetadataAsync(int assetId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("assetId", assetId.ToString());
-            List<Metadata> assetMetadataList = await HttpProvider.GetAsync<List<Metadata>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
-            return assetMetadataList;
+            return HttpProvider.GetAsync<List<Metadata>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
     }
 }
