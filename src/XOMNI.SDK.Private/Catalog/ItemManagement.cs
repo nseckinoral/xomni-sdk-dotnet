@@ -9,6 +9,8 @@ using XOMNI.SDK.Private.ApiAccess.Catalog;
 using XOMNI.SDK.Private.ApiAccess.Catalog.ItemAsset;
 using XOMNI.SDK.Private.ApiAccess.Catalog.ItemPrice;
 using XOMNI.SDK.Private.ApiAccess.Catalog.ItemStoreMetadata;
+using XOMNI.SDK.Private.ApiAccess.Catalog.ItemSearch;
+using XOMNI.SDK.Model.Private.Catalog;
 
 namespace XOMNI.SDK.Private.Catalog
 {
@@ -22,6 +24,7 @@ namespace XOMNI.SDK.Private.Catalog
         private readonly ItemUngroup itemUngroup;
         private readonly ItemMove itemMove;
         private readonly ItemStoreMetadata itemStoreMetadataApi;
+        private readonly Search itemSearchApi;
 
         private XOMNI.SDK.Private.ApiAccess.Catalog.ItemDynamicAttribute.DynamicAttribute itemDynamicAttributeApi;
 
@@ -36,6 +39,7 @@ namespace XOMNI.SDK.Private.Catalog
             itemUngroup = new ItemUngroup();
             itemMove = new ItemMove();
             itemStoreMetadataApi = new ItemStoreMetadata();
+            itemSearchApi = new Search();
         }
 
         public Task<ItemMetaData> AddMetadataAsync(int itemId, string metadataKey, string metadataValue)
@@ -301,6 +305,11 @@ namespace XOMNI.SDK.Private.Catalog
         public Task ClearInStoreMetadataAsync(int itemId)
         {
             return itemStoreMetadataApi.ClearInStoreMetadataAsync(itemId, this.ApiCredential);
+        }
+
+        public Task<CountedCollectionContainer<PrivateItemSearchResponse>> SearchAsync(int skip, int take, int? categoryId = null, int? brandId = null, int? defaultItemId = null, string SKU = null, string UUID = null, bool includeOnlyMasterItems = false)
+        {
+            return itemSearchApi.GetAsync(skip, take, categoryId, brandId, defaultItemId, SKU, UUID, includeOnlyMasterItems, this.ApiCredential);
         }
     }
 }
