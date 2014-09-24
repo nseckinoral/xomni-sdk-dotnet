@@ -8,6 +8,8 @@ namespace XOMNI.SDK.Model.Private.Catalog
 {
     public class PrivateItemSearchResponse : Item
     {
+        public string BrandName { get; set; }
+        public string CategoryName { get; set; }
         public bool HasVariants { get; set; }
         public RelatedImageAsset DefaultImage { get; set; }
         public RelatedAsset DefaultVideo { get; set; }

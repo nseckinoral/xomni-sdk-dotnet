@@ -22,7 +22,7 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemSearch
             get { return "/private/catalog/items/search"; }
         }
 
-        internal Task<CountedCollectionContainer<PrivateItemSearchResponse>> GetAsync(int skip, int take, int? categoryId, int? brandId, int? defaultItemId, string SKU, string UUID, bool includeOnlyMasterItems, ApiBasicCredential credential)
+        internal Task<CountedCollectionContainer<PrivateItemSearchResponse>> GetAsync(int skip, int take, int? categoryId, int? brandId, int? defaultItemId, string SKU, string UUID, List<int> itemIds, bool includeOnlyMasterItems, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("skip", skip.ToString());
@@ -46,6 +46,16 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemSearch
             if (!string.IsNullOrEmpty(UUID))
             {
                 additionalParameters.Add("UUID", UUID.ToString());
+            }
+            if (itemIds != null && itemIds.Count > 0)
+            {
+                StringBuilder builder = new StringBuilder();
+                foreach (int id in itemIds)
+                {
+                    builder.Append(id);
+                    builder.Append(",");
+                }
+                additionalParameters.Add("itemIds", builder.ToString().TrimEnd(','));
             }
             additionalParameters.Add("includeOnlyMasterItems", includeOnlyMasterItems.ToString());
 

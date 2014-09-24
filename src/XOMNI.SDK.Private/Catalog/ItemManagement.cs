@@ -307,9 +307,9 @@ namespace XOMNI.SDK.Private.Catalog
             return itemStoreMetadataApi.ClearInStoreMetadataAsync(itemId, this.ApiCredential);
         }
 
-        public Task<CountedCollectionContainer<PrivateItemSearchResponse>> SearchAsync(int skip, int take, int? categoryId = null, int? brandId = null, int? defaultItemId = null, string SKU = null, string UUID = null, bool includeOnlyMasterItems = false)
+        public Task<CountedCollectionContainer<PrivateItemSearchResponse>> SearchAsync(int skip, int take, int? categoryId = null, int? brandId = null, int? defaultItemId = null, string SKU = null, string UUID = null, List<int> itemIds = null, bool includeOnlyMasterItems = false)
         {
-            return itemSearchApi.GetAsync(skip, take, categoryId, brandId, defaultItemId, SKU, UUID, includeOnlyMasterItems, this.ApiCredential);
+            return itemSearchApi.GetAsync(skip, take, categoryId, brandId, defaultItemId, SKU, UUID, itemIds, includeOnlyMasterItems, this.ApiCredential);
         }
     }
 }
