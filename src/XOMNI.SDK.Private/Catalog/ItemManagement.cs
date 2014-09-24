@@ -19,7 +19,7 @@ namespace XOMNI.SDK.Private.Catalog
         private readonly ItemMetadata itemMetadataApi;
         private readonly RelatedItems relatedItemsApi;
         private readonly BatchPrice batchPriceApi;
-        private readonly Price priceApi;
+        private readonly XOMNI.SDK.Private.ApiAccess.Catalog.Price priceApi;
         private readonly ItemGroup itemGroup;
         private readonly ItemUngroup itemUngroup;
         private readonly ItemMove itemMove;
@@ -34,7 +34,7 @@ namespace XOMNI.SDK.Private.Catalog
             relatedItemsApi = new RelatedItems();
             batchPriceApi = new BatchPrice();
             itemDynamicAttributeApi = new ApiAccess.Catalog.ItemDynamicAttribute.DynamicAttribute();
-            priceApi = new Price();
+            priceApi = new XOMNI.SDK.Private.ApiAccess.Catalog.Price();
             itemGroup = new ItemGroup();
             itemUngroup = new ItemUngroup();
             itemMove = new ItemMove();

@@ -46,6 +46,7 @@
     <Compile Include="ApiAccess\Auth\Principal.cs" />
     <Compile Include="ApiAccess\Catalog\Brand.cs" />
     <Compile Include="ApiAccess\Catalog\ItemGroup.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemSearch\Search.cs" />
     <Compile Include="ApiAccess\Catalog\ItemStaticProperty.cs" />
     <Compile Include="ApiAccess\Catalog\PriceType.cs" />
     <Compile Include="ApiAccess\Catalog\DimensionType.cs" />

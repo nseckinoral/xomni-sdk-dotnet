@@ -68,6 +68,7 @@
     <Compile Include="Catalog\MailTemplate.cs" />
     <Compile Include="Catalog\MultipleItemSearchResult.cs" />
     <Compile Include="Catalog\Price.cs" />
+    <Compile Include="Catalog\PrivateItemSearchResponse.cs" />
     <Compile Include="Catalog\Summary.cs" />
     <Compile Include="Catalog\TrendingItemDto.cs" />
     <Compile Include="Catalog\Weight.cs" />
