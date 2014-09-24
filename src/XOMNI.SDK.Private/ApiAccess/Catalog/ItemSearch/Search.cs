@@ -27,11 +27,26 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemSearch
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("skip", skip.ToString());
             additionalParameters.Add("take", take.ToString());
-            additionalParameters.Add("categoryId", categoryId.ToString());
-            additionalParameters.Add("brandId", brandId.ToString());
-            additionalParameters.Add("defaultItemId", defaultItemId.ToString());
-            additionalParameters.Add("SKU", SKU.ToString());
-            additionalParameters.Add("UUID", UUID.ToString());
+            if (categoryId.HasValue)
+            {
+                additionalParameters.Add("categoryId", categoryId.ToString());
+            }
+            if (brandId.HasValue)
+            {
+                additionalParameters.Add("brandId", brandId.ToString());
+            }
+            if (defaultItemId.HasValue)
+            {
+                additionalParameters.Add("defaultItemId", defaultItemId.ToString());
+            }
+            if (!string.IsNullOrEmpty(SKU))
+            {
+                additionalParameters.Add("SKU", SKU.ToString());
+            }
+            if (!string.IsNullOrEmpty(UUID))
+            {
+                additionalParameters.Add("UUID", UUID.ToString());
+            }
             additionalParameters.Add("includeOnlyMasterItems", includeOnlyMasterItems.ToString());
 
             return HttpProvider.GetAsync<CountedCollectionContainer<PrivateItemSearchResponse>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
