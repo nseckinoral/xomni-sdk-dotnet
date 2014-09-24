@@ -9,7 +9,7 @@ namespace XOMNI.SDK.Model.Private.Catalog
     public class PrivateItemSearchResponse : Item
     {
         public RelatedImageAsset DefaultImage { get; set; }
-        public Asset.Asset DefaultVideo { get; set; }
-        public Asset.Asset DefaultDocument { get; set; }
+        public RelatedAsset DefaultVideo { get; set; }
+        public RelatedAsset DefaultDocument { get; set; }
     }
 }
