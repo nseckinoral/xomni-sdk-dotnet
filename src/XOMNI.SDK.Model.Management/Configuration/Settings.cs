@@ -83,8 +83,8 @@ namespace XOMNI.SDK.Model.Management.Configuration
         /// </summary>
         public double PopularityTimeImpactValue { get; set; }
         /// <summary>
-        /// Indicates if search data sync is enabled.
+        /// Indicates if search indexing is enabled.
         /// </summary>
-        public bool SearchDataSyncEnabled { get; set; }
+        public bool SearchIndexingEnabled { get; set; }
     }
 }
