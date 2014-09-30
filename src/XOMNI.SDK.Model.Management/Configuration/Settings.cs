@@ -82,5 +82,9 @@ namespace XOMNI.SDK.Model.Management.Configuration
         /// Time impact value for calculating trending items.
         /// </summary>
         public double PopularityTimeImpactValue { get; set; }
+        /// <summary>
+        /// Indicates if search data sync is enabled.
+        /// </summary>
+        public bool SearchDataSyncEnabled { get; set; }
     }
 }
