@@ -28,9 +28,9 @@ namespace XOMNI.SDK.Core.ApiAccess
             return HttpProvider.GetAsync<List<T>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
-        public virtual Task<T> PostByCustomListOperationUrlAsync<T>(Dictionary<string, string> additionalParameters, object body, ApiBasicCredential credential)
+        public virtual Task<T> PostByCustomListOperationUrlAsync<T>(object body, ApiBasicCredential credential)
         {
-            return HttpProvider.PostAsync<T>(GenerateUrl(ListOperationBaseUrl, additionalParameters), body, credential);
+            return HttpProvider.PostAsync<T>(GenerateUrl(ListOperationBaseUrl), body, credential);
         }
 
         public virtual Task<T> PostAsync(T entity, ApiBasicCredential credential)

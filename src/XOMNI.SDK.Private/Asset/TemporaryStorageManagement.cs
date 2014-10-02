@@ -17,19 +17,19 @@ namespace XOMNI.SDK.Private.Asset
             temporaryStorageApi = new Temp();
         }
 
-        public async Task<string> UploadAsync(string fileName, byte[] data)
+        public Task<string> UploadAsync(string fileName, byte[] data)
         {
-            return await temporaryStorageApi.UploadAsync(fileName, data, this.ApiCredential);
+            return temporaryStorageApi.UploadAsync(fileName, data, this.ApiCredential);
         }
 
-        public async Task<int> CommitAsync(string fileName, string[] blockIds)
+        public Task<int> CommitAsync(string fileName, string[] blockIds)
         {
-            return await temporaryStorageApi.CommitAsync(fileName, blockIds, this.ApiCredential);
+            return temporaryStorageApi.CommitAsync(fileName, blockIds, this.ApiCredential);
         }
 
-        public async Task DeleteAsync(string fileName)
+        public Task DeleteAsync(string fileName)
         {
-            await temporaryStorageApi.DeleteAsync(fileName, this.ApiCredential);
+            return temporaryStorageApi.DeleteAsync(fileName, this.ApiCredential);
         }
     }
 }

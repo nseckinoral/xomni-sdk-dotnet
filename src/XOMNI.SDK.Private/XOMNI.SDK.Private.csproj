@@ -110,7 +110,6 @@
     <Compile Include="ApiAccess\Catalog\ItemAsset\Document.cs" />
     <Compile Include="ApiAccess\Catalog\ItemAsset\Image.cs" />
     <Compile Include="ApiAccess\Catalog\ItemAsset\Video.cs" />
-    <Compile Include="ApiAccess\Catalog\ItemMetadata.cs" />
     <Compile Include="ApiAccess\Catalog\RelatedItems.cs" />
     <Compile Include="ApiAccess\Catalog\Category.cs" />
     <Compile Include="ApiAccess\Catalog\TagMetadata.cs" />

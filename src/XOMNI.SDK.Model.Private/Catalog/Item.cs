@@ -34,7 +34,6 @@ namespace XOMNI.SDK.Model.Private.Catalog
         public List<Tag> Tags { get; set; }
         public List<Weight> Weights { get; set; }
         public List<Dimension> Dimensions { get; set; }
-        public List<Metadata> Metadata { get; set; }
 
         public Item()
         {
@@ -43,7 +42,6 @@ namespace XOMNI.SDK.Model.Private.Catalog
             Tags = new List<Tag>();
             Weights = new List<Weight>();
             Dimensions = new List<Dimension>();
-            Metadata = new List<Metadata>();
         }
     }
 }

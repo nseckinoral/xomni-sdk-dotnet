@@ -73,7 +73,6 @@
     <Compile Include="Catalog\Item.cs" />
     <Compile Include="Catalog\ItemCompare.cs" />
     <Compile Include="Catalog\ItemDynamicProperties.cs" />
-    <Compile Include="Catalog\ItemMetaData.cs" />
     <Compile Include="Catalog\ItemRelationDirection.cs" />
     <Compile Include="Catalog\ItemsBrandSearchRequest.cs" />
     <Compile Include="Catalog\ItemSearch.cs" />
