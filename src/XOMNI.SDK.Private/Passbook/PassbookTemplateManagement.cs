@@ -23,7 +23,7 @@ namespace XOMNI.SDK.Private.Passbook
             get { throw new NotImplementedException(); }
         }
 
-        public PassbookTemplate()
+        public PassbookTemplateManagement()
         {
             passbookTemplateApi = new ApiAccess.Passbook.PassbookTemplate();
         }
