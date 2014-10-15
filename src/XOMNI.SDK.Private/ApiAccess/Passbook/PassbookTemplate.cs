@@ -8,7 +8,7 @@ using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.ApiAccess.Passbook
 {
-    public class PassbookTemplate : CRUDPApiAccessBase<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>
+    public class PassbookTemplate : ApiAccessBase
     {
         protected override string SingleOperationBaseUrl
         {
@@ -18,6 +18,45 @@ namespace XOMNI.SDK.Private.ApiAccess.Passbook
         protected override string ListOperationBaseUrl
         {
             get { return "/private/passbook/templates"; }
+        }
+
+        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> AddAsync(XOMNI.SDK.Model.Private.Passbook.PassbookTemplateRequest passbookTemplate, ApiBasicCredential credential)
+        {
+            return HttpProvider.PostAsync<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>(GenerateUrl(SingleOperationBaseUrl), passbookTemplate, credential);
+        }
+
+        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> UpdateAsync(XOMNI.SDK.Model.Private.Passbook.PassbookTemplateRequest passbookTemplate, ApiBasicCredential credential)
+        {
+            return HttpProvider.PutAsync<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>(GenerateUrl(SingleOperationBaseUrl), passbookTemplate, credential);
+        }
+        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> UpdateAsync(dynamic passbookTemplate, ApiBasicCredential credential)
+        {
+            return HttpProvider.PatchAsync<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>(GenerateUrl(SingleOperationBaseUrl), passbookTemplate, credential);
+        }
+
+        public Task DeleteAsync(int templateId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("templateId", templateId.ToString());
+
+            return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
+        }
+
+        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> GetAsync(int templateId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("templateId", templateId.ToString());
+
+            return HttpProvider.GetAsync<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
+        }
+
+        public Task<XOMNI.SDK.Model.CountedCollectionContainer<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>> GetAllAsync(int skip, int take, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("skip", skip.ToString());
+            additionalParameters.Add("take", take.ToString());
+
+            return HttpProvider.GetAsync<XOMNI.SDK.Model.CountedCollectionContainer<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
     }
 }
