@@ -9,7 +9,7 @@ using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.Passbook
 {
-    public class PassbookTemplate : ApiAccessBase
+    public class PassbookTemplateManagement : ApiAccessBase
     {
         private XOMNI.SDK.Private.ApiAccess.Passbook.PassbookTemplate passbookTemplateApi;
 
