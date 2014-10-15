@@ -23,6 +23,11 @@ namespace XOMNI.SDK.Private.Passbook
             get { throw new NotImplementedException(); }
         }
 
+        public PassbookTemplate()
+        {
+            passbookTemplateApi = new ApiAccess.Passbook.PassbookTemplate();
+        }
+
         public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> AddAsync(XOMNI.SDK.Model.Private.Passbook.PassbookTemplateRequest passbookTemplate, ApiBasicCredential credential)
         {
             return HttpProvider.PostAsync<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>(GenerateUrl(SingleOperationBaseUrl), passbookTemplate, credential);
