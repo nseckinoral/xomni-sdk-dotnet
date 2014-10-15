@@ -6,7 +6,7 @@ using XOMNI.SDK.Core.ApiAccess;
 
 namespace XOMNI.SDK.Private.ApiAccess.Tenant
 {
-    public class TenantAssets : CRUDApiAccessBase<Model.Private.Tenant.TenantAsset>
+    public class TenantAssets : CRUDPApiAccessBase<Model.Private.Tenant.TenantAsset>
     {
         protected override string SingleOperationBaseUrl
         {

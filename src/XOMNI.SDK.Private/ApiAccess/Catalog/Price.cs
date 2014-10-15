@@ -8,7 +8,7 @@ using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.ApiAccess.Catalog
 {
-    public class Price : CRUDApiAccessBase<XOMNI.SDK.Model.Private.Catalog.Price>
+    public class Price : CRUDPApiAccessBase<XOMNI.SDK.Model.Private.Catalog.Price>
     {
         protected override string SingleOperationBaseUrl
         {

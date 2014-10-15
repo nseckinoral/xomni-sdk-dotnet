@@ -7,9 +7,9 @@ using XOMNI.SDK.Core.Management;
 
 namespace XOMNI.SDK.Private.Catalog
 {
-    public class PriceManagement : BaseCRUDManagement<XOMNI.SDK.Model.Private.Catalog.Price> 
+    public class PriceManagement : BaseCRUDPManagement<XOMNI.SDK.Model.Private.Catalog.Price> 
     {
-        protected override Core.ApiAccess.CRUDApiAccessBase<Model.Private.Catalog.Price> ApiAccess
+        protected override Core.ApiAccess.CRUDPApiAccessBase<Model.Private.Catalog.Price> CRUDPApiAccess
         {
             get { return new XOMNI.SDK.Private.ApiAccess.Catalog.Price(); }
         }

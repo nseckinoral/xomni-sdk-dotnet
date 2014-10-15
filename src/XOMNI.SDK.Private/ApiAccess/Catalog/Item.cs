@@ -11,7 +11,7 @@ using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.ApiAccess.Catalog
 {
-    internal class Item : CRUDApiAccessBase<Model.Private.Catalog.Item>
+    internal class Item : CRUDPApiAccessBase<Model.Private.Catalog.Item>
     {
         protected override string SingleOperationBaseUrl
         {

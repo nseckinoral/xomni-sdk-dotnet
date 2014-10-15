@@ -56,5 +56,10 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
 
             return HttpProvider.GetAsync<XOMNI.SDK.Model.Private.Catalog.Category>(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
         }
+
+        internal Task<Model.Private.Catalog.Category> PatchAsync(dynamic category, ApiBasicCredential credential)
+        {
+            return HttpProvider.PatchAsync<XOMNI.SDK.Model.Private.Catalog.Category>(GenerateUrl(SingleOperationBaseUrl), category, credential);
+        }
     }
 }

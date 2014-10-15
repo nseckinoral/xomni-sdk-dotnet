@@ -14,7 +14,7 @@ using XOMNI.SDK.Model.Private.Catalog;
 
 namespace XOMNI.SDK.Private.Catalog
 {
-    public class ItemManagement : BaseCRUDSkipTakeManagement<Model.Private.Catalog.Item>, IAssetRelation
+    public class ItemManagement : BaseCRUDPSkipTakeManagement<Model.Private.Catalog.Item>, IAssetRelation
     {
         private readonly RelatedItems relatedItemsApi;
         private readonly BatchPrice batchPriceApi;
@@ -170,14 +170,14 @@ namespace XOMNI.SDK.Private.Catalog
             }
         }
 
-        protected override XOMNI.SDK.Core.ApiAccess.CRUDApiAccessBase<Model.Private.Catalog.Item> ApiAccess
+        protected override XOMNI.SDK.Core.ApiAccess.CRUDPApiAccessBase<Model.Private.Catalog.Item> CRUDPApiAccess
         {
             get { return new ApiAccess.Catalog.Item(); }
         }
 
         public async Task<XOMNI.SDK.Model.Private.Catalog.MultipleItemSearchResult> SearchAsync(XOMNI.SDK.Model.Private.Catalog.ItemSearchRequest itemSearchRequest)
         {
-            var itemSearchResponse = await ApiAccess.PostByCustomListOperationUrlAsync<XOMNI.SDK.Model.Private.Catalog.ItemSearchPrivateSDK>(itemSearchRequest, this.ApiCredential);
+            var itemSearchResponse = await CRUDPApiAccess.PostByCustomListOperationUrlAsync<XOMNI.SDK.Model.Private.Catalog.ItemSearchPrivateSDK>(itemSearchRequest, this.ApiCredential);
             var itemSearchResult = itemSearchResponse.SearchResult;
 
             return itemSearchResult;

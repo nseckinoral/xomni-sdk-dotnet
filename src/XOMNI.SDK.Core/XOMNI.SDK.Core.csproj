@@ -44,6 +44,7 @@
     <Compile Include="ApiAccess\ApiAccessBase.cs" />
     <Compile Include="ApiAccess\ApiBasicCredential.cs" />
     <Compile Include="ApiAccess\CRUDApiAccessBase.cs" />
+    <Compile Include="ApiAccess\CRUDPApiAccessBase.cs" />
     <Compile Include="ApiAccess\IApiBasicCredential.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Configuration\Configuration.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="Exception\UnhandledHttpException.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Management\BaseCRUDManagement.cs" />
+    <Compile Include="Management\BaseCRUDPManagement.cs" />
+    <Compile Include="Management\BaseCRUDPSkipTakeManagement.cs" />
     <Compile Include="Management\BaseCRUDSkipTakeManagement.cs" />
     <Compile Include="Management\ManagementBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

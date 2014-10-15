@@ -6,7 +6,7 @@ using XOMNI.SDK.Core.ApiAccess;
 
 namespace XOMNI.SDK.Private.ApiAccess.Catalog
 {
-    internal class PriceType : CRUDApiAccessBase<Model.Catalog.PriceType>
+    internal class PriceType : CRUDPApiAccessBase<Model.Catalog.PriceType>
     {
         protected override string SingleOperationBaseUrl
         {

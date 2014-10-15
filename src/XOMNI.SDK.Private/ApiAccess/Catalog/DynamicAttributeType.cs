@@ -9,7 +9,7 @@ using XOMNI.SDK.Model;
 
 namespace XOMNI.SDK.Private.ApiAccess.Catalog
 {
-    public class DynamicAttributeType : CRUDApiAccessBase<Model.Private.Catalog.DynamicAttributeType>
+    public class DynamicAttributeType : CRUDPApiAccessBase<Model.Private.Catalog.DynamicAttributeType>
     {
         protected override string SingleOperationBaseUrl
         {

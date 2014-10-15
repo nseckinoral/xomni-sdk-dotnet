@@ -114,6 +114,15 @@ namespace XOMNI.SDK.Core.Providers
                 return await response.Content.ReadAsAsync<T>();
             }
         }
+        public static async Task<T> PatchAsync<T> (string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
+        {
+            using (HttpRequestMessage requestMessage = CreateRequestMessage(new HttpMethod("PATCH"), url, credential, body))
+            {
+                var response = await client.SendAsync(requestMessage);
+                await ControlResponse(response, expectedCode);
+                return await response.Content.ReadAsAsync<T>();
+            }
+        }
 
         public static async Task DeleteAsync(string url, ApiBasicCredential credential)
         {

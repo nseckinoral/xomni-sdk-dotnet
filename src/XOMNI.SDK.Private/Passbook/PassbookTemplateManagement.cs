@@ -7,38 +7,21 @@ using XOMNI.SDK.Core.Management;
 
 namespace XOMNI.SDK.Private.Passbook
 {
-    public class PassbookTemplateManagement : ManagementBase
+    public class PassbookTemplateManagement : BaseCRUDPSkipTakeManagement<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>
     {
         private XOMNI.SDK.Private.ApiAccess.Passbook.PassbookTemplate passbookTemplateApi;
 
-        public PassbookTemplateManagement()
+        protected override Core.ApiAccess.CRUDPApiAccessBase<Model.Private.Passbook.PassbookTemplate> CRUDPApiAccess
         {
-            passbookTemplateApi = new ApiAccess.Passbook.PassbookTemplate();
-        }
+            get
+            {
+                if (passbookTemplateApi == null)
+                {
+                    passbookTemplateApi = new ApiAccess.Passbook.PassbookTemplate(); 
+                }
 
-        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> AddAsync(XOMNI.SDK.Model.Private.Passbook.PassbookTemplateRequest passbookTemplate)
-        {
-            return passbookTemplateApi.AddAsync(passbookTemplate, this.ApiCredential);
-        }
-
-        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> UpdateAsync(XOMNI.SDK.Model.Private.Passbook.PassbookTemplateRequest passbookTemplate)
-        {
-            return passbookTemplateApi.UpdateAsync(passbookTemplate, this.ApiCredential);
-        }
-
-        public Task DeleteAsync(int templateId)
-        {
-            return passbookTemplateApi.DeleteAsync(templateId, this.ApiCredential);
-        }
-
-        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> GetAsync(int templateId)
-        {
-            return passbookTemplateApi.GetAsync(templateId, this.ApiCredential);
-        }
-
-        public Task<XOMNI.SDK.Model.CountedCollectionContainer<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>> GetAllAsync(int skip, int take)
-        {
-            return passbookTemplateApi.GetAllAsync(skip, take, this.ApiCredential);
+                return passbookTemplateApi;
+            }
         }
     }
 }

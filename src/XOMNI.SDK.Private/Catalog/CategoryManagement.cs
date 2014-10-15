@@ -9,6 +9,7 @@ using XOMNI.SDK.Model.Catalog;
 using XOMNI.SDK.Core.Management;
 using XOMNI.SDK.Private.ApiAccess.Catalog;
 using XOMNI.SDK.Private.ApiAccess.Catalog.CategoryAsset;
+using System.Linq.Expressions;
 
 namespace XOMNI.SDK.Private.Catalog
 {
@@ -198,6 +199,11 @@ namespace XOMNI.SDK.Private.Catalog
             return categoryApi.UpdateAsync(category, this.ApiCredential);
         }
 
+        public Task<XOMNI.SDK.Model.Private.Catalog.Category> UpdateCategoryAsync(dynamic category)
+        {
+            return categoryApi.PatchAsync(category, this.ApiCredential);
+        }
+
         public Task DeleteCategoryAsync(int categoryId)
         {
             return categoryApi.DeleteAsync(categoryId, this.ApiCredential);
@@ -212,5 +218,6 @@ namespace XOMNI.SDK.Private.Catalog
         {
             return categoryApi.GetByIdAsync(categoryId, this.ApiCredential);
         }
+
     }
 }

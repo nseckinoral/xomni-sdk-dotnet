@@ -11,7 +11,7 @@ using XOMNI.SDK.Private.ApiAccess.Catalog;
 
 namespace XOMNI.SDK.Private.Catalog
 {
-    public class TagManagement : BaseCRUDSkipTakeManagement<Model.Catalog.Tag>
+    public class TagManagement : BaseCRUDPSkipTakeManagement<Model.Catalog.Tag>
     {
         private TagMetadata tagMetadataApi;
 
@@ -66,7 +66,7 @@ namespace XOMNI.SDK.Private.Catalog
             return metadata;
         }
 
-        protected override CRUDApiAccessBase<Model.Catalog.Tag> ApiAccess
+        protected override CRUDPApiAccessBase<Model.Catalog.Tag> CRUDPApiAccess
         {
             get { return new ApiAccess.Catalog.Tag(); }
         }

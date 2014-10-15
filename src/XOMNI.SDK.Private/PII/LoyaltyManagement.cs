@@ -9,10 +9,10 @@ using XOMNI.SDK.Private.ApiAccess.PII;
 
 namespace XOMNI.SDK.Private.PII
 {
-    public class LoyaltyManagement : BaseCRUDSkipTakeManagement<SDK.Model.Private.PII.LoyaltyUser>
+    public class LoyaltyManagement : BaseCRUDPSkipTakeManagement<SDK.Model.Private.PII.LoyaltyUser>
     {
         private LoyaltyMetadata loyaltyMetadataApi;
-        protected override Core.ApiAccess.CRUDApiAccessBase<Model.Private.PII.LoyaltyUser> ApiAccess
+        protected override Core.ApiAccess.CRUDPApiAccessBase<Model.Private.PII.LoyaltyUser> CRUDPApiAccess
         {
             get { return new ApiAccess.PII.Loyalty(); }
         }
