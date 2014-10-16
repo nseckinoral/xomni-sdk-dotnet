@@ -7,17 +7,23 @@ using XOMNI.SDK.Core.ApiAccess;
 
 namespace XOMNI.SDK.Core.Management
 {
-    public abstract class BaseCRUDPSkipTakeManagement<T> : BaseCRUDPManagement<T>
+    public abstract class BaseCRUDPSkipTakeManagement<T> : BaseCRUDSkipTakeManagement<T>
     {
-        /// <summary>
-        /// Returns a paged list of entity
-        /// </summary>
-        /// <param name="skip">The number of items in the collection to skip before executing a select.</param>
-        /// <param name="take">The number of items that should be fetched from the collection.</param>
-        /// <returns>CountedCollectionContainer of entity</returns>
-        public virtual Task<Model.CountedCollectionContainer<T>> GetAllAsync(int skip, int take)
+        protected override CRUDApiAccessBase<T> ApiAccess
         {
-            return CRUDPApiAccess.GetAllAsync(skip, take, base.ApiCredential);
+            get { return CRUDPApiAccess; }
+        }
+
+        protected abstract CRUDPApiAccessBase<T> CRUDPApiAccess { get; }
+
+        /// <summary>
+        /// Updates an entity
+        /// </summary>
+        /// <param name="entity">Dynamic entity to be updated</param>
+        /// <returns>Updated entity</returns>
+        public virtual Task<T> UpdateAsync(dynamic entity)
+        {
+            return CRUDPApiAccess.PatchAsync(entity, base.ApiCredential);
         }
     }
 }
