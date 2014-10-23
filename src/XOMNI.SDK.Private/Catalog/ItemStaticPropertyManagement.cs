@@ -28,9 +28,9 @@ namespace XOMNI.SDK.Private.Catalog
             return itemStaticPropertyApi.GetAsync(propertyName, this.ApiCredential);
         }
 
-        public Task<Model.Private.Catalog.ItemStaticProperty> UpdateAsync(Model.Private.Catalog.ItemStaticProperty property)
-        {
-            return itemStaticPropertyApi.UpdateAsync(property, this.ApiCredential);
-        }
+        //public Task<Model.Private.Catalog.ItemStaticProperty> UpdateAsync(Model.Private.Catalog.ItemStaticProperty property)
+        //{
+        //    return itemStaticPropertyApi.UpdateAsync(property, this.ApiCredential);
+        //}
     }
 }
