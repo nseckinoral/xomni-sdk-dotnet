@@ -70,7 +70,7 @@ namespace XOMNI.SDK.Core.Providers
         private static void InitializeDefaultHttpHeaders(HttpRequestMessage requestMessage)
         {
             requestMessage.Headers.Accept.ParseAdd("application/json");
-            requestMessage.Headers.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v2_1"));
+            requestMessage.Headers.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v3_0"));
             requestMessage.Headers.Host = Configuration.Configuration.Host;
         }
 
@@ -114,7 +114,7 @@ namespace XOMNI.SDK.Core.Providers
                 return await response.Content.ReadAsAsync<T>();
             }
         }
-        public static async Task<T> PatchAsync<T> (string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
+        public static async Task<T> PatchAsync<T>(string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             using (HttpRequestMessage requestMessage = CreateRequestMessage(new HttpMethod("PATCH"), url, credential, body))
             {
