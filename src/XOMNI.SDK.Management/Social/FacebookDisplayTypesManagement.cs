@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Management.Social
 {
@@ -26,6 +27,11 @@ namespace XOMNI.SDK.Management.Social
         public Task<IDictionary<int, string>> GetFacebookDisplayTypesAsync()
         {
             return facebookDisplayTypesApi.GetAsync(this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<IDictionary<int, string>> CreateGetRequest()
+        {
+            return facebookDisplayTypesApi.CreateGetRequest(this.ApiCredential);
         }
     }
 }

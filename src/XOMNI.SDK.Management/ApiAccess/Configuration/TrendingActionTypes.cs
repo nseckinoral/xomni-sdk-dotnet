@@ -29,5 +29,16 @@ namespace XOMNI.SDK.Management.ApiAccess.Configuration
         {
             return HttpProvider.PutAsync<List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue>>(GenerateUrl(SingleOperationBaseUrl), popularityActionTypes, credential);
         }
+
+        internal XOMNIRequestMessage<List<Model.Management.Configuration.TrendingActionTypeValue>> CreateGetRequest(ApiBasicCredential apiBasicCredential)
+        {
+            return new XOMNIRequestMessage<List<Model.Management.Configuration.TrendingActionTypeValue>>(HttpProvider.CreateGetRequest(GenerateUrl(SingleOperationBaseUrl), apiBasicCredential));
+
+        }
+
+        internal XOMNIRequestMessage<List<Model.Management.Configuration.TrendingActionTypeValue>> CreatePutRequest(List<Model.Management.Configuration.TrendingActionTypeValue> trendingActionTypeValues, ApiBasicCredential apiBasicCredential)
+        {
+            return new XOMNIRequestMessage<List<Model.Management.Configuration.TrendingActionTypeValue>>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), apiBasicCredential, trendingActionTypeValues));
+        }
     }
 }

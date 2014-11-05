@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.ApiAccess;
+using XOMNI.SDK.Core.Providers;
+using XOMNI.SDK.Model;
 
 namespace XOMNI.SDK.Core.Management
 {
@@ -51,15 +53,27 @@ namespace XOMNI.SDK.Core.Management
             return ApiAccess.GetByIdAsync(id, base.ApiCredential);
         }
 
-        /// <summary>
-        /// Returns a paged list of entity
-        /// </summary>
-        /// <param name="skip">The number of items in the collection to skip before executing a select.</param>
-        /// <param name="take">The number of items that should be fetched from the collection.</param>
-        /// <returns>CountedCollectionContainer of entity</returns>
-        public virtual Task<Model.CountedCollectionContainer<T>> GetAllAsync(int skip, int take)
+        #region Low level methods
+        public virtual XOMNIRequestMessage<T> CreateGetByIdRequest(int id, ApiBasicCredential credential)
         {
-            return ApiAccess.GetAllAsync(skip, take, base.ApiCredential);
+            return ApiAccess.CreateGetByIdRequest(id, credential);
         }
+
+        public virtual XOMNIRequestMessage<T> CreatePostRequest(T entity, ApiBasicCredential credential)
+        {
+            return ApiAccess.CreatePostRequest(entity, credential);
+        }
+
+        public virtual XOMNIRequestMessage CreateDeleteRequest(int id, ApiBasicCredential credential)
+        {
+            return ApiAccess.CreateDeleteRequest(id, credential);
+        }
+
+        public virtual XOMNIRequestMessage<T> CreatePutRequest(T entity, ApiBasicCredential credential)
+        {
+            return ApiAccess.CreatePutRequest(entity, credential);
+        }
+
+        #endregion
     }
 }

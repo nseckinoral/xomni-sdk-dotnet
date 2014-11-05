@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 using XOMNI.SDK.Model.Management.Configuration;
 
 namespace XOMNI.SDK.Management.Configuration
@@ -38,6 +39,16 @@ namespace XOMNI.SDK.Management.Configuration
         public Task<List<TrendingActionTypeValue>> UpdateAsync(List<TrendingActionTypeValue> trendingActionTypeValues)
         {
             return trendingActionTypeApi.UpdateAsync(trendingActionTypeValues, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<TrendingActionTypeValue>> CreateGetRequest()
+        {
+            return trendingActionTypeApi.CreateGetRequest(this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<TrendingActionTypeValue>> CreatePutRequest(List<TrendingActionTypeValue> trendingActionTypeValues)
+        {
+            return trendingActionTypeApi.CreatePutRequest(trendingActionTypeValues, this.ApiCredential);
         }
     }
 }

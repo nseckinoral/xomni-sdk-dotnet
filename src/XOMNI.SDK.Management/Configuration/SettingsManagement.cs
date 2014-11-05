@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Model.Management.Configuration;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Management.Configuration
 {
@@ -40,6 +41,17 @@ namespace XOMNI.SDK.Management.Configuration
         public Task<Settings> UpdateSettingsAsync(Settings tenantSettings)
         {
             return tenantSettingsApi.UpdateAsync(tenantSettings, this.ApiCredential);
+        }
+
+        // For batch
+
+        public virtual XOMNIRequestMessage<Settings> CreateGetByIdRequest()
+        {
+            return tenantSettingsApi.CreateGetRequest(this.ApiCredential);
+        }
+        public virtual XOMNIRequestMessage<Settings> CreatePutRequest(Settings tenantSettings)
+        {
+            return tenantSettingsApi.CreatePutRequest(tenantSettings, this.ApiCredential);
         }
     }
 }
