@@ -14,7 +14,7 @@ namespace XOMNI.SDK.Core.Providers
 
         public XOMNIResponseMessage(bool isSucceed, ExceptionBase exception)
         {
-            this.IsSucceed = IsSucceed;
+            this.IsSucceed = isSucceed;
             this.Exception = exception;
         }
 
