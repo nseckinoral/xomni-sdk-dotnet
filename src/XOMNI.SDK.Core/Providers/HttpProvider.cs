@@ -124,7 +124,7 @@ namespace XOMNI.SDK.Core.Providers
         #region Http Put Methods
         public static HttpRequestMessage CreatePutRequest(string url, ApiBasicCredential credential, object body)
         {
-            return CreateRequestMessage(HttpMethod.Post, url, credential, body);
+            return CreateRequestMessage(HttpMethod.Put, url, credential, body);
         }
 
         public static async Task<T> PutAsync<T>(string url, object body, ApiBasicCredential credential)
