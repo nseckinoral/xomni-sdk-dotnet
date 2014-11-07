@@ -54,24 +54,24 @@ namespace XOMNI.SDK.Core.Management
         }
 
         #region Low level methods
-        public virtual XOMNIRequestMessage<T> CreateGetByIdRequest(int id, ApiBasicCredential credential)
+        public virtual XOMNIRequestMessage<T> CreateGetByIdRequest(int id)
         {
-            return ApiAccess.CreateGetByIdRequest(id, credential);
+            return ApiAccess.CreateGetByIdRequest(id, base.ApiCredential);
         }
 
-        public virtual XOMNIRequestMessage<T> CreatePostRequest(T entity, ApiBasicCredential credential)
+        public virtual XOMNIRequestMessage<T> CreatePostRequest(T entity)
         {
-            return ApiAccess.CreatePostRequest(entity, credential);
+            return ApiAccess.CreatePostRequest(entity, base.ApiCredential);
         }
 
-        public virtual XOMNIRequestMessage CreateDeleteRequest(int id, ApiBasicCredential credential)
+        public virtual XOMNIRequestMessage CreateDeleteRequest(int id)
         {
-            return ApiAccess.CreateDeleteRequest(id, credential);
+            return ApiAccess.CreateDeleteRequest(id, base.ApiCredential);
         }
 
-        public virtual XOMNIRequestMessage<T> CreatePutRequest(T entity, ApiBasicCredential credential)
+        public virtual XOMNIRequestMessage<T> CreatePutRequest(T entity)
         {
-            return ApiAccess.CreatePutRequest(entity, credential);
+            return ApiAccess.CreatePutRequest(entity, base.ApiCredential);
         }
 
         #endregion
