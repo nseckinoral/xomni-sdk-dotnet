@@ -58,5 +58,46 @@ namespace XOMNI.SDK.Private.ApiAccess.Passbook
 
             return HttpProvider.GetAsync<XOMNI.SDK.Model.CountedCollectionContainer<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
+        #region low level methods
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> CreateAddRequest(XOMNI.SDK.Model.Private.Passbook.PassbookTemplateRequest passbookTemplate, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Model.Private.Passbook.PassbookTemplate>(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl), credential, passbookTemplate));
+        }
+
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> CreateUpdateRequest(XOMNI.SDK.Model.Private.Passbook.PassbookTemplateRequest passbookTemplate, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Model.Private.Passbook.PassbookTemplate>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), credential, passbookTemplate));
+        }
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> CreateUpdateRequest(dynamic passbookTemplate, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Model.Private.Passbook.PassbookTemplate>(HttpProvider.CreatePatchRequest(GenerateUrl(SingleOperationBaseUrl), credential, passbookTemplate));
+        }
+
+        public XOMNIRequestMessage CreateDeleteRequest(int templateId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("templateId", templateId.ToString());
+
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> CreateGetRequest(int templateId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("templateId", templateId.ToString());
+
+            return new XOMNIRequestMessage<Model.Private.Passbook.PassbookTemplate>(HttpProvider.CreateGetRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage<XOMNI.SDK.Model.CountedCollectionContainer<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>> CreateGetAllRequest(int skip, int take, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("skip", skip.ToString());
+            additionalParameters.Add("take", take.ToString());
+
+            return new XOMNIRequestMessage<Model.CountedCollectionContainer<Model.Private.Passbook.PassbookTemplate>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        #endregion
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.ApiAccess;
+using XOMNI.SDK.Core.Providers;
+using XOMNI.SDK.Model;
 
 namespace XOMNI.SDK.Core.Management
 {
@@ -19,5 +21,14 @@ namespace XOMNI.SDK.Core.Management
         {
             return ApiAccess.GetAllAsync(skip, take, base.ApiCredential);
         }
+
+        #region Low level methods
+
+        public virtual XOMNIRequestMessage<CountedCollectionContainer<T>> CreateGetAllRequest(int skip, int take)
+        {
+            return ApiAccess.CreateGetAllRequest(skip, take, base.ApiCredential);
+        }
+
+        #endregion
     }
 }

@@ -30,5 +30,13 @@ namespace XOMNI.SDK.Private.ApiAccess.Metering
             queryStringParams.Add("endOADate", ((int)endDate.ToOADate()).ToString());
             return HttpProvider.GetAsync<T>(GenerateUrl(string.Format(SingleOperationBaseUrl, counterType.ToString(), periodType.ToString()), queryStringParams), credential);
         }
+
+        internal XOMNIRequestMessage<T> CreateGetRequest<T>(CounterTypes counterType, PeriodTypes periodType, DateTime startDate, DateTime endDate, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> queryStringParams = new Dictionary<string, string>();
+            queryStringParams.Add("startOADate", ((int)startDate.ToOADate()).ToString());
+            queryStringParams.Add("endOADate", ((int)endDate.ToOADate()).ToString());
+            return new XOMNIRequestMessage<T>(HttpProvider.CreateGetRequest(GenerateUrl(string.Format(SingleOperationBaseUrl, counterType.ToString(), periodType.ToString()), queryStringParams), credential));
+        }
     }
 }

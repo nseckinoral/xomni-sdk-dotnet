@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.Passbook
 {
@@ -45,5 +46,39 @@ namespace XOMNI.SDK.Private.Passbook
         {
             return passbookTemplateApi.GetAllAsync(skip, take, this.ApiCredential);
         }
+
+        #region low level methods
+
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> CreateAddRequest(XOMNI.SDK.Model.Private.Passbook.PassbookTemplateRequest passbookTemplate)
+        {
+            return passbookTemplateApi.CreateAddRequest(passbookTemplate, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> CreateUpdateRequest(XOMNI.SDK.Model.Private.Passbook.PassbookTemplateRequest passbookTemplate)
+        {
+            return passbookTemplateApi.CreateUpdateRequest(passbookTemplate, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> CreateUpdateRequest(dynamic passbookTemplate)
+        {
+            return passbookTemplateApi.CreateUpdateRequest(passbookTemplate, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateDeleteRequest(int templateId)
+        {
+            return passbookTemplateApi.CreateDeleteRequest(templateId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> CreateGetRequest(int templateId)
+        {
+            return passbookTemplateApi.CreateGetRequest(templateId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<XOMNI.SDK.Model.CountedCollectionContainer<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>> CreateGetAllRequest(int skip, int take)
+        {
+            return passbookTemplateApi.CreateGetAllRequest(skip, take, this.ApiCredential);
+        }
+        
+        #endregion
     }
 }

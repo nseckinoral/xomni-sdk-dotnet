@@ -62,5 +62,50 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
 
             return HttpProvider.GetAsync<IEnumerable<TrendingItemDto>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
+
+        #region low level methods
+
+        internal XOMNIRequestMessage<IEnumerable<TrendingItemDto>> CreateGetTrendingItemsRequest(int top, ApiBasicCredential credential, bool includeActionDetails)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("top", top.ToString());
+            additionalParameters.Add("includeactiondetails", includeActionDetails.ToString().ToLowerInvariant());
+
+            return new XOMNIRequestMessage<IEnumerable<TrendingItemDto>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+   
+        }
+
+        internal XOMNIRequestMessage<IEnumerable<TrendingItemDto>> CreateGetTrendingItemsByStoreIdRequest(int top, int storeId, ApiBasicCredential credential, bool includeActionDetails)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("top", top.ToString());
+            additionalParameters.Add("storeid", storeId.ToString());
+            additionalParameters.Add("includeactiondetails", includeActionDetails.ToString().ToLowerInvariant());
+
+            return new XOMNIRequestMessage<IEnumerable<TrendingItemDto>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        internal XOMNIRequestMessage<IEnumerable<TrendingItemDto>> CreateGetTrendingItemsByBrandIdRequest(int top, int brandId, ApiBasicCredential credential, bool includeActionDetails)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("top", top.ToString());
+            additionalParameters.Add("brandid", brandId.ToString());
+            additionalParameters.Add("includeactiondetails", includeActionDetails.ToString().ToLowerInvariant());
+
+            return new XOMNIRequestMessage<IEnumerable<TrendingItemDto>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        internal XOMNIRequestMessage<IEnumerable<TrendingItemDto>> CreateGetTrendingItemsByStoreAndBrandIdRequest(int top, int storeId, int brandId, ApiBasicCredential credential , bool includeActionDetails)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("top", top.ToString());
+            additionalParameters.Add("storeid", storeId.ToString());
+            additionalParameters.Add("brandid", brandId.ToString());
+            additionalParameters.Add("includeactiondetails", includeActionDetails.ToString().ToLowerInvariant());
+
+            return new XOMNIRequestMessage<IEnumerable<TrendingItemDto>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        #endregion
     }
 }

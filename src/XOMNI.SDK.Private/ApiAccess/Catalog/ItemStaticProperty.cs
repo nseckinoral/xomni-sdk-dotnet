@@ -36,5 +36,25 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
         {
             return HttpProvider.PutAsync<Model.Private.Catalog.ItemStaticProperty>(GenerateUrl(ListOperationBaseUrl), property, credential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<CountedCollectionContainer<Model.Private.Catalog.ItemStaticProperty>> CreateGetAllRequest(int skip, int take, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("skip", skip.ToString());
+            additionalParameters.Add("take", take.ToString());
+            return new XOMNIRequestMessage<CountedCollectionContainer<Model.Private.Catalog.ItemStaticProperty>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage<Model.Private.Catalog.ItemStaticProperty> CreateGetRequest(string propertyName, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Model.Private.Catalog.ItemStaticProperty>(HttpProvider.CreateGetRequest(GenerateUrl(String.Format(SingleOperationBaseUrl, propertyName)), credential));
+        }
+
+        public XOMNIRequestMessage<Model.Private.Catalog.ItemStaticProperty> CreateUpdateRequest(Model.Private.Catalog.ItemStaticProperty property, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Model.Private.Catalog.ItemStaticProperty>(HttpProvider.CreatePutRequest(GenerateUrl(ListOperationBaseUrl), credential, property));
+        }
+        #endregion
     }
 }

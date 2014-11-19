@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 using XOMNI.SDK.Model.Private.Metering;
 using XOMNI.SDK.Model.Private.Metering.Log;
 using XOMNI.SDK.Private.ApiAccess.Metering;
@@ -23,5 +24,12 @@ namespace XOMNI.SDK.Private.Metering
         {
             return meteringApiAccess.GetAllAsync<T>(meteringDate, continuationKey, this.ApiCredential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<MeteringLogContainer<T>> CreateGetAllRequest(DateTime meteringDate, string continuationKey = null)
+        {
+            return meteringApiAccess.CreateGetAllRequest<T>(meteringDate, continuationKey, this.ApiCredential);
+        }
+        #endregion
     }
 }

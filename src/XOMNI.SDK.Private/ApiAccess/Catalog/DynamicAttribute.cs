@@ -28,5 +28,12 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
 
             return HttpProvider.GetAsync<List<SDK.Model.Catalog.DynamicAttribute>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
+        internal XOMNIRequestMessage<List<SDK.Model.Catalog.DynamicAttribute>> CreateGetByAttributeIdRequest(int attributeId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("id", attributeId.ToString());
+
+            return new XOMNIRequestMessage<List<Model.Catalog.DynamicAttribute>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
     }
 }

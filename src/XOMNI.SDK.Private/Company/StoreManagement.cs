@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 using XOMNI.SDK.Model;
 
 namespace XOMNI.SDK.Private.Company
@@ -21,5 +22,13 @@ namespace XOMNI.SDK.Private.Company
         {
             return storeApi.GetAsync(skip, take, ApiCredential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<CountedCollectionContainer<Model.Private.Company.Store>> CreateGetRequest(int skip, int take)
+        {
+            return storeApi.CreateGetRequest(skip, take, ApiCredential);
+        }
+
+        #endregion
     }
 }

@@ -29,5 +29,17 @@ namespace XOMNI.SDK.Private.ApiAccess.Asset
         {
             return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl) + "/" + assetId + "/resize", credential);
         }
+
+        #region low level methods
+        public virtual XOMNIRequestMessage CreatePostResizableFlagRequest(int assetId, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl) + "/" + assetId + "/resize", credential, null));
+        }
+
+        public virtual XOMNIRequestMessage CreateDeleteResizableFlagRequest(int assetId, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl) + "/" + assetId + "/resize", credential));
+        }
+        #endregion
     }
 }

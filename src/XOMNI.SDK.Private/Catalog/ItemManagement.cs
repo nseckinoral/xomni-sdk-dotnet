@@ -11,6 +11,7 @@ using XOMNI.SDK.Private.ApiAccess.Catalog.ItemPrice;
 using XOMNI.SDK.Private.ApiAccess.Catalog.ItemStoreMetadata;
 using XOMNI.SDK.Private.ApiAccess.Catalog.ItemSearch;
 using XOMNI.SDK.Model.Private.Catalog;
+using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.Catalog
 {
@@ -261,5 +262,208 @@ namespace XOMNI.SDK.Private.Catalog
         {
             return itemSearchApi.GetAsync(skip, take, categoryId, brandId, defaultItemId, SKU, UUID, itemIds, includeOnlyMasterItems, this.ApiCredential);
         }
+
+
+        #region low level methods
+
+        public XOMNIRequestMessage<List<int>> CreateCreateGetRelatedItemsRequest(int itemId)
+        {
+            return relatedItemsApi.CreateGetByItemIdRequest(itemId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateDeleteItemRelationRequest(int itemId, int relatedItemId, ItemRelationDirection direction)
+        {
+            return relatedItemsApi.CreateDeleteRelationRequest(itemId, relatedItemId, direction, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateClearRelatedItemsRequest(int itemId, ItemRelationDirection direction)
+        {
+            return relatedItemsApi.ClearRelatedItemsRequest(itemId, direction, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateAddItemRelationRequest(int itemId, List<int> relatedItems, ItemRelationDirection direction)
+        {
+            return relatedItemsApi.CreateAddRelationRequest(itemId, relatedItems, direction, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<AssetRelationMapping> CreateRelateImageRequest(int itemId, AssetRelation assetRelation)
+        {
+            return GetAssetApi(AssetContentType.Image).CreatePostRelationRequest(itemId, assetRelation, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<AssetRelationMapping> CreateRelateVideoRequest(int itemId, AssetRelation assetRelation)
+        {
+            return GetAssetApi(AssetContentType.Video).CreatePostRelationRequest(itemId, assetRelation, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<AssetRelationMapping> CreateRelateDocumentRequest(int itemId, AssetRelation assetRelation)
+        {
+            return GetAssetApi(AssetContentType.Document).CreatePostRelationRequest(itemId, assetRelation, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<AssetRelationMapping> CreateRelateImageRequest(int itemId, int assetId, bool isDefault = false)
+        {
+            return GetAssetApi(AssetContentType.Image).CreatePostRelationRequest(itemId, assetId, isDefault, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<AssetRelationMapping> CreateRelateVideoRequest(int itemId, int assetId, bool isDefault = false)
+        {
+            return GetAssetApi(AssetContentType.Video).CreatePostRelationRequest(itemId, assetId, isDefault, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<AssetRelationMapping> CreateRelateDocumentRequest(int itemId, int assetId, bool isDefault = false)
+        {
+            return GetAssetApi(AssetContentType.Document).CreatePostRelationRequest(itemId, assetId, isDefault, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateUnrelateImageRequest(int itemId, int assetId)
+        {
+            return GetAssetApi(AssetContentType.Image).CreateDeleteRelationRequest(itemId, assetId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateUnrelateVideoRequest(int itemId, int assetId)
+        {
+            return GetAssetApi(AssetContentType.Video).CreateDeleteRelationRequest(itemId, assetId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateUnrelateDocumentRequest(int itemId, int assetId)
+        {
+            return GetAssetApi(AssetContentType.Document).CreateDeleteRelationRequest(itemId, assetId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Model.Private.Asset.RelatedImageAsset>> CreateGetImagesRequest(int itemId)
+        {
+            return GetAssetApi(AssetContentType.Image).CreateGetRelationRequest<Model.Private.Asset.RelatedImageAsset>(itemId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Model.Private.Asset.RelatedAsset>> CreateGetVideosRequest(int itemId)
+        {
+            return GetAssetApi(AssetContentType.Video).CreateGetRelationRequest<Model.Private.Asset.RelatedAsset>(itemId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Model.Private.Asset.RelatedAsset>> CreateGetDocumentsRequest(int itemId)
+        {
+            return GetAssetApi(AssetContentType.Document).CreateGetRelationRequest<Model.Private.Asset.RelatedAsset>(itemId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<AssetRelationMapping> CreateUpdateImageRelationRequest(int itemId, int assetId, bool isDefault)
+        {
+            AssetRelationMapping mapping = new AssetRelationMapping()
+            {
+                AssetId = assetId,
+                RelatedId = itemId,
+                IsDefault = isDefault
+            };
+
+            return GetAssetApi(AssetContentType.Image).CreatePutRelationRequest(mapping, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<AssetRelationMapping> CreateUpdateVideoRelationRequest(int itemId, int assetId, bool isDefault)
+        {
+            AssetRelationMapping mapping = new AssetRelationMapping()
+            {
+                AssetId = assetId,
+                RelatedId = itemId,
+                IsDefault = isDefault
+            };
+
+            return GetAssetApi(AssetContentType.Video).CreatePutRelationRequest(mapping, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<AssetRelationMapping> CreateUpdateDocumentRelationRequest(int itemId, int assetId, bool isDefault)
+        {
+            AssetRelationMapping mapping = new AssetRelationMapping()
+            {
+                AssetId = assetId,
+                RelatedId = itemId,
+                IsDefault = isDefault
+            };
+
+            return GetAssetApi(AssetContentType.Document).CreatePutRelationRequest(mapping, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Private.Catalog.MultipleItemSearchResult> CreateCreateSearchRequest(XOMNI.SDK.Model.Private.Catalog.ItemSearchRequest itemSearchRequest)
+        {
+            return CRUDPApiAccess.CreatePostByCustomListOperationUrlRequest<XOMNI.SDK.Model.Private.Catalog.MultipleItemSearchResult>(itemSearchRequest, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Model.Private.Catalog.Price>> CreateUpdatePricesRequest(int itemId, List<Model.Private.Catalog.Price> priceList)
+        {
+            return batchPriceApi.CreateUpdateItemPricesRequest(itemId, priceList, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Model.Private.Catalog.Price>> CreateGetAllPricesRequest(int itemId)
+        {
+            return priceApi.CreateGetByItemIdRequest(itemId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Model.Catalog.DynamicAttribute>> CreateUpdateDynamicAttributesRequest(int itemId, List<Model.Catalog.DynamicAttribute> dynamicAttributeList)
+        {
+            return itemDynamicAttributeApi.CreateUpdateItemDynamicAttributesRequest(itemId, dynamicAttributeList, this.ApiCredential);
+        }
+
+        /// <summary>
+        /// Makes the variant items of the default item master (in other words, ugroups them).
+        /// </summary>
+        /// <param name="defaultItemId">The id of the default item which will be used to ungroup its variant items.</param>
+        public XOMNIRequestMessage CreateUngroupItemsRequest(int defaultItemId)
+        {
+            return itemUngroup.CreateUngroupItemsRequest(defaultItemId, base.ApiCredential);
+        }
+
+        /// <summary>
+        /// Moves variant items under a sepecified default item.
+        /// </summary>
+        /// <param name="defaultItemId">The id of the default item to move the variants item under.</param>
+        /// <param name="variantItemIds">The ids of the items to move.</param>
+        public XOMNIRequestMessage CreateGroupItemsRequest(int defaultItemId, IEnumerable<int> variantItemIds)
+        {
+            return itemGroup.CreateGroupItemsRequest(defaultItemId, variantItemIds, base.ApiCredential);
+        }
+
+        /// <summary>
+        /// Moves variant items under a different default item.
+        /// </summary>
+        /// <param name="defaultItemId">The id of the default item to move the variant items under.</param>
+        /// <param name="variantItemIds">The ids of the items to move.</param>
+        public XOMNIRequestMessage CreateMoveItemsRequest(int defaultItemId, IEnumerable<int> variantItemIds)
+        {
+            return itemMove.CreateMoveItemsRequest(defaultItemId, variantItemIds, base.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<Model.Private.Catalog.InStoreMetadata> CreateAddInStoreMetadataRequest(int itemId, Model.Private.Catalog.InStoreMetadata inStoreMetadata)
+        {
+            return itemStoreMetadataApi.CreateAddInStoreMetadataRequest(itemId, inStoreMetadata, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<Model.Private.Catalog.InStoreMetadata> CreateUpdateInStoreMetadataRequest(int itemId, Model.Private.Catalog.InStoreMetadata inStoreMetadata)
+        {
+            return itemStoreMetadataApi.CreateUpdateInStoreMetadataRequest(itemId, inStoreMetadata, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Model.Private.Catalog.InStoreMetadata>> CreateGetAllInStoreMetadataRequest(int itemId)
+        {
+            return itemStoreMetadataApi.CreateGetAllInStoreMetadataRequest(itemId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateDeleteInStoreMetadataRequest(int itemId, int storeId, string metadataKey)
+        {
+            return itemStoreMetadataApi.CreateDeleteInStoreMetadataRequest(itemId, storeId, metadataKey, this.ApiCredential);
+        }
+        public XOMNIRequestMessage CreateClearInStoreMetadataRequest(int itemId, int storeId)
+        {
+            return itemStoreMetadataApi.CreateClearInStoreMetadataRequest(itemId, storeId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateClearInStoreMetadataRequest(int itemId)
+        {
+            return itemStoreMetadataApi.CreateClearInStoreMetadataRequest(itemId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<CountedCollectionContainer<PrivateItemSearchResponse>> CreateSearchRequest(int skip, int take, int? categoryId = null, int? brandId = null, int? defaultItemId = null, string SKU = null, string UUID = null, List<int> itemIds = null, bool includeOnlyMasterItems = false)
+        {
+            return itemSearchApi.CreateGetRequest(skip, take, categoryId, brandId, defaultItemId, SKU, UUID, itemIds, includeOnlyMasterItems, this.ApiCredential);
+        }
+        #endregion
     }
 }

@@ -40,5 +40,29 @@ namespace XOMNI.SDK.Private.ApiAccess.Asset
             additionalParameters.Add("fileName", fileName);
             return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<string> CreateUploadRequest(string fileName, byte[] data, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("fileName", fileName);
+            return new XOMNIRequestMessage<string>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential, data));
+        }
+
+        public XOMNIRequestMessage<int> CreateCommitRequest(string fileName, string[] blockIds, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("fileName", fileName);
+            return  new XOMNIRequestMessage<int>(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential, blockIds));
+        }
+
+        public XOMNIRequestMessage CreateDeleteRequest(string fileName, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("fileName", fileName);
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+
+        #endregion
     }
 }

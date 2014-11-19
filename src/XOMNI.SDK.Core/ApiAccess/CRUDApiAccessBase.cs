@@ -88,6 +88,11 @@ namespace XOMNI.SDK.Core.ApiAccess
             return new XOMNIRequestMessage<T>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), credential, entity));
         }
 
+        public virtual XOMNIRequestMessage<T> CreatePatchRequest(dynamic entity, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<T>(HttpProvider.CreatePatchRequest(GenerateUrl(SingleOperationBaseUrl), credential, entity));
+        }
+
         #endregion
 
         protected override string SingleOperationBaseUrl

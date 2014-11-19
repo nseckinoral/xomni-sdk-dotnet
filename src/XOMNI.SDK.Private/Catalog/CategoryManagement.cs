@@ -219,5 +219,6 @@ namespace XOMNI.SDK.Private.Catalog
             return categoryApi.GetByIdAsync(categoryId, this.ApiCredential);
         }
 
+        //TODO:GG Implement Batch Methods
     }
 }

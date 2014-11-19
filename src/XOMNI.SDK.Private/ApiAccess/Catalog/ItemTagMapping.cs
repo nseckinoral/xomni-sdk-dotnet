@@ -56,5 +56,44 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             additionalParameters.Add("take", take.ToString());
             return HttpProvider.GetAsync<CountedCollectionContainer<XOMNI.SDK.Model.Catalog.ItemTagMapping>>(GenerateUrl(ListOperationBaseUrl), credential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Catalog.ItemTagMapping> CreateAddRequest(XOMNI.SDK.Model.Catalog.ItemTagMapping itemTagMapping, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Model.Catalog.ItemTagMapping>(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl), credential, itemTagMapping));
+        }
+
+        public XOMNIRequestMessage CreateDeleteRequest(int itemId, int tagId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("itemId", itemId.ToString());
+            additionalParameters.Add("tagId", tagId.ToString());
+
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage<List<XOMNI.SDK.Model.Catalog.ItemTagMapping>> CreateGetByItemIdRequest(int itemId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("itemId", itemId.ToString());
+            return new XOMNIRequestMessage<List<Model.Catalog.ItemTagMapping>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl), credential));
+        }
+
+        public XOMNIRequestMessage<List<XOMNI.SDK.Model.Catalog.ItemTagMapping>> CreateGetByTagIdRequest(int tagId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("tagId", tagId.ToString());
+            return new XOMNIRequestMessage<List<Model.Catalog.ItemTagMapping>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl), credential));
+        }
+
+        public XOMNIRequestMessage<CountedCollectionContainer<XOMNI.SDK.Model.Catalog.ItemTagMapping>> CreateGetAllRequest(int skip, int take, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("skip", skip.ToString());
+            additionalParameters.Add("take", take.ToString());
+            return new XOMNIRequestMessage<CountedCollectionContainer<Model.Catalog.ItemTagMapping>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl), credential));
+        }
+
+        #endregion
     }
 }

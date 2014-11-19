@@ -49,5 +49,45 @@ namespace XOMNI.SDK.Private.ApiAccess.PII
             };
             return HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
+
+        #region Low Level Methods
+
+        public XOMNIRequestMessage<Model.Private.PII.WishlistMetadata> CreateGetAllMetadataRequest(Guid wishlistUniqueKey, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>
+            {
+                {"wishlistUniqueKey", wishlistUniqueKey.ToString("D")}
+            };
+
+            return new XOMNIRequestMessage<Model.Private.PII.WishlistMetadata>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+        public XOMNIRequestMessage<Model.Private.PII.WishlistMetadata> CreateAddMetadataRequest(Model.Private.PII.WishlistMetadata wishlistMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Model.Private.PII.WishlistMetadata>(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl), credential, wishlistMetadata));
+        }
+        public XOMNIRequestMessage<Model.Private.PII.WishlistMetadata> CreateUpdateMetadataRequest(Model.Private.PII.WishlistMetadata wishlistMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Model.Private.PII.WishlistMetadata>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), credential, wishlistMetadata));
+        }
+        public XOMNIRequestMessage CreateDeleteMetadataRequest(Guid wishlistUniqueKey, string metadataKey, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>
+            {
+                { "wishlistUniqueKey", wishlistUniqueKey.ToString("D") },
+                { "metadataKey", metadataKey }
+            };
+            
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+        public XOMNIRequestMessage CreateClearMetadataRequest(Guid wishlistUniqueKey, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>
+            {
+                { "wishlistUniqueKey", wishlistUniqueKey.ToString("D") }
+            };
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        #endregion
     }
 }

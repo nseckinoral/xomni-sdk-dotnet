@@ -39,5 +39,16 @@ namespace XOMNI.SDK.Private.ApiAccess.Metering
             }
             return HttpProvider.GetAsync<MeteringLogContainer<T>>(GenerateUrl(ListOperationBaseUrl, queryStringParams), credential);
         }
+
+        internal XOMNIRequestMessage<MeteringLogContainer<T>> CreateGetAllRequest<T>(DateTime meteringDate, string continuationKey, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> queryStringParams = new Dictionary<string, string>();
+            queryStringParams.Add("oaDate", ((int)meteringDate.ToOADate()).ToString());
+            if (continuationKey != null)
+            {
+                queryStringParams.Add("continuationKey", continuationKey);
+            }
+            return new XOMNIRequestMessage<MeteringLogContainer<T>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, queryStringParams), credential));
+        }
     }
 }

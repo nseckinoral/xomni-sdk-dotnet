@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 using XOMNI.SDK.Private.ApiAccess.Asset;
 
 namespace XOMNI.SDK.Private.Asset
@@ -31,5 +32,22 @@ namespace XOMNI.SDK.Private.Asset
         {
             return temporaryStorageApi.DeleteAsync(fileName, this.ApiCredential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<string> CreateUploadRequest(string fileName, byte[] data)
+        {
+            return temporaryStorageApi.CreateUploadRequest(fileName, data, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<int> CreateCommitRequest(string fileName, string[] blockIds)
+        {
+            return temporaryStorageApi.CreateCommitRequest(fileName, blockIds, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateDeleteRequest(string fileName)
+        {
+            return temporaryStorageApi.CreateDeleteRequest(fileName, this.ApiCredential);
+        }
+        #endregion
     }
 }

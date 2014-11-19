@@ -30,5 +30,15 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
 
             return HttpProvider.GetAsync<CountedCollectionContainer<Model.Catalog.Brand>>(GenerateUrl(ListOperationBaseUrl, additionalQueryString), credential);
         }
+
+        internal XOMNIRequestMessage<CountedCollectionContainer<Model.Catalog.Brand>> CreateGetByCategoryIdRequest(int categoryId, int skip, int take, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalQueryString = new Dictionary<string, string>();
+            additionalQueryString.Add("categoryId", categoryId.ToString());
+            additionalQueryString.Add("skip", skip.ToString());
+            additionalQueryString.Add("take", take.ToString());
+
+            return new XOMNIRequestMessage<CountedCollectionContainer<Model.Catalog.Brand>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalQueryString), credential));
+        }
     }
 }

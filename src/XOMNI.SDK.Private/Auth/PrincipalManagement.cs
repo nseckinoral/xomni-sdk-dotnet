@@ -20,5 +20,7 @@ namespace XOMNI.SDK.Private.Auth
         {
             return principalApi.GetAsync(ApiCredential);
         }
+
+        //TODO:GG Implement Batch Methods
     }
 }

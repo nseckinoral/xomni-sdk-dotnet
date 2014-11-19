@@ -37,5 +37,21 @@ namespace XOMNI.SDK.Private.ApiAccess.Asset
             additionalParameters.Add("force", force.ToString());
             return HttpProvider.DeleteAsync(GenerateUrl(String.Format(SingleOperationBaseUrl, assetId), additionalParameters), credential);
         }
+
+        #region low level methods
+
+        internal XOMNIRequestMessage<AssetRelations> CreateGetAssetRelationsRequest(int assetId, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<AssetRelations>(HttpProvider.CreateGetRequest(GenerateUrl(String.Format(AssetRelationBaseUrl, assetId)), credential));
+        }
+
+        internal XOMNIRequestMessage CreateDeleteAssetRequest(int assetId, bool force, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("force", force.ToString());
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(String.Format(SingleOperationBaseUrl, assetId), additionalParameters), credential));
+        }
+
+        #endregion
     }
 }

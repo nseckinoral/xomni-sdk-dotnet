@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.ApiAccess;
+using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Core.Management
 {
@@ -27,5 +28,14 @@ namespace XOMNI.SDK.Core.Management
         {
             return CRUDPApiAccess.PatchAsync(entity, base.ApiCredential);
         }
+
+        #region Low level methods
+
+        public virtual XOMNIRequestMessage<T> CreatePatchRequest(dynamic entity)
+        {
+            return CRUDPApiAccess.CreatePatchRequest(entity, base.ApiCredential);
+        }
+
+        #endregion
     }
 }

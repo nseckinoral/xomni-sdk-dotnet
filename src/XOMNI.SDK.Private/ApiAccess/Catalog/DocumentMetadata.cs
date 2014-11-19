@@ -54,5 +54,41 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             additionalParameters.Add("assetId", assetId.ToString());
             return HttpProvider.GetAsync<List<Metadata>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
+
+        #region low level methods 
+        public XOMNIRequestMessage<AssetMetadata> CreateAddMetadataRequest(AssetMetadata assetMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<AssetMetadata>(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl), credential, assetMetadata));
+        }
+
+        public XOMNIRequestMessage CreateDeleteMetadataRequest(int assetId, string metadataKey, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("assetId", assetId.ToString());
+            additionalParameters.Add("metadataKey", metadataKey);
+
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage CreateClearMetadataRequest(int assetId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("assetId", assetId.ToString());
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage<AssetMetadata> CreateUpdateMetadataRequest(AssetMetadata assetMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<AssetMetadata>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), credential, assetMetadata));
+        }
+
+        public XOMNIRequestMessage<List<Metadata>> CreateGetAllMetadataRequest(int assetId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("assetId", assetId.ToString());
+            return new XOMNIRequestMessage<List<Metadata>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+        
+        #endregion
     }
 }

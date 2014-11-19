@@ -33,5 +33,28 @@ namespace XOMNI.SDK.Private.Metering
         {
             return apiAccess.GetAsync<List<YearlyCountSummary>>(counterType, PeriodTypes.Yearly, startDate, endDate, this.ApiCredential);
         }
+
+        #region low level methods
+
+        public XOMNIRequestMessage<List<DailyCountSummary>> CreateGetDailySummaryRequest(CounterTypes counterType, DateTime startDate, DateTime endDate)
+        {
+            return apiAccess.CreateGetRequest<List<DailyCountSummary>>(counterType, PeriodTypes.Daily, startDate, endDate, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<WeeklyCountSummary>> CreateGetWeeklySummaryRequest(CounterTypes counterType, DateTime startDate, DateTime endDate)
+        {
+            return apiAccess.CreateGetRequest<List<WeeklyCountSummary>>(counterType, PeriodTypes.Weekly, startDate, endDate, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<MonthlyCountSummary>> CreateGetMonthlySummaryRequest(CounterTypes counterType, DateTime startDate, DateTime endDate)
+        {
+            return apiAccess.CreateGetRequest<List<MonthlyCountSummary>>(counterType, PeriodTypes.Monthly, startDate, endDate, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<YearlyCountSummary>> CreateGetYearlySummaryRequest(CounterTypes counterType, DateTime startDate, DateTime endDate)
+        {
+            return apiAccess.CreateGetRequest<List<YearlyCountSummary>>(counterType, PeriodTypes.Yearly, startDate, endDate, this.ApiCredential);
+        }
+        #endregion
     }
 }

@@ -8,6 +8,7 @@ using XOMNI.SDK.Model.Catalog;
 using XOMNI.SDK.Core.ApiAccess;
 using XOMNI.SDK.Core.Management;
 using XOMNI.SDK.Private.ApiAccess.Catalog;
+using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.Catalog
 {
@@ -70,5 +71,32 @@ namespace XOMNI.SDK.Private.Catalog
         {
             get { return new ApiAccess.Catalog.Tag(); }
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<TagMetaData> CreateAddMetadataRequest(TagMetaData tagMetadata)
+        {
+            return tagMetadataApi.CreateAddMetadataRequest(tagMetadata, ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Metadata>> CreateGetAllMetadataRequest(int tagId)
+        {
+            return tagMetadataApi.CreateGetAllMetadataRequest(tagId, ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateDeleteMetadataRequest(int tagId, string metadataKey)
+        {
+            return tagMetadataApi.CreateDeleteMetadataRequest(tagId, metadataKey, ApiCredential);
+        }
+
+        public XOMNIRequestMessage<TagMetaData> CreateUpdateMetadataRequest(TagMetaData tagMetadata)
+        {
+            return tagMetadataApi.CreateUpdateMetadataRequest(tagMetadata, ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateClearMetadataRequest(int tagId)
+        {
+            return tagMetadataApi.CreateClearMetadataRequest(tagId, ApiCredential);
+        }
+        #endregion
     }
 }

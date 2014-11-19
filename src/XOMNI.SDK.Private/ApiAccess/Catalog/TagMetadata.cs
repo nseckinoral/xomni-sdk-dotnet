@@ -56,5 +56,41 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
         {
             get { return "/private/catalog/tagmetadata"; }
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<TagMetaData> CreateAddMetadataRequest(TagMetaData tagMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<TagMetaData>(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl), credential, tagMetadata));
+        }
+
+        public XOMNIRequestMessage<List<Metadata>> CreateGetAllMetadataRequest(int tagId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("tagId", tagId.ToString());
+            return new XOMNIRequestMessage<List<Metadata>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage CreateDeleteMetadataRequest(int tagId, string metadataKey, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("tagId", tagId.ToString());
+            additionalParameters.Add("metadataKey", metadataKey);
+
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage<TagMetaData> CreateUpdateMetadataRequest(TagMetaData tagMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<TagMetaData>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), credential, tagMetadata));
+        }
+
+        public XOMNIRequestMessage CreateClearMetadataRequest(int tagId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("tagId", tagId.ToString());
+
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+        #endregion
     }
 }

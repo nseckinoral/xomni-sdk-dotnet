@@ -21,5 +21,8 @@ namespace XOMNI.SDK.Private.Passbook
         {
             return apiAccess.GetAllAsync(this.ApiCredential);
         }
+
+        //TODO:GG Implement Batch Methods
+
     }
 }

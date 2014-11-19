@@ -24,5 +24,10 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
         {
             return HttpProvider.GetAsync<Model.Private.Catalog.Summary>(GenerateUrl(SingleOperationBaseUrl), credential);
         }
+
+        internal XOMNIRequestMessage<Model.Private.Catalog.Summary> CreateGetRequest(ApiBasicCredential apiBasicCredential)
+        {
+            return new XOMNIRequestMessage<Model.Private.Catalog.Summary>(HttpProvider.CreateGetRequest(GenerateUrl(SingleOperationBaseUrl), apiBasicCredential));
+        }
     }
 }

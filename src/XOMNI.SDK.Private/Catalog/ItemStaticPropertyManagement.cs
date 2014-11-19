@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 using XOMNI.SDK.Model;
 using XOMNI.SDK.Model.Catalog;
 
@@ -32,5 +33,23 @@ namespace XOMNI.SDK.Private.Catalog
         //{
         //    return itemStaticPropertyApi.UpdateAsync(property, this.ApiCredential);
         //}
+
+        #region low level methods
+
+        public XOMNIRequestMessage<CountedCollectionContainer<Model.Private.Catalog.ItemStaticProperty>> CreateGetAllRequest(int skip, int take)
+        {
+            return itemStaticPropertyApi.CreateGetAllRequest(skip, take, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<Model.Private.Catalog.ItemStaticProperty> CreateGetRequest(string propertyName)
+        {
+            return itemStaticPropertyApi.CreateGetRequest(propertyName, this.ApiCredential);
+        }
+
+        //public XOMNIRequestMessage<Model.Private.Catalog.ItemStaticProperty> CreateUpdateRequest(Model.Private.Catalog.ItemStaticProperty property)
+        //{
+        //    return itemStaticPropertyApi.CreateUpdateRequest(property, this.ApiCredential);
+        //}
+        #endregion
     }
 }
