@@ -64,5 +64,41 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
         {
             return HttpProvider.PutAsync<CategoryMetaData>(GenerateUrl(SingleOperationBaseUrl), categoryMetadata, credential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<CategoryMetaData> CreateAddMetadataRequest(CategoryMetaData categoryMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<CategoryMetaData>(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl), credential, categoryMetadata));
+        }
+
+        public XOMNIRequestMessage CreateDeleteMetadataRequest(int categoryId, string metadataKey, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("categoryId", categoryId.ToString());
+            additionalParameters.Add("metadataKey", metadataKey);
+
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage CreateClearMetadataRequest(int categoryId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("categoryId", categoryId.ToString());
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage<CategoryMetaData> CreateUpdateMetadataRequest(CategoryMetaData categoryMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<CategoryMetaData>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), credential, categoryMetadata));
+        }
+
+        public XOMNIRequestMessage<List<Metadata>> CreateGetAllMetadataRequest(int categoryId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("categoryId", categoryId.ToString());
+            return new XOMNIRequestMessage<List<Metadata>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        #endregion
     }
 }

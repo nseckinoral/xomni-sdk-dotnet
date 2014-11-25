@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.Auth
 {
@@ -21,6 +22,12 @@ namespace XOMNI.SDK.Private.Auth
             return principalApi.GetAsync(ApiCredential);
         }
 
-        //TODO:GG Implement Batch Methods
+        #region low level methods
+        public XOMNIRequestMessage<XOMNI.SDK.Model.Private.Auth.Principal> CreateGetPrincipalRequest()
+        {
+            return principalApi.CreateGetRequest(ApiCredential);
+        }
+
+        #endregion
     }
 }

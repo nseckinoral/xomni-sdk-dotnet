@@ -24,5 +24,14 @@ namespace XOMNI.SDK.Private.ApiAccess.Auth
         {
             return HttpProvider.GetAsync<Model.Private.Auth.Principal>(GenerateUrl(SingleOperationBaseUrl), credential);
         }
+
+        #region low level methods
+
+        internal XOMNIRequestMessage<Model.Private.Auth.Principal> CreateGetRequest(ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Model.Private.Auth.Principal>(HttpProvider.CreateGetRequest(GenerateUrl(SingleOperationBaseUrl), credential));
+        }
+
+        #endregion
     }
 }
