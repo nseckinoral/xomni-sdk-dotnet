@@ -27,5 +27,13 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
 
             return GetByCustomListOperationUrlAsync(additionalQueryString, credential);
         }
+
+        internal XOMNIRequestMessage<List<Model.Private.Catalog.Price>> CreateGetByItemIdRequest(int itemId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalQueryString = new Dictionary<string, string>();
+            additionalQueryString.Add("itemId", itemId.ToString());
+
+            return new XOMNIRequestMessage<List<Model.Private.Catalog.Price>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalQueryString), credential));
+        }
     }
 }

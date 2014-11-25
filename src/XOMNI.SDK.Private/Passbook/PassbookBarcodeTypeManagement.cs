@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 using XOMNI.SDK.Private.ApiAccess.Passbook;
 
 namespace XOMNI.SDK.Private.Passbook
@@ -22,7 +23,9 @@ namespace XOMNI.SDK.Private.Passbook
             return apiAccess.GetAllAsync(this.ApiCredential);
         }
 
-        //TODO:GG Implement Batch Methods
-
+        public XOMNIRequestMessage<IDictionary<int, string>> CreateGetAllRequest()
+        {
+            return apiAccess.CreateGetAllRequest(this.ApiCredential);
+        }
     }
 }

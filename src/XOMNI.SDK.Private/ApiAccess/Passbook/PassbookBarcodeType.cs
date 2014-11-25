@@ -24,5 +24,10 @@ namespace XOMNI.SDK.Private.ApiAccess.Passbook
         {
             return HttpProvider.GetAsync<IDictionary<int, string>>(GenerateUrl(ListOperationBaseUrl), credential);
         }
+
+        internal XOMNIRequestMessage<IDictionary<int, string>> CreateGetAllRequest(ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<IDictionary<int,string>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl), credential));            
+        }
     }
 }

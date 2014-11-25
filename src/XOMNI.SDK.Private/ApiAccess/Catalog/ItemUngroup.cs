@@ -21,5 +21,13 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             string uri = GenerateUrl(string.Format(SingleOperationBaseUrl, defaultItemId));
             return HttpProvider.PostAsync(uri, null, credential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage CreateUngroupItemsRequest(int defaultItemId, ApiBasicCredential credential)
+        {
+            string uri = GenerateUrl(string.Format(SingleOperationBaseUrl, defaultItemId));
+            return new XOMNIRequestMessage(HttpProvider.CreatePostRequest(uri, credential, null));
+        }
+        #endregion
     }
 }

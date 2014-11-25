@@ -61,6 +61,44 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemSearch
 
             return HttpProvider.GetAsync<CountedCollectionContainer<PrivateItemSearchResponse>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
+        internal XOMNIRequestMessage<CountedCollectionContainer<PrivateItemSearchResponse>> CreateGetRequest(int skip, int take, int? categoryId, int? brandId, int? defaultItemId, string SKU, string UUID, List<int> itemIds, bool includeOnlyMasterItems, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("skip", skip.ToString());
+            additionalParameters.Add("take", take.ToString());
+            if (categoryId.HasValue)
+            {
+                additionalParameters.Add("categoryId", categoryId.ToString());
+            }
+            if (brandId.HasValue)
+            {
+                additionalParameters.Add("brandId", brandId.ToString());
+            }
+            if (defaultItemId.HasValue)
+            {
+                additionalParameters.Add("defaultItemId", defaultItemId.ToString());
+            }
+            if (!string.IsNullOrEmpty(SKU))
+            {
+                additionalParameters.Add("SKU", SKU.ToString());
+            }
+            if (!string.IsNullOrEmpty(UUID))
+            {
+                additionalParameters.Add("UUID", UUID.ToString());
+            }
+            if (itemIds != null && itemIds.Count > 0)
+            {
+                StringBuilder builder = new StringBuilder();
+                foreach (int id in itemIds)
+                {
+                    builder.Append(id);
+                    builder.Append(",");
+                }
+                additionalParameters.Add("itemIds", builder.ToString().TrimEnd(','));
+            }
+            additionalParameters.Add("includeOnlyMasterItems", includeOnlyMasterItems.ToString());
 
+            return new XOMNIRequestMessage<CountedCollectionContainer<PrivateItemSearchResponse>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
     }
 }

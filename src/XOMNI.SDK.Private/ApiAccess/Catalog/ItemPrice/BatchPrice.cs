@@ -24,5 +24,10 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemPrice
         {
             return HttpProvider.PutAsync<List<Model.Private.Catalog.Price>>(GenerateUrl(string.Format(ListOperationBaseUrl, itemId)), priceList, credential);
         }
+
+        internal XOMNIRequestMessage<List<Model.Private.Catalog.Price>> CreateUpdateItemPricesRequest(int itemId, List<Model.Private.Catalog.Price> priceList, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<List<Model.Private.Catalog.Price>>(HttpProvider.CreatePutRequest(GenerateUrl(string.Format(ListOperationBaseUrl, itemId)), credential, priceList));
+        }
     }
 }
