@@ -10,12 +10,12 @@ using XOMNI.SDK.Model.Private.Analytics;
 
 namespace XOMNI.SDK.Private.ApiAccess.Analytics
 {
-    internal class SummaryAnalytics : ApiAccessBase
+    internal class SummaryServerAnalytics : ApiAccessBase
     {
         private CounterTypes counterType;
         protected override string SingleOperationBaseUrl
         {
-            get { return "/private/metering/counters/{0}/summary/{1}"; }
+            get { return "/private/analytics/servercounters/{0}/summary/{1}"; }
         }
 
         protected override string ListOperationBaseUrl

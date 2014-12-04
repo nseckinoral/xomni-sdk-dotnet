@@ -29,10 +29,10 @@ namespace XOMNI.SDK.Private.ApiAccess.Analytics
             get { return String.Format("/private/analytics/servercounters/{0}/logs", counterType.ToString()); }
         }
 
-        internal Task<AnalyticsLogContainer<T>> GetAllAsync<T>(DateTime meteringDate, string continuationKey, ApiBasicCredential credential)
+        internal Task<AnalyticsLogContainer<T>> GetAllAsync<T>(DateTime date, string continuationKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> queryStringParams = new Dictionary<string, string>();
-            queryStringParams.Add("oaDate", ((int)meteringDate.ToOADate()).ToString());
+            queryStringParams.Add("oaDate", ((int)date.ToOADate()).ToString());
             if (continuationKey != null)
             {
                 queryStringParams.Add("continuationKey", continuationKey);
@@ -40,10 +40,10 @@ namespace XOMNI.SDK.Private.ApiAccess.Analytics
             return HttpProvider.GetAsync<AnalyticsLogContainer<T>>(GenerateUrl(ListOperationBaseUrl, queryStringParams), credential);
         }
 
-        internal XOMNIRequestMessage<AnalyticsLogContainer<T>> CreateGetAllRequest<T>(DateTime meteringDate, string continuationKey, ApiBasicCredential credential)
+        internal XOMNIRequestMessage<AnalyticsLogContainer<T>> CreateGetAllRequest<T>(DateTime date, string continuationKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> queryStringParams = new Dictionary<string, string>();
-            queryStringParams.Add("oaDate", ((int)meteringDate.ToOADate()).ToString());
+            queryStringParams.Add("oaDate", ((int)date.ToOADate()).ToString());
             if (continuationKey != null)
             {
                 queryStringParams.Add("continuationKey", continuationKey);

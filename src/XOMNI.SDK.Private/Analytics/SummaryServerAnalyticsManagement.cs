@@ -9,10 +9,10 @@ using XOMNI.SDK.Model.Private.Analytics;
 
 namespace XOMNI.SDK.Private.Analytics
 {
-    public class SummaryAnalyticsManagement : ManagementBase
+    public class SummaryServerAnalyticsManagement : ManagementBase
     {
         public CounterTypes CounterType { get; private set; }
-        private ApiAccess.Analytics.SummaryAnalytics apiAccess = new ApiAccess.Analytics.SummaryAnalytics();
+        private ApiAccess.Analytics.SummaryServerAnalytics apiAccess = new ApiAccess.Analytics.SummaryServerAnalytics();
 
         public Task<List<DailyCountSummary>> GetDailySummaryAsync(CounterTypes counterType, DateTime startDate, DateTime endDate)
         {

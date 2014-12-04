@@ -20,15 +20,15 @@ namespace XOMNI.SDK.Private.Analytics
         {
             analyticsApiAccess = new ApiAccess.Analytics.ServerAnalytics(CounterType);
         }
-        public Task<AnalyticsLogContainer<T>> GetAllAsync(DateTime meteringDate, string continuationKey = null)
+        public Task<AnalyticsLogContainer<T>> GetAllAsync(DateTime date, string continuationKey = null)
         {
-            return analyticsApiAccess.GetAllAsync<T>(meteringDate, continuationKey, this.ApiCredential);
+            return analyticsApiAccess.GetAllAsync<T>(date, continuationKey, this.ApiCredential);
         }
 
         #region low level methods
-        public XOMNIRequestMessage<AnalyticsLogContainer<T>> CreateGetAllRequest(DateTime meteringDate, string continuationKey = null)
+        public XOMNIRequestMessage<AnalyticsLogContainer<T>> CreateGetAllRequest(DateTime date, string continuationKey = null)
         {
-            return analyticsApiAccess.CreateGetAllRequest<T>(meteringDate, continuationKey, this.ApiCredential);
+            return analyticsApiAccess.CreateGetAllRequest<T>(date, continuationKey, this.ApiCredential);
         }
         #endregion
     }
