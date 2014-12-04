@@ -26,6 +26,10 @@ namespace XOMNI.SDK.Model.Private.Analytics
         OmniShareFromCustomerDeviceToInStoreDevice,
         OmniShareFromInStoreDeviceToCustomerDevice,
         OmniShareFromInStoreDeviceToInStoreDevice,
-        TrendingItem
+        TrendingItem,
+        /// <summary>
+        /// Client value can only be used in client analytics methods.
+        /// </summary>
+        Client,
     }
 }
