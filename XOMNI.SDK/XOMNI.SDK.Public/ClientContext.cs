@@ -29,12 +29,9 @@ namespace XOMNI.SDK.Public
                 InitalizePIIToken(value);
                 piiUser = value; 
             }
-        }
-
-      
+        }      
 
         private OmniSession omniSession;
-
         public OmniSession OmniSession
         {
             get { return omniSession; }
@@ -44,8 +41,7 @@ namespace XOMNI.SDK.Public
                 omniSession = value;
             }
         }
-
-
+        
         public ClientContext(string userName, string password, string serviceUri)
         {
             omniSession = new OmniSession();
@@ -67,8 +63,8 @@ namespace XOMNI.SDK.Public
                 Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", userName, password))));
 
             this.HttpClient.DefaultRequestHeaders.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v2_0"));
-
         }
+
         private void InitalizePIIToken(OmniSession value)
         {
             lock (piiUser)
@@ -82,8 +78,7 @@ namespace XOMNI.SDK.Public
                     var sessionHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format(sessionHeaderFormat,value.SessionGuid)));
                     this.HttpClient.DefaultRequestHeaders.Add("PIIToken", sessionHeader);
                     piiUser = null;
-                }
-                
+                }                
             }
         }
         private void InitalizePIIToken(User value)
@@ -111,7 +106,6 @@ namespace XOMNI.SDK.Public
                 {
                     HttpClient.Dispose();
                 }
-
                 disposed = true;
             }
         }
