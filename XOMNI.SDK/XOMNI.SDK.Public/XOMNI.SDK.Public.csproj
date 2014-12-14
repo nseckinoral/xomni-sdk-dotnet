@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="ClientContext.cs" />
     <Compile Include="ClientContextExtensions.cs" />
-    <Compile Include="Clients\BaseClient.cs.cs" />
+    <Compile Include="Clients\BaseClient.cs" />
     <Compile Include="Clients\Catalog\AssetMetadataClient.cs" />
     <Compile Include="Clients\Catalog\AutoCompleteClient.cs" />
     <Compile Include="Clients\Catalog\BrandAssetClient.cs" />
