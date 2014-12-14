@@ -3,7 +3,7 @@ using System.Net;
 
 namespace XOMNI.SDK.Public.Models
 {
-    public class XOMNIPublicAPIExceptionResult
+    public class ExceptionResult
     {
         public Guid IdentifierGuid { get; set; }
         public long IdentifierTick { get; set; }
