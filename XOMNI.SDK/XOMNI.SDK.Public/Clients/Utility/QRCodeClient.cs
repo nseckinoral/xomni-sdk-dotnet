@@ -20,7 +20,7 @@ namespace XOMNI.SDK.Public.Clients.Utility
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
-                return await response.Content.ReadAsAsync<ApiResponse<byte[]>>().ConfigureAwait(false);
+				return await response.Content.ReadAsAsync<ApiResponse<byte[]>>().ConfigureAwait(false);
 			}
 		}
 	}

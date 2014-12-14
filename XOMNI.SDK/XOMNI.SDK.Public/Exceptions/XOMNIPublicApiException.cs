@@ -10,8 +10,8 @@ namespace XOMNI.SDK.Public.Exceptions
 {
     public class XOMNIPublicAPIException : System.Exception
     {
-        public XOMNIPublicAPIExceptionResult ApiExceptionResult { get; private set; }
-        public XOMNIPublicAPIException(XOMNIPublicAPIExceptionResult apiExceptionResult, HttpRequestException httpRequestException)
+        public ExceptionResult ApiExceptionResult { get; private set; }
+        public XOMNIPublicAPIException(ExceptionResult apiExceptionResult, HttpRequestException httpRequestException)
             : base(apiExceptionResult.FriendlyDescription, httpRequestException)
         {
             this.ApiExceptionResult = apiExceptionResult;

@@ -16,14 +16,14 @@ namespace XOMNI.SDK.Public.Clients.Social
 
 		}
 
-        //TODO: Requires PII
+		//TODO: Requires PII
 		public async Task<ApiResponse<List<SocialProfile>>> GetAsync()
 		{
 			string path = "/social/profiles";
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
-                return await response.Content.ReadAsAsync<ApiResponse<List<SocialProfile>>>().ConfigureAwait(false);
+				return await response.Content.ReadAsAsync<ApiResponse<List<SocialProfile>>>().ConfigureAwait(false);
 			}
 		}
 	}
