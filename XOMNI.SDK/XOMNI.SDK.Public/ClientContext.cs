@@ -14,7 +14,6 @@ namespace XOMNI.SDK.Public
         private const string sessionHeaderFormat = "sessionGuid:{0}";
         private const string piiHeaderFormat = "username:{0};password:{1}";
         private const string AuthenticationSchema = "Basic";
-        private bool disposed;
         public HttpClient HttpClient { get; private set; }
         public string UserName { get; private set; }
         public string Password { get; private set; }
@@ -100,13 +99,19 @@ namespace XOMNI.SDK.Public
 
         public void Dispose()
         {
-            if (!disposed)
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
             {
                 if (HttpClient != null)
                 {
                     HttpClient.Dispose();
+                    HttpClient = null;
                 }
-                disposed = true;
             }
         }
     }
