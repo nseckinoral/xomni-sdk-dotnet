@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace XOMNI.SDK.Public.Models.Catalog
 {
+    [System.Runtime.InteropServices.ComVisible(false)]
     public class DimensionMinMax : MinMax<double?>
     {
         public int DimensionTypeId { get; set; }
