@@ -5,6 +5,6 @@ Preview versions of our .net SDK are located in this repository. Right now we on
 
 Have a look at [http://dev.xomni.com/](http://dev.xomni.com/) for more information and full documentation of our API set. 
 
-Thanks
+Thanks.
 
 -XOMNI
