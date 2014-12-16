@@ -47,6 +47,7 @@
     <Compile Include="..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Analytics\ClientSideAnalyticKeysContainer.cs" />
     <Compile Include="Analytics\Log\ClientAnalyticsLog.cs" />
     <Compile Include="Asset\Asset.cs" />
     <Compile Include="Asset\AssetRelations.cs" />
