@@ -18,7 +18,7 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
 
 		public async Task<ApiResponse<List<OmniTicketDetail>>> GetIncomingsAsync(string deviceId)
 		{
-			string path = string.Format("/omniplay/devices/{deviceId}", deviceId);
+			string path = string.Format("/omniplay/devices/{deviceId}/incoming", deviceId);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
@@ -33,34 +33,34 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
             await Client.PostAsync(path, null).ConfigureAwait(false);
         }
 
-		public async Task<ApiResponse<List<Device>>> GetAsync()
-		{
-			string path = "/omniplay/store/devices";
+        //public async Task<ApiResponse<List<Device>>> GetAsync()
+        //{
+        //    string path = "/omniplay/store/devices";
 
-			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-			{
-                return await response.Content.ReadAsAsync<ApiResponse<List<Device>>>().ConfigureAwait(false);
-			}
-		}
+        //    using (var response = await Client.GetAsync(path).ConfigureAwait(false))
+        //    {
+        //        return await response.Content.ReadAsAsync<ApiResponse<List<Device>>>().ConfigureAwait(false);
+        //    }
+        //}
 
-        public async Task<ApiResponse<List<Device>>> GetAsync(int searchDistance, string GPSLocation)
-		{
-			string path = string.Format("/omniplay/stores/{GPSLocation}/Devices?searchDistance={0}", searchDistance, GPSLocation);
+        //public async Task<ApiResponse<List<Device>>> GetAsync(int searchDistance, string GPSLocation)
+        //{
+        //    string path = string.Format("/omniplay/stores/{GPSLocation}/Devices?searchDistance={0}", searchDistance, GPSLocation);
 
-			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-			{
-                return await response.Content.ReadAsAsync<ApiResponse<List<Device>>>().ConfigureAwait(false);
-			}
-		}
+        //    using (var response = await Client.GetAsync(path).ConfigureAwait(false))
+        //    {
+        //        return await response.Content.ReadAsAsync<ApiResponse<List<Device>>>().ConfigureAwait(false);
+        //    }
+        //}
 
-		public async Task<ApiResponse<Device>> RegisterAsync(Device device)
-		{
-			string path = "/device/register";
+        //public async Task<ApiResponse<Device>> RegisterAsync(Device device)
+        //{
+        //    string path = "/device/register";
 
-            using (var response = await Client.PostAsJsonAsync(path, device).ConfigureAwait(false))
-			{
-                return await response.Content.ReadAsAsync<ApiResponse<Device>>().ConfigureAwait(false);
-			}
-		}
+        //    using (var response = await Client.PostAsJsonAsync(path, device).ConfigureAwait(false))
+        //    {
+        //        return await response.Content.ReadAsAsync<ApiResponse<Device>>().ConfigureAwait(false);
+        //    }
+        //}
 	}
 }

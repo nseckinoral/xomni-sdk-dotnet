@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
+using XOMNI.SDK.Public.Models;
 
 namespace XOMNI.SDK.Public.Clients.PII
 {
@@ -13,9 +14,9 @@ namespace XOMNI.SDK.Public.Clients.PII
 
 		}
 
-		public async Task<dynamic> GetAsync(string shoppingCartUniqueKey)
+        public async Task<ApiResponse<byte[]>> GetAsync(Guid shoppingCartUniqueKey, string templateName)
 		{
-			string path = string.Format("/pii/shoppingcart/{shoppingcartUniqueKey}/passbook?/pii/shoppingcart/{0}", shoppingCartUniqueKey);
+			string path = string.Format("/pii/shoppingcart/{0}/passbook?templateName={1}", shoppingCartUniqueKey, templateName );
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{

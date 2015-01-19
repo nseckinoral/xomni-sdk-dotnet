@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XOMNI.SDK.Public.Models.OmniPlay
+namespace XOMNI.SDK.Public.Models.Company
 {
     public class Device
     {

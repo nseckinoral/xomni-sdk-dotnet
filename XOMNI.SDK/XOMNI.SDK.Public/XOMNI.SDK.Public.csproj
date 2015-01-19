@@ -53,7 +53,7 @@
     <Compile Include="Clients\Catalog\ItemAssetClient.cs" />
     <Compile Include="Clients\Catalog\ItemClient.cs" />
     <Compile Include="Clients\Catalog\ItemCompareClient.cs" />
-    <Compile Include="Clients\Catalog\ItemMetadataClient.cs" />
+    <Compile Include="Clients\Catalog\ItemInStoreMetadataClient.cs" />
     <Compile Include="Clients\Catalog\RelatedItemsClient.cs" />
     <Compile Include="Clients\Catalog\TagClient.cs" />
     <Compile Include="Clients\Catalog\TagMetadataClient.cs" />
@@ -78,6 +78,10 @@
     <Compile Include="Clients\Social\ProfileClient.cs" />
     <Compile Include="Clients\Social\TokenClient.cs" />
     <Compile Include="Clients\Utility\QRCodeClient.cs" />
+    <Compile Include="Clients\Company\DeviceClient.cs" />
+    <Compile Include="Clients\Company\DeviceStorageClient.cs" />
+    <Compile Include="Clients\Company\DeviceTypesClient.cs" />
+    <Compile Include="Clients\Company\StoreClient.cs" />
     <Compile Include="Exceptions\XOMNIPublicApiException.cs" />
     <Compile Include="Infrastructure\XOMNIPublicApiErrorHandler.cs" />
     <Compile Include="Models\ApiResponse.cs" />
@@ -117,9 +121,12 @@
     <Compile Include="Models\Catalog\UnitType.cs" />
     <Compile Include="Models\Catalog\Weight.cs" />
     <Compile Include="Models\Catalog\WeightMinMax.cs" />
+    <Compile Include="Models\Company\DeviceStorageItem.cs" />
+    <Compile Include="Models\Company\DeviceType.cs" />
+    <Compile Include="Models\Company\Store.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Metadata.cs" />
-    <Compile Include="Models\OmniPlay\Device.cs" />
+    <Compile Include="Models\Company\Device.cs" />
     <Compile Include="Models\OmniPlay\OmniSession.cs" />
     <Compile Include="Models\OmniPlay\OmniTicket.cs" />
     <Compile Include="Models\OmniPlay\WishlistImportRequest.cs" />
@@ -132,11 +139,13 @@
     <Compile Include="Models\PII\ShoppingCart.cs" />
     <Compile Include="Models\PII\ShoppingCartItem.cs" />
     <Compile Include="Models\PII\ShoppingCartItemDetail.cs" />
+    <Compile Include="Models\PII\ShoppingCartSearchRequest.cs" />
     <Compile Include="Models\PII\ShoppingCartWithItems.cs" />
     <Compile Include="Models\PII\User.cs" />
     <Compile Include="Models\PII\Wishlist.cs" />
     <Compile Include="Models\PII\WishlistItem.cs" />
     <Compile Include="Models\PII\WishlistItemDetail.cs" />
+    <Compile Include="Clients\PII\WishlistMetadataClient.cs" />
     <Compile Include="Models\PII\WishlistSearchRequest.cs" />
     <Compile Include="Models\PII\WishlistWithItems.cs" />
     <Compile Include="Models\Social\AvailableSocialPlatform.cs" />
@@ -144,6 +153,7 @@
     <Compile Include="Models\Social\SocialCommentToCommentRequest.cs" />
     <Compile Include="Models\Social\SocialCommentToPostRequest.cs" />
     <Compile Include="Models\Social\SocialPlatformType.cs" />
+    <Compile Include="Models\Social\SocialPolicy.cs" />
     <Compile Include="Models\Social\SocialPost.cs" />
     <Compile Include="Models\Social\SocialPostRequest.cs" />
     <Compile Include="Models\Social\SocialProfile.cs" />

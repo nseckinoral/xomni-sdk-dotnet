@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
+using XOMNI.SDK.Public.Models;
+using XOMNI.SDK.Public.Models.PII;
 
 namespace XOMNI.SDK.Public.Clients.PII
 {
@@ -13,13 +16,13 @@ namespace XOMNI.SDK.Public.Clients.PII
 
 		}
 
-		public async Task<dynamic> PostAsync(object  body)
+        public async Task<ApiResponse<List<Guid>>> PostAsync(ShoppingCartSearchRequest searchRequest)
 		{
 			string path = "/pii/shoppingcartsearch";
 
-			using (var response = await Client.PostAsJsonAsync(path, body).ConfigureAwait(false))
+            using (var response = await Client.PostAsJsonAsync(path, searchRequest).ConfigureAwait(false))
 			{
-				return await response.Content.ReadAsAsync<dynamic>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<List<Guid>>>().ConfigureAwait(false);
 			}
 		}
 	}

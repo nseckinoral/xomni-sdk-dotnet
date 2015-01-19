@@ -44,5 +44,15 @@ namespace XOMNI.SDK.Public.Clients.Social
                 return await response.Content.ReadAsAsync<ApiResponse<SocialPost>>().ConfigureAwait(false);
 			}
 		}
+
+        public async Task<ApiResponse<SocialPolicy>> GetPoliciesAsync()
+        {
+            string path = "/social/post/policies";
+
+            using (var response = await Client.GetAsync(path).ConfigureAwait(false))
+            {
+                return await response.Content.ReadAsAsync<ApiResponse<SocialPolicy>>().ConfigureAwait(false);
+            }
+        }
 	}
 }
