@@ -14,27 +14,23 @@ namespace XOMNI.SDK.Public
         private const string sessionHeaderFormat = "sessionGuid:{0}";
         private const string piiHeaderFormat = "username:{0};password:{1}";
         private const string AuthenticationSchema = "Basic";
-        private bool disposed;
         public HttpClient HttpClient { get; private set; }
         public string UserName { get; private set; }
         public string Password { get; private set; }
         public ConcurrentDictionary<Type, object> Clients { get; private set; }
-        
+
         private User piiUser { get; set; }
         public User PIIUser
         {
             get { return piiUser; }
-            set 
+            set
             {
                 InitalizePIIToken(value);
-                piiUser = value; 
+                piiUser = value;
             }
         }
 
-      
-
         private OmniSession omniSession;
-
         public OmniSession OmniSession
         {
             get { return omniSession; }
@@ -44,7 +40,6 @@ namespace XOMNI.SDK.Public
                 omniSession = value;
             }
         }
-
 
         public ClientContext(string userName, string password, string serviceUri)
         {
@@ -69,6 +64,7 @@ namespace XOMNI.SDK.Public
             this.HttpClient.DefaultRequestHeaders.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v3_0"));
 
         }
+
         private void InitalizePIIToken(OmniSession value)
         {
             lock (piiUser)
@@ -83,7 +79,6 @@ namespace XOMNI.SDK.Public
                     this.HttpClient.DefaultRequestHeaders.Add("PIIToken", sessionHeader);
                     piiUser = null;
                 }
-                
             }
         }
         private void InitalizePIIToken(User value)
@@ -105,14 +100,19 @@ namespace XOMNI.SDK.Public
 
         public void Dispose()
         {
-            if (!disposed)
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
             {
                 if (HttpClient != null)
                 {
                     HttpClient.Dispose();
+                    HttpClient = null;
                 }
-
-                disposed = true;
             }
         }
     }

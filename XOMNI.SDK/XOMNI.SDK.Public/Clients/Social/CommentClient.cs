@@ -18,22 +18,22 @@ namespace XOMNI.SDK.Public.Clients.Social
 		public async Task DeleteAsync(int commentId)
 		{
 			string path = string.Format("social/comment/{0}", commentId);
-            await Client.DeleteAsync(path).ConfigureAwait(false);
+			await Client.DeleteAsync(path).ConfigureAwait(false);
 		}
 
-        public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToCommentRequest comment)
+		public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToCommentRequest comment)
 		{
 			string path = "/social/comment";
 
-            using (var response = await Client.PostAsJsonAsync(path, comment).ConfigureAwait(false))
+			using (var response = await Client.PostAsJsonAsync(path, comment).ConfigureAwait(false))
 			{
-                return await response.Content.ReadAsAsync<ApiResponse<SocialComment>>().ConfigureAwait(false);
+				return await response.Content.ReadAsAsync<ApiResponse<SocialComment>>().ConfigureAwait(false);
 			}
 		}
 
-        public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToPostRequest comment)
-        {
-            string path = "/social/comment";
+		public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToPostRequest comment)
+		{
+			string path = "/social/comment";
 
             using (var response = await Client.PostAsJsonAsync(path, comment).ConfigureAwait(false))
             {

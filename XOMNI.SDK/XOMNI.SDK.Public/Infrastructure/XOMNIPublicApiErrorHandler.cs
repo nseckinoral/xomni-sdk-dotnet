@@ -9,17 +9,17 @@ namespace XOMNI.SDK.Public.Infrastructure
     {
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
         {
-            XOMNIPublicAPIExceptionResult exceptionResult = null;
+            ExceptionResult exceptionResult = null;
             var responseMessage = await base.SendAsync(request, cancellationToken);
 
             try
             {
                 if (!responseMessage.IsSuccessStatusCode)
                 {
-                    exceptionResult = responseMessage.Content.ReadAsAsync<XOMNIPublicAPIExceptionResult>().Result;
+                    exceptionResult = responseMessage.Content.ReadAsAsync<ExceptionResult>().Result;
                     if (exceptionResult == null)
                     {
-                        exceptionResult = new XOMNIPublicAPIExceptionResult();
+                        exceptionResult = new ExceptionResult();
                     }
                     exceptionResult.HttpStatusCode = responseMessage.StatusCode;
                     responseMessage = responseMessage.EnsureSuccessStatusCode();

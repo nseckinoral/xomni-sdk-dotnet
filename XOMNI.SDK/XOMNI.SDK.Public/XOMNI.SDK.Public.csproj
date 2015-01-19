@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="ClientContext.cs" />
     <Compile Include="ClientContextExtensions.cs" />
-    <Compile Include="Clients\BaseClient.cs.cs" />
+    <Compile Include="Clients\BaseClient.cs" />
     <Compile Include="Clients\Catalog\AssetMetadataClient.cs" />
     <Compile Include="Clients\Catalog\AutoCompleteClient.cs" />
     <Compile Include="Clients\Catalog\BrandAssetClient.cs" />
@@ -157,7 +157,7 @@
     <Compile Include="Models\Social\SocialPost.cs" />
     <Compile Include="Models\Social\SocialPostRequest.cs" />
     <Compile Include="Models\Social\SocialProfile.cs" />
-    <Compile Include="Models\XOMNIPublicApiExceptionResult.cs" />
+    <Compile Include="Models\ExceptionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

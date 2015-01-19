@@ -15,33 +15,33 @@ namespace XOMNI.SDK.Public.Clients.Social
 
 		}
 
-        //TODO: Requires PII
+		//TODO: Requires PII
 		public async Task<ApiResponse<SocialPost>> GetAsync(int relatedItemId)
 		{
 			string path = string.Format("/social/post?relatedItemId={0}", relatedItemId);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
-                return await response.Content.ReadAsAsync<ApiResponse<SocialPost>>().ConfigureAwait(false);
+				return await response.Content.ReadAsAsync<ApiResponse<SocialPost>>().ConfigureAwait(false);
 			}
 		}
 
-        //TODO: Requires PII
+		//TODO: Requires PII
 		public async Task DeleteAsync(int socialPostId)
 		{
-            string path = string.Format("/social/post/{0}", socialPostId);
-            await Client.DeleteAsync(path).ConfigureAwait(false);
+			string path = string.Format("/social/post/{0}", socialPostId);
+			await Client.DeleteAsync(path).ConfigureAwait(false);
 		}
 
-        //TODO: Requires PII
+		//TODO: Requires PII
 
-        public async Task<ApiResponse<SocialPost>> PostAsync(SocialPostRequest socialPostRequest)
+		public async Task<ApiResponse<SocialPost>> PostAsync(SocialPostRequest socialPostRequest)
 		{
 			string path = "/social/post";
 
 			using (var response = await Client.PostAsJsonAsync(path, socialPostRequest).ConfigureAwait(false))
 			{
-                return await response.Content.ReadAsAsync<ApiResponse<SocialPost>>().ConfigureAwait(false);
+				return await response.Content.ReadAsAsync<ApiResponse<SocialPost>>().ConfigureAwait(false);
 			}
 		}
 

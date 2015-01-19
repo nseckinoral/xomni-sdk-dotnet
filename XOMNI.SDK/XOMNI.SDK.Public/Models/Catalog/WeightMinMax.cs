@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace XOMNI.SDK.Public.Models.Catalog
 {
+    [System.Runtime.InteropServices.ComVisible(false)]
     public class WeightMinMax : MinMax<double?>
     {
         public int WeightTypeId { get; set; }

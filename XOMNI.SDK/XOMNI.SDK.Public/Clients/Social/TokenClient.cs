@@ -14,23 +14,23 @@ namespace XOMNI.SDK.Public.Clients.Social
 
 		}
 
-        //TODO: Requires PII
+		//TODO: Requires PII
 		public async Task<string> GetAsync(SocialPlatformType socialPlatform)
-		{
-            string path = string.Format("/social/token/{0}", socialPlatform.ToString().ToLowerInvariant());
-
-			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-			{
-                return await response.Content.ReadAsAsync<string>().ConfigureAwait(false);
-			}
-		}
-
-        //TODO: Requires PII
-        public async Task<string> PostAsync(SocialPlatformType socialPlatform, string token)
 		{
 			string path = string.Format("/social/token/{0}", socialPlatform.ToString().ToLowerInvariant());
 
-            using (var response = await Client.PostAsJsonAsync(path, token).ConfigureAwait(false))
+			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
+			{
+				return await response.Content.ReadAsAsync<string>().ConfigureAwait(false);
+			}
+		}
+
+		//TODO: Requires PII
+		public async Task<string> PostAsync(SocialPlatformType socialPlatform, string token)
+		{
+			string path = string.Format("/social/token/{0}", socialPlatform.ToString().ToLowerInvariant());
+
+			using (var response = await Client.PostAsJsonAsync(path, token).ConfigureAwait(false))
 			{
 				return await response.Content.ReadAsAsync<string>().ConfigureAwait(false);
 			}
