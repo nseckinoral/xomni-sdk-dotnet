@@ -14,13 +14,13 @@ namespace XOMNI.SDK.Public.Clients.Utility
 
 		}
 
-		public async Task<ApiResponse<byte[]>> GetAsync(int moduleSize, string data)
+		public async Task<byte[]> GetAsync(int moduleSize, string data)
 		{
-			string path = string.Format("/utils/qrcode?data={0}&moduleSize={1}", moduleSize, data);
+			string path = string.Format("/utils/qrcode?data={0}&moduleSize={1}", data, moduleSize);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
-				return await response.Content.ReadAsAsync<ApiResponse<byte[]>>().ConfigureAwait(false);
+                return await response.Content.ReadAsByteArrayAsync();
 			}
 		}
 	}
