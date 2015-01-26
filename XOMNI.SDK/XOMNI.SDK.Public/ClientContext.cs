@@ -41,7 +41,7 @@ namespace XOMNI.SDK.Public
             }
         }
 
-        public ClientContext(string userName, string password, string serviceUri)
+        public ClientContext(string userName, string password, string serviceUri, HttpClient httpClient = null)
         {
             omniSession = new OmniSession();
             piiUser = new User();
@@ -56,7 +56,16 @@ namespace XOMNI.SDK.Public
             this.UserName = userName;
             this.Password = password;
             this.Clients = new ConcurrentDictionary<Type, object>();
-            this.HttpClient = new HttpClient(innerHandler);
+            
+            if (httpClient == null)
+            {
+                this.HttpClient = new HttpClient(innerHandler);
+            }
+            else
+            {
+                this.HttpClient = httpClient;
+            }
+            
             this.HttpClient.BaseAddress = new Uri(serviceUri);
             this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthenticationSchema,
                 Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", userName, password))));
