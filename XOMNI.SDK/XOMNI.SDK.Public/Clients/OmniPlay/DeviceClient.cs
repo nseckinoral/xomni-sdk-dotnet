@@ -18,7 +18,7 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
 
 		public async Task<ApiResponse<List<OmniTicketDetail>>> GetIncomingsAsync(string deviceId)
 		{
-			string path = string.Format("/omniplay/devices/{deviceId}/incoming", deviceId);
+			string path = string.Format("/omniplay/devices/{0}/incoming", deviceId);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
@@ -29,7 +29,7 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
         //TODO: Requires PIIToken
         public async Task SubscribeToDevice(string deviceId)
         {
-            string path = string.Format("/omniplay/devices/{deviceId}}", deviceId);
+            string path = string.Format("/omniplay/devices/{0}", deviceId);
             await Client.PostAsync(path, null).ConfigureAwait(false);
         }
 
