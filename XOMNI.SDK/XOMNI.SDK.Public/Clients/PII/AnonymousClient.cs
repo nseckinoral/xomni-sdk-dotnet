@@ -19,6 +19,11 @@ namespace XOMNI.SDK.Public.Clients.PII
 		{
 			string path = "/pii/anonymous";
 
+            if (string.IsNullOrEmpty(anonymousUser.UserName))
+            {
+                throw new ArgumentNullException("userName");
+            }
+
             using (var response = await Client.PostAsJsonAsync(path, anonymousUser).ConfigureAwait(false))
 			{
                 return await response.Content.ReadAsAsync<ApiResponse<AnonymousUser>>().ConfigureAwait(false);
