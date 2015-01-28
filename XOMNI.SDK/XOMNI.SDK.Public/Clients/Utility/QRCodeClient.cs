@@ -18,7 +18,15 @@ namespace XOMNI.SDK.Public.Clients.Utility
 		{
 			string path = string.Format("/utils/qrcode?data={0}&moduleSize={1}", data, moduleSize);
 
-			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
+            if(string.IsNullOrEmpty(data))
+            {
+                throw new ArgumentNullException("data");
+            }
+            if(moduleSize<=0)
+            {
+                throw new ArgumentException("moduleSize");
+            }
+            using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
                 return await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
 			}
