@@ -42,8 +42,10 @@
     <Compile Include="..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Analytics\ClientAnalyticsSummaryManagement.cs" />
     <Compile Include="Analytics\Log\ClientAnalyticsManagement.cs" />
     <Compile Include="ApiAccess\Analytics\ClientAnalytics.cs" />
+    <Compile Include="ApiAccess\Analytics\ClientAnalyticsSummary.cs" />
     <Compile Include="ApiAccess\Asset\Assets.cs" />
     <Compile Include="ApiAccess\Auth\Principal.cs" />
     <Compile Include="ApiAccess\Catalog\Brand.cs" />
@@ -69,7 +71,7 @@
     <Compile Include="ApiAccess\Catalog\UnitType.cs" />
     <Compile Include="ApiAccess\Company\Store.cs" />
     <Compile Include="ApiAccess\Analytics\ServerAnalytics.cs" />
-    <Compile Include="ApiAccess\Analytics\SummaryServerAnalytics.cs" />
+    <Compile Include="ApiAccess\Analytics\ServerAnalyticsSummary.cs" />
     <Compile Include="ApiAccess\Passbook\PassbookBarcodeType.cs" />
     <Compile Include="ApiAccess\Passbook\PassbookTemplate.cs" />
     <Compile Include="ApiAccess\PII\Loyalty.cs" />
@@ -147,7 +149,7 @@
     <Compile Include="Analytics\Log\TrendingItemAnalyticsManagement.cs" />
     <Compile Include="Analytics\Log\WishlistByLastAccessedDateAnalyticsManagement.cs" />
     <Compile Include="Analytics\AnalyticsBaseManagement.cs" />
-    <Compile Include="Analytics\SummaryServerAnalyticsManagement.cs" />
+    <Compile Include="Analytics\ServerAnalyticsSummaryManagement.cs" />
     <Compile Include="Analytics\Log\WishlistByCreatedDateAnalyticsManagement.cs" />
     <Compile Include="Passbook\PassbookBarcodeTypeManagement.cs" />
     <Compile Include="Passbook\PassbookTemplateManagement.cs" />
