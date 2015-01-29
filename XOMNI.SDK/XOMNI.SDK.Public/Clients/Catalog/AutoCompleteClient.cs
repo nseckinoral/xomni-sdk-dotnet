@@ -17,6 +17,19 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
 		public async Task<ApiResponse<AutoCompleteResult>> GetAsync(AutoCompleteSearchType searchType, string searchTerm, int skip, int take)
 		{
+            if(string.IsNullOrEmpty(searchTerm))
+            {
+                throw new ArgumentNullException("searchTerm");
+            }
+            if(skip<=0)
+            {
+                throw new ArgumentException("skip");
+            }
+            if(take<=0)
+            {
+                throw new ArgumentException("take");
+            }
+
 			string path = string.Format("/catalog/autocomplete/{0}?searchTerm={1}&skip={2}&take={3}", searchType.ToString(), searchTerm, skip, take);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
