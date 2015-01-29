@@ -46,13 +46,13 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
-        public async Task<ApiResponse<List<Brand>>> GetBrandsBySearchRequestAsync(SearchRequest searchRequest)
+        public async Task<ApiResponse<PaginatedContainer<Brand>>> GetBrandsBySearchRequestAsync(SearchRequest searchRequest)
         {
             string path = string.Format("/catalog/brands");
 
             using (var response = await Client.PostAsJsonAsync(path, searchRequest).ConfigureAwait(false))
             {
-                return await response.Content.ReadAsAsync<ApiResponse<List<Brand>>>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<PaginatedContainer<Brand>>>().ConfigureAwait(false);
             }
         }
 	}
