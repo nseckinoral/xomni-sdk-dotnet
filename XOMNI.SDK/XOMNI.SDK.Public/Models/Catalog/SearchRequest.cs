@@ -8,31 +8,31 @@ namespace XOMNI.SDK.Public.Models.Catalog
 {
     public class SearchRequest
     {
-        public object DefaultItemId { get; set; }
-        public object RFID { get; set; }
-        public object UUID { get; set; }
-        public object Name { get; set; }
-        public object SKU { get; set; }
-        public int CategoryId { get; set; }
-        public int BrandId { get; set; }
-        public object Model { get; set; }
-        public object Title { get; set; }
-        public int MinWidth { get; set; }
-        public int MaxWidth { get; set; }
-        public object MinHeight { get; set; }
-        public object MaxHeight { get; set; }
-        public object MinWeigth { get; set; }
-        public object MaxWeigth { get; set; }
-        public object MinDepth { get; set; }
-        public object MaxDepth { get; set; }
-        public int DimensionTypeId { get; set; }
-        public object WeightTypeId { get; set; }
-        public object MinPrice { get; set; }
-        public object MaxPrice { get; set; }
-        public int TagId { get; set; }
-        public object DelimitedDynamicAttributeValues { get; set; }
+        public int? DefaultItemId { get; set; }
+        public string RFID { get; set; }
+        public string UUID { get; set; }
+        public string Name { get; set; }
+        public string SKU { get; set; }
+        public int? CategoryId { get; set; }
+        public int? BrandId { get; set; }
+        public string Model { get; set; }
+        public string Title { get; set; }
+        public double? MinWidth { get; set; }
+        public double? MaxWidth { get; set; }
+        public double? MinHeight { get; set; }
+        public double? MaxHeight { get; set; }
+        public double? MinWeight { get; set; }
+        public double? MaxWeight { get; set; }
+        public double? MinDepth { get; set; }
+        public double? MaxDepth { get; set; }
+        public double? MinPrice { get; set; }
+        public double? MaxPrice { get; set; }
+        public int? DimensionTypeId { get; set; }
+        public int? WeightTypeId { get; set; }
+        public int? TagId { get; set; }
+        public string  DelimitedDynamicAttributeValues { get; set; }
         public bool IncludeOnlyMasterItems { get; set; }
-        public object TagQuery { get; set; }
+        public string TagQuery { get; set; }
         public bool IncludePassiveItems { get; set; }
     }
 
