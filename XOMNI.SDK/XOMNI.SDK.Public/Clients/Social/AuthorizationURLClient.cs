@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
+using XOMNI.SDK.Public.Models.Social;
 
 namespace XOMNI.SDK.Public.Clients.Social
 {
@@ -13,14 +14,13 @@ namespace XOMNI.SDK.Public.Clients.Social
 		{
 
 		}
-
-		public async Task<string> GetAsync(string socialPlatformName)
+        public async Task<ApiResponse<string>> GetAsync(SocialPlatformType socialPlatformName)
 		{
 			string path = string.Format("/social/authurl/{0}", socialPlatformName);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
-				return await response.Content.ReadAsAsync<string>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<string>>().ConfigureAwait(false);
 			}
 		}
 	}
