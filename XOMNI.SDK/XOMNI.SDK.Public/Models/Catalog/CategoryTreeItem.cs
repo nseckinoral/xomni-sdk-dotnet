@@ -13,5 +13,9 @@ namespace XOMNI.SDK.Public.Models.Catalog
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
         public List<Metadata> CategoryMetadata { get; set; }
+        public List<ImageAsset> ImageAssets { get; set; }
+        public List<Asset> DocumentAssets { get; set; }
+        public List<Asset> VideoAssets { get; set; }
+        public List<CategoryTreeItem> CategoryTreeItems { get; set; }
     }
 }
