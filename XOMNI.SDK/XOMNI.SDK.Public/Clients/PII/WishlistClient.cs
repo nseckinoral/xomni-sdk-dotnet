@@ -29,9 +29,9 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.DeleteAsync(path).ConfigureAwait(false);
 		}
 
-        public async Task<ApiResponse<WishlistWithItems>> GetAsync(Guid wishlistUniqueKey, int longitude, bool includeItemStaticProperties, bool includeItemDynamicProperties, bool includeCategoryMetadata, AssetDetailType imageAssetDetail, AssetDetailType videoAssetDetail, AssetDetailType documentAssetDetail, string metadataKey, string metadataValue, int latitude)
+        public async Task<ApiResponse<WishlistWithItems>> GetAsync(Guid wishlistUniqueKey, int longitude, int latitude, bool includeItemStaticProperties, bool includeItemDynamicProperties, bool includeCategoryMetadata, AssetDetailType imageAssetDetail, AssetDetailType videoAssetDetail, AssetDetailType documentAssetDetail, string metadataKey, string metadataValue)
 		{
-			string path = string.Format("/pii/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", wishlistUniqueKey, longitude, includeItemStaticProperties, includeItemDynamicProperties, includeCategoryMetadata, imageAssetDetail, videoAssetDetail, documentAssetDetail, metadataKey, metadataValue, latitude);
+            string path = string.Format("/pii/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", wishlistUniqueKey, longitude, latitude, includeItemStaticProperties, includeItemDynamicProperties, includeCategoryMetadata, imageAssetDetail, videoAssetDetail, documentAssetDetail, metadataKey, metadataValue);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
