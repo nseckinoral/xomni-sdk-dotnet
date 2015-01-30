@@ -13,14 +13,12 @@ namespace XOMNI.SDK.Public.Models.Catalog
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
         public int SubCategoryCount { get; set; }
-
         public IEnumerable<Metadata> CategoryMetadata { get; set; }
         public int? ParentCategoryId { get; set; }
         public string ParentCategoryName { get; set; }
-
         public List<ImageAsset> ImageAssets { get; set; }
-        public List<ImageAsset> DocumentAssets { get; set; }
-        public List<ImageAsset> VideoAssets { get; set; }
+        public List<Asset> DocumentAssets { get; set; }
+        public List<Asset> VideoAssets { get; set; }
 
     }
 }
