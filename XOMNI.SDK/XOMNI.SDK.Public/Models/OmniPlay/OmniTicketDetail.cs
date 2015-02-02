@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace XOMNI.SDK.Public.Models.OmniPlay
 {
-    public class OmniTicket
+    public class OmniTicketDetail
     {
-        public Guid Ticket { get; set; }
-
+        public string OmniTicket { get; set; }
+        public string PIIDisplayName { get; set; }
     }
 }

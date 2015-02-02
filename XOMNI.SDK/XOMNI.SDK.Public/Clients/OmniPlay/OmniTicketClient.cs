@@ -51,7 +51,7 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
 			}
 		}
 
-        public async Task<ApiResponse<OmniSession>> PostSessionAsync(OmniTicketDetail omniTicket)
+        public async Task<ApiResponse<OmniSession>> PostSessionAsync(OmniTicket omniTicket)
 		{
 			string path = "/omniplay/pii/session";
 

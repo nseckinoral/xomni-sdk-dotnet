@@ -8,7 +8,8 @@ namespace XOMNI.SDK.Public.Models.Company
 {
     public class Device
     {
-        public int DeviceId { get; set; }
-        public int Description { get; set; }
+        public string DeviceId { get; set; }
+        public string Description { get; set; }
+
     }
 }
