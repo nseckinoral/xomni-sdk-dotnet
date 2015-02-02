@@ -10,7 +10,7 @@ namespace XOMNI.SDK.Public.Models.Catalog
     {
         public double NormalPrice { get; set; }
         public double? DiscountPrice { get; set; }
-        public string CurrencySymbol { get; set; }
-        public int CurrencyId { get; set; }
+        public string PriceTypeSymbol { get; set; }
+        public int PriceTypeId { get; set; }
     }
 }

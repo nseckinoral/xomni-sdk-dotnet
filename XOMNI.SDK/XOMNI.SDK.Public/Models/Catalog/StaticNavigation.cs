@@ -11,7 +11,6 @@ namespace XOMNI.SDK.Public.Models.Catalog
         public List<Category> Categories { get; set; }
         public List<Brand> Brands { get; set; }
         public List<Tag> Tags { get; set; }
-        public List<Currency> Currencies { get; set; }
         public List<UnitType> UnitTypes { get; set; }
         public List<DimensionMinMax> WidthRanges { get; set; }
         public List<DimensionMinMax> HeightRanges { get; set; }
