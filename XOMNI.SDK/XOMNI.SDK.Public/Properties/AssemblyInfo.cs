@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("XOMNI.SDK.Public")]
 [assembly: AssemblyDescription("Prerelase version of the XOMNI.Public.SDK v3.0")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("XOMNI")]
 [assembly: AssemblyProduct("XOMNI.SDK.Public")]
 [assembly: AssemblyCopyright("Copyright © XOMNI Inc. 2014")]
 [assembly: AssemblyTrademark("")]
