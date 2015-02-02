@@ -8,6 +8,6 @@ namespace XOMNI.SDK.Public.Models.PII
 {
     public class WishlistWithItems : Wishlist
     {
-        public List<WishlistItemDetail> WishlistItemDetails { get; set; }
+        public List<WishlistItemDetail> WishlistItems { get; set; }
     }
 }
