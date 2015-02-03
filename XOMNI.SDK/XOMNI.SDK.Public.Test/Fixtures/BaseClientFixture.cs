@@ -13,6 +13,8 @@ using Newtonsoft.Json;
 using XOMNI.SDK.Public.Test.Helpers;
 using XOMNI.SDK.Public.Exceptions;
 using XOMNI.SDK.Public.Models;
+using XOMNI.SDK.Public.Models.PII;
+using XOMNI.SDK.Public.Models.OmniPlay;
 
 namespace XOMNI.SDK.Public.Test.Fixtures
 {
@@ -26,18 +28,29 @@ namespace XOMNI.SDK.Public.Test.Fixtures
         const string piiTokenHeaderKey = "PIIToken";
         const string xomniVersionPrefix= "application/vnd.xomni";
 
-        private TClient GetClientWithHandlers(IEnumerable<DelegatingHandler> handlers)
+        private TClient GetClientWithHandlers(IEnumerable<DelegatingHandler> handlers, User piiUser = null, OmniSession omniSession = null)
         {
             var clientContext = new ClientContext(userName, password, serviceUri, handlers);
+            
+            if (piiUser != null)
+            {
+                clientContext.PIIUser = piiUser;
+            }
+            
+            if (omniSession != null)
+            {
+                clientContext.OmniSession = omniSession;
+            }
+
             return clientContext.Of<TClient>();
         }
 
-        private TClient GetClientWithHandler(DelegatingHandler handler)
+        private TClient GetClientWithHandler(DelegatingHandler handler, User piiUser = null, OmniSession omniSession = null)
         {
-            return GetClientWithHandlers(new[] { handler });
+            return GetClientWithHandlers(new[] { handler }, piiUser, omniSession);
         }
 
-        protected TClient InitalizeMockedClient(HttpResponseMessage mockedHttpResponseMessage = null, Action<HttpRequestMessage, CancellationToken> testCallback = null)
+        protected TClient InitalizeMockedClient(HttpResponseMessage mockedHttpResponseMessage = null, Action<HttpRequestMessage, CancellationToken> testCallback = null, User piiUser = null, OmniSession omniSession = null)
         {
             var handler = new Mock<DelegatingHandler>();
             var handlerSetup = handler
@@ -61,54 +74,45 @@ namespace XOMNI.SDK.Public.Test.Fixtures
                 handlerSetup.Callback(testCallback);
             }
 
-            return GetClientWithHandler(handler.Object);
+            return GetClientWithHandler(handler.Object, piiUser, omniSession);
         }
 
-        protected async Task ResponseParseTestAsync<TResponse>(Func<TClient, Task<TResponse>> actAsync, HttpResponseMessage mockedHttpResponseMessage, string validAPIResponseJson)
+        protected async Task ResponseParseTestAsync<TResponse>(Func<TClient, Task<TResponse>> actAsync, HttpResponseMessage mockedHttpResponseMessage, string validAPIResponseJson, User piiUser = null, OmniSession omniSession = null)
         {
-            // Arrange
-            var mockedClient = InitalizeMockedClient(mockedHttpResponseMessage);
+            var mockedClient = InitalizeMockedClient(mockedHttpResponseMessage, piiUser: piiUser, omniSession: omniSession);
 
-            // Act <2>
             var actualResponse = await actAsync(mockedClient);
 
-            // Assert <3>
             AssertExtensions.AreDeeplyEqual(JsonConvert.DeserializeObject<TResponse>(validAPIResponseJson), actualResponse);
         }
 
-        //private async Task RequestTestAsync<TResponse>(Func<TClient, Task<TResponse>> actAsync, HttpResponseMessage mockedHttpResponseMessage, Action<HttpRequestMessage, CancellationToken> testCallback)
-        //{
-        //    var mockedClient = InitalizeMockedClient(mockedHttpResponseMessage);
-        //    var actualResponse = await actAsync(mockedClient);
-        //}
-
-        protected async Task HttpMethodTestAsync(Func<TClient, Task> actAsync, HttpMethod expectedHttpMethod)
+        protected async Task HttpMethodTestAsync(Func<TClient, Task> actAsync, HttpMethod expectedHttpMethod, User piiUser = null, OmniSession omniSession = null)
         {
             Action<HttpRequestMessage, CancellationToken> testCallback = (req, can) =>
             {
                 Assert.AreEqual(expectedHttpMethod, req.Method);
             };
 
-            var mockedClient = InitalizeMockedClient(testCallback: testCallback);
+            var mockedClient = InitalizeMockedClient(testCallback: testCallback, piiUser: piiUser, omniSession: omniSession);
 
             await actAsync(mockedClient);
         }
 
-        protected async Task UriTestAsync(Func<TClient, Task> actAsync, string expectedUri)
+        protected async Task UriTestAsync(Func<TClient, Task> actAsync, string expectedUri, User piiUser = null, OmniSession omniSession = null)
         {
             Action<HttpRequestMessage, CancellationToken> testCallback = (req, can) =>
             {
                 Assert.AreEqual(expectedUri, req.RequestUri.PathAndQuery);
             };
 
-            var mockedClient = InitalizeMockedClient(testCallback: testCallback);
+            var mockedClient = InitalizeMockedClient(testCallback: testCallback, piiUser: piiUser, omniSession: omniSession);
 
             await actAsync(mockedClient);
         }
 
-        protected async Task APIExceptionResponseTestAsync(Func<TClient, Task> actAsync, HttpResponseMessage mockedHttpResponseMessage, ExceptionResult expectedExceptionResult)
+        protected async Task APIExceptionResponseTestAsync(Func<TClient, Task> actAsync, HttpResponseMessage mockedHttpResponseMessage, ExceptionResult expectedExceptionResult, User piiUser = null, OmniSession omniSession = null)
         {
-            var mockedClient = InitalizeMockedClient(mockedHttpResponseMessage);
+            var mockedClient = InitalizeMockedClient(mockedHttpResponseMessage, piiUser: piiUser, omniSession: omniSession);
 
             try
             {
@@ -121,9 +125,9 @@ namespace XOMNI.SDK.Public.Test.Fixtures
             }
         }
 
-        protected async Task SDKExceptionResponseTestAsync(Func<TClient, Task> actAsync, Exception expectedException)
+        protected async Task SDKExceptionResponseTestAsync(Func<TClient, Task> actAsync, Exception expectedException, User piiUser = null, OmniSession omniSession = null)
         {
-            var mockedClient = InitalizeMockedClient();
+            var mockedClient = InitalizeMockedClient(piiUser: piiUser, omniSession: omniSession);
 
             try
             {
@@ -136,7 +140,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures
             }
         }
 
-        protected async Task DefaultRequestHeadersTestAsync(Func<TClient, Task> actAsync)
+        protected async Task DefaultRequestHeadersTestAsync(Func<TClient, Task> actAsync, User piiUser = null, OmniSession omniSession = null)
         {
             Action<HttpRequestMessage, CancellationToken> testCallback = (req, can) =>
             {
@@ -144,7 +148,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures
                 Assert.AreEqual(req.Headers.GetValues(versionHeaderKey).Where(t => t.StartsWith(xomniVersionPrefix)).First(), "application/vnd.xomni.api-v3_0");
             };
 
-            var mockedClient = InitalizeMockedClient(testCallback: testCallback);
+            var mockedClient = InitalizeMockedClient(testCallback: testCallback, piiUser: piiUser, omniSession: omniSession);
 
             await actAsync(mockedClient);
         }
