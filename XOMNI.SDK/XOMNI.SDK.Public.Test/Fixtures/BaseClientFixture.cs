@@ -15,6 +15,7 @@ using XOMNI.SDK.Public.Exceptions;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.PII;
 using XOMNI.SDK.Public.Models.OmniPlay;
+using System.Net;
 
 namespace XOMNI.SDK.Public.Test.Fixtures
 {
@@ -27,6 +28,25 @@ namespace XOMNI.SDK.Public.Test.Fixtures
         const string versionHeaderKey = "Accept";
         const string piiTokenHeaderKey = "PIIToken";
         const string xomniVersionPrefix= "application/vnd.xomni";
+
+        protected const string genericErrorResponse = @"{
+            'IdentifierGuid':'7358fe16-3925-4951-9a77-fca4f9e167b0',
+            'IdentifierTick':635585478999549713,
+            'FriendlyDescription':'Generic error friendly description.'
+        }";
+        
+        protected readonly HttpResponseMessage notFoundHttpResponseMessage = new HttpResponseMessage()
+        {
+            StatusCode = HttpStatusCode.NotFound,
+            Content = new MockedJsonContent(genericErrorResponse)
+        };
+
+        protected readonly HttpResponseMessage unauthorizedHttpResponseMessage = new HttpResponseMessage()
+        {
+            StatusCode = HttpStatusCode.Unauthorized,
+            Content = new MockedJsonContent(genericErrorResponse)
+        };
+        
 
         private TClient GetClientWithHandlers(IEnumerable<DelegatingHandler> handlers, User piiUser = null, OmniSession omniSession = null)
         {
@@ -113,30 +133,41 @@ namespace XOMNI.SDK.Public.Test.Fixtures
         protected async Task APIExceptionResponseTestAsync(Func<TClient, Task> actAsync, HttpResponseMessage mockedHttpResponseMessage, ExceptionResult expectedExceptionResult, User piiUser = null, OmniSession omniSession = null)
         {
             var mockedClient = InitalizeMockedClient(mockedHttpResponseMessage, piiUser: piiUser, omniSession: omniSession);
-
+            bool exceptionRaised = true;
+            
             try
             {
                 await actAsync(mockedClient);
-                Assert.Fail("SDK must raise an exception in this case.");
+                exceptionRaised = false;
             }
             catch (XOMNIPublicAPIException ex)
             {
                 AssertExtensions.AreDeeplyEqual(expectedExceptionResult, ex.ApiExceptionResult);
+            }
+            if (!exceptionRaised)
+            {
+                Assert.Fail("Expected exception is not raised.");
             }
         }
 
         protected async Task SDKExceptionResponseTestAsync(Func<TClient, Task> actAsync, Exception expectedException, User piiUser = null, OmniSession omniSession = null)
         {
             var mockedClient = InitalizeMockedClient(piiUser: piiUser, omniSession: omniSession);
+            bool exceptionRaised = true;
 
             try
             {
                 await actAsync(mockedClient);
-                Assert.Fail("SDK must raise an exception in this case.");
+                exceptionRaised = false;
             }
             catch (Exception ex)
             {
                 AssertExtensions.AreDeeplyEqual(expectedException, ex);
+            }
+
+            if (!exceptionRaised)
+            {
+                Assert.Fail("Expected exception is not raised.");
             }
         }
 
@@ -146,6 +177,29 @@ namespace XOMNI.SDK.Public.Test.Fixtures
             {
                 Assert.AreEqual(req.Headers.GetValues(authorizationHeaderKey).First(), "Basic dGVzdFVzZXI6dGVzdFBhc3M=");
                 Assert.AreEqual(req.Headers.GetValues(versionHeaderKey).Where(t => t.StartsWith(xomniVersionPrefix)).First(), "application/vnd.xomni.api-v3_0");
+
+                if (piiUser != null)
+                {
+                    var piiToken = req.Headers.GetValues(piiTokenHeaderKey).First();
+                    Assert.IsNotNull(piiToken);
+
+                    var piiTokenArray = Encoding.UTF8.GetString(Convert.FromBase64String(piiToken)).Split(';');
+                    var piiUserName = piiTokenArray[0].Split(':')[1];
+                    var piiPassword = piiTokenArray[1].Split(':')[1];
+
+                    Assert.AreEqual(piiUser.UserName,  piiUserName);
+                    Assert.AreEqual(piiUser.Password,  piiPassword);
+                }
+
+                if (omniSession != null)
+                {
+                    var piiToken = req.Headers.GetValues(piiTokenHeaderKey).First();
+                    Assert.IsNotNull(piiToken);
+
+                    var sessionGuid = Guid.Parse(Encoding.UTF8.GetString(Convert.FromBase64String(piiToken)).Split(':')[1]);
+
+                    Assert.AreEqual(omniSession.SessionGuid, sessionGuid);
+                }
             };
 
             var mockedClient = InitalizeMockedClient(testCallback: testCallback, piiUser: piiUser, omniSession: omniSession);

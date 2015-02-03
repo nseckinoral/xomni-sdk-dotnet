@@ -17,6 +17,8 @@ namespace XOMNI.SDK.Public.Clients.PII
 
         public async Task<ApiResponse<List<Metadata>>> GetAsync()
 		{
+            ValidatePIIToken(); 
+
 			string path = "/pii/loyaltymetadata";
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))

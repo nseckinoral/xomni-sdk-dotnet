@@ -84,6 +84,7 @@
     <Compile Include="Clients\Company\DeviceTypesClient.cs" />
     <Compile Include="Clients\Company\StoreClient.cs" />
     <Compile Include="Exceptions\XOMNIPublicApiException.cs" />
+    <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\XOMNIPublicApiErrorHandler.cs" />
     <Compile Include="Models\ApiResponse.cs" />
     <Compile Include="Models\Catalog\Asset.cs" />

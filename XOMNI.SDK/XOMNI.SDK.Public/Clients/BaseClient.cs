@@ -1,5 +1,7 @@
 using System;
 using System.Net.Http;
+using System.Linq;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients
 {
@@ -15,6 +17,17 @@ namespace XOMNI.SDK.Public.Clients
             }
 
             Client = httpClient;
+        }
+
+        protected void ValidatePIIToken()
+        {
+            var piiTokens = Enumerable.Empty<string>();
+            Client.DefaultRequestHeaders.TryGetValues(Constants.PIITokenHeaderKey, out piiTokens);
+            
+            if (piiTokens == null || !piiTokens.Any())
+            {
+                throw new ArgumentException("User/OmniSession");
+            }
         }
     }
 }

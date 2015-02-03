@@ -83,12 +83,12 @@ namespace XOMNI.SDK.Public
             {
                 if (value == null)
                 {
-                    this.HttpClient.DefaultRequestHeaders.Remove("PIIToken");
+                    this.HttpClient.DefaultRequestHeaders.Remove(Constants.PIITokenHeaderKey);
                 }
                 else
                 {
                     var sessionHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format(sessionHeaderFormat, value.SessionGuid)));
-                    this.HttpClient.DefaultRequestHeaders.Add("PIIToken", sessionHeader);
+                    this.HttpClient.DefaultRequestHeaders.Add(Constants.PIITokenHeaderKey, sessionHeader);
                     piiUser = null;
                 }
             }
@@ -99,12 +99,12 @@ namespace XOMNI.SDK.Public
             {
                 if (value == null)
                 {
-                    this.HttpClient.DefaultRequestHeaders.Remove("PIIToken");
+                    this.HttpClient.DefaultRequestHeaders.Remove(Constants.PIITokenHeaderKey);
                 }
                 else
                 {
                     var piiHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(String.Format(piiHeaderFormat, value.UserName, value.Password)));
-                    this.HttpClient.DefaultRequestHeaders.Add("PIIToken", piiHeader);
+                    this.HttpClient.DefaultRequestHeaders.Add(Constants.PIITokenHeaderKey, piiHeader);
                     omniSession = null;
                 }
             }

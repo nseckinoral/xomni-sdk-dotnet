@@ -17,41 +17,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients
     [TestClass]
     public class AssetMetadataClientFixture : BaseMetadataClientFixture<AssetMetadataClient>
     {
-        #region arrenge
-
-        const string notFoundResponse = @"{
-            'IdentifierGuid':'7358fe16-3925-4951-9a77-fca4f9e167b0',
-            'IdentifierTick':635585478999549713,
-            'FriendlyDescription':'Asset or related metadata is not found.'
-        }";
-        
-        const string validAPIResponse = @"{
-            'Data': [
-                {
-                    'Key': 'imagemetadatakey0',
-                    'Value': 'imagemetadatavalue0'
-                },
-                {
-                    'Key': 'imagemetadatakey1',
-                    'Value': 'imagemetadatavalue1'
-                }
-            ]
-        }";
-        
-        readonly HttpResponseMessage validHttpResponseMessage = new HttpResponseMessage()
-        {
-            StatusCode = HttpStatusCode.OK,
-            Content = new MockedJsonContent(validAPIResponse)
-        };
-
-        readonly HttpResponseMessage notFoundHttpResponseMessage = new HttpResponseMessage()
-        {
-            StatusCode = HttpStatusCode.NotFound,
-            Content = new MockedJsonContent(notFoundResponse)
-        };
-
-        #endregion
-
         #region GetImageMetadataAsync
         [TestMethod, TestCategory("AssetMetadataClient"), TestCategory("GetImageMetadataAsync"), TestCategory("HTTP.GET")]
         public async Task GetImageMetadataAsyncResponseParseTest()
@@ -82,7 +47,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients
         [TestMethod, TestCategory("AssetMetadataClient"), TestCategory("GetImageMetadataAsync"), TestCategory("HTTP.GET")]
         public async Task GetImageMetadataAsyncNotFoundTest()
         {
-            var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(notFoundResponse);
+            var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
@@ -140,7 +105,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients
         [TestMethod, TestCategory("AssetMetadataClient"), TestCategory("GetVideoMetadataAsync"), TestCategory("HTTP.GET")]
         public async Task GetVideoMetadataAsyncNotFoundTest()
         {
-            var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(notFoundResponse);
+            var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
@@ -198,7 +163,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients
         [TestMethod, TestCategory("AssetMetadataClient"), TestCategory("GetDocumentMetadataAsync"), TestCategory("HTTP.GET")]
         public async Task GetDocumentMetadataAsyncNotFoundTest()
         {
-            var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(notFoundResponse);
+            var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
