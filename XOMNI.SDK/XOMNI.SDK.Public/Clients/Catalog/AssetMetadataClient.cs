@@ -29,7 +29,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
-        public async Task<ApiResponse<Metadata>> GetVideoMetadataAsync(int assetId)
+        public async Task<ApiResponse<List<Metadata>>> GetVideoMetadataAsync(int assetId)
         {
             if (assetId <= 0)
             {
@@ -40,11 +40,11 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
             {
-                return await response.Content.ReadAsAsync<ApiResponse<Metadata>>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<List<Metadata>>>().ConfigureAwait(false);
             }
         }
 
-        public async Task<ApiResponse<Metadata>> GetDocumentMetadataAsync(int assetId)
+        public async Task<ApiResponse<List<Metadata>>> GetDocumentMetadataAsync(int assetId)
         {
             if (assetId <= 0)
             {
@@ -55,7 +55,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
             {
-                return await response.Content.ReadAsAsync<ApiResponse<Metadata>>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<List<Metadata>>>().ConfigureAwait(false);
             }
         }
     }
