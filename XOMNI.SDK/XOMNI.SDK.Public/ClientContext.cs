@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using XOMNI.SDK.Public.Infrastructure;
 using XOMNI.SDK.Public.Models.OmniPlay;
 using XOMNI.SDK.Public.Models.PII;
-
+using System.Linq;
 namespace XOMNI.SDK.Public
 {
     public class ClientContext : IDisposable
@@ -41,7 +42,7 @@ namespace XOMNI.SDK.Public
             }
         }
 
-        public ClientContext(string userName, string password, string serviceUri, HttpClient httpClient = null)
+        public ClientContext(string userName, string password, string serviceUri, IEnumerable<DelegatingHandler> handlers = null)
         {
             omniSession = new OmniSession();
             piiUser = new User();
@@ -51,27 +52,29 @@ namespace XOMNI.SDK.Public
                 throw new ArgumentNullException("username, password or service uri");
             }
 
+            HttpMessageHandler innerHandler = null;
             var apiErrorHandler = new XOMNIPublicApiErrorHandler();
-            HttpMessageHandler innerHandler = HttpClientFactory.CreatePipeline(new HttpClientHandler(), new[] { apiErrorHandler });
-            this.UserName = userName;
-            this.Password = password;
-            this.Clients = new ConcurrentDictionary<Type, object>();
-            
-            if (httpClient == null)
+
+            if (handlers != null)
             {
-                this.HttpClient = new HttpClient(innerHandler);
+                var unifiedHandlers = handlers.ToList();
+                unifiedHandlers.Insert(0, apiErrorHandler);
+                innerHandler = HttpClientFactory.CreatePipeline(new HttpClientHandler(), unifiedHandlers);
             }
             else
             {
-                this.HttpClient = httpClient;
+                innerHandler = HttpClientFactory.CreatePipeline(new HttpClientHandler(), new[] { apiErrorHandler });
             }
             
+            this.UserName = userName;
+            this.Password = password;
+            this.Clients = new ConcurrentDictionary<Type, object>();
+         
+            this.HttpClient = new HttpClient(innerHandler);
             this.HttpClient.BaseAddress = new Uri(serviceUri);
             this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthenticationSchema,
                 Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", userName, password))));
-
             this.HttpClient.DefaultRequestHeaders.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v3_0"));
-
         }
 
         private void InitalizePIIToken(OmniSession value)
@@ -84,7 +87,7 @@ namespace XOMNI.SDK.Public
                 }
                 else
                 {
-                    var sessionHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format(sessionHeaderFormat,value.SessionGuid)));
+                    var sessionHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format(sessionHeaderFormat, value.SessionGuid)));
                     this.HttpClient.DefaultRequestHeaders.Add("PIIToken", sessionHeader);
                     piiUser = null;
                 }
