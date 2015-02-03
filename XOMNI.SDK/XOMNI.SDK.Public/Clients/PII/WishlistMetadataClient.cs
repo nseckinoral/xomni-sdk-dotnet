@@ -14,13 +14,18 @@ namespace XOMNI.SDK.Public.Clients.PII
 
         }
 
-        public async Task<List<Metadata>> GetAsync(Guid wishlistUniqueKey)
+        public async Task<ApiResponse<List<Metadata>>> GetAsync(Guid wishlistUniqueKey)
         {
+            if (wishlistUniqueKey.Equals(Guid.Empty))
+            {
+                throw new ArgumentOutOfRangeException("wishlistUniqueKey");
+            }
+
             string path = string.Format("/pii/wishlistmetadata?wishlistUniqueKey={0}", wishlistUniqueKey);
 
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
             {
-                return await response.Content.ReadAsAsync<List<Metadata>>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<List<Metadata>>>().ConfigureAwait(false);
             }
         }
     }
