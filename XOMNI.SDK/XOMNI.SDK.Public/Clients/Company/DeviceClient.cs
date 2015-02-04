@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Company;
+using XOMNI.SDK.Public.Extensions;
 
 namespace XOMNI.SDK.Public.Clients.Company
 {
@@ -42,16 +43,15 @@ namespace XOMNI.SDK.Public.Clients.Company
 			}
 		}
 
-        //TODO:Implement HTTP Patch
-        //public async Task<ApiResponse<Device>> PatchAsync(string deviceId, Device device)
-        //{
-        //    string path = string.Format("/company/devices/{deviceId}", deviceId);
+        public async Task<ApiResponse<Device>> PatchAsync(string deviceId, Device device)
+        {
+            string path = string.Format("/company/devices/{deviceId}", deviceId);
 
-        //    using (var response = await Client.PutAsJsonAsync(path, device).ConfigureAwait(false))
-        //    {
-        //        return await response.Content.ReadAsAsync<ApiResponse<Device>>().ConfigureAwait(false);
-        //    }
-        //}
+            using (var response = await Client.PatchAsJsonAsync(path, device).ConfigureAwait(false))
+            {
+                return await response.Content.ReadAsAsync<ApiResponse<Device>>().ConfigureAwait(false);
+            }
+        }
 
         public async Task<ApiResponse<Device>> PostAsync(Device device)
 		{
