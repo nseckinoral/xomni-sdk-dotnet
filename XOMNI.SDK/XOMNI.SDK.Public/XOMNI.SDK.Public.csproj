@@ -84,6 +84,9 @@
     <Compile Include="Clients\Company\StoreClient.cs" />
     <Compile Include="Exceptions\XOMNIPublicApiException.cs" />
     <Compile Include="Extensions\HttpClientExtensions.cs" />
+    <Compile Include="Extensions\Parameter.cs" />
+    <Compile Include="Extensions\Validator.cs" />
+    <Compile Include="Extensions\ValidatorExtension.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\XOMNIPublicApiErrorHandler.cs" />
     <Compile Include="Models\ApiResponse.cs" />
