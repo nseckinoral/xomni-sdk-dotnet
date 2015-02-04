@@ -17,6 +17,8 @@ namespace XOMNI.SDK.Public.Clients.PII
 
         public async Task<ApiResponse<LoyaltyUser>> GetAsync()
 		{
+            ValidatePIIToken();
+
 			string path = "/pii/loyalty";
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
