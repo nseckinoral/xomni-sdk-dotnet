@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
+using XOMNI.SDK.Public.Extensions;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Utility;
 
@@ -17,15 +18,8 @@ namespace XOMNI.SDK.Public.Clients.Utility
 
 		public async Task<byte[]> GetAsync(int moduleSize, string data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.Quartile)
 		{
-            if (moduleSize < 1)
-            {
-                throw new ArgumentException("moduleSize");
-            }
-
-            if (string.IsNullOrEmpty(data))
-            {
-                throw new ArgumentNullException("data");
-            }
+            Validator.For(moduleSize, "moduleSize").IsGreaterThanOrEqual(1);
+            Validator.For(data, "data").NotNull().IsEmpty();
 
             string path = string.Format("/utils/qrcode?data={0}&moduleSize={1}&errorCorrectionLevel={2}", data, moduleSize, errorCorrectionLevel);
 
