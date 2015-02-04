@@ -161,6 +161,7 @@
     <Compile Include="Models\Social\SocialPostRequest.cs" />
     <Compile Include="Models\Social\SocialProfile.cs" />
     <Compile Include="Models\ExceptionResult.cs" />
+    <Compile Include="Models\Utility\ErrorCorrectionLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
