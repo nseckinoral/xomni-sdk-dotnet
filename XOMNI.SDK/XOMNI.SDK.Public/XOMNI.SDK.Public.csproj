@@ -37,7 +37,6 @@
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <Folder Include="Constants\" />
-    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientContext.cs" />
@@ -84,6 +83,7 @@
     <Compile Include="Clients\Company\DeviceTypesClient.cs" />
     <Compile Include="Clients\Company\StoreClient.cs" />
     <Compile Include="Exceptions\XOMNIPublicApiException.cs" />
+    <Compile Include="Extensions\HttpClientExtensions.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\XOMNIPublicApiErrorHandler.cs" />
     <Compile Include="Models\ApiResponse.cs" />
