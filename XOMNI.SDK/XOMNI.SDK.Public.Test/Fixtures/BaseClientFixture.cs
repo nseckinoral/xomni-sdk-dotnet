@@ -106,6 +106,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures
             AssertExtensions.AreDeeplyEqual(JsonConvert.DeserializeObject<TResponse>(validAPIResponseJson), actualResponse);
         }
 
+        protected async Task ResponseParseTestAsync(Func<TClient, Task<byte[]>> actAsync, HttpResponseMessage mockedHttpResponseMessage, byte[] validAPIResponseByteArray, User piiUser = null, OmniSession omniSession = null)
+        {
+            var mockedClient = InitalizeMockedClient(mockedHttpResponseMessage, piiUser: piiUser, omniSession: omniSession);
+            var actualResponse = await actAsync(mockedClient);
+
+            AssertExtensions.AreDeeplyEqual(validAPIResponseByteArray, actualResponse);
+        }
+
         protected async Task HttpMethodTestAsync(Func<TClient, Task> actAsync, HttpMethod expectedHttpMethod, User piiUser = null, OmniSession omniSession = null)
         {
             Action<HttpRequestMessage, CancellationToken> testCallback = (req, can) =>
