@@ -91,7 +91,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             await base.SDKExceptionResponseTestAsync(
                 (StoreClient p) => p.GetAsync("41.03847328.970034", 1, 1, 1),
-                new ArgumentException("LocationInfo must be include ';' character."),
+                new ArgumentException("locationInfo must be include ';' character."),
                 piiUser: piiUser
             );
         }
@@ -101,7 +101,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             await base.SDKExceptionResponseTestAsync(
                 (StoreClient p) => p.GetAsync(null, 1, 1, 1),
-                new ArgumentNullException("LocationInfo can not be null."),
+                new ArgumentNullException("locationInfo can not be null."),
                 piiUser: piiUser
             );
         }
@@ -111,7 +111,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             await base.SDKExceptionResponseTestAsync(
                 (StoreClient p) => p.GetAsync("", 1, 1, 1),
-                new ArgumentException("LocationInfo can not be empty."),
+                new ArgumentException("locationInfo can not be empty."),
                 piiUser: piiUser
             );
         }
@@ -121,7 +121,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             await base.SDKExceptionResponseTestAsync(
                 (StoreClient p) => p.GetAsync("41.038473;28.970034",2,1,1),
-                new ArgumentOutOfRangeException("SearchDistance must be in range (0 - 1)."),
+                new ArgumentOutOfRangeException("searchDistance must be in range (0 - 1)."),
                 piiUser: piiUser
             );
         }
@@ -130,8 +130,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncSkipValidTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, 0, 1),
-                new ArgumentException("Skip must be greater than or equal to 1."),
+                (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, -1, 1),
+                new ArgumentException("skip must be greater than or equal to 0."),
                 piiUser: piiUser
             );
         }
@@ -141,7 +141,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             await base.SDKExceptionResponseTestAsync(
                 (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, 1, 0),
-                new ArgumentException("Take must be greater than or equal to 1."),
+                new ArgumentException("take must be greater than or equal to 1."),
                 piiUser: piiUser
             );
         }
