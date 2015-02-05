@@ -18,18 +18,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
     [TestClass]
     public class LoyaltyMetadataClientFixture : BaseMetadataClientFixture<LoyaltyMetadataClient>
     {
-        readonly User piiUser = new User
-        {
-             UserName = "testPiiUser",
-             Password = "testPiiPassword"
-        };
-
-        readonly OmniSession omniSession = new OmniSession
-        {
-             SessionGuid = Guid.NewGuid()
-        };
-
-
         [TestMethod, TestCategory("LoyaltyMetadataClient"), TestCategory("GetImageMetadataAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncResponseParseTest()
         {

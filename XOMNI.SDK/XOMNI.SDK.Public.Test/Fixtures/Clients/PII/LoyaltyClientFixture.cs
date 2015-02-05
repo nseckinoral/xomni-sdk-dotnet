@@ -18,17 +18,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
     [TestClass]
     public class LoyaltyClientFixture : BaseClientFixture<LoyaltyClient>
     {
-        readonly User piiUser = new User
-        {
-            UserName = "testPiiUser",
-            Password = "testPiiPassword"
-        };
-
-        readonly OmniSession omniSession = new OmniSession
-        {
-            SessionGuid = Guid.NewGuid()
-        };
-
         protected const string validAPIResponse = @"{
             'Data': {
                 'AvailablePoints': 28.847555258938836,
