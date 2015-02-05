@@ -78,6 +78,7 @@
     <Compile Include="Fixtures\Clients\Social\ProfileClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Utility\QRCodeClientFixture.cs" />
     <Compile Include="Helpers\AssertExtension.cs" />
+    <Compile Include="Helpers\CustomComparer\ExceptionTypeComparer.cs" />
     <Compile Include="Helpers\JsonContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
