@@ -46,7 +46,29 @@ namespace XOMNI.SDK.Public.Test.Fixtures
             StatusCode = HttpStatusCode.Unauthorized,
             Content = new MockedJsonContent(genericErrorResponse)
         };
-        
+
+        protected readonly HttpResponseMessage notImplementedHttpResponseMessage = new HttpResponseMessage()
+        {
+            StatusCode = HttpStatusCode.NotImplemented,
+            Content = new MockedJsonContent(genericErrorResponse)
+        };
+
+        protected readonly HttpResponseMessage badRequestHttpResponseMessage = new HttpResponseMessage()
+        {
+            StatusCode = HttpStatusCode.BadRequest,
+            Content = new MockedJsonContent(genericErrorResponse)
+        };
+
+        protected readonly User piiUser = new User
+        {
+            UserName = "testPiiUser",
+            Password = "testPiiPassword"
+        };
+
+        protected readonly OmniSession omniSession = new OmniSession
+        {
+            SessionGuid = Guid.NewGuid()
+        };
 
         private TClient GetClientWithHandlers(IEnumerable<DelegatingHandler> handlers, User piiUser = null, OmniSession omniSession = null)
         {
