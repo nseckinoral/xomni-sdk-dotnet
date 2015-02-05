@@ -16,9 +16,10 @@ namespace XOMNI.SDK.Public.Clients.Social
 
 		}
 
-		//TODO: Requires PII
 		public async Task<ApiResponse<List<SocialProfile>>> GetAsync()
 		{
+            ValidatePIIToken();
+
 			string path = "/social/profiles";
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
