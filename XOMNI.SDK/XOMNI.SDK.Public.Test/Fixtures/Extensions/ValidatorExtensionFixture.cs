@@ -19,7 +19,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Extensions
             object sampleNullObject = null;
             try
             {
-                Validator.For(sampleNullObject, "sampleNullObject").NotNull();
+                Validator.For(sampleNullObject, "sampleNullObject").IsNotNull();
                 Assert.Fail("Expected exception is not raised.");
             }
             catch (ArgumentNullException ex)
@@ -29,12 +29,26 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Extensions
         }
 
         [TestMethod, TestCategory("ValidatorExtension"), TestCategory("NotNull")]
+        public void NotNullDoesNotThrowExceptionTest()
+        {
+            string sampleParameter = "";
+            try
+            {
+                Validator.For(sampleParameter, "sampleParameter").IsNotNull();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Unexpected error occured. " + ex.Message);
+            }
+        }
+
+        [TestMethod, TestCategory("ValidatorExtension"), TestCategory("NotNull")]
         public void NotNullArgumentNameMalformedTest()
         {
             string sampleParameter = "Test";
             try
             {
-                string argumentName = Validator.For(sampleParameter, "sampleParameter").NotNull().ArgName;
+                string argumentName = Validator.For(sampleParameter, "sampleParameter").IsNotNull().ArgName;
                 Assert.AreEqual("sampleParameter", argumentName);
             }
             catch (Exception ex)
@@ -49,7 +63,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Extensions
             string sampleParameter = "Test";
             try
             {
-                string value = Validator.For(sampleParameter, "sampleParameter").NotNull().Value;
+                string value = Validator.For(sampleParameter, "sampleParameter").IsNotNull().Value;
                 Assert.AreEqual(value, sampleParameter);
             }
             catch (Exception ex)
@@ -66,7 +80,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Extensions
             string sampleParameter = null;
             try
             {
-                Validator.For(sampleParameter, "sampleParameter").NotNull().IsNotNullOrEmpty();
+                Validator.For(sampleParameter, "sampleParameter").IsNotNull().IsNotNullOrEmpty();
                 Assert.Fail("Expected exception is not raised.");
             }
             catch (ArgumentNullException ex)
