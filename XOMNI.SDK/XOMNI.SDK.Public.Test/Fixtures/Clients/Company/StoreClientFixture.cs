@@ -117,6 +117,36 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         }
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncSearchDistanceValidTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (StoreClient p) => p.GetAsync("41.038473;28.970034",2,1,1),
+                new ArgumentOutOfRangeException("SearchDistance must be in range (0 - 1)."),
+                piiUser: piiUser
+            );
+        }
+
+        [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncSkipValidTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, 0, 1),
+                new ArgumentException("Skip must be greater than or equal to 1."),
+                piiUser: piiUser
+            );
+        }
+
+        [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncTakeValidTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, 1, 0),
+                new ArgumentException("Take must be greater than or equal to 1."),
+                piiUser: piiUser
+            );
+        }
+
+        [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncBadRequestTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
