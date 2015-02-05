@@ -18,10 +18,10 @@ namespace XOMNI.SDK.Public.Clients.Company
 
         public async Task<ApiResponse<PaginatedContainer<Store>>> GetAsync(string locationInfo, int searchDistance, int skip, int take)
 		{
-            Validator.For(locationInfo, "LocationInfo").NotNull().IsEmpty().IsContain(';');
-            Validator.For(searchDistance, "SearchDistance").InRange(0, 1);
-            Validator.For(skip, "Skip").IsGreaterThanOrEqual(1);
-            Validator.For(take, "Take").IsGreaterThanOrEqual(1);
+            Validator.For(locationInfo, "locationInfo").NotNull().IsEmpty().Contains(';');
+            Validator.For(searchDistance, "searchDistance").InRange(0, 1);
+            Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
+            Validator.For(take, "take").IsGreaterThanOrEqual(1);
 
 			string path = string.Format("/company/stores?locationInfo={0}&searchDistance={1}&skip={2}&take={3}", locationInfo, searchDistance, skip, take);
 
