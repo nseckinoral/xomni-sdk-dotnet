@@ -8,7 +8,7 @@ namespace XOMNI.SDK.Public.Extensions
 {
     public static class ValidatorExtension
     {
-        public static Parameter<T> NotNull<T>(this Parameter<T> item) where T : class
+        public static Parameter<T> IsNotNull<T>(this Parameter<T> item) where T : class
         {
             if (item.Value == null)
             {
