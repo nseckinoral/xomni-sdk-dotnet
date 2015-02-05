@@ -24,6 +24,23 @@ namespace XOMNI.SDK.Public.Extensions
             }
             return item;
         }
+        public static Parameter<string> IsContain(this Parameter<string> item, char character)
+        {
+            if (!item.Value.Contains(character))
+            {
+                throw new ArgumentException(string.Format("{0} must be include ';' character.", item.ArgName));
+            }
+            return item;
+        }
+
+        public static Parameter<int> InRange(this Parameter<int> item, int minBound, int maxBound)
+        {
+            if (item.Value < minBound || maxBound < item.Value)
+            {
+                throw new ArgumentOutOfRangeException(string.Format("{0} must be in range ({1} - {2}).", item.ArgName, minBound, maxBound));
+            }
+            return item;
+        }
 
         public static Parameter<int> IsGreaterThanOrEqual(this Parameter<int> item, int bound)
         {
