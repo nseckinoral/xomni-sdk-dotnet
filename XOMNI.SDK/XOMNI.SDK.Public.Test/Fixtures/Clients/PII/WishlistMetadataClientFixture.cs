@@ -17,17 +17,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
     [TestClass]
     public class WishlistMetadataClientFixture : BaseMetadataClientFixture<WishlistMetadataClient>
     {
-        readonly User piiUser = new User
-        {
-            UserName = "testPiiUser",
-            Password = "testPiiPassword"
-        };
-
-        readonly OmniSession omniSession = new OmniSession
-        {
-            SessionGuid = Guid.NewGuid()
-        };
-
 
         [TestMethod, TestCategory("WishlistMetadataClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncResponseParseTest()
