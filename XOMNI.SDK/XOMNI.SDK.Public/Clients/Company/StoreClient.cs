@@ -21,7 +21,7 @@ namespace XOMNI.SDK.Public.Clients.Company
             Validator.For(locationInfo, "LocationInfo").NotNull().IsEmpty().IsContain(';');
             Validator.For(searchDistance, "SearchDistance").InRange(0, 1);
             Validator.For(skip, "Skip").IsGreaterThanOrEqual(1);
-            Validator.For(skip, "Take").IsGreaterThanOrEqual(1);
+            Validator.For(take, "Take").IsGreaterThanOrEqual(1);
 
 			string path = string.Format("/company/stores?locationInfo={0}&searchDistance={1}&skip={2}&take={3}", locationInfo, searchDistance, skip, take);
 
