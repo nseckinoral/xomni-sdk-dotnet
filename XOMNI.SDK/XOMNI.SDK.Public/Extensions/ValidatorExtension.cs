@@ -24,7 +24,7 @@ namespace XOMNI.SDK.Public.Extensions
             }
             return item;
         }
-        public static Parameter<string> IsContain(this Parameter<string> item, char character)
+        public static Parameter<string> Contains(this Parameter<string> item, char character)
         {
             if (!item.Value.Contains(character))
             {
