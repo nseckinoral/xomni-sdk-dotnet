@@ -101,7 +101,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             await base.SDKExceptionResponseTestAsync(
                 (StoreClient p) => p.GetAsync(null, 1, 1, 1),
-                new ArgumentNullException("locationInfo can not be null."),
+                new ArgumentException("locationInfo can not be empty or null."),
                 piiUser: piiUser
             );
         }
@@ -111,7 +111,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             await base.SDKExceptionResponseTestAsync(
                 (StoreClient p) => p.GetAsync("", 1, 1, 1),
-                new ArgumentException("locationInfo can not be empty."),
+                new ArgumentException("locationInfo can not be empty or null."),
                 piiUser: piiUser
             );
         }
