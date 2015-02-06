@@ -8,7 +8,7 @@ namespace XOMNI.SDK.Public.Extensions
 {
     public static class ValidatorExtension
     {
-        public static Parameter<T> NotNull<T>(this Parameter<T> item) where T : class
+        public static Parameter<T> IsNotNull<T>(this Parameter<T> item) where T : class
         {
             if (item.Value == null)
             {
@@ -16,16 +16,18 @@ namespace XOMNI.SDK.Public.Extensions
             }
             return item;
         }
-        public static Parameter<string> IsEmpty(this Parameter<string> item)
+        public static Parameter<string> IsNotNullOrEmpty(this Parameter<string> item)
         {
-            if (item.Value.Length == 0)
+            if (string.IsNullOrEmpty(item.Value))
             {
-                throw new ArgumentException(string.Format("{0} can not be empty.", item.ArgName));
+                throw new ArgumentException(string.Format("{0} can not be empty or null.", item.ArgName));
             }
             return item;
         }
         public static Parameter<string> Contains(this Parameter<string> item, char character)
         {
+            IsNotNullOrEmpty(item);
+
             if (!item.Value.Contains(character))
             {
                 throw new ArgumentException(string.Format("{0} must be include ';' character.", item.ArgName));

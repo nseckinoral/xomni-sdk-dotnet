@@ -19,7 +19,7 @@ namespace XOMNI.SDK.Public.Clients.Utility
 		public async Task<byte[]> GetAsync(int moduleSize, string data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.Quartile)
 		{
             Validator.For(moduleSize, "moduleSize").IsGreaterThanOrEqual(1);
-            Validator.For(data, "data").NotNull().IsEmpty();
+            Validator.For(data, "data").IsNotNullOrEmpty();
 
             string path = string.Format("/utils/qrcode?data={0}&moduleSize={1}&errorCorrectionLevel={2}", data, moduleSize, errorCorrectionLevel);
 

@@ -81,6 +81,7 @@
     <Compile Include="Fixtures\Clients\PII\WishlistMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\ProfileClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Utility\QRCodeClientFixture.cs" />
+    <Compile Include="Fixtures\Extensions\ValidatorExtensionFixture.cs" />
     <Compile Include="Helpers\AssertExtension.cs" />
     <Compile Include="Helpers\CustomComparer\ExceptionTypeComparer.cs" />
     <Compile Include="Helpers\JsonContent.cs" />
