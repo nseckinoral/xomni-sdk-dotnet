@@ -32,14 +32,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Extensions
         public void NotNullDoesNotThrowExceptionTest()
         {
             string sampleParameter = "";
-            try
-            {
-                Validator.For(sampleParameter, "sampleParameter").IsNotNull();
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail("Unexpected error occured. " + ex.Message);
-            }
+            Validator.For(sampleParameter, "sampleParameter").IsNotNull();
         }
 
         [TestMethod, TestCategory("ValidatorExtension"), TestCategory("NotNull")]
