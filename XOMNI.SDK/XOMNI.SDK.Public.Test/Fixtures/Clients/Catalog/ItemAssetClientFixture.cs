@@ -99,6 +99,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("ItemAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetImagesAsyncUriWithOptionalCheckTest()
+        {
+            await base.UriTestAsync(
+                (ItemAssetClient c) => c.GetImagesAsync(1,metadataKey:"key",metadataValue:"value"),
+              "/catalog/items/1/images?metadataKey=key&metadataValue=value&assetDetail=4");
+        }
+
+        [TestMethod, TestCategory("ItemAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
         public async Task GetImagesAsyncNotFoundTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
@@ -166,6 +174,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.UriTestAsync(
               (ItemAssetClient c) => c.GetVideosAsync(1),
               "/catalog/items/1/videos?assetDetail=4");
+        }
+
+        [TestMethod, TestCategory("ItemAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetVideosAsyncUriWithOptionalParameterCheckTest()
+        {
+            await base.UriTestAsync(
+                (ItemAssetClient c) => c.GetVideosAsync(1, metadataKey: "key", metadataValue: "value"),
+              "/catalog/items/1/videos?metadataKey=key&metadataValue=value&assetDetail=4");
         }
 
         [TestMethod, TestCategory("ItemAssetClient"), TestCategory("GetVideosAsync"), TestCategory("HTTP.GET")]
@@ -236,6 +252,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.UriTestAsync(
               (ItemAssetClient c) => c.GetDocumentrelationAsync(1),
               "/catalog/documentrelation?itemId=1&assetDetail=4");
+        }
+
+        [TestMethod, TestCategory("ItemAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetDocumentRelationAsyncUriWithOptionalCheckTest()
+        {
+            await base.UriTestAsync(
+                (ItemAssetClient c) => c.GetDocumentrelationAsync(1, metadataKey: "key", metadataValue: "value"),
+              "/catalog/documentrelation?itemId=1&metadataKey=key&metadataValue=value&assetDetail=4");
         }
 
         [TestMethod, TestCategory("ItemAssetClient"), TestCategory("GetDocumentRelationAsync"), TestCategory("HTTP.GET")]
