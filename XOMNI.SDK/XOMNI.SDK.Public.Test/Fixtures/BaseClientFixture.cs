@@ -59,6 +59,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures
             Content = new MockedJsonContent(genericErrorResponse)
         };
 
+        protected readonly HttpResponseMessage conflictHttpResponseMessage = new HttpResponseMessage()
+        {
+            StatusCode = HttpStatusCode.Conflict,
+            Content = new MockedJsonContent(genericErrorResponse)
+        };
+
         protected readonly User piiUser = new User
         {
             UserName = "testPiiUser",
