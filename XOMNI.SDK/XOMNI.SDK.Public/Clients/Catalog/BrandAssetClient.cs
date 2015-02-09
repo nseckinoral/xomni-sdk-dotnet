@@ -17,7 +17,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         }
 
-        public async Task<ApiResponse<List<ImageAsset>>> GetImagesAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType includeMetadata = AssetDetailType.IncludeOnlyDefaultWithMetadata)
+        public async Task<ApiResponse<List<ImageAsset>>> GetImagesAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             Validator.For(brandId, "brandId").IsGreaterThanOrEqual(1);
 
@@ -33,7 +33,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
                 Validator.For(metadataValue, "metadataValue").IsNotNullOrEmpty();
             }
 
-            path += string.Format("assetDetail={0}", (int)includeMetadata);
+            path += string.Format("assetDetail={0}", (int)assetDetail);
 
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
             {
@@ -41,7 +41,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
-        public async Task<ApiResponse<List<Asset>>> GetVideosAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType includeMetadata = AssetDetailType.IncludeOnlyDefaultWithMetadata)
+        public async Task<ApiResponse<List<Asset>>> GetVideosAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             Validator.For(brandId, "brandId").IsGreaterThanOrEqual(1);
 
@@ -57,7 +57,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
                 Validator.For(metadataValue, "metadataValue").IsNotNullOrEmpty();
             }
 
-            path += string.Format("assetDetail={0}", (int)includeMetadata);
+            path += string.Format("assetDetail={0}", (int)assetDetail);
 
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
             {
@@ -65,7 +65,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
-        public async Task<ApiResponse<List<Asset>>> GetDocumentsAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType includeMetadata = AssetDetailType.IncludeOnlyDefaultWithMetadata)
+        public async Task<ApiResponse<List<Asset>>> GetDocumentsAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             Validator.For(brandId, "brandId").IsGreaterThanOrEqual(1);
 
@@ -81,7 +81,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
                 Validator.For(metadataValue, "metadataValue").IsNotNullOrEmpty();
             }
 
-            path += string.Format("assetDetail={0}", (int)includeMetadata);
+            path += string.Format("assetDetail={0}", (int)assetDetail);
 
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
             {
