@@ -8,6 +8,7 @@ namespace XOMNI.SDK.Public.Models.Social
 {
     public enum SocialPlatformType 
     {
-        Facebook
+        Facebook,
+        Twitter
     }
 }
