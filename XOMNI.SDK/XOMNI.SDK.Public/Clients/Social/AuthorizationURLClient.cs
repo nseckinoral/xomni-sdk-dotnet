@@ -18,7 +18,7 @@ namespace XOMNI.SDK.Public.Clients.Social
 		{
             ValidatePIIToken();
 
-			string path = string.Format("/social/authurl/{0}", socialPlatformName.ToString().ToLower());
+			string path = string.Format("/social/authurl/{0}", socialPlatformName.ToString().ToLowerInvariant());
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
