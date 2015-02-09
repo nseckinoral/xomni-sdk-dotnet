@@ -75,12 +75,10 @@
     <Compile Include="Fixtures\BaseClientFixture.cs" />
     <Compile Include="Fixtures\BaseMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\AssetMetadataClientFixture.cs" />
-<<<<<<< HEAD
     <Compile Include="Fixtures\Clients\Catalog\CategoryMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\TagMetadataClientFixture.cs" />
-=======
     <Compile Include="Fixtures\Clients\Catalog\BrandAssetClientFixture.cs" />
->>>>>>> SezginEge-BrandAssetClientFixture
+    <Compile Include="Fixtures\Clients\Catalog\ItemInStoreMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Company\StoreClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\LoyaltyClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\LoyaltyMetadataClientFixture.cs" />
