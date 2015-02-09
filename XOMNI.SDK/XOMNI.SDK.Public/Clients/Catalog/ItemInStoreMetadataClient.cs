@@ -23,19 +23,21 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             Validator.For(id, "id").IsGreaterThanOrEqual(1);
             
             string path = string.Format("/catalog/items/{0}/storemetadata?", id);
-            if(!string.IsNullOrEmpty(key))
+            if(!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value))
             {
-                path += string.Format("key={0}&",key);
+                path += string.Format("key={0}&value={1}&", key, value);
             }
 
-            if (!string.IsNullOrEmpty(value))
+            else if (!string.IsNullOrEmpty(key) || !string.IsNullOrEmpty(value))
             {
-                path += string.Format("value={0}&", value);
+                Validator.For(key, "key").IsNotNullOrEmpty();
+                Validator.For(value, "value").IsNotNullOrEmpty();
             }
 
             Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
             Validator.For(take, "take").IsGreaterThanOrEqual(1);
-			path += string.Format("skip={0}&take={1}",skip,take);
+
+            path += string.Format("skip={0}&take={1}",skip,take);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
