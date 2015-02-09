@@ -59,7 +59,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             }
         ],
         'TotalCount': 100
-    }        }";
+    }
+        }";
 
         #region GetAsync
         protected readonly HttpResponseMessage validHttpResponseMessage = new HttpResponseMessage()
@@ -74,16 +75,16 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.ResponseParseTestAsync(
                 (TagClient c) => c.GetAsync(1,1, false),
                 validHttpResponseMessage,
-                validAPIResponse,
-                piiUser: piiUser);
+                validAPIResponse
+                );
         }
         [TestMethod, TestCategory("TagClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
                 (TagClient c) => c.GetAsync(1,1, false),
-                HttpMethod.Get,
-                piiUser: piiUser);
+                HttpMethod.Get
+                );
         }
         [TestMethod, TestCategory("TagClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncUriCheckTest()
