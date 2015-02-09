@@ -15,19 +15,19 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
     public class DeviceTypeClientFixture : BaseClientFixture<DeviceTypesClient>
     {
         protected const string validAPIResponse = @"{
-     'Data':{
-      'Results':[
-         {
-            'Id':1,
-            'Description':'InStore'
-         },
-         {
-            'Id':2,
-            'Description':'Consumer'
-         }
-      ],
-      'TotalCount':2
-   }
+             'Data':{
+              'Results':[
+                 {
+                    'Id':1,
+                    'Description':'InStore'
+                 },
+                 {
+                    'Id':2,
+                    'Description':'Consumer'
+                 }
+              ],
+              'TotalCount':2
+           }
         }";
 
         protected readonly HttpResponseMessage validHttpResponseMessage = new HttpResponseMessage()
