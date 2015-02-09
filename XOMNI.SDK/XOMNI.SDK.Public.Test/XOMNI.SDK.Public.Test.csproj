@@ -75,6 +75,7 @@
     <Compile Include="Fixtures\BaseClientFixture.cs" />
     <Compile Include="Fixtures\BaseMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\AssetMetadataClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\Catalog\AutoCompleteClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\CategoryMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\TagMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\BrandAssetClientFixture.cs" />
