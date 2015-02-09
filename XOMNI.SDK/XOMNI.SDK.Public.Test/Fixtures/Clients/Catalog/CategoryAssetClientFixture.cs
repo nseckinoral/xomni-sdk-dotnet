@@ -109,6 +109,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("CategoryAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetImagesAsyncCategoryIdTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (CategoryAssetClient b) => b.GetImagesAsync(0, metadataKey: "Key"),
+                new ArgumentException("categoryId must be greater than or equal to 1."));
+        }
+
+        [TestMethod, TestCategory("CategoryAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
         public async Task GetImagesAsyncNotFoundTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
@@ -166,12 +174,20 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetVideosAsyncOptionalParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (CategoryAssetClient b) => b.GetImagesAsync(1, metadataKey: "Key"),
+                (CategoryAssetClient b) => b.GetVideosAsync(1, metadataKey: "Key"),
                 new ArgumentException("metadataValue can not be empty or null."));
 
             await base.SDKExceptionResponseTestAsync(
-                (CategoryAssetClient b) => b.GetImagesAsync(1, metadataValue: "Value"),
+                (CategoryAssetClient b) => b.GetVideosAsync(1, metadataValue: "Value"),
                 new ArgumentException("metadataKey can not be empty or null."));
+        }
+
+        [TestMethod, TestCategory("CategoryAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetVideosAsyncCategoryIdTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (CategoryAssetClient b) => b.GetVideosAsync(0, metadataKey: "Key"),
+                new ArgumentException("categoryId must be greater than or equal to 1."));
         }
 
         [TestMethod, TestCategory("CategoryAssetClient"), TestCategory("GetVideosAsync"), TestCategory("HTTP.GET")]
@@ -232,12 +248,20 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetDocumentsAsyncOptionalParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (CategoryAssetClient b) => b.GetImagesAsync(1, metadataKey: "Key"),
+                (CategoryAssetClient b) => b.GetDocumentsAsync(1, metadataKey: "Key"),
                 new ArgumentException("metadataValue can not be empty or null."));
 
             await base.SDKExceptionResponseTestAsync(
-                (CategoryAssetClient b) => b.GetImagesAsync(1, metadataValue: "Value"),
+                (CategoryAssetClient b) => b.GetDocumentsAsync(1, metadataValue: "Value"),
                 new ArgumentException("metadataKey can not be empty or null."));
+        }
+
+        [TestMethod, TestCategory("CategoryAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetDocumentsAsyncCategoryIdTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (CategoryAssetClient b) => b.GetDocumentsAsync(0, metadataKey: "Key"),
+                new ArgumentException("categoryId must be greater than or equal to 1."));
         }
 
         [TestMethod, TestCategory("CategoryAssetClient"), TestCategory("GetDocumentsAsync"), TestCategory("HTTP.GET")]
