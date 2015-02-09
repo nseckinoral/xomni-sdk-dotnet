@@ -19,7 +19,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncResponseParseTest()
         {
             await base.MetadataResponseParseTestAsync(
-                (ItemInStoreMetadataClient l) => l.GetAsync(1, "Test", "Test", 1, 1),
+                (ItemInStoreMetadataClient l) => l.GetAsync(1,1,1),
                 validHttpResponseMessage,
                 validAPIResponse
             );
@@ -29,7 +29,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (ItemInStoreMetadataClient c) => c.GetAsync(1, "Test", "Test", 1, 1),
+                (ItemInStoreMetadataClient c) => c.GetAsync(1,1,1),
                 HttpMethod.Get
             );
         }
@@ -38,8 +38,17 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (ItemInStoreMetadataClient c) => c.GetAsync(1, "Test", "Test", 1, 1),
-              string.Format("/catalog/items/{0}/storemetadata?key={1}&value={2}&skip={3}&take={4}", 1, "Test", "Test", 1, 1));
+              (ItemInStoreMetadataClient c) => c.GetAsync(1,1,1),
+              string.Format("/catalog/items/{0}/storemetadata?skip={1}&take={2}", 1, 1, 1));
+
+            await base.UriTestAsync(
+                (ItemInStoreMetadataClient c) => c.GetAsync(1, 1, 1,key:"key"),
+              string.Format("/catalog/items/{0}/storemetadata?key={1}&skip={2}&take={3}", 1, "key", 1,1));
+
+            await base.UriTestAsync(
+                (ItemInStoreMetadataClient c) => c.GetAsync(1, 1, 1,value:"value"),
+                          string.Format("/catalog/items/{0}/storemetadata?value={1}&skip={2}&take={3}", 1,"value", 1,1));
+
         }
 
         [TestMethod, TestCategory("ItemInStoreMetadataClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -49,7 +58,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (ItemInStoreMetadataClient c) => c.GetAsync(1, "Test", "Test", 1, 1),
+              (ItemInStoreMetadataClient c) => c.GetAsync(1,1,1),
               notFoundHttpResponseMessage,
               expectedExceptionResult
               );
@@ -62,7 +71,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.BadRequest;
 
             await base.APIExceptionResponseTestAsync(
-                (ItemInStoreMetadataClient c) => c.GetAsync(1, "Test", "Test", 1, 1),
+                (ItemInStoreMetadataClient c) => c.GetAsync(1,1,1),
                 badRequestHttpResponseMessage,
                 expectedExceptionResult);
         }
@@ -71,15 +80,15 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncSDKExceptionTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (ItemInStoreMetadataClient c) => c.GetAsync(-1, "Test", "Test", 1, 1),
+                (ItemInStoreMetadataClient c) => c.GetAsync(0, 1, 1),
                 new ArgumentException(string.Format("{0} must be greater than or equal to {1}.", "id", 1)));
 
             await base.SDKExceptionResponseTestAsync(
-                (ItemInStoreMetadataClient c) => c.GetAsync(1, "Test", "Test", -1, 1),
+                (ItemInStoreMetadataClient c) => c.GetAsync(1, -1, 1),
                 new ArgumentException(string.Format("{0} must be greater than or equal to {1}.", "skip", 0)));
 
             await base.SDKExceptionResponseTestAsync(
-               (ItemInStoreMetadataClient c) => c.GetAsync(1, "Test", "Test", 1, 0),
+               (ItemInStoreMetadataClient c) => c.GetAsync(1, 1, 0),
                new ArgumentException(string.Format("{0} must be greater than or equal to {1}.", "take", 1)));
         }
 
@@ -87,7 +96,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (ItemInStoreMetadataClient c) => c.GetAsync(1, "Test", "Test", 1, 1));
+                (ItemInStoreMetadataClient c) => c.GetAsync(1,1,1));
         }
     }
 }
