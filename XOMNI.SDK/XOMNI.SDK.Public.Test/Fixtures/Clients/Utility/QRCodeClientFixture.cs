@@ -65,12 +65,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Utility
         {
             await base.SDKExceptionResponseTestAsync(
                 (QRCodeClient c) => c.GetAsync(0, "test"),
-                new ArgumentException("moduleSize")
+                new ArgumentException("moduleSize must be greater than or equal to 1.")
             );
 
             await base.SDKExceptionResponseTestAsync(
                (QRCodeClient c) => c.GetAsync(1, null),
-               new ArgumentNullException("data")
+               new ArgumentException("data can not be empty or null.")
            );
         }
 

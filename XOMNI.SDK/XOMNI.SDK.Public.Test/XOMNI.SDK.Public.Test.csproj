@@ -50,6 +50,10 @@
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
@@ -71,12 +75,16 @@
     <Compile Include="Fixtures\BaseClientFixture.cs" />
     <Compile Include="Fixtures\BaseMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\AssetMetadataClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\Catalog\CategoryMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Company\StoreClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\LoyaltyClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\LoyaltyMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\WishlistMetadataClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\Social\ProfileClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Utility\QRCodeClientFixture.cs" />
+    <Compile Include="Fixtures\Extensions\ValidatorExtensionFixture.cs" />
     <Compile Include="Helpers\AssertExtension.cs" />
+    <Compile Include="Helpers\CustomComparer\ExceptionTypeComparer.cs" />
     <Compile Include="Helpers\JsonContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
