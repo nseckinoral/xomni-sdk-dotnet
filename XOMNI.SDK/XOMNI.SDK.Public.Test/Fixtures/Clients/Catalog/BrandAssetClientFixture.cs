@@ -16,7 +16,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
     [TestClass]
     public class BrandAssetClientFixture : BaseClientFixture<BrandAssetClient>
     {
-        const string validAPIResponseForGetAsync = @"{
+        const string validAPIResponse = @"{
             'Data': [
                 {
                     'AssetMetadata': [
@@ -65,19 +65,19 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         #region GetImagesAsync
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncResponseParseTest()
+        public async Task GetImagesAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
                 (BrandAssetClient b) => b.GetImagesAsync(1),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
+                    Content = new MockedJsonContent(validAPIResponse)
                 },
-                validAPIResponseForGetAsync);
+                validAPIResponse);
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncHttpMethodTest()
+        public async Task GetImagesAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
                 (BrandAssetClient b) => b.GetImagesAsync(1),
@@ -85,7 +85,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncUriCheckTest()
+        public async Task GetImagesAsyncUriCheckTest()
         {
             await base.UriTestAsync(
               (BrandAssetClient b) => b.GetImagesAsync(1),
@@ -97,7 +97,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncOptionalParameterTest()
+        public async Task GetImagesAsyncOptionalParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
                 (BrandAssetClient b) => b.GetImagesAsync(1, metadataKey: "Key"),
@@ -109,7 +109,16 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncNotFoundTest()
+        public async Task GetImagesAsyncBrandIdTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (BrandAssetClient b) => b.GetImagesAsync(0, metadataKey: "Key"),
+                new ArgumentException("brandId must be greater than or equal to 1."));
+
+        }
+
+        [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetImagesAsyncNotFoundTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
@@ -121,7 +130,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncDefaultRequestHeadersTest()
+        public async Task GetImagesAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
                 (BrandAssetClient b) => b.GetImagesAsync(1));
@@ -137,9 +146,9 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                 (BrandAssetClient b) => b.GetVideosAsync(1),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
+                    Content = new MockedJsonContent(validAPIResponse)
                 },
-                validAPIResponseForGetAsync);
+                validAPIResponse);
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetVideosAsync"), TestCategory("HTTP.GET")]
@@ -166,12 +175,20 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetVideosAsyncOptionalParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (BrandAssetClient b) => b.GetImagesAsync(1, metadataKey: "Key"),
+                (BrandAssetClient b) => b.GetVideosAsync(1, metadataKey: "Key"),
                 new ArgumentException("metadataValue can not be empty or null."));
 
             await base.SDKExceptionResponseTestAsync(
-                (BrandAssetClient b) => b.GetImagesAsync(1, metadataValue: "Value"),
+                (BrandAssetClient b) => b.GetVideosAsync(1, metadataValue: "Value"),
                 new ArgumentException("metadataKey can not be empty or null."));
+        }
+
+        [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetVideosAsync"), TestCategory("HTTP.GET")]
+        public async Task GetVideosAsyncBrandIdTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (BrandAssetClient b) => b.GetVideosAsync(0, metadataKey: "Key"),
+                new ArgumentException("brandId must be greater than or equal to 1."));
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetVideosAsync"), TestCategory("HTTP.GET")]
@@ -203,9 +220,9 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                 (BrandAssetClient b) => b.GetDocumentsAsync(1),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
+                    Content = new MockedJsonContent(validAPIResponse)
                 },
-                validAPIResponseForGetAsync);
+                validAPIResponse);
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetDocumentsAsync"), TestCategory("HTTP.GET")]
@@ -232,12 +249,20 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetDocumentsAsyncOptionalParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (BrandAssetClient b) => b.GetImagesAsync(1, metadataKey: "Key"),
+                (BrandAssetClient b) => b.GetDocumentsAsync(1, metadataKey: "Key"),
                 new ArgumentException("metadataValue can not be empty or null."));
 
             await base.SDKExceptionResponseTestAsync(
-                (BrandAssetClient b) => b.GetImagesAsync(1, metadataValue: "Value"),
+                (BrandAssetClient b) => b.GetDocumentsAsync(1, metadataValue: "Value"),
                 new ArgumentException("metadataKey can not be empty or null."));
+        }
+
+        [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetVideosAsync"), TestCategory("HTTP.GET")]
+        public async Task GetDocumentsAsyncBrandIdTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (BrandAssetClient b) => b.GetDocumentsAsync(0, metadataKey: "Key"),
+                new ArgumentException("brandId must be greater than or equal to 1."));
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetDocumentsAsync"), TestCategory("HTTP.GET")]
