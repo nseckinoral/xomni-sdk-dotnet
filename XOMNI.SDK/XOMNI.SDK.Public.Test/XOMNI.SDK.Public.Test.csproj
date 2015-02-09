@@ -80,6 +80,7 @@
     <Compile Include="Fixtures\Clients\Catalog\BrandAssetClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\TagClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\CategoryAssetClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\Catalog\ItemAssetClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Company\StoreClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\LoyaltyClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\LoyaltyMetadataClientFixture.cs" />
