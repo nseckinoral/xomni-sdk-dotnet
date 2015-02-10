@@ -16,6 +16,16 @@ namespace XOMNI.SDK.Public.Extensions
             }
             return item;
         }
+
+        public static Parameter<Nullable<double>> IsNotNull(this Parameter<Nullable<double>> item)
+        {
+            if(!item.Value.HasValue)
+            {
+                throw new ArgumentException(string.Format("{0} can not be null.", item.ArgName));
+            }
+            return item;
+        }
+
         public static Parameter<string> IsNotNullOrEmpty(this Parameter<string> item)
         {
             if (string.IsNullOrEmpty(item.Value))
