@@ -44,13 +44,19 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
            }
         }";
 
+        readonly Location location = new Location()
+        {
+            Latitude = 28.970034,
+            Longitude = 41.038473
+        };
+
         #region GetAsync
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (StoreClient p) => p.GetAsync("41.038473;28.970034",1,1,1),
+                (StoreClient p) => p.GetAsync(location,1,1,1),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponseForGetAsync)
@@ -62,7 +68,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, 1, 1),
+                (StoreClient p) => p.GetAsync(location, 1, 1, 1),
                 HttpMethod.Get);
         }
 
@@ -70,7 +76,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, 1, 1),
+              (StoreClient p) => p.GetAsync(location, 1, 1, 1),
               "/company/stores?locationInfo=41.038473;28.970034&searchDistance=1&skip=1&take=1");
         }
 
@@ -81,19 +87,9 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, 1, 1),
+              (StoreClient p) => p.GetAsync(location, 1, 1, 1),
               notFoundHttpResponseMessage,
               expectedExceptionResult);
-        }
-
-        [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncLocationInfoHaveSemicolon()
-        {
-            await base.SDKExceptionResponseTestAsync(
-                (StoreClient p) => p.GetAsync("41.03847328.970034", 1, 1, 1),
-                new ArgumentException("locationInfo must be include ';' character."),
-                piiUser: piiUser
-            );
         }
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -101,49 +97,75 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             await base.SDKExceptionResponseTestAsync(
                 (StoreClient p) => p.GetAsync(null, 1, 1, 1),
-                new ArgumentException("locationInfo can not be empty or null."),
+                new ArgumentNullException("locationInfo can not be null."),
                 piiUser: piiUser
             );
         }
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncLocationInfoEmptyTest()
+        public async Task GetAsyncLocationInfoPropertyTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (StoreClient p) => p.GetAsync("", 1, 1, 1),
-                new ArgumentException("locationInfo can not be empty or null."),
+                (StoreClient p) => p.GetAsync(null, 1, 1, 1),
+                new ArgumentNullException("locationInfo can not be null."),
                 piiUser: piiUser
             );
         }
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncSearchDistanceValidTest()
+        public async Task GetAsyncSearchDistanceTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (StoreClient p) => p.GetAsync("41.038473;28.970034",2,1,1),
+                (StoreClient p) => p.GetAsync(location,2,1,1),
                 new ArgumentOutOfRangeException("searchDistance must be in range (0 - 1)."),
                 piiUser: piiUser
             );
         }
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncSkipValidTest()
+        public async Task GetAsyncSkipTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, -1, 1),
+                (StoreClient p) => p.GetAsync(location, 1, -1, 1),
                 new ArgumentException("skip must be greater than or equal to 0."),
                 piiUser: piiUser
             );
         }
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncTakeValidTest()
+        public async Task GetAsyncTakeTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, 1, 0),
+                (StoreClient p) => p.GetAsync(location, 1, 1, 0),
                 new ArgumentException("take must be greater than or equal to 1."),
                 piiUser: piiUser
             );
+        }
+
+        [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncLocationToStringTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (StoreClient p) => p.GetAsync(
+                    new Location()
+                    {
+                        Latitude = null,
+                        Longitude = 23.43223
+                    }, 1, 1, 1),
+                new ArgumentException("Latitude can not be null."),
+                piiUser: piiUser
+            );
+
+            await base.SDKExceptionResponseTestAsync(
+              (StoreClient p) => p.GetAsync(
+                  new Location()
+                  {
+                      Latitude = 48.233,
+                      Longitude = null
+                  }, 1, 1, 1),
+              new ArgumentException("Longitude can not be null."),
+              piiUser: piiUser
+          );
         }
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -153,7 +175,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.BadRequest;
 
             await base.APIExceptionResponseTestAsync(
-              (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, 1, 1),
+              (StoreClient p) => p.GetAsync(location, 1, 1, 1),
               badRequestHttpResponseMessage,
               expectedExceptionResult);
         }
@@ -162,7 +184,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (StoreClient p) => p.GetAsync("41.038473;28.970034", 1, 1, 1));
+                (StoreClient p) => p.GetAsync(location, 1, 1, 1));
         }
         #endregion
     }
