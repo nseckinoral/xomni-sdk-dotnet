@@ -64,12 +64,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
             Content = new MockedJsonContent(validAPIResponseForPostAndDeleteAsync)
         };
 
-        readonly HttpResponseMessage validHttpResponseMessageForGetPoliciesAsync = new HttpResponseMessage()
-        {
-            StatusCode = HttpStatusCode.OK,
-            Content = new MockedJsonContent(validAPIResponseForGetPoliciesAsync)
-        };
-
         readonly SocialCommentToCommentRequest sampleCommentToCommentRequest = new SocialCommentToCommentRequest()
         {
             Content = "TestContent",
@@ -310,10 +304,13 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
 
         [TestMethod, TestCategory("CommentClient"), TestCategory("GetPoliciesAsync"), TestCategory("HTTP.GET")]
         public async Task GetPoliciesAsyncResponseParseTest()
-        {
+        {        
             await base.ResponseParseTestAsync(
-                (CommentClient c) => c.GetPoliciesAsync(1, 2),
-                    validHttpResponseMessageForGetPoliciesAsync,
+                (CommentClient c) => c.GetPoliciesAsync(targetPostId: 1),
+                    new HttpResponseMessage(HttpStatusCode.OK)
+                    {
+                        Content = new MockedJsonContent(validAPIResponseForGetPoliciesAsync)
+                    },
                     validAPIResponseForGetPoliciesAsync,
                     piiUser: piiUser
             );
@@ -323,7 +320,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         public async Task GetPoliciesAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (CommentClient c) => c.GetPoliciesAsync(1, 2),
+                (CommentClient c) => c.GetPoliciesAsync(targetPostId: 1),
                 HttpMethod.Get,
                 piiUser: piiUser);
         }
@@ -332,9 +329,15 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         public async Task GetPoliciesAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (CommentClient c) => c.GetPoliciesAsync(1, 2),
-              "/social/comment/policies?targetPostId=1&targetCommentId=2",
+              (CommentClient c) => c.GetPoliciesAsync(targetPostId: 1),
+              "/social/comment/policies?targetPostId=1",
                 piiUser: piiUser);
+
+            await base.UriTestAsync(
+                (CommentClient c) => c.GetPoliciesAsync(targetCommentId: 1),
+                "/social/comment/policies?targetCommentId=1",
+                piiUser: piiUser
+            );
         }
 
         [TestMethod, TestCategory("CommentClient"), TestCategory("GetPoliciesAsync"), TestCategory("HTTP.GET")]
@@ -344,7 +347,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (CommentClient c) => c.GetPoliciesAsync(1, 2),
+              (CommentClient c) => c.GetPoliciesAsync(targetPostId: 1),
               notFoundHttpResponseMessage,
               expectedExceptionResult,
                 piiUser: piiUser);
@@ -357,7 +360,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.BadRequest;
 
             await base.APIExceptionResponseTestAsync(
-              (CommentClient c) => c.GetPoliciesAsync(1, 2),
+                (CommentClient c) => c.GetPoliciesAsync(targetCommentId: 1),
               badRequestHttpResponseMessage,
               expectedExceptionResult,
                 piiUser: piiUser);
@@ -367,7 +370,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         public async Task GetPoliciesAsyncSDKExceptionTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (CommentClient c) => c.GetPoliciesAsync(1, 2),
+                (CommentClient c) => c.GetPoliciesAsync(targetPostId: 1),
                 new ArgumentException("User/OmniSession")
             );
         }
@@ -376,30 +379,39 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         public async Task GetPoliciesAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (CommentClient c) => c.GetPoliciesAsync(1, 2),
+                (CommentClient c) => c.GetPoliciesAsync(targetPostId: 1),
                 piiUser: piiUser);
         }
 
         [TestMethod, TestCategory("CommentClient"), TestCategory("GetPoliciesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetPoliciesAsyncTargetPostIdValidTest()
+        public async Task GetPoliciesAsyncTargetPostIdTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (CommentClient c) => c.GetPoliciesAsync(-1, 2),
+                (CommentClient c) => c.GetPoliciesAsync(targetPostId: -1),
                 new ArgumentException("targetPostId must be greater than or equal to 1."),
                 piiUser: piiUser
             );
         }
 
         [TestMethod, TestCategory("CommentClient"), TestCategory("GetPoliciesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetPoliciesAsyncTargetCommentIdValidTest()
+        public async Task GetPoliciesAsyncTargetCommentIdTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (CommentClient c) => c.GetPoliciesAsync(1, -2),
+                (CommentClient c) => c.GetPoliciesAsync(targetCommentId: -2),
                 new ArgumentException("targetCommentId must be greater than or equal to 1."),
                 piiUser: piiUser
             );
         }
 
+        [TestMethod, TestCategory("CommentClient"), TestCategory("GetPoliciesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetPoliciesAsyncOptionalParameterTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (CommentClient c) => c.GetPoliciesAsync(targetPostId:1,targetCommentId: 2),
+                new ArgumentException("You can not pass targetPostId and targetCommentId at the same time."),
+                piiUser: piiUser
+            );
+        }
 
         #endregion
 
