@@ -16,14 +16,14 @@ namespace XOMNI.SDK.Public.Clients.Company
 
 		}
 
-        public async Task<ApiResponse<PaginatedContainer<Store>>> GetAsync(string locationInfo, int searchDistance, int skip, int take)
+        public async Task<ApiResponse<PaginatedContainer<Store>>> GetAsync(Location locationInfo, int searchDistance, int skip, int take)
 		{
-            Validator.For(locationInfo, "locationInfo").Contains(';');
+            Validator.For(locationInfo, "locationInfo").IsNotNull();
             Validator.For(searchDistance, "searchDistance").InRange(0, 1);
             Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
             Validator.For(take, "take").IsGreaterThanOrEqual(1);
 
-			string path = string.Format("/company/stores?locationInfo={0}&searchDistance={1}&skip={2}&take={3}", locationInfo, searchDistance, skip, take);
+			string path = string.Format("/company/stores?locationInfo={0}&searchDistance={1}&skip={2}&take={3}", locationInfo.ToString(), searchDistance, skip, take);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
