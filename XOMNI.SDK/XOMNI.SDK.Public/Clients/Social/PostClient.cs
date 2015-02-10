@@ -4,49 +4,63 @@ using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Social;
+using XOMNI.SDK.Public.Extensions;
 
 namespace XOMNI.SDK.Public.Clients.Social
 {
-	public class PostClient : BaseClient
-	{
-		public PostClient(HttpClient httpClient)
-			: base(httpClient)
-		{
+    public class PostClient : BaseClient
+    {
+        public PostClient(HttpClient httpClient)
+            : base(httpClient)
+        {
 
-		}
+        }
 
-		//TODO: Requires PII
-		public async Task<ApiResponse<SocialPost>> GetAsync(int relatedItemId)
-		{
-			string path = string.Format("/social/post?relatedItemId={0}", relatedItemId);
+        public async Task<ApiResponse<SocialPost>> GetAsync(int relatedItemId)
+        {
+            ValidatePIIToken();
+            Validator.For(relatedItemId, "relatedItemId").IsGreaterThanOrEqual(1);
 
-			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-			{
-				return await response.Content.ReadAsAsync<ApiResponse<SocialPost>>().ConfigureAwait(false);
-			}
-		}
+            string path = string.Format("/social/post?relatedItemId={0}", relatedItemId);
 
-		//TODO: Requires PII
-		public async Task DeleteAsync(int socialPostId)
-		{
-			string path = string.Format("/social/post/{0}", socialPostId);
-			await Client.DeleteAsync(path).ConfigureAwait(false);
-		}
+            using (var response = await Client.GetAsync(path).ConfigureAwait(false))
+            {
+                return await response.Content.ReadAsAsync<ApiResponse<SocialPost>>().ConfigureAwait(false);
+            }
+        }
 
-		//TODO: Requires PII
+        public async Task<ApiResponse<SocialPost>> DeleteAsync(int socialPostId)
+        {
+            ValidatePIIToken();
+            Validator.For(socialPostId, "socialPostId").IsGreaterThanOrEqual(1);
 
-		public async Task<ApiResponse<SocialPost>> PostAsync(SocialPostRequest socialPostRequest)
-		{
-			string path = "/social/post";
+            string path = string.Format("/social/post/{0}", socialPostId);
 
-			using (var response = await Client.PostAsJsonAsync(path, socialPostRequest).ConfigureAwait(false))
-			{
-				return await response.Content.ReadAsAsync<ApiResponse<SocialPost>>().ConfigureAwait(false);
-			}
-		}
+            using (var response = await Client.DeleteAsync(path).ConfigureAwait(false))
+            {
+                return await response.Content.ReadAsAsync<ApiResponse<SocialPost>>().ConfigureAwait(false);
+            }
+
+        }
+
+        public async Task<ApiResponse<SocialPost>> PostAsync(SocialPostRequest socialPostRequest)
+        {
+            Validator.For(socialPostRequest, "socialPostRequest").IsNotNull();
+            Validator.For(socialPostRequest.RelatedItemId, "RelatedItemId").IsGreaterThanOrEqual(1);
+            Validator.For(socialPostRequest.Content, "Content").IsNotNullOrEmpty();
+
+            string path = "/social/post";
+
+            using (var response = await Client.PostAsJsonAsync(path, socialPostRequest).ConfigureAwait(false))
+            {
+                return await response.Content.ReadAsAsync<ApiResponse<SocialPost>>().ConfigureAwait(false);
+            }
+        }
 
         public async Task<ApiResponse<SocialPolicy>> GetPoliciesAsync()
         {
+            ValidatePIIToken();
+
             string path = "/social/post/policies";
 
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
@@ -54,5 +68,5 @@ namespace XOMNI.SDK.Public.Clients.Social
                 return await response.Content.ReadAsAsync<ApiResponse<SocialPolicy>>().ConfigureAwait(false);
             }
         }
-	}
+    }
 }
