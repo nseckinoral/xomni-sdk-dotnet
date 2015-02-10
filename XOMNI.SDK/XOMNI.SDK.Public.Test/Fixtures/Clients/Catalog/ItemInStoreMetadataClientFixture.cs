@@ -42,13 +42,22 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
               string.Format("/catalog/items/{0}/storemetadata?skip={1}&take={2}", 1, 1, 1));
 
             await base.UriTestAsync(
-                (ItemInStoreMetadataClient c) => c.GetAsync(1, 1, 1,key:"key"),
-              string.Format("/catalog/items/{0}/storemetadata?key={1}&skip={2}&take={3}", 1, "key", 1,1));
+                (ItemInStoreMetadataClient c) => c.GetAsync(1, 1, 1,key:"key",value:"value"),
+              string.Format("/catalog/items/{0}/storemetadata?key={1}&value={2}&skip={3}&take={4}", 1, "key","value" ,1, 1));
+        }
 
-            await base.UriTestAsync(
-                (ItemInStoreMetadataClient c) => c.GetAsync(1, 1, 1,value:"value"),
-                          string.Format("/catalog/items/{0}/storemetadata?value={1}&skip={2}&take={3}", 1,"value", 1,1));
+        [TestMethod, TestCategory("ItemInStoreMetadataClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncOptionalParameterTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (ItemInStoreMetadataClient c) =>c.GetAsync(1,1,1,key:"key"),
+                new ArgumentException("value can not be empty or null.")
+                );
 
+            await base.SDKExceptionResponseTestAsync(
+                (ItemInStoreMetadataClient c) =>c.GetAsync(1,1,1,value:"value"),
+                new ArgumentException("key can not be empty or null.")
+                );
         }
 
         [TestMethod, TestCategory("ItemInStoreMetadataClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
