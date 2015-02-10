@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
+using XOMNI.SDK.Public.Extensions;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -28,11 +29,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         public async Task<ApiResponse<List<Category>>> GetAsync(int parentCategoryId, bool includeMetadata, AssetDetailType imageAssetDetail, AssetDetailType videoAssetDetail, AssetDetailType documentAssetDetail)
 		{
-            if(parentCategoryId<=0)
-            {
-                throw new ArgumentException("parentCategoryId");
-            }
-
+            Validator.For(parentCategoryId, "parentCategoryId").IsGreaterThanOrEqual(1);
             string path = string.Format("/catalog/categories?parentCategoryId={0}&includeMetadata={1}&imageAssetDetail={2}&videoAssetDetail={3}&documentAssetDetail={4}", parentCategoryId, includeMetadata, (int)imageAssetDetail, (int)videoAssetDetail, (int)documentAssetDetail);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
