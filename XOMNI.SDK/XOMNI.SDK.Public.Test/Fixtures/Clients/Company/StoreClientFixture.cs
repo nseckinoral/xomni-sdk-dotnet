@@ -111,7 +111,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                     Latitude = 91,
                     Longitude = 50
                 }, 1, 1, 1),
-                new ArgumentOutOfRangeException("Latitude must be in range (-90 - 90)."),
+                new ArgumentOutOfRangeException("Latitude", 91, string.Format("{0} must be in range ({1} - {2}).", "Latitude", -90, 90)),
                 piiUser: piiUser
             );
 
@@ -121,7 +121,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                      Latitude = 90,
                      Longitude = 182
                  }, 1, 1, 1),
-                 new ArgumentOutOfRangeException("Longitude must be in range (-180 - 180)."),
+                 new ArgumentOutOfRangeException("Longitude", 182, string.Format("{0} must be in range ({1} - {2}).", "Longitude", -180, 180)),
                  piiUser: piiUser
             );
         }
@@ -131,7 +131,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             await base.SDKExceptionResponseTestAsync(
                 (StoreClient p) => p.GetAsync(location,2,1,1),
-                new ArgumentOutOfRangeException("searchDistance must be in range (0 - 1)."),
+                new ArgumentOutOfRangeException("searchDistance", 2, string.Format("{0} must be in range ({1} - {2}).", "searchDistance", 0, 1)),
                 piiUser: piiUser
             );
         }
