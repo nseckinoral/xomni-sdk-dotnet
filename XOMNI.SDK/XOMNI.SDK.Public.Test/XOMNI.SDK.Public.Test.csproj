@@ -91,6 +91,7 @@
     <Compile Include="Fixtures\Clients\Social\AuthorizationUrlClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\ProfileClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Utility\QRCodeClientFixture.cs" />
+    <Compile Include="Fixtures\Extensions\HttpClientExtensionsFixture.cs" />
     <Compile Include="Fixtures\Extensions\ValidatorExtensionFixture.cs" />
     <Compile Include="Helpers\AssertExtension.cs" />
     <Compile Include="Helpers\CustomComparer\ExceptionTypeComparer.cs" />
@@ -105,8 +106,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="app.config"/>
+    <None Include="packages.config"/>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
