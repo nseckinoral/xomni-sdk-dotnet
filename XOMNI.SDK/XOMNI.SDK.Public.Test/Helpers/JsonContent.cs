@@ -25,10 +25,11 @@ namespace XOMNI.SDK.Public.Test.Helpers
             return false;
         }
 
-        protected override async Task SerializeToStreamAsync(Stream stream, TransportContext context)
+        protected override Task SerializeToStreamAsync(Stream stream, TransportContext context)
         {
             var bytes = Encoding.UTF8.GetBytes(jsonContent);
             stream.Write(bytes, 0, bytes.Length);
+            return Task.FromResult(1);
         }
     }
 }
