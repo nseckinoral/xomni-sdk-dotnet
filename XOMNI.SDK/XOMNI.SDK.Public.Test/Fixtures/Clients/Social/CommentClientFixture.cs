@@ -28,8 +28,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         const string validSocialPostRequest = @"{
             'TargetPostId':'5',
             'Content':'This is a sample comment'
-        }
-        ";
+        }";
 
         const string validAPIResponseForPostAndDeleteAsync = @"{
             'Data':{
@@ -66,13 +65,13 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
 
         readonly SocialCommentToCommentRequest sampleCommentToCommentRequest = new SocialCommentToCommentRequest()
         {
-            Content = "TestContent",
+            Content = "This is an another sample comment.",
             TargetCommentId = 5
         };
 
         readonly SocialCommentToPostRequest sampleCommentToPostRequest = new SocialCommentToPostRequest()
         {
-            Content = "TestContent",
+            Content = "This is a sample comment",
             TargetPostId = 5
         };
 
@@ -224,7 +223,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.RequestParseTestAsync<SocialCommentToCommentRequest>(
                 (CommentClient c) => c.PostCommentAsync(sampleCommentToPostRequest),
-                validSocialCommentRequest,
+                validSocialPostRequest,
                 piiUser: piiUser);
         }
 
