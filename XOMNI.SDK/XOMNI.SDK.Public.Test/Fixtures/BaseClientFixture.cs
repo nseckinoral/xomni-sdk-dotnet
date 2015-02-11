@@ -138,9 +138,9 @@ namespace XOMNI.SDK.Public.Test.Fixtures
 
         protected async Task RequestParseTestAsync<TRequest>(Func<TClient,Task> actAsync, string validAPIRequestJson, User piiUser = null, OmniSession omniSession = null)
         {
-            Action<HttpRequestMessage, CancellationToken> testCallback = async (req, can) =>
+            Action<HttpRequestMessage, CancellationToken> testCallback = (req, can) =>
             {
-                var actualRequest = await req.Content.ReadAsAsync<TRequest>();
+                var actualRequest = req.Content.ReadAsAsync<TRequest>().Result;
                 AssertExtensions.AreDeeplyEqual(JsonConvert.DeserializeObject<TRequest>(validAPIRequestJson), actualRequest);
             };
 
