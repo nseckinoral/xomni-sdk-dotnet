@@ -91,6 +91,7 @@
     <Compile Include="Fixtures\Clients\PII\LoyaltyMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\WishlistMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\AuthorizationUrlClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\Social\PostClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\ProfileClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Utility\QRCodeClientFixture.cs" />
     <Compile Include="Fixtures\Extensions\HttpClientExtensionsFixture.cs" />
