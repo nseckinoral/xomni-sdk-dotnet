@@ -49,7 +49,7 @@ namespace XOMNI.SDK.Public.Extensions
         {
             if (item.Value < minBound || maxBound < item.Value)
             {
-                throw new ArgumentOutOfRangeException(string.Format("{0} must be in range ({1} - {2}).", item.ArgName, minBound, maxBound));
+                throw new ArgumentOutOfRangeException(item.ArgName, item.Value, string.Format("{0} must be in range ({1} - {2}).", item.ArgName, minBound, maxBound));
             }
             return item;
         }
@@ -58,7 +58,7 @@ namespace XOMNI.SDK.Public.Extensions
         {
             if (item.Value < minBound || maxBound < item.Value)
             {
-                throw new ArgumentOutOfRangeException(string.Format("{0} must be in range ({1} - {2}).", item.ArgName, minBound, maxBound));
+                throw new ArgumentOutOfRangeException(item.ArgName, item.Value, string.Format("{0} must be in range ({1} - {2}).", item.ArgName, minBound, maxBound));
             }
             return item;
         }
