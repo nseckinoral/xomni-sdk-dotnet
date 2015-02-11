@@ -233,7 +233,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Extensions
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                AssertExtensions.AreDeeplyEqual(new ArgumentOutOfRangeException("sampleParameter must be in range (6 - 10)."), ex);
+                AssertExtensions.AreDeeplyEqual(new ArgumentOutOfRangeException("sampleParameter", 5, string.Format("{0} must be in range ({1} - {2}).", "sampleParameter", 6,10)), ex);
             }
         }
 
