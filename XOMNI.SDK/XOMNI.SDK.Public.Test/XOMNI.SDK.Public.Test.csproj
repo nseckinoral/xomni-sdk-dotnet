@@ -82,6 +82,7 @@
     <Compile Include="Fixtures\Clients\Catalog\TagClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\CategoryAssetClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\ItemAssetClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\Catalog\TrendingItemClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Company\DeviceTypeClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\ItemInStoreMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Company\StoreClientFixture.cs" />
