@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XOMNI.SDK.Public.Models.Social
+namespace XOMNI.SDK.Public.Models.Catalog
 {
-    public enum SocialPlatformType 
+    public enum AssetType
     {
-        Facebook,
-        Twitter
+        images,
+        videos,
+        documents
     }
 }
