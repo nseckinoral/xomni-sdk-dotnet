@@ -103,12 +103,26 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         }
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncLocationInfoPropertyTest()
+        public async Task GetAsyncLocationInfoPropertyRangeTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (StoreClient p) => p.GetAsync(null, 1, 1, 1),
-                new ArgumentNullException("locationInfo can not be null."),
+                (StoreClient p) => p.GetAsync(new Location() 
+                {
+                    Latitude = 91,
+                    Longitude = 50
+                }, 1, 1, 1),
+                new ArgumentOutOfRangeException("Latitude must be in range (-90 - 90)."),
                 piiUser: piiUser
+            );
+
+            await base.SDKExceptionResponseTestAsync(
+                 (StoreClient p) => p.GetAsync(new Location()
+                 {
+                     Latitude = 90,
+                     Longitude = 182
+                 }, 1, 1, 1),
+                 new ArgumentOutOfRangeException("Longitude must be in range (-180 - 180)."),
+                 piiUser: piiUser
             );
         }
 
@@ -140,32 +154,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                 new ArgumentException("take must be greater than or equal to 1."),
                 piiUser: piiUser
             );
-        }
-
-        [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncLocationToStringTest()
-        {
-            await base.SDKExceptionResponseTestAsync(
-                (StoreClient p) => p.GetAsync(
-                    new Location()
-                    {
-                        Latitude = null,
-                        Longitude = 23.43223
-                    }, 1, 1, 1),
-                new ArgumentException("Latitude can not be null."),
-                piiUser: piiUser
-            );
-
-            await base.SDKExceptionResponseTestAsync(
-              (StoreClient p) => p.GetAsync(
-                  new Location()
-                  {
-                      Latitude = 48.233,
-                      Longitude = null
-                  }, 1, 1, 1),
-              new ArgumentException("Longitude can not be null."),
-              piiUser: piiUser
-          );
         }
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
