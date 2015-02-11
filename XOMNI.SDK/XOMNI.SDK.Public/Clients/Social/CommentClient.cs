@@ -4,36 +4,38 @@ using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Social;
+using XOMNI.SDK.Public.Extensions;
 
 namespace XOMNI.SDK.Public.Clients.Social
 {
-	public class CommentClient : BaseClient
-	{
-		public CommentClient(HttpClient httpClient)
-			: base(httpClient)
-		{
+    public class CommentClient : BaseClient
+    {
+        public CommentClient(HttpClient httpClient)
+            : base(httpClient)
+        {
 
-		}
+        }
 
-		public async Task DeleteAsync(int commentId)
-		{
-			string path = string.Format("social/comment/{0}", commentId);
-			await Client.DeleteAsync(path).ConfigureAwait(false);
-		}
+        public async Task<ApiResponse<SocialComment>> DeleteAsync(int commentId)
+        {
+            ValidatePIIToken();
+            Validator.For(commentId, "commentId").IsGreaterThanOrEqual(1);
 
-		public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToCommentRequest comment)
-		{
-			string path = "/social/comment";
+            string path = string.Format("social/comment/{0}", commentId);
 
-			using (var response = await Client.PostAsJsonAsync(path, comment).ConfigureAwait(false))
-			{
-				return await response.Content.ReadAsAsync<ApiResponse<SocialComment>>().ConfigureAwait(false);
-			}
-		}
+            using (var response = await Client.DeleteAsync(path).ConfigureAwait(false))
+            {
+                return await response.Content.ReadAsAsync<ApiResponse<SocialComment>>().ConfigureAwait(false);
+            }
+        }
 
-		public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToPostRequest comment)
-		{
-			string path = "/social/comment";
+        public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToCommentRequest comment)
+        {
+            ValidatePIIToken();
+            Validator.For(comment.TargetCommentId, "TargetCommentId").IsGreaterThanOrEqual(1);
+            Validator.For(comment.Content, "Content").IsNotNullOrEmpty();
+
+            string path = "/social/comment";
 
             using (var response = await Client.PostAsJsonAsync(path, comment).ConfigureAwait(false))
             {
@@ -41,9 +43,42 @@ namespace XOMNI.SDK.Public.Clients.Social
             }
         }
 
-        public async Task<ApiResponse<SocialPolicy>> GetPoliciesAsync(int targetPostId, int targetCommentId)
+        public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToPostRequest comment)
         {
-            string path = string.Format("/social/comment/policies?targetPostId={0}&targetCommentId={1}", targetPostId, targetCommentId);
+            ValidatePIIToken();
+            Validator.For(comment.TargetPostId, "TargetPostId").IsGreaterThanOrEqual(1);
+            Validator.For(comment.Content, "Content").IsNotNullOrEmpty();
+
+            string path = "/social/comment";
+
+            using (var response = await Client.PostAsJsonAsync(path, comment).ConfigureAwait(false))
+            {
+                return await response.Content.ReadAsAsync<ApiResponse<SocialComment>>().ConfigureAwait(false);
+            }
+        }
+
+        public async Task<ApiResponse<SocialPolicy>> GetPoliciesAsync(int targetPostId = default(int), int targetCommentId = default(int))
+        {
+            ValidatePIIToken();
+
+            if (targetPostId != default(int) && targetCommentId != default(int))
+            {
+                throw new ArgumentException("You can not pass targetPostId and targetCommentId at the same time.");
+            }
+
+            string path = "/social/comment/policies?";
+
+            if (targetPostId != default(int))
+            {
+                Validator.For(targetPostId, "targetPostId").IsGreaterThanOrEqual(1);
+                path += string.Format("targetPostId={0}", targetPostId);
+            }
+
+            if (targetCommentId != default(int))
+            {
+                Validator.For(targetCommentId, "targetCommentId").IsGreaterThanOrEqual(1);
+                path += string.Format("targetCommentId={0}", targetCommentId);
+            }
 
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
             {
@@ -51,5 +86,5 @@ namespace XOMNI.SDK.Public.Clients.Social
             }
         }
 
-	}
+    }
 }
