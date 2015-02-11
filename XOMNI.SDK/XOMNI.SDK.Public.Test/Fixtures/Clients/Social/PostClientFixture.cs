@@ -327,7 +327,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
                         Content = "This is a sample comment",
                         RelatedItemId = 5
                     })
-                ,requestJson);
+                    ,requestJson,piiUser:piiUser);
         }
         #endregion
 
