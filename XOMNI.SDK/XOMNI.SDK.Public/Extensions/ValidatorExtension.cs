@@ -54,6 +54,15 @@ namespace XOMNI.SDK.Public.Extensions
             return item;
         }
 
+        public static Parameter<double> InRange(this Parameter<double> item, double minBound, double maxBound)
+        {
+            if (item.Value < minBound || maxBound < item.Value)
+            {
+                throw new ArgumentOutOfRangeException(string.Format("{0} must be in range ({1} - {2}).", item.ArgName, minBound, maxBound));
+            }
+            return item;
+        }
+
         public static Parameter<int> IsGreaterThanOrEqual(this Parameter<int> item, int bound)
         {
             if (item.Value < bound)
