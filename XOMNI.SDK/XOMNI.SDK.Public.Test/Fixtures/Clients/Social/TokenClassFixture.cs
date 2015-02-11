@@ -30,9 +30,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
            }
         }";
 
-        const string validRequestJson = @"{'access_token':'AAADHTenCKrkBAOZCLcNfxaTzC32D4ZCLcK6SKPKZCRFmjLaCvV9gGBu5qmxBtEIOgw69HCKBcHXevZB1CVLikNcZByYbXPZAX5simVZBSA8PQZDZD'}";
-
-
         #region GetAsync
 
         [TestMethod, TestCategory("TokenClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -213,7 +210,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
            );
 
             await base.SDKExceptionResponseTestAsync(
-                (TokenClient p) => p.PostAsync(SocialPlatformType.Twitter,oauthToken:""),
+                (TokenClient p) => p.PostAsync(SocialPlatformType.Twitter, oauthToken: ""),
                    new ArgumentException("oauthToken can not be empty or null."),
                    piiUser: piiUser
                );
@@ -244,11 +241,21 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         [TestMethod, TestCategory("TokenClient"), TestCategory("PostRequestCommentToPostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncRequestParseTest()
         {
+            string sampleFacebookRequest = @"{'access_token':'token'}";
+
+            string sampleTwitterRequest = @"{'oauth_token' : 'oauthToken','oauth_verifier':'oauthVerifier'}";
+
             await base.RequestParseTestAsync<Dictionary<string, string>>(
-             (TokenClient t) => t.PostAsync(SocialPlatformType.Facebook, "AAADHTenCKrkBAOZCLcNfxaTzC32D4ZCLcK6SKPKZCRFmjLaCvV9gGBu5qmxBtEIOgw69HCKBcHXevZB1CVLikNcZByYbXPZAX5simVZBSA8PQZDZD"),
-             validRequestJson,
-             piiUser: piiUser
-         );
+                (TokenClient t) => t.PostAsync(SocialPlatformType.Facebook, token: "token"),
+                 sampleFacebookRequest,
+                 piiUser: piiUser
+             );
+
+            await base.RequestParseTestAsync<Dictionary<string, string>>(
+                (TokenClient t) => t.PostAsync(SocialPlatformType.Twitter, oauthToken: "oauthToken", oauthVerifier: "oauthVerifier"),
+                sampleTwitterRequest,
+                piiUser: piiUser
+            );
         }
         #endregion
     }
