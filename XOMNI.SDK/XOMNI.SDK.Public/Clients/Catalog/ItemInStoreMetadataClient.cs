@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
+using XOMNI.SDK.Public.Extensions;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -17,13 +18,30 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
 		}
 
-		public async Task<ApiResponse<List<InStoreMetadata>>> GetAsync(int id, string key, string value)
+        public async Task<ApiResponse<List<Metadata>>> GetAsync(int id, int skip, int take, string key = null, string value = null)
 		{
-			string path = string.Format("/catalog/items/{id}/storemetadata?key={0}&value={1}&skip={2}&take={3}", id, key, value);
+            Validator.For(id, "id").IsGreaterThanOrEqual(1);
+            
+            string path = string.Format("/catalog/items/{0}/storemetadata?", id);
+            if(!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value))
+            {
+                path += string.Format("key={0}&value={1}&", key, value);
+            }
+
+            else if (!string.IsNullOrEmpty(key) || !string.IsNullOrEmpty(value))
+            {
+                Validator.For(key, "key").IsNotNullOrEmpty();
+                Validator.For(value, "value").IsNotNullOrEmpty();
+            }
+
+            Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
+            Validator.For(take, "take").IsGreaterThanOrEqual(1);
+
+            path += string.Format("skip={0}&take={1}",skip,take);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{
-                return await response.Content.ReadAsAsync<ApiResponse<List<InStoreMetadata>>>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<List<Metadata>>>().ConfigureAwait(false);
 			}
 		}
     }
