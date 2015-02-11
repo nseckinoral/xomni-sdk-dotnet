@@ -10,16 +10,13 @@ namespace XOMNI.SDK.Public.Models
 {
     public class Location
     {
-        public double? Longitude { get; set; }
-        public double? Latitude { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
 
-        public override string ToString()
+        public string GetFormattedLocation()
         {
-            Validator.For(Longitude, "Longitude").IsNotNull();
-            Validator.For(Latitude, "Latitude").IsNotNull();
-
-            string longitude = string.Format(new CultureInfo("en-US"),"{0:00.000000}", Longitude);
-            string latitude = string.Format(new CultureInfo("en-US"),"{0:00.000000}", Latitude);
+            string longitude = string.Format(new CultureInfo("en-US"), "{0:00.000000}", Longitude);
+            string latitude = string.Format(new CultureInfo("en-US"), "{0:00.000000}", Latitude);
 
             return string.Format("{0};{1}", longitude, latitude);
         }
