@@ -184,64 +184,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
            }
         }";
 
-        readonly HttpResponseMessage validHttpResponseMessageForCategoryTreeItem = new HttpResponseMessage()
-        {
-            StatusCode = HttpStatusCode.OK,
-            Content = new MockedJsonContent(validAPIResponseForCategoryTreeItem)
-        };
-        
-        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncCategoryTreeResponseParseTest()
-        {
-            await base.ResponseParseTestAsync(
-                (CategoryClient c) => c.GetAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
-                validHttpResponseMessage,
-                validAPIResponseForCategoryTreeItem
-                );
-        }
-
-        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncCategoryTreeHttpMethodTest()
-        {
-            await base.HttpMethodTestAsync(
-                (CategoryClient c) => c.GetAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
-                HttpMethod.Get
-                );
-        }
-
-        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncCategoryTreeUriCheckTest()
-        {
-            await base.UriTestAsync(
-              (CategoryClient p) => p.GetAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
-              string.Format("/catalog/categories?includeMetadata={0}&imageAssetDetail={1}&videoAssetDetail={2}&documentAssetDetail={3}", false, 4,4,4));
-        }
-
-        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncCategoryTreeHeadersTest()
-        {
-            await base.DefaultRequestHeadersTestAsync(
-                (CategoryClient c) => c.GetAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata)
-            );
-        }
-
-        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncCategoryTreeNotFoundTest()
-        {
-            var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
-            expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
-
-            await base.APIExceptionResponseTestAsync(
-              (CategoryClient t) => t.GetAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
-              notFoundHttpResponseMessage,
-              expectedExceptionResult
-            );
-        }
-        #endregion
-
-        #region GetAsyncCategory
-
-        const string validAPIResponseForCategory = @"{
+        const string validAPIResponseForSubCategories = @"{
             'Data': [
                 {
                     'Id': 1,
@@ -354,55 +297,114 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             ]
         }";
 
-        readonly HttpResponseMessage validHttpResponseMessage = new HttpResponseMessage()
+        readonly HttpResponseMessage validHttpResponseMessageForCategoryTreeItem = new HttpResponseMessage()
         {
             StatusCode = HttpStatusCode.OK,
-            Content = new MockedJsonContent(validAPIResponseForCategory)
+            Content = new MockedJsonContent(validAPIResponseForCategoryTreeItem)
         };
 
-        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncResponseParseTest()
+        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetCategoryTreeAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncCategoryTreeResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (CategoryClient c) => c.GetAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
-                validHttpResponseMessage,
-                validAPIResponseForCategory
+                (CategoryClient c) => c.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
+                validHttpResponseMessageForCategoryTreeItem,
+                validAPIResponseForCategoryTreeItem
                 );
         }
 
-        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncHttpMethodTest()
+        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetCategoryTreeAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncCategoryTreeHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (CategoryClient c) => c.GetAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
+                (CategoryClient c) => c.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
                 HttpMethod.Get
                 );
         }
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncUriCheckTest()
+        public async Task GetAsyncCategoryTreeUriCheckTest()
         {
             await base.UriTestAsync(
-              (CategoryClient p) => p.GetAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
-              string.Format("/catalog/categories?parentCategoryId={0}&includeMetadata={1}&imageAssetDetail={2}&videoAssetDetail={3}&documentAssetDetail={4}", 1, false, 4, 4, 4));
+              (CategoryClient p) => p.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
+              string.Format("/catalog/categories?includeMetadata={0}&imageAssetDetail={1}&videoAssetDetail={2}&documentAssetDetail={3}", false, 4,4,4));
         }
 
-        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncHeadersTest()
+        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetCategoryTreeAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncCategoryTreeHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (CategoryClient c) => c.GetAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata)
+                (CategoryClient c) => c.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata)
             );
         }
 
-        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetCategoryTreeAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncCategoryTreeNotFoundTest()
+        {
+            var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
+            expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
+
+            await base.APIExceptionResponseTestAsync(
+              (CategoryClient t) => t.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
+              notFoundHttpResponseMessage,
+              expectedExceptionResult
+            );
+        }
+        #endregion
+
+        #region GetSubCategoriesAsync
+
+
+
+        readonly HttpResponseMessage validHttpResponseMessageForSubCategories = new HttpResponseMessage()
+        {
+            StatusCode = HttpStatusCode.OK,
+            Content = new MockedJsonContent(validAPIResponseForSubCategories)
+        };
+
+        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncResponseParseTest()
+        {
+            await base.ResponseParseTestAsync(
+                (CategoryClient c) => c.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
+                validHttpResponseMessageForSubCategories,
+                validAPIResponseForSubCategories
+                );
+        }
+
+        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncHttpMethodTest()
+        {
+            await base.HttpMethodTestAsync(
+                (CategoryClient c) => c.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
+                HttpMethod.Get
+                );
+        }
+
+        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncUriCheckTest()
+        {
+            await base.UriTestAsync(
+              (CategoryClient p) => p.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
+              string.Format("/catalog/categories?parentCategoryId={0}&includeMetadata={1}&imageAssetDetail={2}&videoAssetDetail={3}&documentAssetDetail={4}", 1, false, 4, 4, 4));
+        }
+
+        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncHeadersTest()
+        {
+            await base.DefaultRequestHeadersTestAsync(
+                (CategoryClient c) => c.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata)
+            );
+        }
+
+        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncNotFoundTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (CategoryClient t) => t.GetAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
+              (CategoryClient t) => t.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
               notFoundHttpResponseMessage,
               expectedExceptionResult
             );
