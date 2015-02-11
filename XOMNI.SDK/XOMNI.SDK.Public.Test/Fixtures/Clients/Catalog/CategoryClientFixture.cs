@@ -304,7 +304,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         };
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetCategoryTreeAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncCategoryTreeResponseParseTest()
+        public async Task GetCategoryTreeAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
                 (CategoryClient c) => c.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
@@ -314,7 +314,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetCategoryTreeAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncCategoryTreeHttpMethodTest()
+        public async Task GetCategoryTreeAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
                 (CategoryClient c) => c.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
@@ -322,8 +322,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                 );
         }
 
-        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncCategoryTreeUriCheckTest()
+        [TestMethod, TestCategory("CategoryClient"), TestCategory("GetCategoryTreeAsync"), TestCategory("HTTP.GET")]
+        public async Task GetCategoryTreeAsyncUriCheckTest()
         {
             await base.UriTestAsync(
               (CategoryClient p) => p.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
@@ -331,7 +331,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetCategoryTreeAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncCategoryTreeHeadersTest()
+        public async Task GetCategoryTreeAsyncHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
                 (CategoryClient c) => c.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata)
@@ -339,7 +339,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetCategoryTreeAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncCategoryTreeNotFoundTest()
+        public async Task GetCategoryTreeAsyncNotFoundTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
@@ -363,7 +363,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         };
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncResponseParseTest()
+        public async Task GetSubCategoriesAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
                 (CategoryClient c) => c.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
@@ -373,7 +373,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncHttpMethodTest()
+        public async Task GetSubCategoriesAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
                 (CategoryClient c) => c.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
@@ -382,7 +382,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncUriCheckTest()
+        public async Task GetSubCategoriesAsyncUriCheckTest()
         {
             await base.UriTestAsync(
               (CategoryClient p) => p.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
@@ -390,7 +390,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncHeadersTest()
+        public async Task GetSubCategoriesAsyncHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
                 (CategoryClient c) => c.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata)
@@ -398,7 +398,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncNotFoundTest()
+        public async Task GetSubCategoriesAsyncNotFoundTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
