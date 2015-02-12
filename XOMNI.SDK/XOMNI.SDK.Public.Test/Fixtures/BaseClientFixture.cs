@@ -29,7 +29,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures
         const string piiTokenHeaderKey = "PIIToken";
         const string xomniVersionPrefix= "application/vnd.xomni";
         
-        protected const string guid = "9ead1d3d-28c1-4dc4-b99e-3542401c9f77";
+        protected const string guidString = "9ead1d3d-28c1-4dc4-b99e-3542401c9f77";
 
         protected const string genericErrorResponse = @"{
             'IdentifierGuid':'7358fe16-3925-4951-9a77-fca4f9e167b0',
@@ -64,6 +64,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures
         protected readonly HttpResponseMessage conflictHttpResponseMessage = new HttpResponseMessage()
         {
             StatusCode = HttpStatusCode.Conflict,
+            Content = new MockedJsonContent(genericErrorResponse)
+        };
+
+        protected readonly HttpResponseMessage forbiddenHttpResponseMessage = new HttpResponseMessage()
+        {
+            StatusCode = HttpStatusCode.Forbidden,
             Content = new MockedJsonContent(genericErrorResponse)
         };
 
