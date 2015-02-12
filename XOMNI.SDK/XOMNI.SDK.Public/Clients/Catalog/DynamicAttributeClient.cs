@@ -45,6 +45,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         public async Task<ApiResponse<List<DynamicAttribute>>> GetAsync(int dynamicAttributeTypeId)
 		{
+            Validator.For(dynamicAttributeTypeId, "dynamicAttributeTypeId").IsGreaterThanOrEqual(1);
 			string path = string.Format("/catalog/dynamicattributes/{0}", dynamicAttributeTypeId);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
