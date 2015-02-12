@@ -17,11 +17,16 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         }
 
-        public async Task<ApiResponse<List<ImageAsset>>> GetImagesAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
+        public async Task<ApiResponse<List<Asset>>> GetImagesAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
+        {
+            return await GetAssetAsync(brandId, AssetType.images, metadataKey, metadataValue, assetDetail);
+        }
+
+        public async Task<ApiResponse<List<Asset>>> GetAssetAsync(int brandId, AssetType assetType, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             Validator.For(brandId, "brandId").IsGreaterThanOrEqual(1);
 
-            string path = string.Format("/catalog/brands/{0}/images?", brandId);
+            string path = string.Format("/catalog/brands/{0}/{1}?", brandId, assetType);
 
             if (!string.IsNullOrEmpty(metadataKey) && !string.IsNullOrEmpty(metadataValue))
             {
@@ -37,56 +42,18 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
             {
-                return await response.Content.ReadAsAsync<ApiResponse<List<ImageAsset>>>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<List<Asset>>>().ConfigureAwait(false);
             }
         }
 
         public async Task<ApiResponse<List<Asset>>> GetVideosAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
-            Validator.For(brandId, "brandId").IsGreaterThanOrEqual(1);
-
-            string path = string.Format("/catalog/brands/{0}/videos?", brandId);
-
-            if (!string.IsNullOrEmpty(metadataKey) && !string.IsNullOrEmpty(metadataValue))
-            {
-                path += string.Format("metadataKey={0}&metadataValue={1}&", metadataKey, metadataValue);
-            }
-            else if (!string.IsNullOrEmpty(metadataKey) || !string.IsNullOrEmpty(metadataValue))
-            {
-                Validator.For(metadataKey, "metadataKey").IsNotNullOrEmpty();
-                Validator.For(metadataValue, "metadataValue").IsNotNullOrEmpty();
-            }
-
-            path += string.Format("assetDetail={0}", (int)assetDetail);
-
-            using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-            {
-                return await response.Content.ReadAsAsync<ApiResponse<List<Asset>>>().ConfigureAwait(false);
-            }
+            return await GetAssetAsync(brandId, AssetType.videos, metadataKey, metadataValue, assetDetail);
         }
 
         public async Task<ApiResponse<List<Asset>>> GetDocumentsAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
-            Validator.For(brandId, "brandId").IsGreaterThanOrEqual(1);
-
-            string path = string.Format("/catalog/brands/{0}/documents?", brandId);
-
-            if (!string.IsNullOrEmpty(metadataKey) && !string.IsNullOrEmpty(metadataValue))
-            {
-                path += string.Format("metadataKey={0}&metadataValue={1}&", metadataKey, metadataValue);
-            }
-            else if (!string.IsNullOrEmpty(metadataKey) || !string.IsNullOrEmpty(metadataValue))
-            {
-                Validator.For(metadataKey, "metadataKey").IsNotNullOrEmpty();
-                Validator.For(metadataValue, "metadataValue").IsNotNullOrEmpty();
-            }
-
-            path += string.Format("assetDetail={0}", (int)assetDetail);
-
-            using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-            {
-                return await response.Content.ReadAsAsync<ApiResponse<List<Asset>>>().ConfigureAwait(false);
-            }
+            return await GetAssetAsync(brandId, AssetType.documents, metadataKey, metadataValue, assetDetail);
         }
     }
 }

@@ -16,7 +16,9 @@ namespace XOMNI.SDK.Public.Clients.Social
 		}
         public async Task<ApiResponse<string>> GetAsync(SocialPlatformType socialPlatformName)
 		{
-			string path = string.Format("/social/authurl/{0}", socialPlatformName);
+            ValidatePIIToken();
+
+			string path = string.Format("/social/authurl/{0}", socialPlatformName.ToString().ToLowerInvariant());
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
 			{

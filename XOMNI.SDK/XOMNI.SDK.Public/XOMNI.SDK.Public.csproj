@@ -92,6 +92,7 @@
     <Compile Include="Models\ApiResponse.cs" />
     <Compile Include="Models\Catalog\Asset.cs" />
     <Compile Include="Models\Catalog\AssetDetailType.cs" />
+    <Compile Include="Models\Catalog\AssetType.cs" />
     <Compile Include="Models\Catalog\AutoCompleteResult.cs" />
     <Compile Include="Models\Catalog\AutoCompleteResultItem.cs" />
     <Compile Include="Models\Catalog\AutoCompleteSearchType.cs" />

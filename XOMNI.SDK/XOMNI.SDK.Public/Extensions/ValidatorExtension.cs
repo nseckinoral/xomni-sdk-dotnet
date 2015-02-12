@@ -16,6 +16,16 @@ namespace XOMNI.SDK.Public.Extensions
             }
             return item;
         }
+
+        public static Parameter<Nullable<double>> IsNotNull(this Parameter<Nullable<double>> item)
+        {
+            if(!item.Value.HasValue)
+            {
+                throw new ArgumentException(string.Format("{0} can not be null.", item.ArgName));
+            }
+            return item;
+        }
+
         public static Parameter<string> IsNotNullOrEmpty(this Parameter<string> item)
         {
             if (string.IsNullOrEmpty(item.Value))
@@ -39,7 +49,16 @@ namespace XOMNI.SDK.Public.Extensions
         {
             if (item.Value < minBound || maxBound < item.Value)
             {
-                throw new ArgumentOutOfRangeException(string.Format("{0} must be in range ({1} - {2}).", item.ArgName, minBound, maxBound));
+                throw new ArgumentOutOfRangeException(item.ArgName, item.Value, string.Format("{0} must be in range ({1} - {2}).", item.ArgName, minBound, maxBound));
+            }
+            return item;
+        }
+
+        public static Parameter<double> InRange(this Parameter<double> item, double minBound, double maxBound)
+        {
+            if (item.Value < minBound || maxBound < item.Value)
+            {
+                throw new ArgumentOutOfRangeException(item.ArgName, item.Value, string.Format("{0} must be in range ({1} - {2}).", item.ArgName, minBound, maxBound));
             }
             return item;
         }
