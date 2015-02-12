@@ -16,7 +16,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
     [TestClass]
     public class DynamicAttributeClientFixture : BaseClientFixture<DynamicAttributeClient>
     {
-       
+        #region Arrange
         const string validAPIResponseForDynamicAttributeTypes = @"{
             'Data': {
                 'Results': [
@@ -129,14 +129,9 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                 }
             ]
         }";
+        #endregion
 
         #region GetDynamicAttributeTypesAsync
-        
-        readonly HttpResponseMessage validHttpResponseMessageForDynamicattributeTypes = new HttpResponseMessage()
-        {
-            Content = new MockedJsonContent(validAPIResponseForDynamicAttributeTypes),
-            StatusCode = HttpStatusCode.OK
-        };
 
         [TestMethod, TestCategory("DynamicAttributeClient"), TestCategory("GetDynamicAttributeTypesAsync"), TestCategory("HTTP.GET")]
         public async Task GetDynamicAttributeTypesAsyncResponseParseTest()
@@ -200,12 +195,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         #endregion
 
         #region GetDynamicAttributesAsync
-
-        readonly HttpResponseMessage validHttpResponseMessageeForDynamicAttributes = new HttpResponseMessage()
-        {
-            Content = new MockedJsonContent(validAPIResponseForDynamicAttributes),
-            StatusCode = HttpStatusCode.OK
-        };
         
         [TestMethod, TestCategory("DynamicAttributeClient"), TestCategory("GetDynamicAttributesAsync"), TestCategory("HTTP.GET")]
         public async Task GetDynamicAttributesAsyncResponseParseTest()
@@ -270,12 +259,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
 
         #region GetAsync
 
-        readonly HttpResponseMessage validHttpResponseMessage = new HttpResponseMessage()
-        {
-            Content = new MockedJsonContent(validAPIResponse),
-            StatusCode = HttpStatusCode.OK
-        };
-
         [TestMethod, TestCategory("DynamicAttributeClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncResponseParseTest()
         {
@@ -325,6 +308,16 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                 (DynamicAttributeClient c) => c.GetAsync(1)
             );
         }
+
+        [TestMethod, TestCategory("DynamicAttributeClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        public async Task GetAsyncdynamicAttributeTypeIdTest()
+        {
+            await base.SDKExceptionResponseTestAsync(
+                (DynamicAttributeClient c) => c.GetAsync(-1),
+                new ArgumentException("dynamicAttributeTypeId must be greater than or equal to 1.")
+            );
+        }
+
         #endregion
     }
 }
