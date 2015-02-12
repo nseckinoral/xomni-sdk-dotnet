@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.PII;
+using XOMNI.SDK.Public.Extensions;
 
 namespace XOMNI.SDK.Public.Clients.PII
 {
@@ -17,12 +18,9 @@ namespace XOMNI.SDK.Public.Clients.PII
 
         public async Task<ApiResponse<AnonymousUser>> PostAsync(AnonymousUserRequest anonymousUser)
 		{
-			string path = "/pii/anonymous";
+            Validator.For(anonymousUser.UserName, "UserName").IsNotNullOrEmpty();
 
-            if (string.IsNullOrEmpty(anonymousUser.UserName))
-            {
-                throw new ArgumentNullException("userName");
-            }
+			string path = "/pii/anonymous";
 
             using (var response = await Client.PostAsJsonAsync(path, anonymousUser).ConfigureAwait(false))
 			{

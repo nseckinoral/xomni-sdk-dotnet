@@ -90,6 +90,7 @@
     <Compile Include="Fixtures\Clients\Catalog\ItemInStoreMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Company\StoreClientFixture.cs" />
     <Compile Include="Fixtures\Clients\OmniPlay\DeviceClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\PII\AnonymousClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\LoyaltyClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\LoyaltyMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\WishlistMetadataClientFixture.cs" />
