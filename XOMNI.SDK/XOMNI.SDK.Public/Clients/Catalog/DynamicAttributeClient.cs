@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
+using XOMNI.SDK.Public.Extensions;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -16,8 +17,11 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
 		}
 
-		public async Task<ApiResponse<PaginatedContainer<DynamicAttributeType>>> GetDynamicattributeTypesAsync(int skip, int take)
+		public async Task<ApiResponse<PaginatedContainer<DynamicAttributeType>>> GetDynamicAttributeTypesAsync(int skip, int take)
 		{
+            Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
+            Validator.For(take, "take").IsGreaterThanOrEqual(1);
+
 			string path = string.Format("/catalog/dynamicattributetypes?skip={0}&take={1}", skip, take);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
@@ -28,6 +32,9 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         public async Task<ApiResponse<PaginatedContainer<DynamicAttribute>>> GetDynamicAttributesAsync(int skip, int take)
 		{
+            Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
+            Validator.For(take, "take").IsGreaterThanOrEqual(1);
+
 			string path = string.Format("/catalog/dynamicattributes?skip={0}&take={1}", skip, take);
 
 			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
