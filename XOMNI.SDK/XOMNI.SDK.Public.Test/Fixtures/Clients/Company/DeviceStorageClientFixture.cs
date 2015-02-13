@@ -50,7 +50,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         readonly DeviceStorageItem sampleDeviceStorageItem = new DeviceStorageItem()
         {
-            DeviceId = guidString,
+            DeviceId = uniqeId,
             Key = "SampleKey",
             Value = "SampleValue"
         };

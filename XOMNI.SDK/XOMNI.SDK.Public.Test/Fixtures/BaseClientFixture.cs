@@ -29,7 +29,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures
         const string piiTokenHeaderKey = "PIIToken";
         const string xomniVersionPrefix= "application/vnd.xomni";
         
-        protected const string guidString = "9ead1d3d-28c1-4dc4-b99e-3542401c9f77";
+        protected const string uniqeId = "9ead1d3d-28c1-4dc4-b99e-3542401c9f77";
 
         protected const string genericErrorResponse = @"{
             'IdentifierGuid':'7358fe16-3925-4951-9a77-fca4f9e167b0',
