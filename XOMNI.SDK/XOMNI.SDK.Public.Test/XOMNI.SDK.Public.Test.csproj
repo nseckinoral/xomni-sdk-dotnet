@@ -80,6 +80,7 @@
     <Compile Include="Fixtures\Clients\Catalog\BrandClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\CategoryMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\DynamicAttributeClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\Catalog\ItemClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\TagMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\BrandAssetClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\TagClientFixture.cs" />
