@@ -32,7 +32,8 @@ namespace XOMNI.SDK.Public.Clients.Catalog
                 Validator.For(key, "key").IsNotNullOrEmpty();
                 Validator.For(value, "value").IsNotNullOrEmpty();
             }
-            else if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(keyPrefix))
+            
+            if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(keyPrefix))
             {
                 throw new ArgumentException("Key and keyPrefix parameters cannot be sent at the same time in a metadata query.");
             }
