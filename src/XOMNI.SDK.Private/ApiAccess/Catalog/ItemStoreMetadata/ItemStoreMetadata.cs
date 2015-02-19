@@ -50,20 +50,6 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemStoreMetadata
             return HttpProvider.DeleteAsync(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId), additionalParameters), credential);
         }
 
-        //public Task ClearInStoreMetadataAsync(int itemId, int storeId, ApiBasicCredential credential)
-        //{
-        //    Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
-        //    additionalParameters.Add("storeId", storeId.ToString());
-
-        //    return HttpProvider.DeleteAsync(GenerateUrl(string.Format(ListOperationBaseUrl, itemId), additionalParameters), credential);
-        //}
-
-        //public Task ClearInStoreMetadataAsync(int itemId, ApiBasicCredential credential)
-        //{
-        //    Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
-        //    return HttpProvider.DeleteAsync(GenerateUrl(string.Format(ListOperationBaseUrl, itemId)), credential);
-        //}
-
         public Task<List<InStoreMetadata>> GetAllInStoreMetadataAsync(int itemId, ApiBasicCredential credential)
         {
             return HttpProvider.GetAsync<List<InStoreMetadata>>(GenerateUrl(string.Format(ListOperationBaseUrl, itemId)), credential);
@@ -98,20 +84,6 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemStoreMetadata
 
             return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId), additionalParameters), credential));
         }
-
-        //public XOMNIRequestMessage CreateClearInStoreMetadataRequest(int itemId, int storeId, ApiBasicCredential credential)
-        //{
-        //    Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
-        //    additionalParameters.Add("storeId", storeId.ToString());
-
-        //    return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(string.Format(ListOperationBaseUrl, itemId), additionalParameters), credential));
-        //}
-
-        //public XOMNIRequestMessage CreateClearInStoreMetadataRequest(int itemId, ApiBasicCredential credential)
-        //{
-        //    Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
-        //    return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(string.Format(ListOperationBaseUrl, itemId)), credential));
-        //}
 
         public XOMNIRequestMessage<List<InStoreMetadata>> CreateGetAllInStoreMetadataRequest(int itemId, ApiBasicCredential credential)
         {
