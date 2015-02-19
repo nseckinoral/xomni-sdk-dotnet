@@ -227,20 +227,9 @@ namespace XOMNI.SDK.Private.Catalog
             return itemMove.MoveItemsAsync(defaultItemId, variantItemIds, base.ApiCredential);
         }
 
-
-        public Task<Model.Private.Catalog.InStoreMetadata> AddInStoreMetadataAsync(int itemId, Model.Private.Catalog.InStoreMetadata inStoreMetadata)
-        {
-            return itemStoreMetadataApi.AddInStoreMetadataAsync(itemId, inStoreMetadata, this.ApiCredential);
-        }
-
         public Task<List<Model.Private.Catalog.InStoreMetadata>> AddInStoreMetadataAsync(int itemId, List<Model.Private.Catalog.InStoreMetadata> inStoreMetadataList)
         {
             return itemStoreMetadataApi.AddInStoreMetadataAsync(itemId, inStoreMetadataList, this.ApiCredential);
-        }
-
-        public Task<Model.Private.Catalog.InStoreMetadata> UpdateInStoreMetadataAsync(int itemId, Model.Private.Catalog.InStoreMetadata inStoreMetadata)
-        {
-            return itemStoreMetadataApi.UpdateInStoreMetadataAsync(itemId, inStoreMetadata, this.ApiCredential);
         }
 
         public Task<List<Model.Private.Catalog.InStoreMetadata>> UpdateInStoreMetadataAsync(int itemId, List<Model.Private.Catalog.InStoreMetadata> inStoreMetadataList)
@@ -266,7 +255,7 @@ namespace XOMNI.SDK.Private.Catalog
 
         #region low level methods
 
-        public XOMNIRequestMessage<List<int>> CreateCreateGetRelatedItemsRequest(int itemId)
+        public XOMNIRequestMessage<List<int>> CreateGetRelatedItemsRequest(int itemId)
         {
             return relatedItemsApi.CreateGetByItemIdRequest(itemId, this.ApiCredential);
         }
@@ -431,19 +420,9 @@ namespace XOMNI.SDK.Private.Catalog
             return itemMove.CreateMoveItemsRequest(defaultItemId, variantItemIds, base.ApiCredential);
         }
 
-        public XOMNIRequestMessage<Model.Private.Catalog.InStoreMetadata> CreateAddInStoreMetadataRequest(int itemId, Model.Private.Catalog.InStoreMetadata inStoreMetadata)
-        {
-            return itemStoreMetadataApi.CreateAddInStoreMetadataRequest(itemId, inStoreMetadata, this.ApiCredential);
-        }
-
         public XOMNIRequestMessage<List<Model.Private.Catalog.InStoreMetadata>> CreateAddInStoreMetadataRequest(int itemId, List<Model.Private.Catalog.InStoreMetadata> inStoreMetadataList)
         {
             return itemStoreMetadataApi.CreateAddInStoreMetadataRequest(itemId, inStoreMetadataList, this.ApiCredential);
-        }
-
-        public XOMNIRequestMessage<Model.Private.Catalog.InStoreMetadata> CreateUpdateInStoreMetadataRequest(int itemId, Model.Private.Catalog.InStoreMetadata inStoreMetadata)
-        {
-            return itemStoreMetadataApi.CreateUpdateInStoreMetadataRequest(itemId, inStoreMetadata, this.ApiCredential);
         }
 
         public XOMNIRequestMessage<List<Model.Private.Catalog.InStoreMetadata>> CreateUpdateInStoreMetadataRequest(int itemId, List<Model.Private.Catalog.InStoreMetadata> inStoreMetadataList)
