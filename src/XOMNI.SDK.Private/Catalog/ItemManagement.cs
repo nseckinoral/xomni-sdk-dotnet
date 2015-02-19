@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using XOMNI.SDK.Model;
 using XOMNI.SDK.Model.Asset;
@@ -244,18 +243,9 @@ namespace XOMNI.SDK.Private.Catalog
             return itemStoreMetadataApi.GetAllInStoreMetadataAsync(itemId, this.ApiCredential);
         }
 
-        public Task DeleteInStoreMetadataAsync(int itemId, int storeId, string metadataKey)
+        public Task DeleteInStoreMetadataAsync(int itemId, int? storeId = null, string metadataKey = null, string metadataKeyPrefix = null)
         {
-            return itemStoreMetadataApi.DeleteInStoreMetadataAsync(itemId, storeId, metadataKey, this.ApiCredential);
-        }
-        public Task ClearInStoreMetadataAsync(int itemId, int storeId)
-        {
-            return itemStoreMetadataApi.ClearInStoreMetadataAsync(itemId, storeId, this.ApiCredential);
-        }
-
-        public Task ClearInStoreMetadataAsync(int itemId)
-        {
-            return itemStoreMetadataApi.ClearInStoreMetadataAsync(itemId, this.ApiCredential);
+            return itemStoreMetadataApi.DeleteInStoreMetadataAsync(itemId, storeId, metadataKey, metadataKeyPrefix, this.ApiCredential);
         }
 
         public Task<CountedCollectionContainer<PrivateItemSearchResponse>> SearchAsync(int skip, int take, int? categoryId = null, int? brandId = null, int? defaultItemId = null, string SKU = null, string UUID = null, List<int> itemIds = null, bool includeOnlyMasterItems = false)
@@ -446,18 +436,9 @@ namespace XOMNI.SDK.Private.Catalog
             return itemStoreMetadataApi.CreateGetAllInStoreMetadataRequest(itemId, this.ApiCredential);
         }
 
-        public XOMNIRequestMessage CreateDeleteInStoreMetadataRequest(int itemId, int storeId, string metadataKey)
+        public XOMNIRequestMessage CreateDeleteInStoreMetadataRequest(int itemId, int? storeId = null, string metadataKey = null, string metadataKeyPrefix = null)
         {
-            return itemStoreMetadataApi.CreateDeleteInStoreMetadataRequest(itemId, storeId, metadataKey, this.ApiCredential);
-        }
-        public XOMNIRequestMessage CreateClearInStoreMetadataRequest(int itemId, int storeId)
-        {
-            return itemStoreMetadataApi.CreateClearInStoreMetadataRequest(itemId, storeId, this.ApiCredential);
-        }
-
-        public XOMNIRequestMessage CreateClearInStoreMetadataRequest(int itemId)
-        {
-            return itemStoreMetadataApi.CreateClearInStoreMetadataRequest(itemId, this.ApiCredential);
+            return itemStoreMetadataApi.CreateDeleteInStoreMetadataRequest(itemId, storeId, metadataKey, metadataKeyPrefix, this.ApiCredential);
         }
 
         public XOMNIRequestMessage<CountedCollectionContainer<PrivateItemSearchResponse>> CreateSearchRequest(int skip, int take, int? categoryId = null, int? brandId = null, int? defaultItemId = null, string SKU = null, string UUID = null, List<int> itemIds = null, bool includeOnlyMasterItems = false)
