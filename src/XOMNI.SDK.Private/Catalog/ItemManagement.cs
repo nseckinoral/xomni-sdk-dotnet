@@ -233,9 +233,19 @@ namespace XOMNI.SDK.Private.Catalog
             return itemStoreMetadataApi.AddInStoreMetadataAsync(itemId, inStoreMetadata, this.ApiCredential);
         }
 
+        public Task<List<Model.Private.Catalog.InStoreMetadata>> AddInStoreMetadataAsync(int itemId, List<Model.Private.Catalog.InStoreMetadata> inStoreMetadataList)
+        {
+            return itemStoreMetadataApi.AddInStoreMetadataAsync(itemId, inStoreMetadataList, this.ApiCredential);
+        }
+
         public Task<Model.Private.Catalog.InStoreMetadata> UpdateInStoreMetadataAsync(int itemId, Model.Private.Catalog.InStoreMetadata inStoreMetadata)
         {
             return itemStoreMetadataApi.UpdateInStoreMetadataAsync(itemId, inStoreMetadata, this.ApiCredential);
+        }
+
+        public Task<List<Model.Private.Catalog.InStoreMetadata>> UpdateInStoreMetadataAsync(int itemId, List<Model.Private.Catalog.InStoreMetadata> inStoreMetadataList)
+        {
+            return itemStoreMetadataApi.UpdateInStoreMetadataAsync(itemId, inStoreMetadataList, this.ApiCredential);
         }
 
         public Task<List<Model.Private.Catalog.InStoreMetadata>> GetAllInStoreMetadataAsync(int itemId)
@@ -426,9 +436,19 @@ namespace XOMNI.SDK.Private.Catalog
             return itemStoreMetadataApi.CreateAddInStoreMetadataRequest(itemId, inStoreMetadata, this.ApiCredential);
         }
 
+        public XOMNIRequestMessage<List<Model.Private.Catalog.InStoreMetadata>> CreateAddInStoreMetadataRequest(int itemId, List<Model.Private.Catalog.InStoreMetadata> inStoreMetadataList)
+        {
+            return itemStoreMetadataApi.CreateAddInStoreMetadataRequest(itemId, inStoreMetadataList, this.ApiCredential);
+        }
+
         public XOMNIRequestMessage<Model.Private.Catalog.InStoreMetadata> CreateUpdateInStoreMetadataRequest(int itemId, Model.Private.Catalog.InStoreMetadata inStoreMetadata)
         {
             return itemStoreMetadataApi.CreateUpdateInStoreMetadataRequest(itemId, inStoreMetadata, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Model.Private.Catalog.InStoreMetadata>> CreateUpdateInStoreMetadataRequest(int itemId, List<Model.Private.Catalog.InStoreMetadata> inStoreMetadataList)
+        {
+            return itemStoreMetadataApi.CreateUpdateInStoreMetadataRequest(itemId, inStoreMetadataList, this.ApiCredential);
         }
 
         public XOMNIRequestMessage<List<Model.Private.Catalog.InStoreMetadata>> CreateGetAllInStoreMetadataRequest(int itemId)

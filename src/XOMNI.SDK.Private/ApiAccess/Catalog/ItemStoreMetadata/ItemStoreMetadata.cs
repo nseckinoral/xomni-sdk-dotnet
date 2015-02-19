@@ -26,9 +26,19 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemStoreMetadata
             return HttpProvider.PostAsync<InStoreMetadata>(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), inStoreMetadata, credential);
         }
 
-        public Task<InStoreMetadata> UpdateInStoreMetadataAsync(int itemId, InStoreMetadata InStoreMetadata, ApiBasicCredential credential)
+        public Task<List<InStoreMetadata>> AddInStoreMetadataAsync(int itemId, List<InStoreMetadata> inStoreMetadataList, ApiBasicCredential credential)
         {
-            return HttpProvider.PutAsync<InStoreMetadata>(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), InStoreMetadata, credential);
+            return HttpProvider.PostAsync<List<InStoreMetadata>>(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), inStoreMetadataList, credential);
+        }
+
+        public Task<InStoreMetadata> UpdateInStoreMetadataAsync(int itemId, InStoreMetadata inStoreMetadata, ApiBasicCredential credential)
+        {
+            return HttpProvider.PutAsync<InStoreMetadata>(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), inStoreMetadata, credential);
+        }
+
+        public Task<List<InStoreMetadata>> UpdateInStoreMetadataAsync(int itemId, List<InStoreMetadata> inStoreMetadataList, ApiBasicCredential credential)
+        {
+            return HttpProvider.PutAsync<List<InStoreMetadata>>(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), inStoreMetadataList, credential);
         }
 
         public Task DeleteInStoreMetadataAsync(int itemId, int? storeId, string metadataKey, string metadataKeyPrefix, ApiBasicCredential credential)
@@ -61,9 +71,19 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemStoreMetadata
             return new XOMNIRequestMessage<InStoreMetadata>(HttpProvider.CreatePostRequest(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), credential, inStoreMetadata));
         }
 
-        public XOMNIRequestMessage<InStoreMetadata> CreateUpdateInStoreMetadataRequest(int itemId, InStoreMetadata InStoreMetadata, ApiBasicCredential credential)
+        public XOMNIRequestMessage<List<InStoreMetadata>> CreateAddInStoreMetadataRequest(int itemId, List<InStoreMetadata> inStoreMetadataList, ApiBasicCredential credential)
         {
-            return new XOMNIRequestMessage<InStoreMetadata>(HttpProvider.CreatePostRequest(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), credential, InStoreMetadata));
+            return new XOMNIRequestMessage<List<InStoreMetadata>>(HttpProvider.CreatePostRequest(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), credential, inStoreMetadataList));
+        }
+
+        public XOMNIRequestMessage<InStoreMetadata> CreateUpdateInStoreMetadataRequest(int itemId, InStoreMetadata inStoreMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<InStoreMetadata>(HttpProvider.CreatePostRequest(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), credential, inStoreMetadata));
+        }
+
+        public XOMNIRequestMessage<List<InStoreMetadata>> CreateUpdateInStoreMetadataRequest(int itemId, List<InStoreMetadata> inStoreMetadataList, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<List<InStoreMetadata>>(HttpProvider.CreatePostRequest(GenerateUrl(string.Format(SingleOperationBaseUrl, itemId)), credential, inStoreMetadataList));
         }
 
         public XOMNIRequestMessage CreateDeleteInStoreMetadataRequest(int itemId, int? storeId, string metadataKey, string metadataKeyPrefix, ApiBasicCredential credential)
