@@ -351,6 +351,10 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
               new ArgumentException(string.Format("{0} must be greater than or equal to 1.", "ItemId")));
 
             await base.SDKExceptionResponseTestAsync(
+               (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), null),
+               new ArgumentNullException(string.Format("{0} can not be null.", "shoppingCartItem")));
+
+            await base.SDKExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), new ShoppingCartItem()
                   {
                       ItemId = 5,
