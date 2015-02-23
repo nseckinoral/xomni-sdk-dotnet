@@ -8,6 +8,10 @@ namespace XOMNI.SDK.Public.Models.Catalog
 {
     public class ItemSearchRequest
     {
+        public int Skip { get; set; }
+        public int Take { get; set; }
+        public string OrderedPropertyName { get; set; }
+        public string OrderBy { get; set; }
         public int? DefaultItemId { get; set; }
         public string RFID { get; set; }
         public string UUID { get; set; }
@@ -33,9 +37,10 @@ namespace XOMNI.SDK.Public.Models.Catalog
         public string DelimitedDynamicAttributeValues { get; set; }
         public bool IncludeOnlyMasterItems { get; set; }
         public string TagQuery { get; set; }
-        protected virtual bool IncludeStaticNavigationInternal { get; set; }
-        protected virtual bool IncludeDynamicNavigationInternal { get; set; }
+        protected virtual bool IncludeStaticNavigation { get; set; }
+        protected virtual bool IncludeDynamicNavigation { get; set; }
         protected virtual bool IncludeItemsInternal { get; set; }
         public bool? IncludePassiveItems { get; set; }
+        public List<int> ItemIds { get; set; }
     }
 }
