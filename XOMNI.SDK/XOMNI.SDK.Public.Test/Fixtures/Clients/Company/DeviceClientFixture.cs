@@ -15,7 +15,7 @@ using XOMNI.SDK.Public.Test.Helpers;
 namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 {
     [TestClass]
-    public class CompanyDeviceClientFixture : BaseClientFixture<DeviceClient>
+    public class DeviceClientFixture : BaseClientFixture<DeviceClient>
     {
         #region ArrangeForGetAsyncByLocation
 
@@ -213,7 +213,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         #region DeleteAsync
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
         public async Task DeleteAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
@@ -222,7 +222,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                 );
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
         public async Task DeleteAsyncUriCheckTest()
         {
             await base.UriTestAsync(
@@ -230,7 +230,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                 string.Format("/company/devices/{0}", "0"));
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
         public async Task DeleteAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
@@ -243,7 +243,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
         public async Task DeleteAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
@@ -253,7 +253,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         #region GetAsync By Location
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLocationAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
@@ -266,7 +266,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                 );
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLocationAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
@@ -274,7 +274,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                 HttpMethod.Get);
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLocationAsyncUriCheckTest()
         {
             await base.UriTestAsync(
@@ -294,7 +294,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                string.Format("/company/stores/{0}/Devices?searchDistance={1}&deviceTypeId={2}&metadataKey={3}&metadataValue={4}&includeMetadata={5}", sampleLocation.GetFormattedLocation(), 1, 1, "key", "value", true));
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLocationAsyncNotFoundTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
@@ -306,7 +306,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               expectedExceptionResult);
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLocationAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
@@ -331,7 +331,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLocationAsyncBadRequestTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
@@ -343,7 +343,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               expectedExceptionResult);
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLocationAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
@@ -353,7 +353,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         #region GetAsync By License
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLicenseAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
@@ -366,7 +366,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                 );
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLicenseAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
@@ -374,7 +374,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                 HttpMethod.Get);
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLicenseAsyncUriCheckTest()
         {
             await base.UriTestAsync(
@@ -394,7 +394,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               string.Format("/company/stores/devices?deviceTypeId={1}&metadataKey={2}&metadataValue={3}&includeMetadata={4}", 1, 1, "key", "value", true));
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLicenseAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
@@ -410,7 +410,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               new ArgumentException(string.Format("{0} can not be empty or null.", "metadataKey")));
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLicenseAsyncNotFoundTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
@@ -422,7 +422,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               expectedExceptionResult);
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetByLicenseAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
@@ -433,7 +433,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         #region PostAsync
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
@@ -446,7 +446,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
             );
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
@@ -455,7 +455,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                 );
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncUriCheckTest()
         {
             await base.UriTestAsync(
@@ -463,7 +463,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               string.Format("/company/devices"));
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
@@ -487,7 +487,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               new ArgumentNullException(string.Format("{0} can not be null.", "device")));
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
@@ -498,7 +498,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         #region PatchAsync
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
         public async Task PatchAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
@@ -511,7 +511,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
             );
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
         public async Task PatchAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
@@ -520,7 +520,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                 );
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
         public async Task PatchAsyncUriCheckTest()
         {
             await base.UriTestAsync(
@@ -528,7 +528,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               string.Format("/company/devices/{0}", "1"));
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
         public async Task PatchAsyncNotFoundTest()
         {
             var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
@@ -540,7 +540,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               expectedExceptionResult);
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
         public async Task PatchAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
@@ -557,7 +557,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         }
 
-        [TestMethod, TestCategory("DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
         public async Task PatchAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
