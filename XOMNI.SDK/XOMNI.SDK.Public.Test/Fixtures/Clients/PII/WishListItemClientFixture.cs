@@ -256,6 +256,10 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
               new ArgumentException(string.Format("{0} must be greater than or equal to 1.", "ItemId")));
 
             await base.SDKExceptionResponseTestAsync(
+               (WishlistItemClient c) => c.PostAsync(Guid.NewGuid(), null),
+               new ArgumentNullException(string.Format("{0} can not be null.", "wishlistItem")));
+
+            await base.SDKExceptionResponseTestAsync(
                 (WishlistItemClient c) => c.PostAsync(Guid.NewGuid(), new WishlistItem()
                 {
                     ItemId = 3,
