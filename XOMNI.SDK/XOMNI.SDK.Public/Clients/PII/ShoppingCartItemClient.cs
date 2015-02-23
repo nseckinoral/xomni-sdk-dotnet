@@ -18,7 +18,6 @@ namespace XOMNI.SDK.Public.Clients.PII
 
         public async Task<ApiResponse<ShoppingCartItem>> PutAsync(Guid shoppingCartItemUniqueKey, int quantity, Location lastSeenLocation = null)
         {
-            ValidatePIIToken();
             Validator.For(quantity, "quantity").InRange(1, 100);
 
             string path = string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&quantity={1}", shoppingCartItemUniqueKey, quantity);
@@ -68,7 +67,7 @@ namespace XOMNI.SDK.Public.Clients.PII
 
         public async Task<ApiResponse<ShoppingCartItem>> PostAsync(Guid shoppingCartUniqueKey, ShoppingCartItem shoppingCartItem)
         {
-            ValidatePIIToken();
+            Validator.For(shoppingCartItem, "shoppingCartItem").IsNotNull();
             Validator.For(shoppingCartItem.ItemId, "ItemId").IsGreaterThanOrEqual(1);
             Validator.For(shoppingCartItem.Quantity, "Quantity").InRange(1, 100);
 

@@ -85,7 +85,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
                 {
                     Content = new MockedJsonContent(validAPIResponseForPutAsync)
                 },
-                validAPIResponseForPutAsync, piiUser: piiUser
+                validAPIResponseForPutAsync
             );
         }
 
@@ -94,7 +94,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.HttpMethodTestAsync(
                 (ShoppingCartItemClient c) => c.PutAsync(Guid.NewGuid(), 1, validLocation),
-                HttpMethod.Put, piiUser: piiUser
+                HttpMethod.Put
                 );
         }
 
@@ -103,12 +103,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.UriTestAsync(
              (ShoppingCartItemClient c) => c.PutAsync(Guid.Parse(uniqeId), 1),
-             string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&quantity={1}", uniqeId, 1), piiUser: piiUser
+             string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&quantity={1}", uniqeId, 1)
              );
 
             await base.UriTestAsync(
               (ShoppingCartItemClient c) => c.PutAsync(Guid.Parse(uniqeId), 1, validLocation),
-              string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&quantity={1}&longitude={2}&latitude={3}", uniqeId, 1, validLocation.Longitude, validLocation.Latitude), piiUser: piiUser
+              string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&quantity={1}&longitude={2}&latitude={3}", uniqeId, 1, validLocation.Longitude, validLocation.Latitude)
               );
         }
 
@@ -117,15 +117,15 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.SDKExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PutAsync(Guid.NewGuid(), 0, validLocation),
-              new ArgumentOutOfRangeException("quantity", 0, string.Format("{0} must be in range ({1} - {2}).", "quantity", 1, 100)), piiUser: piiUser);
+              new ArgumentOutOfRangeException("quantity", 0, string.Format("{0} must be in range ({1} - {2}).", "quantity", 1, 100)));
 
             await base.SDKExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PutAsync(Guid.NewGuid(), 2, invalidLatitudeLocation),
-              new ArgumentOutOfRangeException("Latitude", -95, string.Format("{0} must be in range ({1} - {2}).", "Latitude", -90, 90)), piiUser: piiUser);
+              new ArgumentOutOfRangeException("Latitude", -95, string.Format("{0} must be in range ({1} - {2}).", "Latitude", -90, 90)));
 
             await base.SDKExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PutAsync(Guid.NewGuid(), 2, invalidLongitudeLocation),
-              new ArgumentOutOfRangeException("Longitude", -185, string.Format("{0} must be in range ({1} - {2}).", "Longitude", -180, 180)), piiUser: piiUser);
+              new ArgumentOutOfRangeException("Longitude", -185, string.Format("{0} must be in range ({1} - {2}).", "Longitude", -180, 180)));
         }
 
         [TestMethod, TestCategory("ShoppingCartItemClient"), TestCategory("PutAsync"), TestCategory("HTTP.PUT")]
@@ -137,7 +137,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             await base.APIExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PutAsync(Guid.NewGuid(), 1, validLocation),
               notFoundHttpResponseMessage,
-              expectedExceptionResult, piiUser: piiUser
+              expectedExceptionResult
               );
         }
 
@@ -150,7 +150,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             await base.APIExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PutAsync(Guid.NewGuid(), 1, validLocation),
               forbiddenHttpResponseMessage,
-              expectedExceptionResult, piiUser: piiUser
+              expectedExceptionResult
               );
         }
         #endregion
@@ -305,7 +305,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.RequestParseTestAsync<ShoppingCartItem>(
                 (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), sampleShoppingCartItem),
-                validAPIResponseForPostAsync, piiUser: piiUser
+                validAPIResponseForPostAsync
             );
         }
 
@@ -318,7 +318,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
                 {
                     Content = new MockedJsonContent(validAPIResponseForPostAsync)
                 },
-                validAPIResponseForPostAsync, piiUser: piiUser
+                validAPIResponseForPostAsync
             );
         }
 
@@ -327,7 +327,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.HttpMethodTestAsync(
                 (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), sampleShoppingCartItem),
-                HttpMethod.Post, piiUser: piiUser
+                HttpMethod.Post
                 );
         }
 
@@ -336,7 +336,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.UriTestAsync(
              (ShoppingCartItemClient c) => c.PostAsync(Guid.Parse(uniqeId), sampleShoppingCartItem),
-             string.Format("/pii/shoppingcartitem?shoppingCartUniqueKey={0}", uniqeId), piiUser: piiUser
+             string.Format("/pii/shoppingcartitem?shoppingCartUniqueKey={0}", uniqeId)
              );
         }
 
@@ -348,7 +348,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
                   {
                       ItemId = -1
                   }),
-              new ArgumentException(string.Format("{0} must be greater than or equal to 1.", "ItemId")), piiUser: piiUser);
+              new ArgumentException(string.Format("{0} must be greater than or equal to 1.", "ItemId")));
 
             await base.SDKExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), new ShoppingCartItem()
@@ -356,7 +356,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
                       ItemId = 5,
                       Quantity = 0
                   }),
-              new ArgumentOutOfRangeException("Quantity", 0, string.Format("{0} must be in range ({1} - {2}).", "Quantity", 1, 100)), piiUser: piiUser);
+              new ArgumentOutOfRangeException("Quantity", 0, string.Format("{0} must be in range ({1} - {2}).", "Quantity", 1, 100)));
 
             await base.SDKExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), new ShoppingCartItem() 
@@ -365,7 +365,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
                   Quantity = 5,
                   LastSeenLocation = invalidLatitudeLocation
               }),
-              new ArgumentOutOfRangeException("Latitude", -95, string.Format("{0} must be in range ({1} - {2}).", "Latitude", -90, 90)), piiUser: piiUser);
+              new ArgumentOutOfRangeException("Latitude", -95, string.Format("{0} must be in range ({1} - {2}).", "Latitude", -90, 90)));
 
             await base.SDKExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), new ShoppingCartItem()
@@ -374,7 +374,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
                   Quantity = 5,
                   LastSeenLocation = invalidLongitudeLocation
               }),
-              new ArgumentOutOfRangeException("Longitude", -185, string.Format("{0} must be in range ({1} - {2}).", "Longitude", -180, 180)), piiUser: piiUser);
+              new ArgumentOutOfRangeException("Longitude", -185, string.Format("{0} must be in range ({1} - {2}).", "Longitude", -180, 180)));
         }
 
         [TestMethod, TestCategory("ShoppingCartItemClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
@@ -386,7 +386,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             await base.APIExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), sampleShoppingCartItem),
               notFoundHttpResponseMessage,
-              expectedExceptionResult, piiUser: piiUser
+              expectedExceptionResult
               );
         }
 
@@ -399,7 +399,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             await base.APIExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), sampleShoppingCartItem),
               forbiddenHttpResponseMessage,
-              expectedExceptionResult, piiUser: piiUser
+              expectedExceptionResult
               );
         }
         #endregion
