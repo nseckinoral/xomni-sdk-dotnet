@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients.PII;
+using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.PII;
 using XOMNI.SDK.Public.Test.Helpers;
 
@@ -34,7 +35,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
 
         readonly ShoppingCartSearchRequest sampleShoppingCartSearchRequest = new ShoppingCartSearchRequest()
         {
-            Location = new  Models.Location()
+            Location = new Location()
             {
                 Longitude = 41.034973,
                 Latitude = 28.992459,
@@ -42,6 +43,18 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             },
             TimeInterval = 20,
             MaxDistance = 1.0
+        };
+
+        readonly Location invalidLatitudeLocation = new Location()
+        {
+            Latitude = 98,
+            Longitude = 28.992459
+        };
+
+        readonly Location invalidLongitudeLocation = new Location()
+        {
+            Latitude = 41.034973,
+            Longitude = -256
         };
 
         #region PostAsync
@@ -87,17 +100,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PostAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
+              (ShoppingCartSearchClient c) => c.PostAsync(null),
+              new ArgumentNullException("searchRequest can not be null."));
+
+            await base.SDKExceptionResponseTestAsync(
                 (ShoppingCartSearchClient p) => p.PostAsync(new ShoppingCartSearchRequest()
         {
-            Location = new  Models.Location()
-            {
-                Latitude = 98,
-                Longitude = 28.992459,
-
-            },
-            TimeInterval = 20,
-            MaxDistance = 1.0
-        }),
+            Location = invalidLatitudeLocation
+         }),
 
             new ArgumentOutOfRangeException("Latitude", 98, string.Format("{0} must be in range ({1} - {2}).", "Latitude", -90, 90))
             );
@@ -105,14 +115,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             await base.SDKExceptionResponseTestAsync(
                (ShoppingCartSearchClient p) => p.PostAsync(new ShoppingCartSearchRequest()
                {
-                   Location = new Models.Location()
-                   {
-                       Latitude = 41.034973,
-                       Longitude = -256,
-
-                   },
-                   TimeInterval = 20,
-                   MaxDistance = 1.0
+                   Location = invalidLongitudeLocation
                }),
 
             new ArgumentOutOfRangeException("Longitude", -256, string.Format("{0} must be in range ({1} - {2}).", "Longitude", -180, 180))
@@ -121,7 +124,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             await base.SDKExceptionResponseTestAsync(
                (ShoppingCartSearchClient p) => p.PostAsync(new ShoppingCartSearchRequest()
                {
-                   Location = new Models.Location()
+                   Location = new Location()
                    {
                        Latitude = 41.034973,
                        Longitude = 28.992459,
@@ -137,7 +140,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             await base.SDKExceptionResponseTestAsync(
                (ShoppingCartSearchClient p) => p.PostAsync(new ShoppingCartSearchRequest()
                {
-                   Location = new Models.Location()
+                   Location = new Location()
                    {
                        Latitude = 41.034973,
                        Longitude = 28.992459,
