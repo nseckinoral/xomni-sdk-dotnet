@@ -89,6 +89,7 @@
     <Compile Include="Fixtures\Clients\Catalog\CategoryAssetClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\ItemAssetClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\TrendingItemClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\Company\DeviceClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Company\DeviceStorageClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Company\DeviceTypeClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\ItemInStoreMetadataClientFixture.cs" />
@@ -100,7 +101,13 @@
     <Compile Include="Fixtures\Clients\PII\LoyaltyClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\LoyaltyMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\ShoppingCartClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\PII\ShoppingCartPassbookClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\PII\ShoppingCartSearchClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\PII\ShoppingCartItemClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\PII\WishlistItemClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\WishlistMetadataClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\PII\WishlistPassbookClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\PII\WishlistSearchClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\AuthorizationUrlClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\PostClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\CommentClientFixture.cs" />
