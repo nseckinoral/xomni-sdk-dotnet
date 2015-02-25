@@ -57,24 +57,24 @@ namespace XOMNI.SDK.Public.Clients.Social
             }
         }
 
-        public async Task<ApiResponse<SocialPolicy>> GetPoliciesAsync(int targetPostId = default(int), int targetCommentId = default(int))
+        public async Task<ApiResponse<SocialPolicy>> GetPoliciesAsync(int? targetPostId = null, int? targetCommentId = null)
         {
             ValidatePIIToken();
 
-            if (targetPostId != default(int) && targetCommentId != default(int))
+            if (targetPostId != null && targetCommentId != null)
             {
                 throw new ArgumentException("You can not pass targetPostId and targetCommentId at the same time.");
             }
 
             string path = "/social/comment/policies?";
 
-            if (targetPostId != default(int))
+            if (targetPostId != null)
             {
                 Validator.For(targetPostId, "targetPostId").IsGreaterThanOrEqual(1);
                 path += string.Format("targetPostId={0}", targetPostId);
             }
 
-            if (targetCommentId != default(int))
+            if (targetCommentId != null)
             {
                 Validator.For(targetCommentId, "targetCommentId").IsGreaterThanOrEqual(1);
                 path += string.Format("targetCommentId={0}", targetCommentId);
@@ -85,6 +85,5 @@ namespace XOMNI.SDK.Public.Clients.Social
                 return await response.Content.ReadAsAsync<ApiResponse<SocialPolicy>>().ConfigureAwait(false);
             }
         }
-
     }
 }
