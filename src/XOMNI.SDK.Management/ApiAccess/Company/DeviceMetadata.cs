@@ -45,5 +45,32 @@ namespace XOMNI.SDK.Management.ApiAccess.Company
         {
             return HttpProvider.DeleteAsync(GenerateUrl(String.Format(ListOperationBaseUrl, licenceId, deviceId)), credential);
         }
+
+        // For Batch
+        internal virtual XOMNIRequestMessage<Metadata> CreatePostRequest(string deviceId, int licenceId, Metadata metadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Metadata>(HttpProvider.CreatePostRequest(GenerateUrl(String.Format(ListOperationBaseUrl, licenceId, deviceId)), credential, metadata));
+        }
+
+        internal virtual XOMNIRequestMessage<Metadata> CreatePutRequest(string deviceId, int licenceId, Metadata metadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<Metadata>(HttpProvider.CreatePutRequest(GenerateUrl(String.Format(ListOperationBaseUrl, licenceId, deviceId)), credential, metadata));
+        }
+
+        internal virtual XOMNIRequestMessage<List<Metadata>> CreateGetByIdRequest(string deviceId, int licenceId, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<List<Metadata>>(HttpProvider.CreateGetRequest(GenerateUrl(String.Format(ListOperationBaseUrl, licenceId, deviceId)), credential));
+        }
+
+        internal virtual XOMNIRequestMessage CreateDeleteRequest(string deviceId, int licenceId, string metadataKey, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(String.Format(SingleOperationBaseUrl, licenceId, deviceId, metadataKey)), credential));
+        }
+
+        internal virtual XOMNIRequestMessage CreateDeleteRequest(string deviceId, int licenceId, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(String.Format(ListOperationBaseUrl, licenceId, deviceId)), credential));
+        }
+
     }
 }

@@ -7,10 +7,11 @@ using XOMNI.SDK.Model;
 using XOMNI.SDK.Model.Asset;
 using XOMNI.SDK.Core.Management;
 using XOMNI.SDK.Private.ApiAccess.Catalog;
+using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.Catalog
 {
-    public class BaseAssetManagement:ManagementBase
+    public class BaseAssetManagement : ManagementBase
     {
         IAssetMetadata assetMetadataApi;
 
@@ -19,38 +20,35 @@ namespace XOMNI.SDK.Private.Catalog
             assetMetadataApi = metadataApi;
         }
 
-        public async Task<AssetMetadata> AddMetadataAsync(int assetId, string metadataKey, string metadataValue)
+        public Task<AssetMetadata> AddMetadataAsync(int assetId, string metadataKey, string metadataValue)
         {
             var metadata = CreateAssetMetadata(assetId, metadataKey, metadataValue);
-            AssetMetadata createdMetadata = await assetMetadataApi.AddMetadataAsync(metadata,this.ApiCredential);
-            return createdMetadata;
+            return assetMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
         }
 
-        public async Task DeleteMetadataAsync(int assetId, string metadataKey)
+        public Task DeleteMetadataAsync(int assetId, string metadataKey)
         {
             if (String.IsNullOrEmpty(metadataKey))
             {
                 throw new ArgumentNullException("metadataKey");
             }
-            await assetMetadataApi.DeleteMetadataAsync(assetId, metadataKey, this.ApiCredential);
+            return assetMetadataApi.DeleteMetadataAsync(assetId, metadataKey, this.ApiCredential);
         }
 
-        public async Task ClearMetadataAsync(int assetId)
+        public Task ClearMetadataAsync(int assetId)
         {
-            await assetMetadataApi.ClearMetadataAsync(assetId, this.ApiCredential);
+            return assetMetadataApi.ClearMetadataAsync(assetId, this.ApiCredential);
         }
 
-        public async Task<AssetMetadata> UpdateMetadataAsync(int assetId, string metadataKey, string updatedMetadataValue)
+        public Task<AssetMetadata> UpdateMetadataAsync(int assetId, string metadataKey, string updatedMetadataValue)
         {
             var metadata = CreateAssetMetadata(assetId, metadataKey, updatedMetadataValue);
-            AssetMetadata updatedMetadata = await assetMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
-            return updatedMetadata;
+            return assetMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
         }
 
-        public async Task<List<Metadata>> GetAllMetadataAsync(int assetId)
+        public Task<List<Metadata>> GetAllMetadataAsync(int assetId)
         {
-            List<Metadata> assetMetadataList = await assetMetadataApi.GetAllMetadataAsync(assetId, this.ApiCredential);
-            return assetMetadataList;
+            return assetMetadataApi.GetAllMetadataAsync(assetId, this.ApiCredential);
         }
 
         private AssetMetadata CreateAssetMetadata(int assetId, string metadataKey, string metadataValue)
@@ -67,5 +65,38 @@ namespace XOMNI.SDK.Private.Catalog
             };
             return metadata;
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<AssetMetadata> CreateAddMetadataRequest(int assetId, string metadataKey, string metadataValue)
+        {
+            var metadata = CreateAssetMetadata(assetId, metadataKey, metadataValue);
+            return assetMetadataApi.CreateAddMetadataRequest(metadata, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateDeleteMetadataRequest(int assetId, string metadataKey)
+        {
+            if (String.IsNullOrEmpty(metadataKey))
+            {
+                throw new ArgumentNullException("metadataKey");
+            }
+            return assetMetadataApi.CreateDeleteMetadataRequest(assetId, metadataKey, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateClearMetadataRequest(int assetId)
+        {
+            return assetMetadataApi.CreateClearMetadataRequest(assetId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<AssetMetadata> CreateUpdateMetadataRequest(int assetId, string metadataKey, string updatedMetadataValue)
+        {
+            var metadata = CreateAssetMetadata(assetId, metadataKey, updatedMetadataValue);
+            return assetMetadataApi.CreateUpdateMetadataRequest(metadata, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Metadata>> CreateGetAllMetadataRequest(int assetId)
+        {
+            return assetMetadataApi.CreateGetAllMetadataRequest(assetId, this.ApiCredential);
+        }
+        #endregion
     }
 }

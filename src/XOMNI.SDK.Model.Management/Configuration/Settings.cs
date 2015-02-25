@@ -82,5 +82,25 @@ namespace XOMNI.SDK.Model.Management.Configuration
         /// Time impact value for calculating trending items.
         /// </summary>
         public double PopularityTimeImpactValue { get; set; }
+        
+        /// <summary>
+        /// Indicates if search indexing is enabled.
+        /// </summary>
+        public bool SearchIndexingEnabled { get; set; }
+       
+        /// <summary>
+        /// Consumer Key of the twitter application.
+        /// </summary>
+        public string TwitterConsumerKey { get; set; }
+        
+        /// <summary>
+        /// Consumer Key Secret of the twitter application.
+        /// </summary>
+        public string TwitterConsumerKeySecret { get; set; }
+
+        /// <summary>
+        /// Uri of the web page where twitter redirects when the authorization process is completed.
+        /// </summary>
+        public string TwitterRedirectUri { get; set; }
     }
 }

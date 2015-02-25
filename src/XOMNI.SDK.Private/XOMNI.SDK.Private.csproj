@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EC2D1B4A-CB17-46F9-AACF-EA4E980BC34C}</ProjectGuid>
@@ -10,8 +10,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XOMNI.SDK.Private</RootNamespace>
     <AssemblyName>XOMNI.SDK.Private</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile158</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SccProjectName>SAK</SccProjectName>
@@ -42,10 +42,16 @@
     <Compile Include="..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Analytics\ClientAnalyticsSummaryManagement.cs" />
+    <Compile Include="Analytics\Log\ClientAnalyticsManagement.cs" />
+    <Compile Include="ApiAccess\Analytics\ClientAnalytics.cs" />
+    <Compile Include="ApiAccess\Analytics\ClientAnalyticsSummary.cs" />
     <Compile Include="ApiAccess\Asset\Assets.cs" />
     <Compile Include="ApiAccess\Auth\Principal.cs" />
     <Compile Include="ApiAccess\Catalog\Brand.cs" />
     <Compile Include="ApiAccess\Catalog\ItemGroup.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemSearch\Search.cs" />
+    <Compile Include="ApiAccess\Catalog\ItemStaticProperty.cs" />
     <Compile Include="ApiAccess\Catalog\PriceType.cs" />
     <Compile Include="ApiAccess\Catalog\DimensionType.cs" />
     <Compile Include="ApiAccess\Catalog\DynamicAttribute.cs" />
@@ -64,12 +70,13 @@
     <Compile Include="ApiAccess\Catalog\IAssetMetadata.cs" />
     <Compile Include="ApiAccess\Catalog\UnitType.cs" />
     <Compile Include="ApiAccess\Company\Store.cs" />
-    <Compile Include="ApiAccess\Metering\Meterings.cs" />
-    <Compile Include="ApiAccess\Metering\SummaryMeterings.cs" />
+    <Compile Include="ApiAccess\Analytics\ServerAnalytics.cs" />
+    <Compile Include="ApiAccess\Analytics\ServerAnalyticsSummary.cs" />
     <Compile Include="ApiAccess\Passbook\PassbookBarcodeType.cs" />
     <Compile Include="ApiAccess\Passbook\PassbookTemplate.cs" />
     <Compile Include="ApiAccess\PII\Loyalty.cs" />
     <Compile Include="ApiAccess\PII\LoyaltyMetadata.cs" />
+    <Compile Include="ApiAccess\PII\PIIUser.cs" />
     <Compile Include="ApiAccess\PII\WishlistMetadata.cs" />
     <Compile Include="ApiAccess\Tenant\TenantAssets.cs" />
     <Compile Include="Asset\AssetManagement.cs" />
@@ -81,6 +88,7 @@
     <Compile Include="Catalog\BaseAssetManagement.cs" />
     <Compile Include="Catalog\BrandManagement.cs" />
     <Compile Include="Catalog\CategoryManagement.cs" />
+    <Compile Include="Catalog\ItemStaticPropertyManagement.cs" />
     <Compile Include="Catalog\PriceTypeManagement.cs" />
     <Compile Include="Catalog\DimensionTypeManagement.cs" />
     <Compile Include="Catalog\DocumentManagement.cs" />
@@ -107,7 +115,6 @@
     <Compile Include="ApiAccess\Catalog\ItemAsset\Document.cs" />
     <Compile Include="ApiAccess\Catalog\ItemAsset\Image.cs" />
     <Compile Include="ApiAccess\Catalog\ItemAsset\Video.cs" />
-    <Compile Include="ApiAccess\Catalog\ItemMetadata.cs" />
     <Compile Include="ApiAccess\Catalog\RelatedItems.cs" />
     <Compile Include="ApiAccess\Catalog\Category.cs" />
     <Compile Include="ApiAccess\Catalog\TagMetadata.cs" />
@@ -123,30 +130,31 @@
     <Compile Include="Catalog\VideoManagement.cs" />
     <Compile Include="Catalog\WeightTypeManagement.cs" />
     <Compile Include="Company\StoreManagement.cs" />
-    <Compile Include="Metering\Log\AddedShoppingCartItemMeteringManagement.cs" />
-    <Compile Include="Metering\Log\AddedWishlistItemMeteringManagement.cs" />
-    <Compile Include="Metering\Log\ItemLikeMeteringManagement.cs" />
-    <Compile Include="Metering\Log\ItemShareInteractionMeteringManagement.cs" />
-    <Compile Include="Metering\Log\ItemShareMeteringManagement.cs" />
-    <Compile Include="Metering\Log\ItemShareResponseMeteringManagement.cs" />
-    <Compile Include="Metering\Log\ItemViewMeteringManagement.cs" />
-    <Compile Include="Metering\Log\OmniShareFromCustomerDeviceToCustomerDeviceMeteringManagement.cs" />
-    <Compile Include="Metering\Log\OmniShareFromCustomerDeviceToInStoreDeviceMeteringManagement.cs" />
-    <Compile Include="Metering\Log\OmniShareFromInStoreDeviceToCustomerDeviceMeteringManagement.cs" />
-    <Compile Include="Metering\Log\OmniShareFromInStoreDeviceToInStoreDeviceMeteringManagement.cs" />
-    <Compile Include="Metering\Log\OmniShareMeteringManagement.cs" />
-    <Compile Include="Metering\Log\RemovedShoppingCartItemMeteringManagement.cs" />
-    <Compile Include="Metering\Log\RemovedWishlistItemMeteringManagement.cs" />
-    <Compile Include="Metering\Log\ShoppingCartByCreatedDateMeteringManagement.cs" />
-    <Compile Include="Metering\Log\ShoppingCartByLastAccessedDateMeteringManagement.cs" />
-    <Compile Include="Metering\Log\TrendingItemMeteringManagement.cs" />
-    <Compile Include="Metering\Log\WishlistByLastAccessedDateMeteringManagement.cs" />
-    <Compile Include="Metering\MeteringBaseManagement.cs" />
-    <Compile Include="Metering\SummaryMeteringManagement.cs" />
-    <Compile Include="Metering\Log\WishlistByCreatedDateMeteringManagement.cs" />
+    <Compile Include="Analytics\Log\AddedShoppingCartItemAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\AddedWishlistItemAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\ItemLikeAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\ItemShareInteractionAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\ItemShareAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\ItemShareResponseAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\ItemViewAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\OmniShareFromCustomerDeviceToCustomerDeviceAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\OmniShareFromCustomerDeviceToInStoreDeviceAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\OmniShareFromInStoreDeviceToCustomerDeviceAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\OmniShareFromInStoreDeviceToInStoreDeviceAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\OmniShareAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\RemovedShoppingCartItemAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\RemovedWishlistItemAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\ShoppingCartByCreatedDateAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\ShoppingCartByLastAccessedDateAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\TrendingItemAnalyticsManagement.cs" />
+    <Compile Include="Analytics\Log\WishlistByLastAccessedDateAnalyticsManagement.cs" />
+    <Compile Include="Analytics\AnalyticsBaseManagement.cs" />
+    <Compile Include="Analytics\ServerAnalyticsSummaryManagement.cs" />
+    <Compile Include="Analytics\Log\WishlistByCreatedDateAnalyticsManagement.cs" />
     <Compile Include="Passbook\PassbookBarcodeTypeManagement.cs" />
     <Compile Include="Passbook\PassbookTemplateManagement.cs" />
     <Compile Include="PII\LoyaltyManagement.cs" />
+    <Compile Include="PII\PIIUserManagement.cs" />
     <Compile Include="PII\WishlistMetadataManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ApiAccess\Catalog\VideoMetadata.cs" />
@@ -164,14 +172,20 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions">
       <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.IO">
-      <HintPath>..\..\packages\Microsoft.Bcl.1.1.8\lib\portable-net40+sl5+win8+wp8+wpa81\System.IO.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime">
-      <HintPath>..\..\packages\Microsoft.Bcl.1.1.8\lib\portable-net40+sl5+win8+wp8+wpa81\System.Runtime.dll</HintPath>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.22\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.Threading.Tasks">
-      <HintPath>..\..\packages\Microsoft.Bcl.1.1.8\lib\portable-net40+sl5+win8+wp8+wpa81\System.Threading.Tasks.dll</HintPath>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.22\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\portable-wp8+netcore45+net45+wp81+wpa81\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.22\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

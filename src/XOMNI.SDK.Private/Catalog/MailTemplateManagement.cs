@@ -6,9 +6,9 @@ using XOMNI.SDK.Core.Management;
 
 namespace XOMNI.SDK.Private.Catalog
 {
-    public class MailTemplateManagement : BaseCRUDSkipTakeManagement<Model.Private.Catalog.MailTemplate>
+    public class MailTemplateManagement : BaseCRUDPSkipTakeManagement<Model.Private.Catalog.MailTemplate>
     {
-        protected override Core.ApiAccess.CRUDApiAccessBase<Model.Private.Catalog.MailTemplate> ApiAccess
+        protected override Core.ApiAccess.CRUDPApiAccessBase<Model.Private.Catalog.MailTemplate> CRUDPApiAccess
         {
             get { return new ApiAccess.Catalog.MailTemplate(); }
         }

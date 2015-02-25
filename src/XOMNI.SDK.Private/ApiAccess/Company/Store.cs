@@ -28,5 +28,13 @@ namespace XOMNI.SDK.Private.ApiAccess.Company
             additionalParams.Add("take", take.ToString());
             return HttpProvider.GetAsync<CountedCollectionContainer<Model.Private.Company.Store>>(GenerateUrl(ListOperationBaseUrl, additionalParams), credential);
         }
+
+        internal XOMNIRequestMessage<CountedCollectionContainer<Model.Private.Company.Store>> CreateGetRequest(int skip, int take, ApiBasicCredential credential)
+        {
+            var additionalParams = new Dictionary<string, string>();
+            additionalParams.Add("skip", skip.ToString());
+            additionalParams.Add("take", take.ToString());
+            return new XOMNIRequestMessage<CountedCollectionContainer<Model.Private.Company.Store>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParams), credential));
+        }
     }
 }

@@ -54,5 +54,37 @@ namespace XOMNI.SDK.Management.ApiAccess.Company
 
             return HttpProvider.GetAsync<XOMNI.SDK.Model.Management.Company.Device>(GenerateUrl(String.Format(SingleOperationBaseUrl, deviceId), additionalQueryString), credential);
         }
+
+        // For Batch
+
+        public virtual XOMNIRequestMessage<CountedCollectionContainer<XOMNI.SDK.Model.Management.Company.Device>> CreateGetAllRequest(int skip, int take, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("skip", skip.ToString());
+            additionalParameters.Add("take", take.ToString());
+            return new XOMNIRequestMessage<CountedCollectionContainer<XOMNI.SDK.Model.Management.Company.Device>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public virtual XOMNIRequestMessage<XOMNI.SDK.Model.Management.Company.Device> CreatePostRequest(XOMNI.SDK.Model.Management.Company.Device entity, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<XOMNI.SDK.Model.Management.Company.Device>(HttpProvider.CreatePostRequest(string.Format(GenerateUrl(SingleOperationBaseUrl), string.Empty), credential, entity));
+        }
+
+        public virtual XOMNIRequestMessage<XOMNI.SDK.Model.Management.Company.Device> CreatePutRequest(XOMNI.SDK.Model.Management.Company.Device entity, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<XOMNI.SDK.Model.Management.Company.Device>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), credential, entity));
+        }
+        public virtual XOMNIRequestMessage CreateDeleteRequest(int id, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(string.Format(SingleOperationBaseUrl, id)), credential));
+        }
+
+        public virtual XOMNIRequestMessage<XOMNI.SDK.Model.Management.Company.Device> CreateGetByIdRequest(string deviceId, int relatedLicenceId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalQueryString = new Dictionary<string, string>();
+            additionalQueryString.Add("relatedLicenceId", relatedLicenceId.ToString());
+
+            return new XOMNIRequestMessage<XOMNI.SDK.Model.Management.Company.Device>(HttpProvider.CreateGetRequest(GenerateUrl(String.Format(SingleOperationBaseUrl, deviceId), additionalQueryString), credential));
+        }
     }
 }

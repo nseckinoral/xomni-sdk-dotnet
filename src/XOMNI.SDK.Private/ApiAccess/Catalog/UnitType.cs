@@ -6,7 +6,7 @@ using XOMNI.SDK.Core.ApiAccess;
 
 namespace XOMNI.SDK.Private.ApiAccess.Catalog
 {
-    internal class UnitType : CRUDApiAccessBase<Model.Catalog.UnitType>
+    internal class UnitType : CRUDPApiAccessBase<Model.Catalog.UnitType>
     {
         protected override string SingleOperationBaseUrl
         {

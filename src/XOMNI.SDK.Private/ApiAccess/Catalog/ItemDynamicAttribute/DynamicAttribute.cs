@@ -24,5 +24,13 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog.ItemDynamicAttribute
         {
             return HttpProvider.PutAsync<List<Model.Catalog.DynamicAttribute>>(GenerateUrl(string.Format(ListOperationBaseUrl, itemId)), dynamicAttributeList, credential);
         }
+
+        #region low level methods
+        internal XOMNIRequestMessage<List<Model.Catalog.DynamicAttribute>> CreateUpdateItemDynamicAttributesRequest(int itemId, List<Model.Catalog.DynamicAttribute> dynamicAttributeList, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<List<Model.Catalog.DynamicAttribute>>(HttpProvider.CreatePutRequest(GenerateUrl(string.Format(ListOperationBaseUrl, itemId)), credential, dynamicAttributeList));
+        }
+
+        #endregion low level methods
     }
 }

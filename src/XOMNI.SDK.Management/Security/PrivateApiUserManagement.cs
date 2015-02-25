@@ -20,9 +20,9 @@ namespace XOMNI.SDK.Management.Security
         /// </summary>
         /// <param name="entity">ApiUser to be added</param>
         /// <returns>Added api user</returns>
-        public override async Task<ApiUser> AddAsync(ApiUser entity)
+        public override Task<ApiUser> AddAsync(ApiUser entity)
         {
-            return await base.AddAsync(entity);
+            return base.AddAsync(entity);
         }
 
         /// <summary>
@@ -30,9 +30,9 @@ namespace XOMNI.SDK.Management.Security
         /// </summary>
         /// <param name="id">Licence id</param>
         /// <returns></returns>
-        public override async Task DeleteAsync(int id)
+        public override Task DeleteAsync(int id)
         {
-            await base.DeleteAsync(id);
+            return base.DeleteAsync(id);
         }
 
         /// <summary>
@@ -41,9 +41,9 @@ namespace XOMNI.SDK.Management.Security
         /// <param name="skip">The number of licences in the collection to skip before executing a select.</param>
         /// <param name="take">The number of licences that should be fetched from the collection.</param>
         /// <returns>CountedCollectionContainer of private api user</returns>
-        public override async Task<Model.CountedCollectionContainer<ApiUser>> GetAllAsync(int skip, int take)
+        public override Task<Model.CountedCollectionContainer<ApiUser>> GetAllAsync(int skip, int take)
         {
-            return await base.GetAllAsync(skip, take);
+            return base.GetAllAsync(skip, take);
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace XOMNI.SDK.Management.Security
         /// </summary>
         /// <param name="id">ApiUser id</param>
         /// <returns>Fetched api user</returns>
-        public override async Task<ApiUser> GetByIdAsync(int id)
+        public override Task<ApiUser> GetByIdAsync(int id)
         {
-            return await base.GetByIdAsync(id);
+            return base.GetByIdAsync(id);
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace XOMNI.SDK.Management.Security
         /// </summary>
         /// <param name="entity">ApiUser to be updated</param>
         /// <returns>Updated api user</returns>
-        public override async Task<ApiUser> UpdateAsync(ApiUser entity)
+        public override Task<ApiUser> UpdateAsync(ApiUser entity)
         {
-            return await base.UpdateAsync(entity);
+            return base.UpdateAsync(entity);
         }
     }
 }

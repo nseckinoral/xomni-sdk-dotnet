@@ -21,39 +21,38 @@ namespace XOMNI.SDK.Private.ApiAccess.PII
             get { return "/private/pii/loyaltymetadata"; }
         }
 
-        public async Task<LoyaltyUserMetadata> AddMetadataAsync(LoyaltyUserMetadata loyaltyUserMetadata, ApiBasicCredential credential)
+        public Task<LoyaltyUserMetadata> AddMetadataAsync(LoyaltyUserMetadata loyaltyUserMetadata, ApiBasicCredential credential)
         {
-            return await HttpProvider.PostAsync<LoyaltyUserMetadata>(GenerateUrl(SingleOperationBaseUrl), loyaltyUserMetadata, credential);
+            return HttpProvider.PostAsync<LoyaltyUserMetadata>(GenerateUrl(SingleOperationBaseUrl), loyaltyUserMetadata, credential);
         }
 
-        public async Task DeleteMetadataAsync(int loyaltyUserId, string metadataKey, ApiBasicCredential credential)
+        public Task DeleteMetadataAsync(int loyaltyUserId, string metadataKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("loyaltyUserId", loyaltyUserId.ToString());
             additionalParameters.Add("metadataKey", metadataKey);
 
-            await HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task ClearMetadataAsync(int loyaltyUserId, ApiBasicCredential credential)
+        public Task ClearMetadataAsync(int loyaltyUserId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("loyaltyUserId", loyaltyUserId.ToString());
 
-            await HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task<List<LoyaltyUserMetadata>> GetAllMetadataAsync(int loyaltyUserId, ApiBasicCredential credential)
+        public Task<List<LoyaltyUserMetadata>> GetAllMetadataAsync(int loyaltyUserId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("loyaltyUserId", loyaltyUserId.ToString());
-            List<LoyaltyUserMetadata> loyaltyMetadataList = await HttpProvider.GetAsync<List<LoyaltyUserMetadata>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
-            return loyaltyMetadataList;
+            return HttpProvider.GetAsync<List<LoyaltyUserMetadata>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task<LoyaltyUserMetadata> UpdateMetadataAsync(LoyaltyUserMetadata loyaltyUserMetadata, ApiBasicCredential credential)
+        public Task<LoyaltyUserMetadata> UpdateMetadataAsync(LoyaltyUserMetadata loyaltyUserMetadata, ApiBasicCredential credential)
         {
-            return await HttpProvider.PutAsync<LoyaltyUserMetadata>(GenerateUrl(SingleOperationBaseUrl), loyaltyUserMetadata, credential);
+            return HttpProvider.PutAsync<LoyaltyUserMetadata>(GenerateUrl(SingleOperationBaseUrl), loyaltyUserMetadata, credential);
         }
     }
 }

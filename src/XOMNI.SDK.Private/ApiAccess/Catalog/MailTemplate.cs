@@ -6,7 +6,7 @@ using XOMNI.SDK.Core.ApiAccess;
 
 namespace XOMNI.SDK.Private.ApiAccess.Catalog
 {
-    public class MailTemplate : CRUDApiAccessBase<Model.Private.Catalog.MailTemplate>
+    public class MailTemplate : CRUDPApiAccessBase<Model.Private.Catalog.MailTemplate>
     {
         protected override string SingleOperationBaseUrl
         {

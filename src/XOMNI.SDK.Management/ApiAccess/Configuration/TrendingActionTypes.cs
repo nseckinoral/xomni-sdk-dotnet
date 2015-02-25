@@ -20,14 +20,25 @@ namespace XOMNI.SDK.Management.ApiAccess.Configuration
             get { throw new NotImplementedException(); }
         }
 
-        public async Task<List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue>> GetAsync(ApiBasicCredential credential)
+        public Task<List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue>> GetAsync(ApiBasicCredential credential)
         {
-            return await HttpProvider.GetAsync<List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue>>(GenerateUrl(SingleOperationBaseUrl), credential);
+            return HttpProvider.GetAsync<List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue>>(GenerateUrl(SingleOperationBaseUrl), credential);
         }
 
-        public async Task<List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue>> UpdateAsync(List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue> popularityActionTypes, ApiBasicCredential credential)
+        public Task<List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue>> UpdateAsync(List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue> popularityActionTypes, ApiBasicCredential credential)
         {
-            return await HttpProvider.PutAsync<List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue>>(GenerateUrl(SingleOperationBaseUrl), popularityActionTypes, credential);
+            return HttpProvider.PutAsync<List<XOMNI.SDK.Model.Management.Configuration.TrendingActionTypeValue>>(GenerateUrl(SingleOperationBaseUrl), popularityActionTypes, credential);
+        }
+
+        internal XOMNIRequestMessage<List<Model.Management.Configuration.TrendingActionTypeValue>> CreateGetRequest(ApiBasicCredential apiBasicCredential)
+        {
+            return new XOMNIRequestMessage<List<Model.Management.Configuration.TrendingActionTypeValue>>(HttpProvider.CreateGetRequest(GenerateUrl(SingleOperationBaseUrl), apiBasicCredential));
+
+        }
+
+        internal XOMNIRequestMessage<List<Model.Management.Configuration.TrendingActionTypeValue>> CreatePutRequest(List<Model.Management.Configuration.TrendingActionTypeValue> trendingActionTypeValues, ApiBasicCredential apiBasicCredential)
+        {
+            return new XOMNIRequestMessage<List<Model.Management.Configuration.TrendingActionTypeValue>>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), apiBasicCredential, trendingActionTypeValues));
         }
     }
 }

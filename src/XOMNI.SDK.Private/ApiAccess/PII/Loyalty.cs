@@ -6,7 +6,7 @@ using XOMNI.SDK.Core.ApiAccess;
 
 namespace XOMNI.SDK.Private.ApiAccess.PII
 {
-    public class Loyalty : CRUDApiAccessBase<Model.Private.PII.LoyaltyUser>
+    public class Loyalty : CRUDPApiAccessBase<Model.Private.PII.LoyaltyUser>
     {
         protected override string SingleOperationBaseUrl
         {

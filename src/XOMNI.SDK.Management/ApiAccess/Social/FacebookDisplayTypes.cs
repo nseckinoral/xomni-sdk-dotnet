@@ -24,5 +24,10 @@ namespace XOMNI.SDK.Management.ApiAccess.Social
         {
             return HttpProvider.GetAsync<IDictionary<int, string>>(GenerateUrl(SingleOperationBaseUrl), credential);
         }
+
+        internal XOMNIRequestMessage<IDictionary<int, string>> CreateGetRequest(ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<IDictionary<int, string>>(HttpProvider.CreateGetRequest(GenerateUrl(SingleOperationBaseUrl), credential));
+        }
     }
 }

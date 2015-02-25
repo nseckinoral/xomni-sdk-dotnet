@@ -14,7 +14,7 @@ namespace XOMNI.SDK.Core.Providers
 {
     public class HttpProvider
     {
-        private static HttpClient client;
+        internal static HttpClient client;
         private const string PIITokenHeaderName = "PIIToken";
         private const string ApiAuthorizationHeaderName = "Basic";
         private const string piiHeaderFormat = "username:{0};password:{1}";
@@ -33,7 +33,7 @@ namespace XOMNI.SDK.Core.Providers
             requestMessage.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(ApiAuthorizationHeaderName, encodedHeaderValue);
         }
 
-        private static HttpRequestMessage CreateRequestMessage(HttpMethod method, string requestUri, ApiBasicCredential credential, object body = null)
+        public static HttpRequestMessage CreateRequestMessage(HttpMethod method, string requestUri, ApiBasicCredential credential, object body = null)
         {
             HttpRequestMessage requestMessage = new HttpRequestMessage(method, requestUri);
             InitializeDefaultHttpHeaders(requestMessage);
@@ -70,18 +70,33 @@ namespace XOMNI.SDK.Core.Providers
         private static void InitializeDefaultHttpHeaders(HttpRequestMessage requestMessage)
         {
             requestMessage.Headers.Accept.ParseAdd("application/json");
-            requestMessage.Headers.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v2_1"));
+            requestMessage.Headers.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v3_0"));
             requestMessage.Headers.Host = Configuration.Configuration.Host;
         }
+        
+        #region Http Get Methods
+        public static HttpRequestMessage CreateGetRequest(string url, ApiBasicCredential credential)
+        {
+            return CreateRequestMessage(HttpMethod.Get, url, credential);
+        }
+
 
         public static async Task<T> GetAsync<T>(string url, ApiBasicCredential credential)
         {
-            using (var requestMessage = CreateRequestMessage(HttpMethod.Get, url, credential))
+            using (var requestMessage = CreateGetRequest(url, credential))
             {
                 var response = await client.SendAsync(requestMessage);
                 await ControlResponse(response);
                 return await response.Content.ReadAsAsync<T>();
             }
+        }
+
+        #endregion
+        
+        #region Http Post Methods
+        public static HttpRequestMessage CreatePostRequest(string url, ApiBasicCredential credential, object body)
+        {
+            return CreateRequestMessage(HttpMethod.Post, url, credential, body);
         }
 
         public static async Task<T> PostAsync<T>(string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
@@ -92,7 +107,7 @@ namespace XOMNI.SDK.Core.Providers
 
         private static async Task<HttpResponseMessage> PostInternal(string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
-            using (HttpRequestMessage requestMessage = CreateRequestMessage(HttpMethod.Post, url, credential, body))
+            using (HttpRequestMessage requestMessage = CreatePostRequest(url, credential, body))
             {
                 var response = await client.SendAsync(requestMessage);
                 await ControlResponse(response, expectedCode);
@@ -104,10 +119,17 @@ namespace XOMNI.SDK.Core.Providers
         {
             var response = await PostInternal(url, body, credential);
         }
+        #endregion
+
+        #region Http Put Methods
+        public static HttpRequestMessage CreatePutRequest(string url, ApiBasicCredential credential, object body)
+        {
+            return CreateRequestMessage(HttpMethod.Put, url, credential, body);
+        }
 
         public static async Task<T> PutAsync<T>(string url, object body, ApiBasicCredential credential)
         {
-            using (HttpRequestMessage requestMessage = CreateRequestMessage(HttpMethod.Put, url, credential, body))
+            using (HttpRequestMessage requestMessage = CreatePutRequest(url, credential, body))
             {
                 var response = await client.SendAsync(requestMessage);
                 await ControlResponse(response);
@@ -115,21 +137,51 @@ namespace XOMNI.SDK.Core.Providers
             }
         }
 
+        #endregion
+
+        #region Http Patch Methods
+
+        public static HttpRequestMessage CreatePatchRequest(string url, ApiBasicCredential credential, object body)
+        {
+            return CreateRequestMessage(new HttpMethod("PATCH"), url, credential, body);
+        }
+
+        public static async Task<T> PatchAsync<T> (string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
+        {
+            using (HttpRequestMessage requestMessage = CreatePatchRequest(url, credential, body))
+            {
+                var response = await client.SendAsync(requestMessage);
+                await ControlResponse(response, expectedCode);
+                return await response.Content.ReadAsAsync<T>();
+            }
+        }
+
+        #endregion
+
+        #region Http Delete Methods
+
+        public static HttpRequestMessage CreateDeleteRequest(string url, ApiBasicCredential credential)
+        {
+            return CreateRequestMessage(HttpMethod.Delete, url, credential);
+        }
+
         public static async Task DeleteAsync(string url, ApiBasicCredential credential)
         {
-            using (var requestMessage = CreateRequestMessage(HttpMethod.Delete, url, credential))
+            using (var requestMessage = CreateDeleteRequest(url, credential))
             {
                 var response = await client.SendAsync(requestMessage);
                 await ControlResponse(response, HttpStatusCode.Accepted);
             }
         }
 
+        #endregion
+
         public void AddHeader(string headerName, string value)
         {
             client.DefaultRequestHeaders.Add(headerName, value);
         }
 
-        private async static Task ControlResponse(HttpResponseMessage response, HttpStatusCode expectedCode = HttpStatusCode.OK)
+        internal async static Task ControlResponse(HttpResponseMessage response, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             if (response.StatusCode != expectedCode)
             {

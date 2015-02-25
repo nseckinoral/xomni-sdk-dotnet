@@ -21,8 +21,8 @@ namespace XOMNI.SDK.Private.Catalog
         Task<List<Model.Private.Asset.RelatedImageAsset>> GetImagesAsync(int relatedId);
         Task<List<Model.Private.Asset.RelatedAsset>> GetVideosAsync(int relatedId);
         Task<List<Model.Private.Asset.RelatedAsset>> GetDocumentsAsync(int relatedId);
-        Task<AssetRelationMapping> UpdateImageRelation(int relatedId, int assetId, bool isDefault);
-        Task<AssetRelationMapping> UpdateVideoRelation(int relatedId, int assetId, bool isDefault);
-        Task<AssetRelationMapping> UpdateDocumentRelation(int relatedId, int assetId, bool isDefault);
+        Task<AssetRelationMapping> UpdateImageRelationAsync(int relatedId, int assetId, bool isDefault);
+        Task<AssetRelationMapping> UpdateVideoRelationAsync(int relatedId, int assetId, bool isDefault);
+        Task<AssetRelationMapping> UpdateDocumentRelationAsync(int relatedId, int assetId, bool isDefault);
     }
 }

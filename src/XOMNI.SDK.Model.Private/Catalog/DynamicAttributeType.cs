@@ -7,6 +7,7 @@ namespace XOMNI.SDK.Model.Private.Catalog
 {
     public class DynamicAttributeType : SDK.Model.Catalog.DynamicAttributeType
     {
-        public DynamicAttributeTypeOptions Options { get; set; }
+        //public CatalogDataOptions Options { get; set; }
+        //public string DataType { get; set; }
     }
 }

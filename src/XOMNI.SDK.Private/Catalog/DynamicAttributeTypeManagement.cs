@@ -9,10 +9,10 @@ using XOMNI.SDK.Private.ApiAccess.Catalog;
 
 namespace XOMNI.SDK.Private.Catalog
 {
-    public class DynamicAttributeTypeManagement : BaseCRUDSkipTakeManagement<XOMNI.SDK.Model.Private.Catalog.DynamicAttributeType>
+    public class DynamicAttributeTypeManagement : BaseCRUDPSkipTakeManagement<XOMNI.SDK.Model.Private.Catalog.DynamicAttributeType>
     {
         private DynamicAttributeType dynamicAttributeTypeApiAccess;
-        protected override Core.ApiAccess.CRUDApiAccessBase<Model.Private.Catalog.DynamicAttributeType> ApiAccess
+        protected override Core.ApiAccess.CRUDPApiAccessBase<Model.Private.Catalog.DynamicAttributeType> CRUDPApiAccess
         {
             get
             {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 using XOMNI.SDK.Management.ApiAccess.Company;
 using XOMNI.SDK.Model;
 
@@ -67,6 +68,58 @@ namespace XOMNI.SDK.Management.Company
         public Task<List<Metadata>> GetMetadataAsync(string deviceId, int relatedLicenceId)
         {
             return deviceMetadataApi.GetAsync(deviceId, relatedLicenceId, this.ApiCredential);
+        }
+
+        // For batch
+
+        public virtual XOMNIRequestMessage<CountedCollectionContainer<XOMNI.SDK.Model.Management.Company.Device>> CreateGetAllRequest(int skip, int take)
+        {
+            return devicesApi.CreateGetAllRequest(skip, take, this.ApiCredential);
+        }
+
+        public virtual XOMNIRequestMessage<XOMNI.SDK.Model.Management.Company.Device> CreatePostRequest(XOMNI.SDK.Model.Management.Company.Device entity)
+        {
+            return devicesApi.CreatePostRequest(entity, this.ApiCredential);
+        }
+
+        public virtual XOMNIRequestMessage<XOMNI.SDK.Model.Management.Company.Device> CreatePutRequest(XOMNI.SDK.Model.Management.Company.Device entity)
+        {
+            return devicesApi.CreatePutRequest(entity, this.ApiCredential);
+        }
+        public virtual XOMNIRequestMessage CreateDeleteRequest(int id)
+        {
+            return devicesApi.CreateDeleteRequest(id, this.ApiCredential);
+        }
+
+        public virtual XOMNIRequestMessage<XOMNI.SDK.Model.Management.Company.Device> CreateGetByIdRequest(string deviceId, int relatedLicenceId)
+        {
+            return devicesApi.CreateGetByIdRequest(deviceId, relatedLicenceId, this.ApiCredential);
+        }
+
+        // For batch metadata
+        public XOMNIRequestMessage<Metadata> CreatePostMetadataRequest(string deviceId, int relatedLicenceId, Metadata metadata)
+        {
+            return deviceMetadataApi.CreatePostRequest(deviceId, relatedLicenceId, metadata, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<Metadata> CreatePutMetadataRequest(string deviceId, int relatedLicenceId, Metadata metadata)
+        {
+            return deviceMetadataApi.CreatePutRequest(deviceId, relatedLicenceId, metadata, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateDeleteMetadataRequest(string deviceId, int relatedLicenceId, string metadataKey)
+        {
+            return deviceMetadataApi.CreateDeleteRequest(deviceId, relatedLicenceId, metadataKey, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateClearMetadataRequest(string deviceId, int relatedLicenceId)
+        {
+            return deviceMetadataApi.CreateDeleteRequest(deviceId, relatedLicenceId, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Metadata>> CreateGetMetadataRequest(string deviceId, int relatedLicenceId)
+        {
+            return deviceMetadataApi.CreateGetByIdRequest(deviceId, relatedLicenceId, this.ApiCredential);
         }
     }
 }

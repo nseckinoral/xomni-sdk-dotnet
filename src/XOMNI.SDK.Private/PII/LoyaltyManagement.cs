@@ -9,10 +9,10 @@ using XOMNI.SDK.Private.ApiAccess.PII;
 
 namespace XOMNI.SDK.Private.PII
 {
-    public class LoyaltyManagement : BaseCRUDSkipTakeManagement<SDK.Model.Private.PII.LoyaltyUser>
+    public class LoyaltyManagement : BaseCRUDPSkipTakeManagement<SDK.Model.Private.PII.LoyaltyUser>
     {
         private LoyaltyMetadata loyaltyMetadataApi;
-        protected override Core.ApiAccess.CRUDApiAccessBase<Model.Private.PII.LoyaltyUser> ApiAccess
+        protected override Core.ApiAccess.CRUDPApiAccessBase<Model.Private.PII.LoyaltyUser> CRUDPApiAccess
         {
             get { return new ApiAccess.PII.Loyalty(); }
         }
@@ -22,38 +22,35 @@ namespace XOMNI.SDK.Private.PII
             loyaltyMetadataApi = new LoyaltyMetadata();
         }
 
-        public async Task<LoyaltyUserMetadata> AddMetadataAsync(int loyaltyUserId, string metadataKey, string metadataValue)
+        public Task<LoyaltyUserMetadata> AddMetadataAsync(int loyaltyUserId, string metadataKey, string metadataValue)
         {
             var metadata = CreateLoyaltyUserMetadata(loyaltyUserId, metadataKey, metadataValue);
-            var createdMetadata = await loyaltyMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
-            return createdMetadata;
+            return loyaltyMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
         }
 
-        public async Task DeleteMetadataAsync(int loyaltyUserId, string metadataKey)
+        public Task DeleteMetadataAsync(int loyaltyUserId, string metadataKey)
         {
             if (String.IsNullOrEmpty(metadataKey))
             {
                 throw new ArgumentNullException("metadataKey");
             }
-            await loyaltyMetadataApi.DeleteMetadataAsync(loyaltyUserId, metadataKey, this.ApiCredential);
+            return loyaltyMetadataApi.DeleteMetadataAsync(loyaltyUserId, metadataKey, this.ApiCredential);
         }
 
-        public async Task ClearMetadataAsync(int loyaltyUserId)
+        public Task ClearMetadataAsync(int loyaltyUserId)
         {
-            await loyaltyMetadataApi.ClearMetadataAsync(loyaltyUserId, this.ApiCredential);
+            return loyaltyMetadataApi.ClearMetadataAsync(loyaltyUserId, this.ApiCredential);
         }
 
-        public async Task<List<LoyaltyUserMetadata>> GetAllMetadataAsync(int loyaltyUserId)
+        public Task<List<LoyaltyUserMetadata>> GetAllMetadataAsync(int loyaltyUserId)
         {
-            List<LoyaltyUserMetadata> categoryMetadataList = await loyaltyMetadataApi.GetAllMetadataAsync(loyaltyUserId, this.ApiCredential);
-            return categoryMetadataList;
+            return loyaltyMetadataApi.GetAllMetadataAsync(loyaltyUserId, this.ApiCredential);
         }
 
-        public async Task<LoyaltyUserMetadata> UpdateMetadataAsync(int loyaltyUserId, string metadataKey, string updatedMetadataValue)
+        public Task<LoyaltyUserMetadata> UpdateMetadataAsync(int loyaltyUserId, string metadataKey, string updatedMetadataValue)
         {
             var metadata = CreateLoyaltyUserMetadata(loyaltyUserId, metadataKey, updatedMetadataValue);
-            LoyaltyUserMetadata updatedMetadata = await loyaltyMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
-            return updatedMetadata;
+            return loyaltyMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
         }
 
         private LoyaltyUserMetadata CreateLoyaltyUserMetadata(int loyaltyUserId, string metadataKey, string metadataValue)

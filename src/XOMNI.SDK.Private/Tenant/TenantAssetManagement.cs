@@ -7,9 +7,9 @@ using XOMNI.SDK.Private.ApiAccess.Tenant;
 
 namespace XOMNI.SDK.Private.Tenant
 {
-    public class TenantAssetManagement : BaseCRUDSkipTakeManagement<Model.Private.Tenant.TenantAsset>
+    public class TenantAssetManagement : BaseCRUDPSkipTakeManagement<Model.Private.Tenant.TenantAsset>
     {
-        protected override Core.ApiAccess.CRUDApiAccessBase<Model.Private.Tenant.TenantAsset> ApiAccess
+        protected override Core.ApiAccess.CRUDPApiAccessBase<Model.Private.Tenant.TenantAsset> CRUDPApiAccess
         {
             get { return new TenantAssets(); }
         }

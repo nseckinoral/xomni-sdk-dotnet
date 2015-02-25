@@ -9,11 +9,11 @@ using XOMNI.SDK.Private.ApiAccess.Catalog;
 
 namespace XOMNI.SDK.Private.Catalog
 {
-    public class UnitTypeManagement : BaseCRUDSkipTakeManagement<Model.Catalog.UnitType>
+    public class UnitTypeManagement : BaseCRUDPSkipTakeManagement<Model.Catalog.UnitType>
     {
         private UnitType apiAccess;
 
-        protected override CRUDApiAccessBase<Model.Catalog.UnitType> ApiAccess
+        protected override CRUDPApiAccessBase<Model.Catalog.UnitType> CRUDPApiAccess
         {
             get
             {

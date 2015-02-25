@@ -20,14 +20,25 @@ namespace XOMNI.SDK.Management.ApiAccess.Configuration
             get { throw new NotImplementedException(); }
         }
 
-        public async Task<XOMNI.SDK.Model.Management.Configuration.Settings> GetAsync(ApiBasicCredential credential)
+        public Task<XOMNI.SDK.Model.Management.Configuration.Settings> GetAsync(ApiBasicCredential credential)
         {
-            return await HttpProvider.GetAsync<XOMNI.SDK.Model.Management.Configuration.Settings>(GenerateUrl(SingleOperationBaseUrl), credential);
+            return HttpProvider.GetAsync<XOMNI.SDK.Model.Management.Configuration.Settings>(GenerateUrl(SingleOperationBaseUrl), credential);
         }
 
-        public async Task<XOMNI.SDK.Model.Management.Configuration.Settings> UpdateAsync(XOMNI.SDK.Model.Management.Configuration.Settings settings, ApiBasicCredential credential)
+        public Task<XOMNI.SDK.Model.Management.Configuration.Settings> UpdateAsync(XOMNI.SDK.Model.Management.Configuration.Settings settings, ApiBasicCredential credential)
         {
-            return await HttpProvider.PutAsync<XOMNI.SDK.Model.Management.Configuration.Settings>(GenerateUrl(SingleOperationBaseUrl), settings, credential);
+            return HttpProvider.PutAsync<XOMNI.SDK.Model.Management.Configuration.Settings>(GenerateUrl(SingleOperationBaseUrl), settings, credential);
+        }
+
+        internal XOMNIRequestMessage<Model.Management.Configuration.Settings> CreateGetRequest(ApiBasicCredential apiBasicCredential)
+        {
+            return new XOMNIRequestMessage<Model.Management.Configuration.Settings>(HttpProvider.CreateGetRequest(GenerateUrl(SingleOperationBaseUrl), apiBasicCredential));
+
+        }
+
+        internal XOMNIRequestMessage<Model.Management.Configuration.Settings> CreatePutRequest(Model.Management.Configuration.Settings tenantSettings, ApiBasicCredential apiBasicCredential)
+        {
+            return new XOMNIRequestMessage<Model.Management.Configuration.Settings>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), apiBasicCredential, tenantSettings));
         }
     }
 }

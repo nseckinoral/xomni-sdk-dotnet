@@ -8,10 +8,11 @@ using XOMNI.SDK.Model.Catalog;
 using XOMNI.SDK.Core.ApiAccess;
 using XOMNI.SDK.Core.Management;
 using XOMNI.SDK.Private.ApiAccess.Catalog;
+using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.Catalog
 {
-    public class TagManagement : BaseCRUDSkipTakeManagement<Model.Catalog.Tag>
+    public class TagManagement : BaseCRUDPSkipTakeManagement<Model.Catalog.Tag>
     {
         private TagMetadata tagMetadataApi;
 
@@ -20,38 +21,35 @@ namespace XOMNI.SDK.Private.Catalog
             tagMetadataApi = new TagMetadata();
         }
 
-        public async Task<TagMetaData> AddMetadataAsync(int tagId, string metadataKey, string metadataValue)
+        public Task<TagMetaData> AddMetadataAsync(int tagId, string metadataKey, string metadataValue)
         {
             var metadata = CreateTagMetadata(tagId, metadataKey, metadataValue);
-            TagMetaData createdMetadata = await tagMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
-            return createdMetadata;
+            return tagMetadataApi.AddMetadataAsync(metadata, this.ApiCredential);
         }
 
-        public async Task<List<Metadata>> GetAllMetadataAsync(int tagId)
+        public Task<List<Metadata>> GetAllMetadataAsync(int tagId)
         {
-            List<Metadata> tagMetadataList = await tagMetadataApi.GetAllMetadataAsync(tagId, this.ApiCredential);
-            return tagMetadataList;
+            return tagMetadataApi.GetAllMetadataAsync(tagId, this.ApiCredential);
         }
 
-        public async Task DeleteMetadataAsync(int tagId, string metadataKey)
+        public Task DeleteMetadataAsync(int tagId, string metadataKey)
         {
             if (String.IsNullOrEmpty(metadataKey))
             {
                 throw new ArgumentNullException("metadataKey");
             }
-            await tagMetadataApi.DeleteMetadataAsync(tagId, metadataKey, this.ApiCredential);
+            return tagMetadataApi.DeleteMetadataAsync(tagId, metadataKey, this.ApiCredential);
         }
 
-        public async Task<TagMetaData> UpdateMetadataAsync(int tagId, string metadataKey, string updatedMetadataValue)
+        public Task<TagMetaData> UpdateMetadataAsync(int tagId, string metadataKey, string updatedMetadataValue)
         {
             var metadata = CreateTagMetadata(tagId, metadataKey, updatedMetadataValue);
-            TagMetaData updatedMetadata = await tagMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
-            return updatedMetadata;
+            return tagMetadataApi.UpdateMetadataAsync(metadata, this.ApiCredential);
         }
 
-        public async Task ClearMetadataAsync(int tagId)
+        public Task ClearMetadataAsync(int tagId)
         {
-            await tagMetadataApi.ClearMetadataAsync(tagId, this.ApiCredential);
+            return tagMetadataApi.ClearMetadataAsync(tagId, this.ApiCredential);
         }
 
         private TagMetaData CreateTagMetadata(int tagId, string metadataKey, string metadataValue)
@@ -69,9 +67,36 @@ namespace XOMNI.SDK.Private.Catalog
             return metadata;
         }
 
-        protected override CRUDApiAccessBase<Model.Catalog.Tag> ApiAccess
+        protected override CRUDPApiAccessBase<Model.Catalog.Tag> CRUDPApiAccess
         {
             get { return new ApiAccess.Catalog.Tag(); }
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<TagMetaData> CreateAddMetadataRequest(TagMetaData tagMetadata)
+        {
+            return tagMetadataApi.CreateAddMetadataRequest(tagMetadata, ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<Metadata>> CreateGetAllMetadataRequest(int tagId)
+        {
+            return tagMetadataApi.CreateGetAllMetadataRequest(tagId, ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateDeleteMetadataRequest(int tagId, string metadataKey)
+        {
+            return tagMetadataApi.CreateDeleteMetadataRequest(tagId, metadataKey, ApiCredential);
+        }
+
+        public XOMNIRequestMessage<TagMetaData> CreateUpdateMetadataRequest(TagMetaData tagMetadata)
+        {
+            return tagMetadataApi.CreateUpdateMetadataRequest(tagMetadata, ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateClearMetadataRequest(int tagId)
+        {
+            return tagMetadataApi.CreateClearMetadataRequest(tagId, ApiCredential);
+        }
+        #endregion
     }
 }

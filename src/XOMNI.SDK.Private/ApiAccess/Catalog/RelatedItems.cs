@@ -53,5 +53,39 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             additionalParameters.Add("direction", direction.ToString());
             return HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<List<int>> CreateGetByItemIdRequest(int itemId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("itemId", itemId.ToString());
+            return new XOMNIRequestMessage<List<int>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage CreateDeleteRelationRequest(int itemId, int relatedItemId, ItemRelationDirection direction, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("itemId", itemId.ToString());
+            additionalParameters.Add("relateditemId", relatedItemId.ToString());
+            additionalParameters.Add("direction", direction.ToString());
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage CreateAddRelationRequest(int itemId, List<int> relatedItems, ItemRelationDirection direction, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("itemId", itemId.ToString());
+            additionalParameters.Add("direction", direction.ToString());
+            return new XOMNIRequestMessage(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential, relatedItems));
+        }
+
+        public XOMNIRequestMessage ClearRelatedItemsRequest(int itemId, ItemRelationDirection direction, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("itemId", itemId.ToString());
+            additionalParameters.Add("direction", direction.ToString());
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+        #endregion
     }
 }

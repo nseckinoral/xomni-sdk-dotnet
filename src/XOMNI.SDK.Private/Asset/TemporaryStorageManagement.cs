@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 using XOMNI.SDK.Private.ApiAccess.Asset;
 
 namespace XOMNI.SDK.Private.Asset
@@ -17,19 +18,36 @@ namespace XOMNI.SDK.Private.Asset
             temporaryStorageApi = new Temp();
         }
 
-        public async Task<string> UploadAsync(string fileName, byte[] data)
+        public Task<string> UploadAsync(string fileName, byte[] data)
         {
-            return await temporaryStorageApi.UploadAsync(fileName, data, this.ApiCredential);
+            return temporaryStorageApi.UploadAsync(fileName, data, this.ApiCredential);
         }
 
-        public async Task<int> CommitAsync(string fileName, string[] blockIds)
+        public Task<int> CommitAsync(string fileName, string[] blockIds)
         {
-            return await temporaryStorageApi.CommitAsync(fileName, blockIds, this.ApiCredential);
+            return temporaryStorageApi.CommitAsync(fileName, blockIds, this.ApiCredential);
         }
 
-        public async Task DeleteAsync(string fileName)
+        public Task DeleteAsync(string fileName)
         {
-            await temporaryStorageApi.DeleteAsync(fileName, this.ApiCredential);
+            return temporaryStorageApi.DeleteAsync(fileName, this.ApiCredential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<string> CreateUploadRequest(string fileName, byte[] data)
+        {
+            return temporaryStorageApi.CreateUploadRequest(fileName, data, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<int> CreateCommitRequest(string fileName, string[] blockIds)
+        {
+            return temporaryStorageApi.CreateCommitRequest(fileName, blockIds, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage CreateDeleteRequest(string fileName)
+        {
+            return temporaryStorageApi.CreateDeleteRequest(fileName, this.ApiCredential);
+        }
+        #endregion
     }
 }

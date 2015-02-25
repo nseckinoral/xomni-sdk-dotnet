@@ -28,12 +28,6 @@ namespace XOMNI.SDK.Model.Catalog
         public int? UnitTypeId { get; set; }
         public string UnitTypeName { get; set; }
         public string UnitTypeCode { get; set; }
-        public List<Metadata> Metadata { get; set; }
         public bool HasVariants { get; set; }
-
-        public ItemStaticProperties()
-        {
-            Metadata = new List<Metadata>();
-        }
     }
 }

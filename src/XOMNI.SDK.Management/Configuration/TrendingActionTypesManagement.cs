@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.Management;
+using XOMNI.SDK.Core.Providers;
 using XOMNI.SDK.Model.Management.Configuration;
 
 namespace XOMNI.SDK.Management.Configuration
@@ -25,9 +26,9 @@ namespace XOMNI.SDK.Management.Configuration
         /// To fetch all of the trending action types.
         /// </summary>
         /// <returns>Current trending action types</returns>
-        public async Task<List<TrendingActionTypeValue>> GetAsync()
+        public Task<List<TrendingActionTypeValue>> GetAsync()
         {
-            return await trendingActionTypeApi.GetAsync(this.ApiCredential);
+            return trendingActionTypeApi.GetAsync(this.ApiCredential);
         }
 
         /// <summary>
@@ -35,9 +36,19 @@ namespace XOMNI.SDK.Management.Configuration
         /// </summary>
         /// <param name="trendingActionTypeValues">TrendingActionTypes to be updated</param>
         /// <returns>Updated settings</returns>
-        public async Task<List<TrendingActionTypeValue>> UpdateAsync(List<TrendingActionTypeValue> trendingActionTypeValues)
+        public Task<List<TrendingActionTypeValue>> UpdateAsync(List<TrendingActionTypeValue> trendingActionTypeValues)
         {
-            return await trendingActionTypeApi.UpdateAsync(trendingActionTypeValues, this.ApiCredential);
+            return trendingActionTypeApi.UpdateAsync(trendingActionTypeValues, this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<TrendingActionTypeValue>> CreateGetRequest()
+        {
+            return trendingActionTypeApi.CreateGetRequest(this.ApiCredential);
+        }
+
+        public XOMNIRequestMessage<List<TrendingActionTypeValue>> CreatePutRequest(List<TrendingActionTypeValue> trendingActionTypeValues)
+        {
+            return trendingActionTypeApi.CreatePutRequest(trendingActionTypeValues, this.ApiCredential);
         }
     }
 }

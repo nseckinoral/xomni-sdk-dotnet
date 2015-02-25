@@ -31,41 +31,74 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
         /// <returns>Created metadata instance.</returns>
         /// <exception cref="XOMNI.SDK.Core.Exception.NotFoundException">Given category not found in backend.</exception>
         /// <exception cref="XOMNI.SDK.Core.Exception.ConflictException">Given metadata key already exists in category metadata collection.</exception>
-        public async Task<CategoryMetaData> AddMetadataAsync(CategoryMetaData categoryMetadata, ApiBasicCredential credential)
+        public Task<CategoryMetaData> AddMetadataAsync(CategoryMetaData categoryMetadata, ApiBasicCredential credential)
         {
-            CategoryMetaData createdMetadata = await HttpProvider.PostAsync<CategoryMetaData>(GenerateUrl(SingleOperationBaseUrl), categoryMetadata,credential);
-            return createdMetadata;
+            return HttpProvider.PostAsync<CategoryMetaData>(GenerateUrl(SingleOperationBaseUrl), categoryMetadata, credential);
         }
 
-        public async Task DeleteMetadataAsync(int categoryId, string metadataKey, ApiBasicCredential credential)
+        public Task DeleteMetadataAsync(int categoryId, string metadataKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("categoryId", categoryId.ToString());
             additionalParameters.Add("metadataKey", metadataKey);
 
-            await HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters),credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task ClearMetadataAsync(int categoryId, ApiBasicCredential credential)
+        public Task ClearMetadataAsync(int categoryId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("categoryId", categoryId.ToString());
 
-            await HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters),credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task<List<Metadata>> GetAllMetadataAsync(int categoryId, ApiBasicCredential credential)
+        public Task<List<Metadata>> GetAllMetadataAsync(int categoryId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("categoryId", categoryId.ToString());
-            List<Metadata> categoryMetadataList = await HttpProvider.GetAsync<List<Metadata>>(GenerateUrl(ListOperationBaseUrl, additionalParameters),credential);
-            return categoryMetadataList;
+            return HttpProvider.GetAsync<List<Metadata>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task<CategoryMetaData> UpdateMetadataAsync(CategoryMetaData categoryMetadata, ApiBasicCredential credential)
+        public Task<CategoryMetaData> UpdateMetadataAsync(CategoryMetaData categoryMetadata, ApiBasicCredential credential)
         {
-            CategoryMetaData updatedMetadata = await HttpProvider.PutAsync<CategoryMetaData>(GenerateUrl(SingleOperationBaseUrl), categoryMetadata,credential);
-            return updatedMetadata;
+            return HttpProvider.PutAsync<CategoryMetaData>(GenerateUrl(SingleOperationBaseUrl), categoryMetadata, credential);
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<CategoryMetaData> CreateAddMetadataRequest(CategoryMetaData categoryMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<CategoryMetaData>(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl), credential, categoryMetadata));
+        }
+
+        public XOMNIRequestMessage CreateDeleteMetadataRequest(int categoryId, string metadataKey, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("categoryId", categoryId.ToString());
+            additionalParameters.Add("metadataKey", metadataKey);
+
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage CreateClearMetadataRequest(int categoryId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("categoryId", categoryId.ToString());
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage<CategoryMetaData> CreateUpdateMetadataRequest(CategoryMetaData categoryMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<CategoryMetaData>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), credential, categoryMetadata));
+        }
+
+        public XOMNIRequestMessage<List<Metadata>> CreateGetAllMetadataRequest(int categoryId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("categoryId", categoryId.ToString());
+            return new XOMNIRequestMessage<List<Metadata>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        #endregion
     }
 }

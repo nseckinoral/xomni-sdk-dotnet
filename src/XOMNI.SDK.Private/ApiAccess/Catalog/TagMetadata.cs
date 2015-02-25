@@ -18,35 +18,33 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             return createdMetadata;
         }
 
-        public async Task<List<Metadata>> GetAllMetadataAsync(int tagId, ApiBasicCredential credential)
+        public Task<List<Metadata>> GetAllMetadataAsync(int tagId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("tagId", tagId.ToString());
-            List<Metadata> tagMetadataList = await HttpProvider.GetAsync<List<Metadata>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
-            return tagMetadataList;
+            return HttpProvider.GetAsync<List<Metadata>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task DeleteMetadataAsync(int tagId, string metadataKey, ApiBasicCredential credential)
+        public Task DeleteMetadataAsync(int tagId, string metadataKey, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("tagId", tagId.ToString());
             additionalParameters.Add("metadataKey", metadataKey);
 
-            await HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential);
         }
 
-        public async Task<TagMetaData> UpdateMetadataAsync(TagMetaData tagMetadata, ApiBasicCredential credential)
+        public Task<TagMetaData> UpdateMetadataAsync(TagMetaData tagMetadata, ApiBasicCredential credential)
         {
-            TagMetaData updatedMetadata = await HttpProvider.PutAsync<TagMetaData>(GenerateUrl(SingleOperationBaseUrl), tagMetadata, credential);
-            return updatedMetadata;
+            return HttpProvider.PutAsync<TagMetaData>(GenerateUrl(SingleOperationBaseUrl), tagMetadata, credential);
         }
 
-        public async Task ClearMetadataAsync(int tagId, ApiBasicCredential credential)
+        public Task ClearMetadataAsync(int tagId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("tagId", tagId.ToString());
 
-            await HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.DeleteAsync(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
         protected override string SingleOperationBaseUrl
@@ -58,5 +56,41 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
         {
             get { return "/private/catalog/tagmetadata"; }
         }
+
+        #region low level methods
+        public XOMNIRequestMessage<TagMetaData> CreateAddMetadataRequest(TagMetaData tagMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<TagMetaData>(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl), credential, tagMetadata));
+        }
+
+        public XOMNIRequestMessage<List<Metadata>> CreateGetAllMetadataRequest(int tagId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("tagId", tagId.ToString());
+            return new XOMNIRequestMessage<List<Metadata>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage CreateDeleteMetadataRequest(int tagId, string metadataKey, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("tagId", tagId.ToString());
+            additionalParameters.Add("metadataKey", metadataKey);
+
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl, additionalParameters), credential));
+        }
+
+        public XOMNIRequestMessage<TagMetaData> CreateUpdateMetadataRequest(TagMetaData tagMetadata, ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage<TagMetaData>(HttpProvider.CreatePutRequest(GenerateUrl(SingleOperationBaseUrl), credential, tagMetadata));
+        }
+
+        public XOMNIRequestMessage CreateClearMetadataRequest(int tagId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("tagId", tagId.ToString());
+
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+        #endregion
     }
 }

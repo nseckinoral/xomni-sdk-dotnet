@@ -16,7 +16,7 @@ namespace XOMNI.SDK.Private.ApiAccess
 
         protected override string ListOperationBaseUrl { get { return string.Empty; } }
 
-        public virtual async Task<CountedCollectionContainer<T>> Get<T>(int skip, int take, ApiBasicCredential credential, string fileName = null)
+        public virtual Task<CountedCollectionContainer<T>> GetAsync<T>(int skip, int take, ApiBasicCredential credential, string fileName = null)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("skip", skip.ToString());
@@ -25,11 +25,26 @@ namespace XOMNI.SDK.Private.ApiAccess
             if (!string.IsNullOrEmpty(fileName))
             {
                 additionalParameters.Add("fileName", fileName);
-
             }
 
-            return await HttpProvider.GetAsync<CountedCollectionContainer<T>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
+            return HttpProvider.GetAsync<CountedCollectionContainer<T>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
+
+        #region low level methods
+        public virtual XOMNIRequestMessage<CountedCollectionContainer<T>> CreateGetRequest<T>(int skip, int take, ApiBasicCredential credential, string fileName = null)
+        {
+            Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
+            additionalParameters.Add("skip", skip.ToString());
+            additionalParameters.Add("take", take.ToString());
+
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                additionalParameters.Add("fileName", fileName);
+            }
+
+            return new XOMNIRequestMessage<CountedCollectionContainer<T>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential));
+        }
+        #endregion
 
     }
 }

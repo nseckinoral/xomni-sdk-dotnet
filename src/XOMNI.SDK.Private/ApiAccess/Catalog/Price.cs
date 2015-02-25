@@ -8,7 +8,7 @@ using XOMNI.SDK.Core.Providers;
 
 namespace XOMNI.SDK.Private.ApiAccess.Catalog
 {
-    public class Price : CRUDApiAccessBase<XOMNI.SDK.Model.Private.Catalog.Price>
+    public class Price : CRUDPApiAccessBase<XOMNI.SDK.Model.Private.Catalog.Price>
     {
         protected override string SingleOperationBaseUrl
         {
@@ -26,6 +26,14 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             additionalQueryString.Add("itemId", itemId.ToString());
 
             return GetByCustomListOperationUrlAsync(additionalQueryString, credential);
+        }
+
+        internal XOMNIRequestMessage<List<Model.Private.Catalog.Price>> CreateGetByItemIdRequest(int itemId, ApiBasicCredential credential)
+        {
+            Dictionary<string, string> additionalQueryString = new Dictionary<string, string>();
+            additionalQueryString.Add("itemId", itemId.ToString());
+
+            return new XOMNIRequestMessage<List<Model.Private.Catalog.Price>>(HttpProvider.CreateGetRequest(GenerateUrl(ListOperationBaseUrl, additionalQueryString), credential));
         }
     }
 }
