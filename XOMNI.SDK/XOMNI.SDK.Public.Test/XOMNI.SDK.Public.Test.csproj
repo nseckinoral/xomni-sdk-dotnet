@@ -101,6 +101,7 @@
     <Compile Include="Fixtures\Clients\PII\LoyaltyClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\LoyaltyMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\ShoppingCartClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\PII\ShoppingCartPassbookClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\WishlistMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\AuthorizationUrlClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\PostClientFixture.cs" />
