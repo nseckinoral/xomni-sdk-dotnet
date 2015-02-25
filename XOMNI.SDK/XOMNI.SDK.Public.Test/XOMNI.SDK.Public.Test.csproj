@@ -105,6 +105,7 @@
     <Compile Include="Fixtures\Clients\PII\ShoppingCartSearchClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\ShoppingCartItemClientFixture.cs" />
     <Compile Include="Fixtures\Clients\PII\WishlistMetadataClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\PII\WishlistPassbookClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\AuthorizationUrlClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\PostClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Social\CommentClientFixture.cs" />
