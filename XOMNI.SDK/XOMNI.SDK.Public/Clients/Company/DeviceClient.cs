@@ -24,7 +24,7 @@ namespace XOMNI.SDK.Public.Clients.Company
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<List<Device>>> GetAsync(int searchDistance, Location gpsLocation, int deviceTypeId = default(int), string metadataKey = null, string metadataValue = null, bool includeMetadata = false)
+        public async Task<ApiResponse<List<Device>>> GetAsync(int searchDistance, Location gpsLocation, int? deviceTypeId = null, string metadataKey = null, string metadataValue = null, bool includeMetadata = false)
         {
             Validator.For(searchDistance, "searchDistance").InRange(0, 1);
             Validator.For(gpsLocation, "gpsLocation").IsNotNull();
@@ -32,7 +32,7 @@ namespace XOMNI.SDK.Public.Clients.Company
             Validator.For(gpsLocation.Longitude, "Longitude").InRange(-180, 180);
 
             string path = string.Format("/company/stores/{0}/Devices?searchDistance={1}&", gpsLocation.GetFormattedLocation(), searchDistance);
-            if (deviceTypeId != default(int))
+            if (deviceTypeId != null)
             {
                 Validator.For(deviceTypeId, "deviceTypeId").IsGreaterThanOrEqual(1);
                 path += string.Format("deviceTypeId={0}&", deviceTypeId);
@@ -57,11 +57,11 @@ namespace XOMNI.SDK.Public.Clients.Company
             }
         }
 
-        public async Task<ApiResponse<List<Device>>> GetAsync(int deviceTypeId = default(int), string metadataKey = null, string metadataValue = null, bool includeMetadata = false)
+        public async Task<ApiResponse<List<Device>>> GetAsync(int? deviceTypeId = null, string metadataKey = null, string metadataValue = null, bool includeMetadata = false)
         {
             string path = "/company/stores/devices?";
 
-            if (deviceTypeId != default(int))
+            if (deviceTypeId != null)
             {
                 Validator.For(deviceTypeId, "deviceTypeId").IsGreaterThanOrEqual(1);
                 path += string.Format("deviceTypeId={0}&", deviceTypeId);

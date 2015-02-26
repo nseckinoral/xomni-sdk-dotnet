@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Fixtures\BaseClientFixture.cs" />
     <Compile Include="Fixtures\BaseMetadataClientFixture.cs" />
+    <Compile Include="Fixtures\Clients\Analytics\ClientSideAnalyticsClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\AssetMetadataClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\AutoCompleteClientFixture.cs" />
     <Compile Include="Fixtures\Clients\Catalog\CategoryClientFixture.cs" />
