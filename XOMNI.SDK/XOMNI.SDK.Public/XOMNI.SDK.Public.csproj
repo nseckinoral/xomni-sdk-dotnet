@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ClientContext.cs" />
     <Compile Include="ClientContextExtensions.cs" />
+    <Compile Include="Clients\Analytics\ClientSideAnalyticsClient.cs" />
     <Compile Include="Clients\BaseClient.cs" />
     <Compile Include="Clients\Catalog\AssetMetadataClient.cs" />
     <Compile Include="Clients\Catalog\AutoCompleteClient.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Extensions\ValidatorExtension.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\XOMNIPublicApiErrorHandler.cs" />
+    <Compile Include="Models\Analytics\ClientLog.cs" />
     <Compile Include="Models\ApiResponse.cs" />
     <Compile Include="Models\Catalog\Asset.cs" />
     <Compile Include="Models\Catalog\AssetDetailType.cs" />
