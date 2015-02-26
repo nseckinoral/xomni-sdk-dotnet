@@ -72,5 +72,14 @@ namespace XOMNI.SDK.Public.Extensions
             return item;
         }
 
+        public static Parameter<int?> IsGreaterThanOrEqual(this Parameter<int?> item, int bound)
+        {
+            if (item.Value < bound)
+            {
+                throw new ArgumentException(string.Format("{0} must be greater than or equal to {1}.", item.ArgName, bound));
+            }
+            return item;
+        }
+
     }
 }
