@@ -55,11 +55,11 @@ namespace XOMNI.SDK.Public.Clients.PII
 			}
 		}
 
-        public async Task<ApiResponse<Wishlist>> PostWishlistAsync(WishlistWithItems wishlistWithItems)
+        public async Task<ApiResponse<Wishlist>> PostWishlistAsync(Wishlist wishlist)
 		{
 			string path = "/pii/wishlist";
 
-            using (var response = await Client.PostAsJsonAsync(path, wishlistWithItems).ConfigureAwait(false))
+            using (var response = await Client.PostAsJsonAsync(path, wishlist).ConfigureAwait(false))
 			{
                 return await response.Content.ReadAsAsync<ApiResponse<Wishlist>>().ConfigureAwait(false);
 			}
