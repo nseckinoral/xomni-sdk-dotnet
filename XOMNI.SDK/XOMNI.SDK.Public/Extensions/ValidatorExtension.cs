@@ -128,110 +128,62 @@ namespace XOMNI.SDK.Public.Extensions
             return item;
         }
 
-        public static Parameter<ItemSearchOptionsRequest> InRange(this Parameter<ItemSearchOptionsRequest> item)
+        public static Parameter<ItemSearchOptionsRequest> IsValid(this Parameter<ItemSearchOptionsRequest> item)
         {
-            List<MinMaxParameterPair> minAndMaxPairs = new List<MinMaxParameterPair>()
-            {
-                new MinMaxParameterPair()
-                {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxDepth,"MaxDepth"),
-                    MinParameter = new Parameter<double?>(item.Value.MinDepth,"MinDepth")
-                },
-                new MinMaxParameterPair()
-                {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxHeight,"MaxHeight"),
-                    MinParameter = new Parameter<double?>(item.Value.MinHeight,"MinHeight")
-                },
-                new MinMaxParameterPair()
-                {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxPrice,"MaxPrice"),
-                    MinParameter =  new Parameter<double?>(item.Value.MinPrice,"MinPrice")
-                },
-                new MinMaxParameterPair()
-                {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxWeight,"MaxWeight"),
-                    MinParameter = new Parameter<double?>(item.Value.MinWeight,"MinWeight")
-                },
-                new MinMaxParameterPair()
-                {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxWidth,"MaxWidth"),
-                    MinParameter = new Parameter<double?>(item.Value.MinWidth,"MinWidth")
-                }
-            };
-            foreach (var values in minAndMaxPairs)
-            {
-                IsLessThanOrEqual(values.MinParameter, values.MaxParameter);
-            }
+            ValidateItemSearchRequest(item.Value);
+            ValidateSearchRequest(item.Value);
 
             return item;
         }
 
-        public static Parameter<ItemSearchRequest> InRange(this Parameter<ItemSearchRequest> item)
+        public static Parameter<ItemSearchRequest> IsValid(this Parameter<ItemSearchRequest> item)
         {
-            List<MinMaxParameterPair> minAndMaxPairs = new List<MinMaxParameterPair>()
-            {
-                new MinMaxParameterPair()
-                {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxDepth,"MaxDepth"),
-                    MinParameter = new Parameter<double?>(item.Value.MinDepth,"MinDepth")
-                },
-                new MinMaxParameterPair()
-                {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxHeight,"MaxHeight"),
-                    MinParameter = new Parameter<double?>(item.Value.MinHeight,"MinHeight")
-                },
-                new MinMaxParameterPair()
-                {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxPrice,"MaxPrice"),
-                    MinParameter =  new Parameter<double?>(item.Value.MinPrice,"MinPrice")
-                },
-                new MinMaxParameterPair()
-                {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxWeight,"MaxWeight"),
-                    MinParameter = new Parameter<double?>(item.Value.MinWeight,"MinWeight")
-                },
-                new MinMaxParameterPair()
-                {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxWidth,"MaxWidth"),
-                    MinParameter = new Parameter<double?>(item.Value.MinWidth,"MinWidth")
-                }
-            };
-            foreach (var values in minAndMaxPairs)
-            {
-                IsLessThanOrEqual(values.MinParameter, values.MaxParameter);
-            }
+            ValidateItemSearchRequest(item.Value);
+            ValidateSearchRequest(item.Value);
 
             return item;
         }
 
         public static Parameter<SearchRequest> InRange(this Parameter<SearchRequest> item)
         {
+            ValidateSearchRequest(item.Value);
+            return item;
+        }
+
+        private static void ValidateItemSearchRequest(ItemSearchRequest itemSearchRequest)
+        {
+            Validator.For(itemSearchRequest.Skip, "Skip").IsGreaterThanOrEqual(0);
+            Validator.For(itemSearchRequest.Take, "Take").InRange(1,1000);
+        }
+
+        private static void ValidateSearchRequest(SearchRequest searchRequest)
+        {
             List<MinMaxParameterPair> minAndMaxPairs = new List<MinMaxParameterPair>()
             {
                 new MinMaxParameterPair()
                 {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxDepth,"MaxDepth"),
-                    MinParameter = new Parameter<double?>(item.Value.MinDepth,"MinDepth")
+                    MaxParameter = new Parameter<double?>(searchRequest.MaxDepth,"MaxDepth"),
+                    MinParameter = new Parameter<double?>(searchRequest.MinDepth,"MinDepth")
                 },
                 new MinMaxParameterPair()
                 {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxHeight,"MaxHeight"),
-                    MinParameter = new Parameter<double?>(item.Value.MinHeight,"MinHeight")
+                    MaxParameter = new Parameter<double?>(searchRequest.MaxHeight,"MaxHeight"),
+                    MinParameter = new Parameter<double?>(searchRequest.MinHeight,"MinHeight")
                 },
                 new MinMaxParameterPair()
                 {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxPrice,"MaxPrice"),
-                    MinParameter =  new Parameter<double?>(item.Value.MinPrice,"MinPrice")
+                    MaxParameter = new Parameter<double?>(searchRequest.MaxPrice,"MaxPrice"),
+                    MinParameter =  new Parameter<double?>(searchRequest.MinPrice,"MinPrice")
                 },
                 new MinMaxParameterPair()
                 {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxWeight,"MaxWeight"),
-                    MinParameter = new Parameter<double?>(item.Value.MinWeight,"MinWeight")
+                    MaxParameter = new Parameter<double?>(searchRequest.MaxWeight,"MaxWeight"),
+                    MinParameter = new Parameter<double?>(searchRequest.MinWeight,"MinWeight")
                 },
                 new MinMaxParameterPair()
                 {
-                    MaxParameter = new Parameter<double?>(item.Value.MaxWidth,"MaxWidth"),
-                    MinParameter = new Parameter<double?>(item.Value.MinWidth,"MinWidth")
+                    MaxParameter = new Parameter<double?>(searchRequest.MaxWidth,"MaxWidth"),
+                    MinParameter = new Parameter<double?>(searchRequest.MinWidth,"MinWidth")
                 }
             };
             foreach (var values in minAndMaxPairs)
@@ -239,7 +191,20 @@ namespace XOMNI.SDK.Public.Extensions
                 IsLessThanOrEqual(values.MinParameter, values.MaxParameter);
             }
 
-            return item;
+            if (!string.IsNullOrEmpty(searchRequest.DelimitedDynamicAttributeValues))
+            {
+                Validator.For(searchRequest.DelimitedDynamicAttributeValues, "DelimitedDynamicAttributeValues").KeyValuePairValid(';', ':');
+            }
+
+            if (searchRequest.MinWeight.HasValue && searchRequest.MaxWeight.HasValue)
+            {
+                Validator.For(searchRequest.WeightTypeId, "WeightTypeId").IsNotNull();
+            }
+
+            if (searchRequest.MinWidth.HasValue && searchRequest.MinHeight.HasValue && searchRequest.MinDepth.HasValue)
+            {
+                Validator.For(searchRequest.DimensionTypeId, "DimensionTypeId").IsNotNull();
+            }
         }
     }
 }

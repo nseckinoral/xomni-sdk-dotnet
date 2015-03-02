@@ -1101,7 +1101,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
 	        ]
         }";
         #endregion
-        
+
         #region validAPIRequestForSearch
 
         const string validAPIRequestForSearch = @"{
@@ -1180,7 +1180,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         }";
 
         #endregion
-        
+
         readonly ItemSearchRequest sampleItemSearchRequest = new ItemSearchRequest()
         {
             Skip = 0,
@@ -1251,8 +1251,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         {
             await base.ResponseParseTestAsync(
                 (ItemClient c) => c.GetAsync(1),
-                new HttpResponseMessage(HttpStatusCode.OK) 
-                { 
+                new HttpResponseMessage(HttpStatusCode.OK)
+                {
                     Content = new MockedJsonContent(validAPIResponseForGetAsync)
                 },
                 validAPIResponseForGetAsync
@@ -1272,26 +1272,26 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         {
             await base.UriTestAsync(
               (ItemClient c) => c.GetAsync(1),
-              string.Format("/catalog/item/{0}?includeItemStaticProperties={1}&includeItemDynamicProperties={2}&imageAssetDetail={3}&videoAssetDetail={4}&documentAssetDetail={5}&includeItemInStoreMetadata={6}",1, true, true, 0, 0, 0, false));
+              string.Format("/catalog/item/{0}?includeItemStaticProperties={1}&includeItemDynamicProperties={2}&imageAssetDetail={3}&videoAssetDetail={4}&documentAssetDetail={5}&includeItemInStoreMetadata={6}", 1, true, true, 0, 0, 0, false));
 
             await base.UriTestAsync(
-                (ItemClient c) => c.GetAsync(1,includeItemInStoreMetadata : true),
+                (ItemClient c) => c.GetAsync(1, includeItemInStoreMetadata: true),
               string.Format("/catalog/item/{0}?includeItemStaticProperties={1}&includeItemDynamicProperties={2}&imageAssetDetail={3}&videoAssetDetail={4}&documentAssetDetail={5}&includeItemInStoreMetadata={6}", 1, true, true, 0, 0, 0, true));
 
             await base.UriTestAsync(
-                (ItemClient c) => c.GetAsync(1,includeItemStaticProperties:false),
+                (ItemClient c) => c.GetAsync(1, includeItemStaticProperties: false),
               string.Format("/catalog/item/{0}?includeItemStaticProperties={1}&includeItemDynamicProperties={2}&imageAssetDetail={3}&videoAssetDetail={4}&documentAssetDetail={5}&includeItemInStoreMetadata={6}", 1, false, true, 0, 0, 0, false));
 
             await base.UriTestAsync(
-                (ItemClient c) => c.GetAsync(1, includeItemDynamicProperties:false),
+                (ItemClient c) => c.GetAsync(1, includeItemDynamicProperties: false),
               string.Format("/catalog/item/{0}?includeItemStaticProperties={1}&includeItemDynamicProperties={2}&imageAssetDetail={3}&videoAssetDetail={4}&documentAssetDetail={5}&includeItemInStoreMetadata={6}", 1, true, false, 0, 0, 0, false));
 
             await base.UriTestAsync(
-                (ItemClient c) => c.GetAsync(1,includeItemInStoreMetadata:true,includeItemStaticProperties:false,includeItemDynamicProperties:false),
+                (ItemClient c) => c.GetAsync(1, includeItemInStoreMetadata: true, includeItemStaticProperties: false, includeItemDynamicProperties: false),
               string.Format("/catalog/item/{0}?includeItemStaticProperties={1}&includeItemDynamicProperties={2}&imageAssetDetail={3}&videoAssetDetail={4}&documentAssetDetail={5}&includeItemInStoreMetadata={6}", 1, false, false, 0, 0, 0, true));
 
             await base.UriTestAsync(
-                (ItemClient c) => c.GetAsync(1, imageAssetDetail:AssetDetailType.IncludeAll,videoAssetDetail:AssetDetailType.IncludeOnlyDefaultWithMetadata,documentAssetDetail:AssetDetailType.IncludeOnlyDefault),
+                (ItemClient c) => c.GetAsync(1, imageAssetDetail: AssetDetailType.IncludeAll, videoAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, documentAssetDetail: AssetDetailType.IncludeOnlyDefault),
               string.Format("/catalog/item/{0}?includeItemStaticProperties={1}&includeItemDynamicProperties={2}&imageAssetDetail={3}&videoAssetDetail={4}&documentAssetDetail={5}&includeItemInStoreMetadata={6}", 1, true, true, 2, 4, 1, false));
 
         }
@@ -1332,7 +1332,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemClient c) => c.Search(sampleItemSearchRequest,false),
+                (ItemClient c) => c.Search(sampleItemSearchRequest, false),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponseForSearch)
@@ -1345,7 +1345,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchRequestParseTest()
         {
             await base.RequestParseTestAsync<ItemSearchRequest>(
-                (ItemClient c) => c.Search(sampleItemSearchRequest, false),validAPIRequestForSearch
+                (ItemClient c) => c.Search(sampleItemSearchRequest, false), validAPIRequestForSearch
             );
         }
 
@@ -1362,7 +1362,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         {
             await base.UriTestAsync(
               (ItemClient c) => c.Search(sampleItemSearchRequest, true),
-              string.Format("/catalog/items?includeItemInStoreMetadata={0}",true));
+              string.Format("/catalog/items?includeItemInStoreMetadata={0}", true));
         }
 
         [TestMethod, TestCategory("ItemClient"), TestCategory("Search"), TestCategory("HTTP.POST")]
@@ -1410,7 +1410,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                    Take = -6,
                    DelimitedDynamicAttributeValues = "1;1"
                }, false),
-               new ArgumentException("Take must be greater than or equal to 1."));
+               new ArgumentOutOfRangeException("Take", -6, string.Format("{0} must be in range ({1} - {2}).", "Take", 1, 1000)));
 
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.Search(new ItemSearchRequest()
@@ -1563,5 +1563,5 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
 
         #endregion
     }
-   
+
 }
