@@ -59,9 +59,24 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         public async Task<ApiResponse<MultipleItemSearchResult<Item>>> Search(ItemSearchRequest itemSearchRequest, bool includeItemInStoreMetadata = false)
         {
-            Validator.For(itemSearchRequest, "itemSearchRequest").IsNotNull();
+            Validator.For(itemSearchRequest, "itemSearchRequest").IsNotNull().InRange();
             Validator.For(itemSearchRequest.Skip, "Skip").IsGreaterThanOrEqual(0);
             Validator.For(itemSearchRequest.Take, "Take").IsGreaterThanOrEqual(1);
+
+            if(!string.IsNullOrEmpty(itemSearchRequest.DelimitedDynamicAttributeValues))
+            {
+                Validator.For(itemSearchRequest.DelimitedDynamicAttributeValues, "DelimitedDynamicAttributeValues").KeyValuePairValid(';', ':');
+            }
+
+            if (itemSearchRequest.MinWeight.HasValue && itemSearchRequest.MaxWeight.HasValue)
+            {
+                Validator.For(itemSearchRequest.WeightTypeId, "WeightTypeId").IsNotNull();
+            }
+
+            if (itemSearchRequest.MinWidth.HasValue && itemSearchRequest.MinHeight.HasValue && itemSearchRequest.MinDepth.HasValue)
+            {
+                Validator.For(itemSearchRequest.DimensionTypeId, "DimensionTypeId").IsNotNull();
+            }
 
             string path = string.Format("/catalog/items?includeItemInStoreMetadata={0}", includeItemInStoreMetadata);
 

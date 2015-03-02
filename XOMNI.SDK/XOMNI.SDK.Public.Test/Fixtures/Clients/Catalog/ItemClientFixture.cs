@@ -1133,7 +1133,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             'DimensionTypeId':null,
             'WeightTypeId':null,
             'TagId':null,
-            'DelimitedDynamicAttributeValues':'1:1;',
+            'DelimitedDynamicAttributeValues':'1:1',
             'IncludeOnlyMasterItems':false,
             'IncludeItemStaticProperties':true,
             'IncludeItemDynamicProperties':true,
@@ -1205,7 +1205,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             MaxPrice = null,
             DimensionTypeId = null,
             TagId = null,
-            DelimitedDynamicAttributeValues = "1:1;",
+            DelimitedDynamicAttributeValues = "1:1",
             IncludeOnlyMasterItems = false,
             ItemIds = new List<int>()
             {
@@ -1382,25 +1382,66 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (ItemClient c) => c.Search(null, false),
-                new ArgumentNullException("itemSearchRequest can not be null."));
+               (ItemClient c) => c.Search(null, false),
+               new ArgumentNullException("itemSearchRequest can not be null."));
 
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.Search(new ItemSearchRequest()
                 {
                     Skip = -1,
-                    Take = 4
+                    Take = 4,
+                    DelimitedDynamicAttributeValues = "1;1"
                 }, false),
                 new ArgumentException("Skip must be greater than or equal to 0."));
+
+            await base.SDKExceptionResponseTestAsync(
+                (ItemClient c) => c.Search(new ItemSearchRequest()
+                {
+                    Skip = 1,
+                    Take = 4,
+                    DelimitedDynamicAttributeValues = "1:1;"
+                }, false),
+                new ArgumentException("Given string format is not correct."));
 
             await base.SDKExceptionResponseTestAsync(
                (ItemClient c) => c.Search(new ItemSearchRequest()
                {
                    Skip = 1,
-                   Take = 0
+                   Take = -6,
+                   DelimitedDynamicAttributeValues = "1;1"
                }, false),
                new ArgumentException("Take must be greater than or equal to 1."));
 
+            await base.SDKExceptionResponseTestAsync(
+                (ItemClient c) => c.Search(new ItemSearchRequest()
+                {
+                    Take = 1,
+                    MinWeight = 300,
+                    MaxWeight = 400,
+                    DelimitedDynamicAttributeValues = "1:1"
+                }),
+                new ArgumentNullException("WeightTypeId can not be null.")
+            );
+
+            await base.SDKExceptionResponseTestAsync(
+              (ItemClient c) => c.Search(new ItemSearchRequest()
+              {
+                  Take = 1,
+                  MinWidth = 300,
+                  MinHeight = 300,
+                  MinDepth = 400,
+                  DelimitedDynamicAttributeValues = "1:1"
+              }),
+              new ArgumentNullException("DimensionTypeId can not be null."));
+
+            await base.SDKExceptionResponseTestAsync(
+              (ItemClient c) => c.Search(new ItemSearchRequest()
+              {
+                  Take = 1,
+                  MinWidth = 300,
+                  MaxWidth = 220,
+              }),
+              new ArgumentException(string.Format("{0} can not be greater than {1}.", "MinWidth", "MaxWidth")));
         }
 
         [TestMethod, TestCategory("ItemClient"), TestCategory("Search"), TestCategory("HTTP.POST")]
