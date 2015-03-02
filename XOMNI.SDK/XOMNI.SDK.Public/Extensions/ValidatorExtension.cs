@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XOMNI.SDK.Public.Models;
+using XOMNI.SDK.Public.Models.Catalog;
 
 namespace XOMNI.SDK.Public.Extensions
 {
@@ -81,5 +83,87 @@ namespace XOMNI.SDK.Public.Extensions
             return item;
         }
 
+        public static Parameter<int?> IsNotNull(this Parameter<int?> item)
+        {
+            if (!item.Value.HasValue)
+            {
+                throw new ArgumentNullException(string.Format("{0} can not be null.", item.ArgName));
+            }
+            return item;
+        }
+
+        public static Parameter<double?> IsLessThanOrEqual(this Parameter<double?> item, Parameter<double?> maxItem)
+        {
+            if (item.Value.HasValue && maxItem.Value.HasValue && item.Value > maxItem.Value)
+            {
+                throw new ArgumentException(string.Format("{0} can not be greater than {1}.", item.ArgName, maxItem.ArgName));
+            }
+            return item;
+        }
+
+        public static Parameter<string> KeyValuePairValid(this Parameter<string> item, char firstSeparatorCharacter, char secondSeparatorCharacter)
+        {
+            var keyValuePairs = item.Value.Split(firstSeparatorCharacter).Select(x => x.Split(secondSeparatorCharacter)).ToList();
+
+            foreach (var pair in keyValuePairs)
+            {
+                if (pair.Count() != 2)
+                {
+                    throw new ArgumentException("Given string format is not correct.");
+                }
+
+                string key = pair[0];
+                string value = pair[1];
+
+                if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value) && !string.IsNullOrWhiteSpace(key) && !string.IsNullOrWhiteSpace(value))
+                {
+                    continue;
+                }
+                else
+                {
+                    throw new ArgumentException("Given string format is not correct.");
+                }
+            }
+
+            return item;
+        }
+
+        public static Parameter<ItemSearchOptionsRequest> InRange(this Parameter<ItemSearchOptionsRequest> item)
+        {
+            List<MinMaxParameterPair> minAndMaxPairs = new List<MinMaxParameterPair>()
+            {
+                new MinMaxParameterPair()
+                {
+                    MaxParameter = new Parameter<double?>(item.Value.MaxDepth,"MaxDepth"),
+                    MinParameter = new Parameter<double?>(item.Value.MinDepth,"MinDepth")
+                },
+                new MinMaxParameterPair()
+                {
+                    MaxParameter = new Parameter<double?>(item.Value.MaxHeight,"MaxHeight"),
+                    MinParameter = new Parameter<double?>(item.Value.MinHeight,"MinHeight")
+                },
+                new MinMaxParameterPair()
+                {
+                    MaxParameter = new Parameter<double?>(item.Value.MaxPrice,"MaxPrice"),
+                    MinParameter =  new Parameter<double?>(item.Value.MinPrice,"MinPrice")
+                },
+                new MinMaxParameterPair()
+                {
+                    MaxParameter = new Parameter<double?>(item.Value.MaxWeight,"MaxWeight"),
+                    MinParameter = new Parameter<double?>(item.Value.MinWeight,"MinWeight")
+                },
+                new MinMaxParameterPair()
+                {
+                    MaxParameter = new Parameter<double?>(item.Value.MaxWidth,"MaxWidth"),
+                    MinParameter = new Parameter<double?>(item.Value.MinWidth,"MinWidth")
+                }
+            };
+            foreach (var values in minAndMaxPairs)
+            {
+                IsLessThanOrEqual(values.MinParameter, values.MaxParameter);
+            }
+
+            return item;
+        }
     }
 }

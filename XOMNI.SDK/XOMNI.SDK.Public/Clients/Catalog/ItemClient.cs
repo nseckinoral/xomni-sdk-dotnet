@@ -30,7 +30,24 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         public async Task<ApiResponse<Navigation>> GetSearchOptions(ItemSearchOptionsRequest itemSearchOptionsRequest)
         {
-            Validator.For(itemSearchOptionsRequest, "ItemSearchOptionsRequest").IsNotNull();
+            Validator.For(itemSearchOptionsRequest, "itemSearchOptionsRequest").IsNotNull().InRange();
+            Validator.For(itemSearchOptionsRequest.Skip, "Skip").IsGreaterThanOrEqual(0);
+            Validator.For(itemSearchOptionsRequest.Take, "Take").InRange(1, 1000);
+            
+            if(!string.IsNullOrEmpty(itemSearchOptionsRequest.DelimitedDynamicAttributeValues))
+            {
+                Validator.For(itemSearchOptionsRequest.DelimitedDynamicAttributeValues, "DelimitedDynamicAttriuteValues").KeyValuePairValid(';', ':');
+            }
+
+            if (itemSearchOptionsRequest.MinWeight.HasValue && itemSearchOptionsRequest.MaxWeight.HasValue)
+            {
+                Validator.For(itemSearchOptionsRequest.WeightTypeId, "WeightTypeId").IsNotNull();
+            }
+
+            if (itemSearchOptionsRequest.MinWidth.HasValue && itemSearchOptionsRequest.MinHeight.HasValue && itemSearchOptionsRequest.MinDepth.HasValue)
+            {
+                Validator.For(itemSearchOptionsRequest.DimensionTypeId, "DimensionTypeId").IsNotNull();
+            }
 
             string path = "/catalog/itemsearchoptions";
 

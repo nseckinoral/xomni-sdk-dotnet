@@ -1215,6 +1215,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
 
         readonly ItemSearchOptionsRequest sampleItemSearchOptionsRequest = new ItemSearchOptionsRequest()
         {
+            Take = 1,
             DefaultItemId = null,
             RFID = null,
             UUID = null,
@@ -1446,8 +1447,58 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         {
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.GetSearchOptions(null),
-                new ArgumentNullException("ItemSearchOptionsRequest can not be null.")
+                new ArgumentNullException("itemSearchOptionsRequest can not be null.")
             );
+
+            await base.SDKExceptionResponseTestAsync(
+                (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
+                {
+                    Skip = -1,
+                    Take = 4,
+                    DelimitedDynamicAttributeValues = "1:1"
+                }),
+                new ArgumentException("Skip must be greater than or equal to 0."));
+
+            await base.SDKExceptionResponseTestAsync(
+               (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
+               {
+                   Skip = 1,
+                   Take = 0,
+                   DelimitedDynamicAttributeValues = "1:1"
+               }),
+               new ArgumentOutOfRangeException("Take", 0, string.Format("{0} must be in range ({1} - {2}).", "Take", 1, 1000)));
+
+            await base.SDKExceptionResponseTestAsync(
+                (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
+                {
+                    Take = 1,
+                    MinWeight = 300,
+                    MaxWeight = 400,
+                    DelimitedDynamicAttributeValues = "1:1"
+                }),
+                new ArgumentNullException("WeightTypeId can not be null.")
+            );
+
+            await base.SDKExceptionResponseTestAsync(
+              (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
+              {
+                  Take = 1,
+                  MinWidth = 300,
+                  MinHeight = 300,
+                  MinDepth = 400,
+                  DelimitedDynamicAttributeValues = "1:1"
+              }),
+              new ArgumentNullException("DimensionTypeId can not be null."));
+
+            await base.SDKExceptionResponseTestAsync(
+              (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
+              {
+                  Take = 1,
+                  MinWidth = 300,
+                  MaxWidth = 220,
+                  DelimitedDynamicAttributeValues = "1:1"
+              }),
+              new ArgumentException(string.Format("{0} can not be greater than {1}.", "MinWidth", "MaxWidth")));
         }
 
         [TestMethod, TestCategory("ItemClient"), TestCategory("GetSearchOptions"), TestCategory("HTTP.POST")]

@@ -135,6 +135,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\Company\Device.cs" />
+    <Compile Include="Models\MinMaxParameterPair.cs" />
     <Compile Include="Models\OmniPlay\OmniSession.cs" />
     <Compile Include="Models\OmniPlay\Omniticket.cs" />
     <Compile Include="Models\OmniPlay\OmniTicketDetail.cs" />
