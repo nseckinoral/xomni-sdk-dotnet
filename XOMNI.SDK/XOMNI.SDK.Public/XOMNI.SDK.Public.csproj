@@ -157,6 +157,7 @@
     <Compile Include="Clients\PII\WishlistMetadataClient.cs" />
     <Compile Include="Models\PII\WishlistSearchRequest.cs" />
     <Compile Include="Models\PII\WishlistWithItems.cs" />
+    <Compile Include="Models\PropertyMap.cs" />
     <Compile Include="Models\Social\AvailableSocialPlatform.cs" />
     <Compile Include="Models\Social\SocialComments.cs" />
     <Compile Include="Models\Social\SocialCommentToCommentRequest.cs" />
