@@ -67,6 +67,7 @@ namespace XOMNI.SDK.Public.Clients.PII
 
         public async Task<ApiResponse<ShoppingCartItem>> PostAsync(Guid shoppingCartUniqueKey, ShoppingCartItem shoppingCartItem)
         {
+            ValidatePIIToken();
             Validator.For(shoppingCartItem, "shoppingCartItem").IsNotNull();
             Validator.For(shoppingCartItem.ItemId, "ItemId").IsGreaterThanOrEqual(1);
             Validator.For(shoppingCartItem.Quantity, "Quantity").IsGreaterThanOrEqual(0);
