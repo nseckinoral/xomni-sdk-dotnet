@@ -116,8 +116,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PutAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-              (ShoppingCartItemClient c) => c.PutAsync(Guid.NewGuid(), 0, validLocation),
-              new ArgumentOutOfRangeException("quantity", 0, string.Format("{0} must be in range ({1} - {2}).", "quantity", 1, 100)));
+              (ShoppingCartItemClient c) => c.PutAsync(Guid.NewGuid(), -1, validLocation),
+              new ArgumentException(string.Format("{0} must be greater than or equal to {1}.", "quantity", 0)));
 
             await base.SDKExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PutAsync(Guid.NewGuid(), 2, invalidLatitudeLocation),
@@ -358,9 +358,9 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
               (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), new ShoppingCartItem()
                   {
                       ItemId = 5,
-                      Quantity = 0
+                      Quantity = -1
                   }),
-              new ArgumentOutOfRangeException("Quantity", 0, string.Format("{0} must be in range ({1} - {2}).", "Quantity", 1, 100)));
+              new ArgumentException(string.Format("{0} must be greater than or equal to {1}.", "Quantity", 0)));
 
             await base.SDKExceptionResponseTestAsync(
               (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), new ShoppingCartItem() 
