@@ -1107,8 +1107,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         const string validAPIRequestForSearch = @"{
             'Skip':0,
             'Take':10,
-            'OrderedPropertyName':null,
-            'OrderBy':null,
+            'OrderedPropertyName':'Title',
+            'OrderBy':'Asc',
             'IncludeStaticNavigation':true,
             'IncludeDynamicNavigation':true,
             'DefaultItemId':null,
@@ -1185,8 +1185,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         {
             Skip = 0,
             Take = 10,
-            OrderedPropertyName = null,
-            OrderBy = null,
+            OrderedPropertyName = OrderedProperty.Title,
+            OrderBy = OrderByType.Asc,
             DefaultItemId = null,
             RFID = null,
             Name = null,

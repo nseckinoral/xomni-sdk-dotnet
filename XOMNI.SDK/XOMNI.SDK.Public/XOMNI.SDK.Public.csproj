@@ -140,6 +140,8 @@
     <Compile Include="Models\OmniPlay\OmniTicketDetail.cs" />
     <Compile Include="Models\OmniPlay\WishlistImportRequest.cs" />
     <Compile Include="Models\OmniPlay\WishlistImportResponse.cs" />
+    <Compile Include="Models\OrderByType.cs" />
+    <Compile Include="Models\OrderedProperty.cs" />
     <Compile Include="Models\PaginatedContainer.cs" />
     <Compile Include="Models\PII\AnonymousUser.cs" />
     <Compile Include="Models\PII\AnonymousUserRequest.cs" />
