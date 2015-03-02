@@ -60,7 +60,22 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         public async Task<ApiResponse<PaginatedContainer<Brand>>> GetBrandsBySearchRequestAsync(SearchRequest searchRequest)
         {
-            Validator.For(searchRequest, "searchRequest").IsNotNull();
+            Validator.For(searchRequest, "searchRequest").IsNotNull().InRange();
+            
+            if(!string.IsNullOrEmpty(searchRequest.DelimitedDynamicAttributeValues))
+            {
+                Validator.For(searchRequest.DelimitedDynamicAttributeValues, "DelimitedDynamicAttributeValues").KeyValuePairValid(';', ':');
+            }
+
+            if (searchRequest.MinWeight.HasValue && searchRequest.MaxWeight.HasValue)
+            {
+                Validator.For(searchRequest.WeightTypeId, "WeightTypeId").IsNotNull();
+            }
+
+            if (searchRequest.MinWidth.HasValue && searchRequest.MinHeight.HasValue && searchRequest.MinDepth.HasValue)
+            {
+                Validator.For(searchRequest.DimensionTypeId, "DimensionTypeId").IsNotNull();
+            }
 
             string path = string.Format("/catalog/brands");
 

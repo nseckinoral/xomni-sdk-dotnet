@@ -203,5 +203,43 @@ namespace XOMNI.SDK.Public.Extensions
 
             return item;
         }
+
+        public static Parameter<SearchRequest> InRange(this Parameter<SearchRequest> item)
+        {
+            List<MinMaxParameterPair> minAndMaxPairs = new List<MinMaxParameterPair>()
+            {
+                new MinMaxParameterPair()
+                {
+                    MaxParameter = new Parameter<double?>(item.Value.MaxDepth,"MaxDepth"),
+                    MinParameter = new Parameter<double?>(item.Value.MinDepth,"MinDepth")
+                },
+                new MinMaxParameterPair()
+                {
+                    MaxParameter = new Parameter<double?>(item.Value.MaxHeight,"MaxHeight"),
+                    MinParameter = new Parameter<double?>(item.Value.MinHeight,"MinHeight")
+                },
+                new MinMaxParameterPair()
+                {
+                    MaxParameter = new Parameter<double?>(item.Value.MaxPrice,"MaxPrice"),
+                    MinParameter =  new Parameter<double?>(item.Value.MinPrice,"MinPrice")
+                },
+                new MinMaxParameterPair()
+                {
+                    MaxParameter = new Parameter<double?>(item.Value.MaxWeight,"MaxWeight"),
+                    MinParameter = new Parameter<double?>(item.Value.MinWeight,"MinWeight")
+                },
+                new MinMaxParameterPair()
+                {
+                    MaxParameter = new Parameter<double?>(item.Value.MaxWidth,"MaxWidth"),
+                    MinParameter = new Parameter<double?>(item.Value.MinWidth,"MinWidth")
+                }
+            };
+            foreach (var values in minAndMaxPairs)
+            {
+                IsLessThanOrEqual(values.MinParameter, values.MaxParameter);
+            }
+
+            return item;
+        }
     }
 }
