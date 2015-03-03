@@ -178,6 +178,9 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         #region ArrangeForPatchAsync
 
+        const string validAPIRequestPatchAsync = @"{
+                    'DeviceTypeDescription': 'device type description',
+	        }";
         const string validAPIResponsePatchAsync = @"{
 	        'Data': {
                     'DeviceId': 1121,
@@ -557,7 +560,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
             await base.SDKExceptionResponseTestAsync(
               (DeviceClient c) => c.PatchAsync("1", new { param = "param" }),
-              new ArgumentException("Format of parameters are not correct."));
+              new ArgumentException("'param' parameter(s) invalid for device patch."));
 
             await base.SDKExceptionResponseTestAsync(
               (DeviceClient c) => c.PatchAsync("1", null),
@@ -565,7 +568,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
             await base.SDKExceptionResponseTestAsync(
               (DeviceClient c) => c.PatchAsync("1", new { }),
-              new ArgumentException("Format of parameters are not correct."));
+              new ArgumentException("Device patch must be containt at least a property."));
         }
 
         [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
@@ -574,7 +577,16 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
             await base.DefaultRequestHeadersTestAsync(
                 (DeviceClient c) => c.PatchAsync("1", sampleDevice));
         }
-        
+
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
+        public async Task PatchAsyncRequestParseTest()
+        {
+            await base.RequestParseTestAsync<object>(
+                (DeviceClient c) => c.PatchAsync("1", new { Description = "description" , X = "y"}),
+                validAPIRequestPatchAsync
+            );
+        }
+
         #endregion
 
     }

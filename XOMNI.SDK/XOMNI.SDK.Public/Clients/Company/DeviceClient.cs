@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -19,8 +20,8 @@ namespace XOMNI.SDK.Public.Clients.Company
 
         }
 
-        private static Lazy<IEnumerable<PropertyInfo>> lazyDeviceProperties = new Lazy<IEnumerable<PropertyInfo>>(() => typeof(Device).GetRuntimeProperties());
-        private static IEnumerable<PropertyInfo> deviceProperties
+        private static Lazy<List<PropertyInfo>> lazyDeviceProperties = new Lazy<List<PropertyInfo>>(() => typeof(Device).GetRuntimeProperties().ToList());
+        private static List<PropertyInfo> deviceProperties
         {
             get { return lazyDeviceProperties.Value; }
         }
@@ -93,24 +94,14 @@ namespace XOMNI.SDK.Public.Clients.Company
             }
         }
 
-        public async Task<ApiResponse<Device>> PatchAsync(string deviceId, dynamic particularDeviceInfo)
+        public async Task<ApiResponse<Device>> PatchAsync(string deviceId, dynamic devicePatch)
         {
             Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
-
-            IDictionary<string, object> expando;
-            if (!Object.ReferenceEquals(null, particularDeviceInfo))
-            {
-                var properties = GetMatchingProperties(particularDeviceInfo);
-                expando = CreateExpandoObject(particularDeviceInfo, properties);
-            }
-            else
-            {
-                throw new ArgumentNullException("particularDeviceInfo can not be null.");
-            }
-
+            ValidatePatch(devicePatch);
+            
             string path = string.Format("/company/devices/{0}", deviceId);
 
-            using (var response = await Client.PatchAsJsonAsync(path, expando).ConfigureAwait(false))
+            using (var response = await Client.PatchAsJsonAsync(path, (object)devicePatch).ConfigureAwait(false))
             {
                 return await response.Content.ReadAsAsync<ApiResponse<Device>>().ConfigureAwait(false);
             }
@@ -128,46 +119,26 @@ namespace XOMNI.SDK.Public.Clients.Company
                 return await response.Content.ReadAsAsync<ApiResponse<Device>>().ConfigureAwait(false);
             }
         }
-        private List<PropertyMap> GetMatchingProperties(dynamic targetParameter)
-        {
-            List<PropertyMap> properties = new List<PropertyMap>();
-            var targetParameterProperties = targetParameter.GetType().GetProperties();
 
-            int counter = 4;
-            foreach (PropertyInfo targetProperty in targetParameterProperties)
-            {
-                foreach (PropertyInfo sourceProperty in deviceProperties)
-                {
-                    if (targetProperty.Name == sourceProperty.Name)
-                    {
-                        properties.Add(new PropertyMap()
-                        {
-                            SourceProperty = sourceProperty,
-                            TargetProperty = targetProperty
-                        });
-                        counter--;
-                    }
-                }
-                if (counter == 4)
-                {
-                    throw new ArgumentException("Format of parameters are not correct.");
-                }
-                counter = 4;
-            }
-            if (properties.Count == 0)
-            {
-                throw new ArgumentException("Format of parameters are not correct.");
-            }
-            return properties;
-        }
-        private IDictionary<string, object> CreateExpandoObject(dynamic parameter, List<PropertyMap> propertyMap)
+        private void ValidatePatch(dynamic devicePatch)
         {
-            var expando = new ExpandoObject() as IDictionary<string, object>;
-            foreach (var item in propertyMap)
+            if (Object.ReferenceEquals(null, devicePatch))
             {
-                expando.Add(item.TargetProperty.Name, item.TargetProperty.GetValue(parameter));
+                throw new ArgumentNullException("particularDeviceInfo can not be null.");
             }
-            return expando;
+
+            var devicePatchProperties = devicePatch.GetType().GetProperties() as PropertyInfo[];
+            if (!devicePatchProperties.Any())
+            {
+                throw new ArgumentException("Device patch must be containt at least a property.");
+            }
+            var invalidParameters = devicePatchProperties.Where(t => !deviceProperties.Any(p => p == t));
+            if (invalidParameters.Any())
+            {
+                throw new ArgumentException(string.Format("{0} parameter(s) invalid for device patch.", 
+                    string.Join(",", invalidParameters.Select(t => string.Format("'{0}'",t.Name))))
+                );
+            }
         }
     }
 }
