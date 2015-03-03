@@ -19,7 +19,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 		public async Task<PaginatedContainer<Tag>> GetAsync(int skip, int take, bool includeMetadata = false)
 		{
             Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
-            Validator.For(take, "take").IsGreaterThanOrEqual(1);
+            Validator.For(take, "take").InRange(1, 1000);
 
 			string path = string.Format("/catalog/tag?skip={0}&take={1}&includeMetadata={2}", skip, take, includeMetadata);
 

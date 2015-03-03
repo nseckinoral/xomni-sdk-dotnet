@@ -169,7 +169,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         {
             await base.SDKExceptionResponseTestAsync(
                 (BrandClient c) => c.GetAsync(1, -2),
-                new ArgumentException("take must be greater than or equal to 1.")
+                new ArgumentOutOfRangeException("take", -2, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000))
             );
         }
 
@@ -252,7 +252,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         {
             await base.SDKExceptionResponseTestAsync(
                 (BrandClient c) => c.GetBrandsByCategoryAsync(1, 1, -2),
-                new ArgumentException("take must be greater than or equal to 1.")
+                new ArgumentOutOfRangeException("take", -2, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000))
             );
         }
 
@@ -344,7 +344,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         {
             await base.SDKExceptionResponseTestAsync(
                 (BrandClient c) => c.GetBrandsByTagAsync(1, 1, -2),
-                new ArgumentException("take must be greater than or equal to 1.")
+                new ArgumentOutOfRangeException("take", -2, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000))
             );
         }
 

@@ -152,8 +152,8 @@ namespace XOMNI.SDK.Public.Extensions
 
         private static void ValidateItemSearchRequest(ItemSearchRequest itemSearchRequest)
         {
-            Validator.For(itemSearchRequest.Skip, "Skip").IsGreaterThanOrEqual(0);
-            Validator.For(itemSearchRequest.Take, "Take").InRange(1,1000);
+            Validator.For(itemSearchRequest.skip, "skip").IsGreaterThanOrEqual(0);
+            Validator.For(itemSearchRequest.take, "take").InRange(1,1000);
         }
 
         private static void ValidateSearchRequest(SearchRequest searchRequest)

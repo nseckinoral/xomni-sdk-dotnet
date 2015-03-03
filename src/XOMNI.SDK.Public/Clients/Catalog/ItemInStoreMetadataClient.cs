@@ -44,7 +44,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
 
             Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
-            Validator.For(take, "take").IsGreaterThanOrEqual(1);
+            Validator.For(take, "take").InRange(1, 1000);
 
             path += string.Format("skip={0}&take={1}&companyWide={2}", skip, take, companyWide);
 

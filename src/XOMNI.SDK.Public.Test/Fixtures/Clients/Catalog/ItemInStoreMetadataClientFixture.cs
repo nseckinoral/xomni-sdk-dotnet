@@ -136,7 +136,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
 
             await base.SDKExceptionResponseTestAsync(
                (ItemInStoreMetadataClient c) => c.GetAsync(1, 1, 0),
-               new ArgumentException(string.Format("{0} must be greater than or equal to {1}.", "take", 1)));
+               new ArgumentOutOfRangeException("take", 0, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000)));
         }
 
         [TestMethod, TestCategory("ItemInStoreMetadataClient"), TestCategory("GetImageMetadataAsync"), TestCategory("HTTP.GET")]
