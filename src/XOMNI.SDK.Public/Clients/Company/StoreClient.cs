@@ -23,7 +23,7 @@ namespace XOMNI.SDK.Public.Clients.Company
             Validator.For(locationInfo.Longitude, "Longitude").InRange(-180, 180);
             Validator.For(searchDistance, "searchDistance").InRange(0, 1);
             Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
-            Validator.For(take, "take").IsGreaterThanOrEqual(1);
+            Validator.For(take, "take").InRange(1, 1000);
 
 			string path = string.Format("/company/stores?locationInfo={0}&searchDistance={1}&skip={2}&take={3}", locationInfo.GetFormattedLocation(), searchDistance, skip, take);
 
