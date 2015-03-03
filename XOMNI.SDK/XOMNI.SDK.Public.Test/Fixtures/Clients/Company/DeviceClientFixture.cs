@@ -178,6 +178,9 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         #region ArrangeForPatchAsync
 
+        const string validAPIRequestPatchAsync = @"{
+                    'Description': 'description',
+	        }";
         const string validAPIResponsePatchAsync = @"{
 	        'Data': {
                     'DeviceId': 1121,
@@ -553,8 +556,19 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
             await base.SDKExceptionResponseTestAsync(
               (DeviceClient c) => c.PatchAsync("1", null),
-              new ArgumentNullException(string.Format("{0} can not be null.", "device")));
+              new ArgumentNullException(string.Format("{0} can not be null.", "particularDeviceInfo")));
 
+            await base.SDKExceptionResponseTestAsync(
+              (DeviceClient c) => c.PatchAsync("1", new { param = "param" }),
+              new ArgumentException("'param' parameter(s) invalid for device patch."));
+
+            await base.SDKExceptionResponseTestAsync(
+              (DeviceClient c) => c.PatchAsync("1", null),
+              new ArgumentNullException("particularDeviceInfo can not be null."));
+
+            await base.SDKExceptionResponseTestAsync(
+              (DeviceClient c) => c.PatchAsync("1", new { }),
+              new ArgumentException("Device patch must be containt at least a property."));
         }
 
         [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
@@ -564,6 +578,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
                 (DeviceClient c) => c.PatchAsync("1", sampleDevice));
         }
 
+        [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
+        public async Task PatchAsyncRequestParseTest()
+        {
+            await base.RequestParseTestAsync<Device>(
+                (DeviceClient c) => c.PatchAsync("1", new { Description = "description" }),
+                validAPIRequestPatchAsync
+            );
+        }
 
         #endregion
 

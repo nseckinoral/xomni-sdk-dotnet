@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -6,6 +7,8 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Company;
 using XOMNI.SDK.Public.Extensions;
+using System.Reflection;
+using System.Dynamic;
 
 namespace XOMNI.SDK.Public.Clients.Company
 {
@@ -15,6 +18,12 @@ namespace XOMNI.SDK.Public.Clients.Company
             : base(httpClient)
         {
 
+        }
+
+        private static Lazy<List<PropertyInfo>> lazyDeviceProperties = new Lazy<List<PropertyInfo>>(() => typeof(Device).GetRuntimeProperties().ToList());
+        private static List<PropertyInfo> deviceProperties
+        {
+            get { return lazyDeviceProperties.Value; }
         }
 
         public async Task DeleteAsync(string deviceId)
@@ -85,13 +94,14 @@ namespace XOMNI.SDK.Public.Clients.Company
             }
         }
 
-        public async Task<ApiResponse<Device>> PatchAsync(string deviceId, Device device)
+        public async Task<ApiResponse<Device>> PatchAsync(string deviceId, dynamic devicePatch)
         {
             Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
-            Validator.For(device, "device").IsNotNull();
+            ValidatePatch(devicePatch);
+            
             string path = string.Format("/company/devices/{0}", deviceId);
 
-            using (var response = await Client.PatchAsJsonAsync(path, device).ConfigureAwait(false))
+            using (var response = await Client.PatchAsJsonAsync(path, (object)devicePatch).ConfigureAwait(false))
             {
                 return await response.Content.ReadAsAsync<ApiResponse<Device>>().ConfigureAwait(false);
             }
@@ -107,6 +117,27 @@ namespace XOMNI.SDK.Public.Clients.Company
             using (var response = await Client.PostAsJsonAsync(path, device).ConfigureAwait(false))
             {
                 return await response.Content.ReadAsAsync<ApiResponse<Device>>().ConfigureAwait(false);
+            }
+        }
+
+        private void ValidatePatch(dynamic devicePatch)
+        {
+            if (Object.ReferenceEquals(null, devicePatch))
+            {
+                throw new ArgumentNullException("particularDeviceInfo can not be null.");
+            }
+
+            var devicePatchProperties = devicePatch.GetType().GetProperties() as PropertyInfo[];
+            if (!devicePatchProperties.Any())
+            {
+                throw new ArgumentException("Device patch must be containt at least a property.");
+            }
+            var invalidParameters = devicePatchProperties.Where(t => !deviceProperties.Any(p => p.Name == t.Name));
+            if (invalidParameters.Any())
+            {
+                throw new ArgumentException(string.Format("{0} parameter(s) invalid for device patch.", 
+                    string.Join(",", invalidParameters.Select(t => string.Format("'{0}'",t.Name))))
+                );
             }
         }
     }
