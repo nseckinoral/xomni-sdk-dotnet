@@ -19,7 +19,11 @@ namespace XOMNI.SDK.Public.Clients.Company
 
         }
 
-        private static IEnumerable<PropertyInfo> deviceProperties = typeof(Device).GetRuntimeProperties();
+        private static Lazy<IEnumerable<PropertyInfo>> lazyDeviceProperties = new Lazy<IEnumerable<PropertyInfo>>(() => typeof(Device).GetRuntimeProperties());
+        private static IEnumerable<PropertyInfo> deviceProperties
+        {
+            get { return lazyDeviceProperties.Value; }
+        }
 
         public async Task DeleteAsync(string deviceId)
         {
