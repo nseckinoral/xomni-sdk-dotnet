@@ -1215,7 +1215,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
 
         readonly ItemSearchOptionsRequest sampleItemSearchOptionsRequest = new ItemSearchOptionsRequest()
         {
-            Take = 1,
+            take = 1,
             DefaultItemId = null,
             RFID = null,
             UUID = null,
