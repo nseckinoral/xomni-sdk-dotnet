@@ -39,6 +39,9 @@
     <Folder Include="Constants\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="ClientContext.cs" />
     <Compile Include="ClientContextExtensions.cs" />
     <Compile Include="Clients\Analytics\ClientSideAnalyticsClient.cs" />
