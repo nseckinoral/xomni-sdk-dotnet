@@ -553,8 +553,15 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
             await base.SDKExceptionResponseTestAsync(
               (DeviceClient c) => c.PatchAsync("1", null),
-              new ArgumentNullException(string.Format("{0} can not be null.", "device")));
+              new ArgumentNullException(string.Format("{0} can not be null.", "particularDeviceInfo")));
 
+            await base.SDKExceptionResponseTestAsync(
+              (DeviceClient c) => c.PatchAsync("1", new { param = "param" }),
+              new ArgumentException("Format of parameters are not correct."));
+
+            await base.SDKExceptionResponseTestAsync(
+              (DeviceClient c) => c.PatchAsync("1", new { }),
+              new ArgumentException("Format of parameters are not correct."));
         }
 
         [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
@@ -563,8 +570,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
             await base.DefaultRequestHeadersTestAsync(
                 (DeviceClient c) => c.PatchAsync("1", sampleDevice));
         }
-
-
+        
         #endregion
 
     }
