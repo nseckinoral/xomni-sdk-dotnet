@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOMNI.SDK.Public", "XOMNI.SDK.Public\XOMNI.SDK.Public.csproj", "{1A39082C-A7A4-4D53-A2DE-80C16D9C07B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOMNI.SDK.Public", "src\XOMNI.SDK.Public\XOMNI.SDK.Public.csproj", "{1A39082C-A7A4-4D53-A2DE-80C16D9C07B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOMNI.SDK.Public.Test", "XOMNI.SDK.Public.Test\XOMNI.SDK.Public.Test.csproj", "{4FAF8460-2EBB-497B-99D0-DD9A9F7B4FD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOMNI.SDK.Public.Test", "src\XOMNI.SDK.Public.Test\XOMNI.SDK.Public.Test.csproj", "{4FAF8460-2EBB-497B-99D0-DD9A9F7B4FD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
