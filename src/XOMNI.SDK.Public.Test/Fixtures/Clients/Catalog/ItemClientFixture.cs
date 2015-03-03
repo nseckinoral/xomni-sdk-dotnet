@@ -1388,8 +1388,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.Search(new ItemSearchRequest()
                 {
-                    Skip = -1,
-                    Take = 4,
+                    skip = -1,
+                    take = 4,
                     DelimitedDynamicAttributeValues = "1;1"
                 }, false),
                 new ArgumentException("Skip must be greater than or equal to 0."));
@@ -1397,8 +1397,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.Search(new ItemSearchRequest()
                 {
-                    Skip = 1,
-                    Take = 4,
+                    skip = 1,
+                    take = 4,
                     DelimitedDynamicAttributeValues = "1:1;"
                 }, false),
                 new ArgumentException("Given string format is not correct."));
@@ -1406,16 +1406,16 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
                (ItemClient c) => c.Search(new ItemSearchRequest()
                {
-                   Skip = 1,
-                   Take = -6,
+                   skip = 1,
+                   take = -6,
                    DelimitedDynamicAttributeValues = "1;1"
                }, false),
-               new ArgumentOutOfRangeException("Take", -6, string.Format("{0} must be in range ({1} - {2}).", "Take", 1, 1000)));
+               new ArgumentOutOfRangeException("take", -6, string.Format("{0} must be in range ({1} - {2}).", "Take", 1, 1000)));
 
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.Search(new ItemSearchRequest()
                 {
-                    Take = 1,
+                    take = 1,
                     MinWeight = 300,
                     MaxWeight = 400,
                     DelimitedDynamicAttributeValues = "1:1"
@@ -1426,7 +1426,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
               (ItemClient c) => c.Search(new ItemSearchRequest()
               {
-                  Take = 1,
+                  take = 1,
                   MinWidth = 300,
                   MinHeight = 300,
                   MinDepth = 400,
@@ -1437,7 +1437,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
               (ItemClient c) => c.Search(new ItemSearchRequest()
               {
-                  Take = 1,
+                  take = 1,
                   MinWidth = 300,
                   MaxWidth = 220,
               }),
