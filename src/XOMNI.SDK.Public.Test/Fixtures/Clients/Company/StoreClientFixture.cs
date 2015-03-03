@@ -151,7 +151,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             await base.SDKExceptionResponseTestAsync(
                 (StoreClient p) => p.GetAsync(location, 1, 1, 0),
-                new ArgumentException("take must be greater than or equal to 1."),
+                new ArgumentOutOfRangeException("take", 0, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000)),
                 piiUser: piiUser
             );
         }
