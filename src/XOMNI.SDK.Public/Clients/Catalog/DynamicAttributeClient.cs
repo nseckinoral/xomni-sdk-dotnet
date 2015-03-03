@@ -33,7 +33,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
         public async Task<ApiResponse<PaginatedContainer<DynamicAttribute>>> GetDynamicAttributesAsync(int skip, int take)
 		{
             Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
-            Validator.For(take, "take").IsGreaterThanOrEqual(1);
+            Validator.For(take, "take").InRange(1, 1000);
 
 			string path = string.Format("/catalog/dynamicattributes?skip={0}&take={1}", skip, take);
 
