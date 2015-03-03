@@ -1392,7 +1392,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                     take = 4,
                     DelimitedDynamicAttributeValues = "1;1"
                 }, false),
-                new ArgumentException("Skip must be greater than or equal to 0."));
+                new ArgumentException("skip must be greater than or equal to 0."));
 
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.Search(new ItemSearchRequest()
@@ -1410,7 +1410,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                    take = -6,
                    DelimitedDynamicAttributeValues = "1;1"
                }, false),
-               new ArgumentOutOfRangeException("take", -6, string.Format("{0} must be in range ({1} - {2}).", "Take", 1, 1000)));
+               new ArgumentOutOfRangeException("take", -6, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000)));
 
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.Search(new ItemSearchRequest()
