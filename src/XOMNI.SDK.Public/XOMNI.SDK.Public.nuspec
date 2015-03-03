@@ -1,15 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
-    <metadata>
-        <id>XOMNI.SDK.Public</id>
-        <version>3.0.0-alpha-003</version>
-        <authors>XOMNI Inc</authors>
-        <owners>XOMNI Inc</owners>
-        <projectUrl>https://github.com/XomniCloud/xomni-sdk-dotnet-preview</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Preview version of the XOMNI Public SDK v3.0</description>
-        <dependencies>
-            <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.2" />
-        </dependencies>
-    </metadata>
+  <metadata>
+    <id>XOMNI.SDK.Public</id>
+    <version>3.0.0</version>
+    <authors>XOMNI Inc</authors>
+    <owners>XOMNI Inc</owners>
+    <licenseUrl>https://github.com/XomniCloud/xomni-sdk-dotnet/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/XomniCloud/xomni-sdk-dotnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>XOMNI HTTP API Public SDK library</description>
+  </metadata>
 </package>

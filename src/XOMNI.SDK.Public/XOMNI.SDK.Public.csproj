@@ -179,6 +179,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="XOMNI.SDK.Public.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
