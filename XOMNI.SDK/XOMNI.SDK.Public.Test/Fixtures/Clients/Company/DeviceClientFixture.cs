@@ -560,6 +560,10 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               new ArgumentException("Format of parameters are not correct."));
 
             await base.SDKExceptionResponseTestAsync(
+              (DeviceClient c) => c.PatchAsync("1", null),
+              new ArgumentNullException("particularDeviceInfo can not be null."));
+
+            await base.SDKExceptionResponseTestAsync(
               (DeviceClient c) => c.PatchAsync("1", new { }),
               new ArgumentException("Format of parameters are not correct."));
         }
