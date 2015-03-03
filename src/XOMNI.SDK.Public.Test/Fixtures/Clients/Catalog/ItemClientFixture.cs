@@ -1183,8 +1183,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
 
         readonly ItemSearchRequest sampleItemSearchRequest = new ItemSearchRequest()
         {
-            Skip = 0,
-            Take = 10,
+            skip = 0,
+            take = 10,
             OrderedPropertyName = OrderedProperty.Title,
             OrderBy = OrderByType.Asc,
             DefaultItemId = null,
