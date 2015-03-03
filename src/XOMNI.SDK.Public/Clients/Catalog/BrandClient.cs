@@ -48,7 +48,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
         {
             Validator.For(tagId, "tagId").IsGreaterThanOrEqual(1);
             Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
-            Validator.For(take, "take").IsGreaterThanOrEqual(1);
+            Validator.For(take, "take").InRange(1, 1000);
 
             string path = string.Format("/catalog/brands?tagId={0}&skip={1}&take={2}", tagId, skip, take);
 
