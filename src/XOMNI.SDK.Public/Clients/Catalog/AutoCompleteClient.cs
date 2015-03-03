@@ -20,7 +20,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 		{
             Validator.For(searchTerm, "searchTerm").IsNotNullOrEmpty();
             Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
-            Validator.For(take, "take").IsGreaterThanOrEqual(1);
+            Validator.For(take, "take").InRange(1, 1000);
 
 			string path = string.Format("/catalog/autocomplete/{0}?searchTerm={1}&skip={2}&take={3}&includeOnlyMasterItems={4}", searchType, searchTerm, skip, take,includeOnlyMasterItems);
 
