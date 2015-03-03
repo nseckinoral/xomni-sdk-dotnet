@@ -132,7 +132,7 @@ namespace XOMNI.SDK.Public.Clients.Company
             {
                 throw new ArgumentException("Device patch must be containt at least a property.");
             }
-            var invalidParameters = devicePatchProperties.Where(t => !deviceProperties.Any(p => p == t));
+            var invalidParameters = devicePatchProperties.Where(t => !deviceProperties.Any(p => p.Name == t.Name));
             if (invalidParameters.Any())
             {
                 throw new ArgumentException(string.Format("{0} parameter(s) invalid for device patch.", 

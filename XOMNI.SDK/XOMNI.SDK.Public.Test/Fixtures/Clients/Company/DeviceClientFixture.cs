@@ -179,7 +179,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         #region ArrangeForPatchAsync
 
         const string validAPIRequestPatchAsync = @"{
-                    'DeviceTypeDescription': 'device type description',
+                    'Description': 'description',
 	        }";
         const string validAPIResponsePatchAsync = @"{
 	        'Data': {
@@ -581,8 +581,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PatchAsync"), TestCategory("HTTP.PATCH")]
         public async Task PatchAsyncRequestParseTest()
         {
-            await base.RequestParseTestAsync<object>(
-                (DeviceClient c) => c.PatchAsync("1", new { Description = "description" , X = "y"}),
+            await base.RequestParseTestAsync<Device>(
+                (DeviceClient c) => c.PatchAsync("1", new { Description = "description" }),
                 validAPIRequestPatchAsync
             );
         }
