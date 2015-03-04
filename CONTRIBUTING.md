@@ -16,11 +16,11 @@ We recommend to take a look at "Issues" before start to prevent you make a dupli
 #Branch Naming
 *	No master branch.
 *	Dev :
-*	May be unstable, if branch is ahead of the last tag. These branch has pre-release nuget packages with the same tag name.
-*	Being used for next version.
+ *	May be unstable, if branch is ahead of the last tag. These branch has pre-release nuget packages with the same tag name.
+ *	Being used for next version.
 *	V[ApiVersion] Branch
  *	Stable.
  *	These branch has pre-release nuget packages with the same tag name.
 
 
- ![](assets\branch_schema.png)
+ ![](https://cdn.rawgit.com/XomniCloud/xomni-sdk-dotnet/dev/assets/branch_schema.png)
