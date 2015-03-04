@@ -8,8 +8,8 @@ namespace XOMNI.SDK.Public.Models.Catalog
 {
     public class ItemSearchRequest : SearchRequest
     {
-        public int skip { get; set; }
-        public int take { get; set; }
+        public int Skip { get; set; }
+        public int Take { get; set; }
         public OrderedProperty? OrderedPropertyName { get; set; }
         public OrderByType? OrderBy { get; set; }
         public string TagQuery { get; set; }

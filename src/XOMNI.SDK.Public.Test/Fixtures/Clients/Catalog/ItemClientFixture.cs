@@ -1183,8 +1183,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
 
         readonly ItemSearchRequest sampleItemSearchRequest = new ItemSearchRequest()
         {
-            skip = 0,
-            take = 10,
+            Skip = 0,
+            Take = 10,
             OrderedPropertyName = OrderedProperty.Title,
             OrderBy = OrderByType.Asc,
             DefaultItemId = null,
@@ -1215,7 +1215,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
 
         readonly ItemSearchOptionsRequest sampleItemSearchOptionsRequest = new ItemSearchOptionsRequest()
         {
-            take = 1,
+            Take = 1,
             DefaultItemId = null,
             RFID = null,
             UUID = null,
@@ -1388,8 +1388,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.Search(new ItemSearchRequest()
                 {
-                    skip = -1,
-                    take = 4,
+                    Skip = -1,
+                    Take = 4,
                     DelimitedDynamicAttributeValues = "1;1"
                 }, false),
                 new ArgumentException("skip must be greater than or equal to 0."));
@@ -1397,8 +1397,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.Search(new ItemSearchRequest()
                 {
-                    skip = 1,
-                    take = 4,
+                    Skip = 1,
+                    Take = 4,
                     DelimitedDynamicAttributeValues = "1:1;"
                 }, false),
                 new ArgumentException("Given string format is not correct."));
@@ -1406,8 +1406,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
                (ItemClient c) => c.Search(new ItemSearchRequest()
                {
-                   skip = 1,
-                   take = -6,
+                   Skip = 1,
+                   Take = -6,
                    DelimitedDynamicAttributeValues = "1;1"
                }, false),
                new ArgumentOutOfRangeException("take", -6, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000)));
@@ -1415,7 +1415,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.Search(new ItemSearchRequest()
                 {
-                    take = 1,
+                    Take = 1,
                     MinWeight = 300,
                     MaxWeight = 400,
                     DelimitedDynamicAttributeValues = "1:1"
@@ -1426,7 +1426,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
               (ItemClient c) => c.Search(new ItemSearchRequest()
               {
-                  take = 1,
+                  Take = 1,
                   MinWidth = 300,
                   MinHeight = 300,
                   MinDepth = 400,
@@ -1437,7 +1437,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
               (ItemClient c) => c.Search(new ItemSearchRequest()
               {
-                  take = 1,
+                  Take = 1,
                   MinWidth = 300,
                   MaxWidth = 220,
               }),
@@ -1494,8 +1494,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
                 {
-                    skip = -1,
-                    take = 4,
+                    Skip = -1,
+                    Take = 4,
                     DelimitedDynamicAttributeValues = "1:1"
                 }),
                 new ArgumentException("skip must be greater than or equal to 0."));
@@ -1503,8 +1503,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
                (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
                {
-                   skip = 1,
-                   take = 0,
+                   Skip = 1,
+                   Take = 0,
                    DelimitedDynamicAttributeValues = "1:1"
                }),
                new ArgumentOutOfRangeException("take", 0, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000)));
@@ -1512,7 +1512,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
                 (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
                 {
-                    take = 1,
+                    Take = 1,
                     MinWeight = 300,
                     MaxWeight = 400,
                     DelimitedDynamicAttributeValues = "1:1"
@@ -1523,7 +1523,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
               (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
               {
-                  take = 1,
+                  Take = 1,
                   MinWidth = 300,
                   MinHeight = 300,
                   MinDepth = 400,
@@ -1534,7 +1534,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             await base.SDKExceptionResponseTestAsync(
               (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
               {
-                  take = 1,
+                  Take = 1,
                   MinWidth = 300,
                   MaxWidth = 220,
                   DelimitedDynamicAttributeValues = "1:1"
