@@ -32,7 +32,7 @@ namespace XOMNI.SDK.Public.Models.Catalog
         public List<Tag> Tags { get; set; }
         public List<Weight> Weights { get; set; }
         public List<Dimension> Dimensions { get; set; }
-        public List<Metadata> Metadata { get; set; }
+        public List<Metadata> InStoreMetadata { get; set; }
         public List<ImageAsset> ImageAssets { get; set; }
         public List<Asset> VideoAssets { get; set; }
         public List<Asset> DocumentAssets { get; set; }

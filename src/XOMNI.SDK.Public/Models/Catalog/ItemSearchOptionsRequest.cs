@@ -8,7 +8,7 @@ namespace XOMNI.SDK.Public.Models.Catalog
 {
     public class ItemSearchOptionsRequest : ItemSearchRequest
     {
-        protected override bool IncludeStaticNavigation
+        public override bool IncludeStaticNavigation
         {
             get
             {
@@ -16,19 +16,11 @@ namespace XOMNI.SDK.Public.Models.Catalog
             }
         }
 
-        protected override bool IncludeDynamicNavigation
+        public override bool IncludeDynamicNavigation
         {
             get
             {
                 return true;
-            }
-        }
-
-        protected override bool IncludeItemsInternal
-        {
-            get
-            {
-                return false;
             }
         }
     }
