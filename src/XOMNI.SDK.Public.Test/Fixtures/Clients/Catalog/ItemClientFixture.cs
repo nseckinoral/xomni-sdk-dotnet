@@ -1136,7 +1136,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             'DelimitedDynamicAttributeValues':'1:1',
             'IncludeOnlyMasterItems':false,
             'IncludeItemStaticProperties':true,
-            'IncludeItemDynamicProperties':true,
+            'IncludeItemDynamicProperties':false,
             'ImageAssetDetail':4,
             'VideoAssetDetail':4,
             'DocumentAssetDetail':4,
@@ -1210,7 +1210,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             ItemIds = new List<int>()
             {
                 1,2,3
-            }
+            },
+            IncludeItemDynamicProperties = false,
+            IncludeItemStaticProperties = true,
+            VideoAssetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata,
+            ImageAssetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata,
+            DocumentAssetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata
         };
 
         readonly ItemSearchOptionsRequest sampleItemSearchOptionsRequest = new ItemSearchOptionsRequest()

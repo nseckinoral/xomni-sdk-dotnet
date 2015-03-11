@@ -15,5 +15,10 @@ namespace XOMNI.SDK.Public.Models.Catalog
         public virtual bool IncludeStaticNavigation { get; set; }
         public virtual bool IncludeDynamicNavigation { get; set; }
         public List<int> ItemIds { get; set; }
+        public bool IncludeItemStaticProperties { get; set; }
+        public bool IncludeItemDynamicProperties { get; set; }
+        public AssetDetailType DocumentAssetDetail { get; set; }
+        public AssetDetailType VideoAssetDetail { get; set; }
+        public AssetDetailType ImageAssetDetail { get; set; }
     }
 }
