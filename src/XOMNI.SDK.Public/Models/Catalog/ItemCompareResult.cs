@@ -8,12 +8,12 @@ namespace XOMNI.SDK.Public.Models.Catalog
 {
     public class ItemCompareResult
     {
-        public CompareRow[] TableRows { get; set; }
+        public List<CompareRow> TableRows { get; set; }
     }
 
     public class CompareRow
     {
-        public CompareCell[] Cells { get; set; }
+        public List<CompareCell> Cells { get; set; }
     }
 
     public class CompareCell
