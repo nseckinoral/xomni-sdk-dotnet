@@ -12,6 +12,6 @@ namespace XOMNI.SDK.Public.Models.Company
         public string Description { get; set; }
         public string DeviceTypeId { get; set; }
         public DateTime? ExpirationDate { get; set; }
-
+        public List<Metadata> Metadata { get; set; }
     }
 }
