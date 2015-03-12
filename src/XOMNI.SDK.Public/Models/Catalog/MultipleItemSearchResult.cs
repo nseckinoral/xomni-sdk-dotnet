@@ -9,5 +9,6 @@ namespace XOMNI.SDK.Public.Models.Catalog
     public class MultipleItemSearchResult<T> : Navigation
     {
         public List<T> Items { get; set; }
+        public int TotalItemCount { get; set; }
     }
 }
