@@ -40,16 +40,16 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
-        public async Task<ApiResponse<MultipleItemSearchResult<Item>>> Search(ItemSearchRequest itemSearchRequest, bool includeItemInStoreMetadata = false)
+        public async Task<ApiResponse<ItemSearchResult<MultipleItemSearchResult<Item>>>> Search(ItemSearchRequest itemSearchRequest, bool includeItemInStoreMetadata = false)
         {
             Validator.For(itemSearchRequest, "itemSearchRequest").IsNotNull().IsValid();
- 
+
 
             string path = string.Format("/catalog/items?includeItemInStoreMetadata={0}", includeItemInStoreMetadata);
 
             using (var response = await Client.PostAsJsonAsync(path, itemSearchRequest).ConfigureAwait(false))
             {
-                return await response.Content.ReadAsAsync<ApiResponse<MultipleItemSearchResult<Item>>>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<ItemSearchResult<MultipleItemSearchResult<Item>>>>().ConfigureAwait(false);
             }
         }
     }

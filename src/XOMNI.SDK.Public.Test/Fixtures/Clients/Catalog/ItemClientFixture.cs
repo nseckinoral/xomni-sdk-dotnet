@@ -882,177 +882,496 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
 
         #region validAPIResponseForSearch
         const string validAPIResponseForSearch = @"{
-            'Data': {
-                'DynamicNavigation': [
-                    {
-                        'TypeId': 1,
-                        'TypeValueId': 1,
-                        'Value': 'Red',
-                        'TypeName': 'Color'
-                    },
-                    {
-                        'TypeId': 2,
-                        'TypeValueId': 4,
-                        'Value': 'M',
-                        'TypeName': 'Size'
-                    },
-                    {
-                        'TypeId': 2,
-                        'TypeValueId': 5,
-                        'Value': 'L',
-                        'TypeName': 'Size'
-                    },
-                    {
-                        'TypeId': 2,
-                        'TypeValueId': 6,
-                        'Value': 'XL',
-                        'TypeName': 'Size'
-                    },
-                    {
-                        'TypeId': 3,
-                        'TypeValueId': 7,
-                        'Value': 'A',
-                        'TypeName': 'Style'
-                    },
-                    {
-                        'TypeId': 3,
-                        'TypeValueId': 8,
-                        'Value': 'B',
-                        'TypeName': 'Style'
-                    },
-                    {
-                        'TypeId': 2,
-                        'TypeValueId': 9,
-                        'Value': 'S',
-                        'TypeName': 'Size'
-                    }
-                ],
-                'StaticNavigation': {
-                    'Categories': [
-                        {
-                            'Id': 66,
-                            'Name': 'Category 1 Sub 1 Sub 1',
-                            'ShortDescription': 'Category 1 Sub 1 Sub 1 Short Description',
-                            'LongDescription': 'Category 1 Sub 1 Sub 1 Long Description',
-                            'SubCategoryCount': 0,
-                            'ParentCategoryId': 62,
-                            'ParentCategoryName': 'Category 1 Sub 1'
-                        },
-                        {
-                            'Id': 67,
-                            'Name': 'Category 1 Sub 1 Sub 2',
-                            'ShortDescription': 'Category 1 Sub 1 Sub 1 Short Description',
-                            'LongDescription': 'Category 1 Sub 1 Sub 1 Long Description',
-                            'SubCategoryCount': 0,
-                            'ParentCategoryId': 62,
-                            'ParentCategoryName': 'Category 1 Sub 1'
-                        }
-                    ],
-                    'Brands': [
-                        {
-                            'Id': 1,
-                            'Name': 'Brand 1'
-                        },
-                        {
-                            'Id': 2,
-                            'Name': 'Brand 2'
-                        }
-                    ],
-                    'Tags': [
-                        {
-                            'Id': 2,
-                            'Name': 'Sample Tag 1',
-                            'Description': '3e129d70-2308-4dc5-bd33-c389b92859d2'
-                        }
-                    ],
-                    'Currencies': [
-                        {
-                            'Id': 1,
-                            'Description': 'USD',
-                            'CurrencySymbol': '$'
-                        },
-                        {
-                            'Id': 2,
-                            'Description': 'Euro',
-                            'CurrencySymbol': '€'
-                        }
-                    ],
-                    'UnitTypes': [
-                        {
-                            'Id': 2,
-                            'Name': '250 Kilogram',
-                            'Description': '1 Kilogram',
-                            'UnitCode': 'Kg'
-                        },
-                        {
-                            'Id': 3,
-                            'Name': 'Quantity',
-                            'Description': 'Quantity',
-                            'UnitCode': 'Quantity'
-                        }
-                    ],
-                    'WidthRanges': [
-                        {
-                            'DimensionTypeId': 1,
-                            'DimensionTypeDescription': 'Meter',
-                            'Min': 11,
-                            'Max': 11
-                        },
-                        {
-                            'DimensionTypeId': 2,
-                            'DimensionTypeDescription': 'Inch',
-                            'Min': 5,
-                            'Max': 5
-                        }
-                    ],
-                    'HeightRanges': [
-                        {
-                            'DimensionTypeId': 1,
-                            'DimensionTypeDescription': 'Meter',
-                            'Min': 11,
-                            'Max': 11
-                        },
-                        {
-                            'DimensionTypeId': 2,
-                            'DimensionTypeDescription': 'Inch',
-                            'Min': 5,
-                            'Max': 5
-                        }
-                    ],
-                    'DepthRanges': [
-                        {
-                            'DimensionTypeId': 1,
-                            'DimensionTypeDescription': 'Meter',
-                            'Min': 11,
-                            'Max': 11
-                        },
-                        {
-                            'DimensionTypeId': 2,
-                            'DimensionTypeDescription': 'Inch',
-                            'Min': 5,
-                            'Max': 5
-                        }
-                    ],
-                    'WeightRanges': [],
-                    'PriceRanges': [
-                        {
-                            'CurrencyId': 1,
-                            'CurrencySymbol': '$',
-                            'Min': 10.55,
-                            'Max': 8888
-                        }
-                    ],
-                    'DiscountPriceRanges': [
-                        {
-                            'CurrencyId': 1,
-                            'CurrencySymbol': '$',
-                            'Min': 50,
-                            'Max': 888
-                        }
-                    ]
+        'Data':{
+          'SearchRequest':{
+             'Skip':0,
+             'Take':10,
+             'OrderedPropertyName':null,
+             'OrderBy':null,
+             'IncludeStaticNavigation':true,
+             'IncludeDynamicNavigation':true,
+             'DefaultItemId':null,
+             'RFID':null,
+             'UUID':null,
+             'Name':null,
+             'SKU':null,
+             'CategoryId':null,
+             'BrandId':null,
+             'Model':null,
+             'Title':null,
+             'MinWidth':null,
+             'MaxWidth':null,
+             'MinHeight':null,
+             'MaxHeight':null,
+             'MinWeigth':null,
+             'MaxWeigth':null,
+             'MinDepth':null,
+             'MaxDepth':null,
+             'MinPrice':null,
+             'MaxPrice':null,
+             'DimensionTypeId':null,
+             'WeightTypeId':null,
+             'TagId':null,
+             'DelimitedDynamicAttributeValues':'1:1;',
+             'IncludeOnlyMasterItems':false
+          },
+          'SearchResult':{
+             'Items':[
+                {
+                   'Id':7,
+                   'RFID':null,
+                   'UUID':null,
+                   'SKU':null,
+                   'Name':'D2 Red-S-A Style',
+                   'Model':'Model 2',
+                   'Title':'D2 Title',
+                   'ShortDescription':'D2 Short Description',
+                   'LongDescription':'D2 Long Description',
+                   'Rating':null,
+                   'LikeCount':80,
+                   'CategoryId':67,
+                   'InStock':true,
+                   'PublicWebLink':null,
+                   'DefaultItemId':2,
+                   'BrandId':2,
+                   'UnitTypeId':3,
+                   'UnitTypeCode':'Quantity',
+                   'UnitTypeName':'Quantity',
+                   'DynamicAttributes':[
+                      {
+                         'TypeId':2,
+                         'TypeValueId':5,
+                         'Value':'L',
+                         'TypeName':'Size'
+                      },
+                      {
+                         'TypeId':3,
+                         'TypeValueId':8,
+                         'Value':'B',
+                         'TypeName':'Style'
+                      }
+                   ],
+                   'Prices':[
+                      {
+                         'NormalPrice':140.55,
+                         'DiscountPrice':50,
+                         'CurrencySymbol':'$',
+                         'CurrencyId':1
+                      }
+                   ],
+                   'Tags':[
+
+                   ],
+                   'Weights':[
+                      {
+                         'WeightTypeId':1,
+                         'WeightTypeDescription':'Kg',
+                         'Value':20
+                      },
+                      {
+                         'WeightTypeId':2,
+                         'WeightTypeDescription':'LBS',
+                         'Value':40
+                      }
+                   ],
+                   'Dimensions':[
+                      {
+                         'DimensionTypeId':1,
+                         'DimensionDescription':'Meter',
+                         'Width':11,
+                         'Height':11,
+                         'Depth':11
+                      },
+                      {
+                         'DimensionTypeId':2,
+                         'DimensionDescription':'Inch',
+                         'Width':5,
+                         'Height':5,
+                         'Depth':5
+                      }
+                   ],
+                   'InStoreMetadata':[
+
+                   ],
+                   'ImageAssets':[
+                      {
+                         'ResizedAssets':[
+                            {
+                               'CreatedDate':'2013-10-04T10:39:50.027',
+                               'ImageSizeProfile':{
+                                  'Id':1,
+                                  'Height':300,
+                                  'Width':500
+                               },
+                               'AssetUrl':'6D16EE1F-73A1-4BB0-9BAA-8FD27C0B3568'
+                            },
+                            {
+                               'CreatedDate':'2013-10-04T10:39:50.027',
+                               'ImageSizeProfile':{
+                                  'Id':2,
+                                  'Height':600,
+                                  'Width':1000
+                               },
+                               'AssetUrl':'6D16EE1F-73A1-4BB0-9BAA-8FD27C0B3568'
+                            },
+                            {
+                               'CreatedDate':'2013-10-04T10:39:50.027',
+                               'ImageSizeProfile':{
+                                  'Id':3,
+                                  'Height':900,
+                                  'Width':1500
+                               },
+                               'AssetUrl':'6D16EE1F-73A1-4BB0-9BAA-8FD27C0B3568'
+                            }
+                         ],
+                         'AssetMetadata':[
+                            {
+                               'Key':'3a692756-4767-4160-b35c-29859468160f',
+                               'Value':'60dd4bee-eee3-4cd3-a18d-f695fffb0b1a'
+                            },
+                            {
+                               'Key':'de8ac384-04b3-4588-ae28-d69fbb12ace7',
+                               'Value':'ca9f2cd5-1662-41fd-8d6d-bd893ea02fae'
+                            },
+                            {
+                               'Key':'fa7548ff-94e7-419d-bd52-5376eeb7279e',
+                               'Value':'21d6e55a-cc96-4d1d-bf51-43c3915a2ad5'
+                            }
+                         ],
+                         'AssetId':1,
+                         'AssetUrl':'http://127.0.0.1:10000/5e2dd075-957f-4884-8992-030d1eabcc79',
+                         'IsDefault':true
+                      }
+                   ],
+                   'ImageAssets':[
+                      {
+                         'AssetMetadata':[
+                            {
+                               'Key':'3a692756-4767-4160-b35c-29859468160f',
+                               'Value':'60dd4bee-eee3-4cd3-a18d-f695fffb0b1a'
+                            },
+                            {
+                               'Key':'de8ac384-04b3-4588-ae28-d69fbb12ace7',
+                               'Value':'ca9f2cd5-1662-41fd-8d6d-bd893ea02fae'
+                            },
+                            {
+                               'Key':'fa7548ff-94e7-419d-bd52-5376eeb7279e',
+                               'Value':'21d6e55a-cc96-4d1d-bf51-43c3915a2ad5'
+                            }
+                         ],
+                         'AssetId':1,
+                         'AssetUrl':'http://127.0.0.1:10000/5e2dd075-957f-4884-8992-030d1eabcc79',
+                         'IsDefault':true,
+                         'ResizedAssets':[
+                            {
+                               'ImageSizeProfile':{
+                                  'Id':1,
+                                  'Height':100,
+                                  'Width':200
+                               },
+                               'AssetUrl':'http://xomnistaging.blob.core.windows.net/resizedassets/test-resizedasset'
+                            }
+                         ]
+                      }
+                   ],
+                   'VideoAssets':[
+                      {
+                         'AssetMetadata':[
+                            {
+                               'Key':'34824e92-bb05-4d52-841e-5a5567866bee',
+                               'Value':'7fa6bbd4-f9ff-4715-b1d9-f82329a481b7'
+                            },
+                            {
+                               'Key':'d90611bd-eae7-4be5-83fd-d92dcee485a8',
+                               'Value':'05a8e069-372a-4695-aae4-de7a58c94b3b'
+                            },
+                            {
+                               'Key':'0d083335-e54d-4f22-8898-596168f23bd7',
+                               'Value':'27997259-69f2-41cf-bacb-07950c040231'
+                            }
+                         ],
+                         'AssetId':2,
+                         'AssetUrl':'http://127.0.0.1:10000/ac3adc70-3394-4da7-8dfd-19a8e0edb373',
+                         'IsDefault':false
+                      }
+                   ],
+                   'DocumentAssets':[
+                      {
+                         'AssetMetadata':[
+                            {
+                               'Key':'c804de73-a2cc-48ec-ae51-8ead84251471',
+                               'Value':'d5fefcbb-3912-4a0c-8f62-a0db9d22dca5'
+                            },
+                            {
+                               'Key':'e80dcbd6-f340-49fe-9817-23e3749e51d4',
+                               'Value':'41def150-a42d-478a-9915-ee5e748fb282'
+                            },
+                            {
+                               'Key':'f7d26397-a681-45a3-bd47-d7825cde12ea',
+                               'Value':'f817cb15-a7ed-4174-8030-4f534f1a3746'
+                            }
+                         ],
+                         'AssetId':3,
+                         'AssetUrl':'http://127.0.0.1:10000/e4521bbe-6cd0-419a-ab90-73c5f06a6252',
+                         'IsDefault':true
+                      }
+                   ]
+                },
+                {
+                   'Id':8,
+                   'RFID':null,
+                   'UUID':null,
+                   'SKU':null,
+                   'Name':'D2 Red-S-A Style',
+                   'Model':'Model 2',
+                   'Title':'D2 Title',
+                   'ShortDescription':'D2 Short Description',
+                   'LongDescription':'D2 Long Description',
+                   'Rating':null,
+                   'LikeCount':80,
+                   'CategoryId':67,
+                   'InStock':true,
+                   'PublicWebLink':null,
+                   'DefaultItemId':2,
+                   'BrandId':2,
+                   'UnitTypeId':3,
+                   'UnitTypeCode':'Quantity',
+                   'UnitTypeName':'Quantity',
+                   'DynamicAttributes':[
+                      {
+                         'TypeId':2,
+                         'TypeValueId':5,
+                         'Value':'L',
+                         'TypeName':'Size'
+                      },
+                      {
+                         'TypeId':3,
+                         'TypeValueId':8,
+                         'Value':'B',
+                         'TypeName':'Style'
+                      }
+                   ],
+                   'Prices':[
+                      {
+                         'NormalPrice':140.55,
+                         'DiscountPrice':50,
+                         'PriceTypeSymbol':'$',
+                         'PriceTypeId':1
+                      }
+                   ],
+                   'Tags':[
+
+                   ],
+                   'Weights':[
+
+                   ],
+                   'Dimensions':[
+                      {
+                         'DimensionTypeId':1,
+                         'DimensionDescription':'Meter',
+                         'Width':11,
+                         'Height':11,
+                         'Depth':11
+                      },
+                      {
+                         'DimensionTypeId':2,
+                         'DimensionDescription':'Inch',
+                         'Width':5,
+                         'Height':5,
+                         'Depth':5
+                      }
+                   ],
+                   'InStoreMetadata':[
+                      {
+                         'Key':'sampleKey',
+                         'Value':'SampleValue'
+                      }
+                   ],
+                   'ImageAssets':[
+
+                   ],
+                   'VideoAssets':[
+
+                   ],
+                   'DocumentAssets':[
+
+                   ]
                 }
-            }
-        }";
+             ],
+             'TotalItemCount':2,
+             'DynamicNavigation':[
+                {
+                   'TypeId':1,
+                   'TypeValueId':1,
+                   'Value':'Red',
+                   'TypeName':'Color'
+                },
+                {
+                   'TypeId':2,
+                   'TypeValueId':4,
+                   'Value':'M',
+                   'TypeName':'Size'
+                },
+                {
+                   'TypeId':2,
+                   'TypeValueId':5,
+                   'Value':'L',
+                   'TypeName':'Size'
+                },
+                {
+                   'TypeId':2,
+                   'TypeValueId':6,
+                   'Value':'XL',
+                   'TypeName':'Size'
+                },
+                {
+                   'TypeId':3,
+                   'TypeValueId':7,
+                   'Value':'A',
+                   'TypeName':'Style'
+                },
+                {
+                   'TypeId':3,
+                   'TypeValueId':8,
+                   'Value':'B',
+                   'TypeName':'Style'
+                },
+                {
+                   'TypeId':2,
+                   'TypeValueId':9,
+                   'Value':'S',
+                   'TypeName':'Size'
+                }
+             ],
+             'StaticNavigation':{
+                'Categories':[
+                   {
+                      'Id':66,
+                      'Name':'Category 1 Sub 1 Sub 1',
+                      'ShortDescription':'Category 1 Sub 1 Sub 1 Short Description',
+                      'LongDescription':'Category 1 Sub 1 Sub 1 Long Description',
+                      'SubCategoryCount':0,
+                      'ParentCategoryId':62,
+                      'ParentCategoryName':'Category 1 Sub 1'
+                   },
+                   {
+                      'Id':67,
+                      'Name':'Category 1 Sub 1 Sub 2',
+                      'ShortDescription':'Category 1 Sub 1 Sub 1 Short Description',
+                      'LongDescription':'Category 1 Sub 1 Sub 1 Long Description',
+                      'SubCategoryCount':0,
+                      'ParentCategoryId':62,
+                      'ParentCategoryName':'Category 1 Sub 1'
+                   }
+                ],
+                'Brands':[
+                   {
+                      'Id':1,
+                      'Name':'Brand 1'
+                   },
+                   {
+                      'Id':2,
+                      'Name':'Brand 2'
+                   }
+                ],
+                'Tags':[
+                   {
+                      'Id':2,
+                      'Name':'Sample Tag 1',
+                      'Description':'3e129d70-2308-4dc5-bd33-c389b92859d2'
+                   }
+                ],
+                'PriceTypes':[
+                   {
+                      'Id':1,
+                      'Description':'USD',
+                      'PriceTypeSymbol':'$'
+                   },
+                   {
+                      'Id':2,
+                      'Description':'Euro',
+                      'PriceTypeSymbol':'€'
+                   }
+                ],
+                'UnitTypes':[
+                   {
+                      'Id':2,
+                      'Name':'250 Kilogram',
+                      'Description':'1 Kilogram',
+                      'UnitCode':'Kg'
+                   },
+                   {
+                      'Id':3,
+                      'Name':'Quantity',
+                      'Description':'Quantity',
+                      'UnitCode':'Quantity'
+                   }
+                ],
+                'WidthRanges':[
+                   {
+                      'DimensionTypeId':1,
+                      'DimensionTypeDescription':'Meter',
+                      'Min':11,
+                      'Max':11
+                   },
+                   {
+                      'DimensionTypeId':2,
+                      'DimensionTypeDescription':'Inch',
+                      'Min':5,
+                      'Max':5
+                   }
+                ],
+                'HeightRanges':[
+                   {
+                      'DimensionTypeId':1,
+                      'DimensionTypeDescription':'Meter',
+                      'Min':11,
+                      'Max':11
+                   },
+                   {
+                      'DimensionTypeId':2,
+                      'DimensionTypeDescription':'Inch',
+                      'Min':5,
+                      'Max':5
+                   }
+                ],
+                'DepthRanges':[
+                   {
+                      'DimensionTypeId':1,
+                      'DimensionTypeDescription':'Meter',
+                      'Min':11,
+                      'Max':11
+                   },
+                   {
+                      'DimensionTypeId':2,
+                      'DimensionTypeDescription':'Inch',
+                      'Min':5,
+                      'Max':5
+                   }
+                ],
+                'WeightRanges':[
+
+                ],
+                'PriceRanges':[
+                   {
+                      'PriceTypeId':1,
+                      'PriceTypeSymbol':'$',
+                      'Min':10.55,
+                      'Max':8888
+                   }
+                ],
+                'DiscountPriceRanges':[
+                   {
+                      'PriceTypeId':1,
+                      'PriceTypeSymbol':'$',
+                      'Min':50,
+                      'Max':888
+                   }
+                ]
+             }
+          }
+       }
+    }";
 
         #endregion
 

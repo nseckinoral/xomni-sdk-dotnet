@@ -105,6 +105,7 @@
     <Compile Include="Models\Catalog\Category.cs" />
     <Compile Include="Models\Catalog\CategoryTree.cs" />
     <Compile Include="Models\Catalog\CategoryTreeItem.cs" />
+    <Compile Include="Models\Catalog\ItemSearchResult.cs" />
     <Compile Include="Models\Catalog\PriceType.cs" />
     <Compile Include="Models\Catalog\Dimension.cs" />
     <Compile Include="Models\Catalog\DimensionMinMax.cs" />
