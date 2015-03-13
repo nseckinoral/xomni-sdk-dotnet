@@ -39,14 +39,14 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("itemId", itemId.ToString());
-            return HttpProvider.GetAsync<List<XOMNI.SDK.Model.Catalog.ItemTagMapping>>(GenerateUrl(ListOperationBaseUrl), credential);
+            return HttpProvider.GetAsync<List<XOMNI.SDK.Model.Catalog.ItemTagMapping>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
         public Task<List<XOMNI.SDK.Model.Catalog.ItemTagMapping>> GetByTagIdAsync(int tagId, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("tagId", tagId.ToString());
-            return HttpProvider.GetAsync<List<XOMNI.SDK.Model.Catalog.ItemTagMapping>>(GenerateUrl(ListOperationBaseUrl), credential);
+            return HttpProvider.GetAsync<List<XOMNI.SDK.Model.Catalog.ItemTagMapping>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
         public Task<CountedCollectionContainer<XOMNI.SDK.Model.Catalog.ItemTagMapping>> GetAllAsync(int skip, int take, ApiBasicCredential credential)
@@ -54,7 +54,7 @@ namespace XOMNI.SDK.Private.ApiAccess.Catalog
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("skip", skip.ToString());
             additionalParameters.Add("take", take.ToString());
-            return HttpProvider.GetAsync<CountedCollectionContainer<XOMNI.SDK.Model.Catalog.ItemTagMapping>>(GenerateUrl(ListOperationBaseUrl), credential);
+            return HttpProvider.GetAsync<CountedCollectionContainer<XOMNI.SDK.Model.Catalog.ItemTagMapping>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
 
         #region low level methods
