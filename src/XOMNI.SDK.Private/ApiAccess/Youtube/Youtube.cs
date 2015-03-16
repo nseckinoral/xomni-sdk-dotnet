@@ -37,7 +37,7 @@ namespace XOMNI.SDK.Private.ApiAccess.Youtube
         }
         protected string PlaylistVideoFetchUrl
         {
-            get { return "/private/youtube/playlistsearch"; }
+            get { return "/private/youtube/playlistvideos"; }
         }
         protected string RelateVideoUrl
         {
