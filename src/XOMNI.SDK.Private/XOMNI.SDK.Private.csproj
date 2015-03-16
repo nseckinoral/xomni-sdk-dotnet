@@ -79,6 +79,7 @@
     <Compile Include="ApiAccess\PII\PIIUser.cs" />
     <Compile Include="ApiAccess\PII\WishlistMetadata.cs" />
     <Compile Include="ApiAccess\Tenant\TenantAssets.cs" />
+    <Compile Include="ApiAccess\Youtube\Youtube.cs" />
     <Compile Include="Asset\AssetManagement.cs" />
     <Compile Include="Asset\DocumentAssetManagement.cs" />
     <Compile Include="Asset\ImageAssetManagement.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ApiAccess\Catalog\VideoMetadata.cs" />
     <Compile Include="Tenant\TenantAssetManagement.cs" />
+    <Compile Include="Youtube\YoutubeManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
