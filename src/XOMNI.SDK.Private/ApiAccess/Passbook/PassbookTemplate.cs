@@ -29,7 +29,7 @@ namespace XOMNI.SDK.Private.ApiAccess.Passbook
         {
             return HttpProvider.PutAsync<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>(GenerateUrl(SingleOperationBaseUrl), passbookTemplate, credential);
         }
-        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> UpdateAsync(dynamic passbookTemplate, ApiBasicCredential credential)
+        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> PatchAsync(dynamic passbookTemplate, ApiBasicCredential credential)
         {
             return HttpProvider.PatchAsync<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate>(GenerateUrl(SingleOperationBaseUrl), passbookTemplate, credential);
         }

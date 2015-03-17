@@ -27,9 +27,9 @@ namespace XOMNI.SDK.Private.Passbook
             return passbookTemplateApi.UpdateAsync(passbookTemplate, this.ApiCredential);
         }
 
-        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> UpdateAsync(dynamic passbookTemplate)
+        public Task<XOMNI.SDK.Model.Private.Passbook.PassbookTemplate> PatchAsync(dynamic passbookTemplate)
         {
-            return passbookTemplateApi.UpdateAsync(passbookTemplate, this.ApiCredential);
+            return passbookTemplateApi.PatchAsync(passbookTemplate, this.ApiCredential);
         }
 
         public Task DeleteAsync(int templateId)

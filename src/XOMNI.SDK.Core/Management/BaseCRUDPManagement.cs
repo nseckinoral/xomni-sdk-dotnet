@@ -24,7 +24,7 @@ namespace XOMNI.SDK.Core.Management
         /// </summary>
         /// <param name="entity">Dynamic entity to be updated</param>
         /// <returns>Updated entity</returns>
-        public virtual Task<T> UpdateAsync(dynamic entity)
+        public virtual Task<T> PatchAsync(dynamic entity)
         {
             return CRUDPApiAccess.PatchAsync(entity, base.ApiCredential);
         }

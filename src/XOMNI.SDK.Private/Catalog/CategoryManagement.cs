@@ -185,7 +185,7 @@ namespace XOMNI.SDK.Private.Catalog
             return categoryApi.UpdateAsync(category, this.ApiCredential);
         }
 
-        public Task<XOMNI.SDK.Model.Private.Catalog.Category> UpdateCategoryAsync(dynamic category)
+        public Task<XOMNI.SDK.Model.Private.Catalog.Category> PatchCategoryAsync(dynamic category)
         {
             return categoryApi.PatchAsync(category, this.ApiCredential);
         }
