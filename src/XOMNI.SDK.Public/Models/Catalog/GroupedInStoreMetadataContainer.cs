@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XOMNI.SDK.Public.Models.Company;
 
 namespace XOMNI.SDK.Public.Models.Catalog
 {
-    public class InStoreMetadata
+    public class GroupedInStoreMetadataContainer : Store
     {
-        public string Key { get; set; }
-        public string Value { get; set; }
+        public List<InStoreMetadata> Metadata { get; set; }
     }
 }

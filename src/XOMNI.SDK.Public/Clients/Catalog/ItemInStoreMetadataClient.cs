@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
 using XOMNI.SDK.Public.Extensions;
+using System.Globalization;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -18,39 +19,45 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         }
 
-        public async Task<ApiResponse<List<InStoreMetadata>>> GetAsync(int id, int skip, int take, string key = null, string value = null, string keyPrefix = null, bool companyWide = false)
+        public async Task<ApiResponse<List<GroupedInStoreMetadataContainer>>> GetAsync(int id, string key = null, string value = null, string keyPrefix = null, bool companyWide = false, Location location = null, double? searchDistance = null)
         {
             Validator.For(id, "id").IsGreaterThanOrEqual(1);
-
-            string path = string.Format("/catalog/items/{0}/storemetadata?", id);
-            if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value))
-            {
-                path += string.Format("key={0}&value={1}&", key, value);
-            }
-            else if (!string.IsNullOrEmpty(key) || !string.IsNullOrEmpty(value))
-            {
-                Validator.For(key, "key").IsNotNullOrEmpty();
-                Validator.For(value, "value").IsNotNullOrEmpty();
-            }
-
+            string path = string.Format("/catalog/items/{0}/storemetadata?companyWide={1}", id, companyWide);
             if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(keyPrefix))
             {
                 throw new ArgumentException("Key and keyPrefix parameters cannot be sent at the same time in a metadata query.");
             }
 
-            if (!string.IsNullOrEmpty(keyPrefix))
+            if (companyWide)
             {
-                path += string.Format("keyPrefix={0}&", keyPrefix);
+                if (location != null)
+                {
+                    Validator.For(location.Longitude, "Location.longitude").InRange(-180, 180);
+                    Validator.For(location.Latitude, "Location.latitude").InRange(-90, 90);
+                    Validator.For(searchDistance, "searchDistance").IsNotNull();
+                    Validator.For(searchDistance.Value, "searchDistance").InRange(0, 10);
+                    path += string.Format(CultureInfo.InvariantCulture.NumberFormat, "&longitude={0}&latitude={1}&searchDistance={2}", location.Longitude, location.Latitude, searchDistance);
+                }
             }
 
-            Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
-            Validator.For(take, "take").InRange(1, 1000);
+            if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value))
+            {
+                path += string.Format("&key={0}&value={1}", key, value);
+            }
+            else if (!(string.IsNullOrEmpty(key) && string.IsNullOrEmpty(value)))
+            {
+                Validator.For(key, "key").IsNotNullOrEmpty();
+                Validator.For(value, "value").IsNotNullOrEmpty();
+            }
 
-            path += string.Format("skip={0}&take={1}&companyWide={2}", skip, take, companyWide);
+            if (!string.IsNullOrEmpty(keyPrefix))
+            {
+                path += string.Format("&keyPrefix={0}", keyPrefix);
+            }
 
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
             {
-                return await response.Content.ReadAsAsync<ApiResponse<List<InStoreMetadata>>>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<List<GroupedInStoreMetadataContainer>>>().ConfigureAwait(false);
             }
         }
     }
