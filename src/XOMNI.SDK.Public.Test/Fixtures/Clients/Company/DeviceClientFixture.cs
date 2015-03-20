@@ -195,7 +195,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         {
             DeviceId = uniqeId,
             Description = "sampleDescription",
-            DeviceTypeId = uniqeId,
+            DeviceTypeId = 1,
             ExpirationDate = DateTime.Parse("2014-11-19T15:14:57.2212844+02:00")
         };
 
@@ -440,7 +440,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceClient p) => p.PostAsync("1", "1", sampleDevice),
+                (DeviceClient p) => p.PostAsync(sampleDevice),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponsePostAsync)
@@ -453,7 +453,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (DeviceClient p) => p.PostAsync("1", "1", sampleDevice),
+                (DeviceClient p) => p.PostAsync(sampleDevice),
                 HttpMethod.Post
                 );
         }
@@ -462,7 +462,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (DeviceClient p) => p.PostAsync("1", "1", sampleDevice),
+              (DeviceClient p) => p.PostAsync(sampleDevice),
               string.Format("/company/devices"));
         }
 
@@ -470,31 +470,27 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-              (DeviceClient p) => p.PostAsync("", "1", sampleDevice),
-              new ArgumentException(string.Format("{0} can not be empty or null.", "deviceId")));
-
-            await base.SDKExceptionResponseTestAsync(
-              (DeviceClient p) => p.PostAsync(null, "1", sampleDevice),
-              new ArgumentException(string.Format("{0} can not be empty or null.", "deviceId")));
-
-            await base.SDKExceptionResponseTestAsync(
-              (DeviceClient p) => p.PostAsync("1", "", sampleDevice),
-              new ArgumentException(string.Format("{0} can not be empty or null.", "description")));
-
-            await base.SDKExceptionResponseTestAsync(
-              (DeviceClient p) => p.PostAsync("1", null, sampleDevice),
-              new ArgumentException(string.Format("{0} can not be empty or null.", "description")));
-
-            await base.SDKExceptionResponseTestAsync(
-              (DeviceClient p) => p.PostAsync("1", "1", null),
+              (DeviceClient p) => p.PostAsync(null),
               new ArgumentNullException(string.Format("{0} can not be null.", "device")));
+
+            await base.SDKExceptionResponseTestAsync(
+              (DeviceClient p) => p.PostAsync(new Device()),
+              new ArgumentException(string.Format("{0} can not be empty or null.", "deviceId")));
+
+            await base.SDKExceptionResponseTestAsync(
+              (DeviceClient p) => p.PostAsync(new Device() { DeviceId = Guid.NewGuid().ToString() }),
+              new ArgumentException(string.Format("{0} can not be empty or null.", "description")));
+
+            await base.SDKExceptionResponseTestAsync(
+              (DeviceClient p) => p.PostAsync(new Device() { DeviceId = Guid.NewGuid().ToString(), Description = Guid.NewGuid().ToString() }),
+              new ArgumentException(string.Format("{0} must be greater than or equal to 1.", "deviceTypeId")));
         }
 
         [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (DeviceClient p) => p.PostAsync("1", "1", sampleDevice));
+                (DeviceClient p) => p.PostAsync(sampleDevice));
         }
 
         #endregion

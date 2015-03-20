@@ -107,11 +107,13 @@ namespace XOMNI.SDK.Public.Clients.Company
             }
         }
 
-        public async Task<ApiResponse<Device>> PostAsync(string deviceId, string description, Device device)
+        public async Task<ApiResponse<Device>> PostAsync(Device device)
         {
-            Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
-            Validator.For(description, "description").IsNotNullOrEmpty();
-            Validator.For(device, "device").IsNotNull();
+            Validator.For(device, "device").IsNotNull(); 
+            Validator.For(device.DeviceId, "deviceId").IsNotNullOrEmpty();
+            Validator.For(device.Description, "description").IsNotNullOrEmpty();
+            Validator.For(device.DeviceTypeId, "deviceTypeId").IsGreaterThanOrEqual(1);
+            
             string path = "/company/devices";
 
             using (var response = await Client.PostAsJsonAsync(path, device).ConfigureAwait(false))
