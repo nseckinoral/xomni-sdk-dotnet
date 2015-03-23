@@ -22,12 +22,12 @@ namespace XOMNI.SDK.Private.Asset
         }
         internal abstract AssetBase AssetApi { get; }
 
-        public virtual Task<CountedCollectionContainer<Model.Private.Asset.Asset>> GetAssets(int skip, int take, string fileName = null)
+        public virtual Task<CountedCollectionContainer<Model.Private.Asset.Asset>> GetAssetsAsync(int skip, int take, string fileName = null)
         {
-            return GetAssetsInternal<Model.Private.Asset.Asset>(skip, take, fileName);
+            return GetAssetsInternalAsync<Model.Private.Asset.Asset>(skip, take, fileName);
         }
 
-        protected virtual Task<CountedCollectionContainer<T>> GetAssetsInternal<T>(int skip, int take, string fileName = null)
+        protected virtual Task<CountedCollectionContainer<T>> GetAssetsInternalAsync<T>(int skip, int take, string fileName = null)
         {
             return AssetApi.GetAsync<T>(skip, take, this.ApiCredential, fileName);
         }

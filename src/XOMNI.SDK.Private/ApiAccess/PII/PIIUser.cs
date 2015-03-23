@@ -28,7 +28,7 @@ namespace XOMNI.SDK.Private.ApiAccess.PII
             additionalParameters.Add("take", take.ToString());
             return HttpProvider.GetAsync<CountedCollectionContainer<SDK.Model.Private.PII.PIIUser>>(GenerateUrl(ListOperationBaseUrl, additionalParameters), credential);
         }
-        public virtual Task<CountedCollectionContainer<SDK.Model.Private.PII.PIIUser>> GetByCreatedOADate(int createdOADate, int skip, int take, ApiBasicCredential credential)
+        public virtual Task<CountedCollectionContainer<SDK.Model.Private.PII.PIIUser>> GetByCreatedOADateAsync(int createdOADate, int skip, int take, ApiBasicCredential credential)
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("skip", skip.ToString());

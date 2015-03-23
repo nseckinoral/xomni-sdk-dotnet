@@ -1656,7 +1656,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemClient c) => c.Search(sampleItemSearchRequest, false),
+                (ItemClient c) => c.SearchAsync(sampleItemSearchRequest, false),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponseForSearch)
@@ -1669,7 +1669,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchRequestParseTest()
         {
             await base.RequestParseTestAsync<ItemSearchRequest>(
-                (ItemClient c) => c.Search(sampleItemSearchRequest, false), validAPIRequestForSearch
+                (ItemClient c) => c.SearchAsync(sampleItemSearchRequest, false), validAPIRequestForSearch
             );
         }
 
@@ -1677,7 +1677,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (ItemClient c) => c.Search(sampleItemSearchRequest, false),
+                (ItemClient c) => c.SearchAsync(sampleItemSearchRequest, false),
                 HttpMethod.Post);
         }
 
@@ -1685,7 +1685,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchUriCheckTest()
         {
             await base.UriTestAsync(
-              (ItemClient c) => c.Search(sampleItemSearchRequest, true),
+              (ItemClient c) => c.SearchAsync(sampleItemSearchRequest, true),
               string.Format("/catalog/items?includeItemInStoreMetadata={0}", true));
         }
 
@@ -1696,7 +1696,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.BadRequest;
 
             await base.APIExceptionResponseTestAsync(
-              (ItemClient c) => c.Search(sampleItemSearchRequest, false),
+              (ItemClient c) => c.SearchAsync(sampleItemSearchRequest, false),
               badRequestHttpResponseMessage,
               expectedExceptionResult
             );
@@ -1706,11 +1706,11 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-               (ItemClient c) => c.Search(null, false),
+               (ItemClient c) => c.SearchAsync(null, false),
                new ArgumentNullException("itemSearchRequest can not be null."));
 
             await base.SDKExceptionResponseTestAsync(
-                (ItemClient c) => c.Search(new ItemSearchRequest()
+                (ItemClient c) => c.SearchAsync(new ItemSearchRequest()
                 {
                     Skip = -1,
                     Take = 4,
@@ -1719,7 +1719,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                 new ArgumentException("skip must be greater than or equal to 0."));
 
             await base.SDKExceptionResponseTestAsync(
-                (ItemClient c) => c.Search(new ItemSearchRequest()
+                (ItemClient c) => c.SearchAsync(new ItemSearchRequest()
                 {
                     Skip = 1,
                     Take = 4,
@@ -1728,7 +1728,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                 new ArgumentException("Given string format is not correct."));
 
             await base.SDKExceptionResponseTestAsync(
-               (ItemClient c) => c.Search(new ItemSearchRequest()
+               (ItemClient c) => c.SearchAsync(new ItemSearchRequest()
                {
                    Skip = 1,
                    Take = -6,
@@ -1737,7 +1737,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                new ArgumentOutOfRangeException("take", -6, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000)));
 
             await base.SDKExceptionResponseTestAsync(
-                (ItemClient c) => c.Search(new ItemSearchRequest()
+                (ItemClient c) => c.SearchAsync(new ItemSearchRequest()
                 {
                     Take = 1,
                     MinWeight = 300,
@@ -1748,7 +1748,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             );
 
             await base.SDKExceptionResponseTestAsync(
-              (ItemClient c) => c.Search(new ItemSearchRequest()
+              (ItemClient c) => c.SearchAsync(new ItemSearchRequest()
               {
                   Take = 1,
                   MinWidth = 300,
@@ -1759,7 +1759,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
               new ArgumentNullException("DimensionTypeId can not be null."));
 
             await base.SDKExceptionResponseTestAsync(
-              (ItemClient c) => c.Search(new ItemSearchRequest()
+              (ItemClient c) => c.SearchAsync(new ItemSearchRequest()
               {
                   Take = 1,
                   MinWidth = 300,
@@ -1772,7 +1772,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (ItemClient c) => c.Search(sampleItemSearchRequest, false)
+                (ItemClient c) => c.SearchAsync(sampleItemSearchRequest, false)
             );
         }
         #endregion
@@ -1783,7 +1783,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetSearchOptionsResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemClient c) => c.GetSearchOptions(sampleItemSearchOptionsRequest),
+                (ItemClient c) => c.GetSearchOptionsAsync(sampleItemSearchOptionsRequest),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponseForGetSearchOptions)
@@ -1795,7 +1795,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetSearchOptionsHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (ItemClient c) => c.GetSearchOptions(sampleItemSearchOptionsRequest),
+                (ItemClient c) => c.GetSearchOptionsAsync(sampleItemSearchOptionsRequest),
                 HttpMethod.Post);
         }
 
@@ -1803,7 +1803,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetSearchOptionsUriCheckTest()
         {
             await base.UriTestAsync(
-              (ItemClient c) => c.GetSearchOptions(sampleItemSearchOptionsRequest),
+              (ItemClient c) => c.GetSearchOptionsAsync(sampleItemSearchOptionsRequest),
               "/catalog/itemsearchoptions");
         }
 
@@ -1811,12 +1811,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetSearchOptionsParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (ItemClient c) => c.GetSearchOptions(null),
+                (ItemClient c) => c.GetSearchOptionsAsync(null),
                 new ArgumentNullException("itemSearchOptionsRequest can not be null.")
             );
 
             await base.SDKExceptionResponseTestAsync(
-                (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
+                (ItemClient c) => c.GetSearchOptionsAsync(new ItemSearchOptionsRequest()
                 {
                     Skip = -1,
                     Take = 4,
@@ -1825,7 +1825,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                 new ArgumentException("skip must be greater than or equal to 0."));
 
             await base.SDKExceptionResponseTestAsync(
-               (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
+               (ItemClient c) => c.GetSearchOptionsAsync(new ItemSearchOptionsRequest()
                {
                    Skip = 1,
                    Take = 0,
@@ -1834,7 +1834,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                new ArgumentOutOfRangeException("take", 0, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000)));
 
             await base.SDKExceptionResponseTestAsync(
-                (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
+                (ItemClient c) => c.GetSearchOptionsAsync(new ItemSearchOptionsRequest()
                 {
                     Take = 1,
                     MinWeight = 300,
@@ -1845,7 +1845,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             );
 
             await base.SDKExceptionResponseTestAsync(
-              (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
+              (ItemClient c) => c.GetSearchOptionsAsync(new ItemSearchOptionsRequest()
               {
                   Take = 1,
                   MinWidth = 300,
@@ -1856,7 +1856,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
               new ArgumentNullException("DimensionTypeId can not be null."));
 
             await base.SDKExceptionResponseTestAsync(
-              (ItemClient c) => c.GetSearchOptions(new ItemSearchOptionsRequest()
+              (ItemClient c) => c.GetSearchOptionsAsync(new ItemSearchOptionsRequest()
               {
                   Take = 1,
                   MinWidth = 300,
@@ -1873,7 +1873,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.BadRequest;
 
             await base.APIExceptionResponseTestAsync(
-              (ItemClient c) => c.GetSearchOptions(sampleItemSearchOptionsRequest),
+              (ItemClient c) => c.GetSearchOptionsAsync(sampleItemSearchOptionsRequest),
               badRequestHttpResponseMessage,
               expectedExceptionResult);
         }
@@ -1882,7 +1882,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetSearchOptionsDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (ItemClient c) => c.GetSearchOptions(sampleItemSearchOptionsRequest));
+                (ItemClient c) => c.GetSearchOptionsAsync(sampleItemSearchOptionsRequest));
         }
 
         #endregion

@@ -28,7 +28,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
-        public async Task<ApiResponse<Navigation>> GetSearchOptions(ItemSearchOptionsRequest itemSearchOptionsRequest)
+        public async Task<ApiResponse<Navigation>> GetSearchOptionsAsync(ItemSearchOptionsRequest itemSearchOptionsRequest)
         {
             Validator.For(itemSearchOptionsRequest, "itemSearchOptionsRequest").IsNotNull().IsValid();
 
@@ -40,7 +40,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
-        public async Task<ApiResponse<ItemSearchResult<MultipleItemSearchResult<Item>>>> Search(ItemSearchRequest itemSearchRequest, bool includeItemInStoreMetadata = false)
+        public async Task<ApiResponse<ItemSearchResult<MultipleItemSearchResult<Item>>>> SearchAsync(ItemSearchRequest itemSearchRequest, bool includeItemInStoreMetadata = false)
         {
             Validator.For(itemSearchRequest, "itemSearchRequest").IsNotNull().IsValid();
 

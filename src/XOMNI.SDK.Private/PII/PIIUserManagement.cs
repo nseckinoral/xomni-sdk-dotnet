@@ -21,9 +21,9 @@ namespace XOMNI.SDK.Private.PII
         {
             return piiUserApiAccess.GetAllAsync(skip, take, this.ApiCredential);
         }
-        public virtual Task<CountedCollectionContainer<SDK.Model.Private.PII.PIIUser>> GetByCreatedOADate(int createdOADate, int skip, int take)
+        public virtual Task<CountedCollectionContainer<SDK.Model.Private.PII.PIIUser>> GetByCreatedOADateAsync(int createdOADate, int skip, int take)
         {
-            return piiUserApiAccess.GetByCreatedOADate(createdOADate, skip, take, this.ApiCredential);
+            return piiUserApiAccess.GetByCreatedOADateAsync(createdOADate, skip, take, this.ApiCredential);
         }
 
         public virtual Task<SDK.Model.Private.PII.PIIUser> PostAsync(SDK.Model.Private.PII.PIIUser entity)
