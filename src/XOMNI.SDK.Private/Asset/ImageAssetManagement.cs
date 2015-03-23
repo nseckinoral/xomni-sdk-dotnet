@@ -15,19 +15,19 @@ namespace XOMNI.SDK.Private.Asset
             get { return new Images(); }
         }
 
-        public virtual Task SetResizableFlag(int assetId)
+        public virtual Task SetResizableFlagAsync(int assetId)
         {
             return ((Images)AssetApi).PostResizableFlagAsync(assetId, base.ApiCredential);
         }
 
-        public virtual Task RemoveResizableFlag(int assetId)
+        public virtual Task RemoveResizableFlagAsync(int assetId)
         {
             return ((Images)AssetApi).DeleteResizableFlagAsync(assetId, base.ApiCredential);
         }
 
-        public Task<Model.CountedCollectionContainer<Model.Private.Asset.ImageAsset>> GetAssets(int skip, int take, string fileName = null)
+        public Task<Model.CountedCollectionContainer<Model.Private.Asset.ImageAsset>> GetAssetsAsync(int skip, int take, string fileName = null)
         {
-            return base.GetAssetsInternal<Model.Private.Asset.ImageAsset>(skip, take, fileName);
+            return base.GetAssetsInternalAsync<Model.Private.Asset.ImageAsset>(skip, take, fileName);
         }
 
         #region low level methods

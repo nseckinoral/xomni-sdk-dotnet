@@ -42,7 +42,7 @@ namespace XOMNI.SDK.Core.Management
 
                     try
                     {
-                        await HttpProvider.ControlResponse(httpResponseMessage, messages[i].expectedStatusCode);
+                        await HttpProvider.ControlResponseAsync(httpResponseMessage, messages[i].expectedStatusCode);
                         isSucceed = true;
                     }
                     catch (ExceptionBase ex)

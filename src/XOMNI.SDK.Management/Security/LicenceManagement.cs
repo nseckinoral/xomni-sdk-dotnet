@@ -80,7 +80,7 @@ namespace XOMNI.SDK.Management.Security
         /// To fetch unassigned licenses
         /// </summary>
         /// <returns>Unassigned licenses</returns>
-        public Task<List<License>> GetUnassignedLicences()
+        public Task<List<License>> GetUnassignedLicencesAsync()
         {
             Dictionary<string, string> additionalParameters = new Dictionary<string, string>();
             additionalParameters.Add("onlyUnassignedUsers", true.ToString());

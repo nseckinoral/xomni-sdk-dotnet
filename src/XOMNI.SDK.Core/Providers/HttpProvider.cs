@@ -86,7 +86,7 @@ namespace XOMNI.SDK.Core.Providers
             using (var requestMessage = CreateGetRequest(url, credential))
             {
                 var response = await client.SendAsync(requestMessage);
-                await ControlResponse(response);
+                await ControlResponseAsync(response);
                 return await response.Content.ReadAsAsync<T>();
             }
         }
@@ -101,23 +101,23 @@ namespace XOMNI.SDK.Core.Providers
 
         public static async Task<T> PostAsync<T>(string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
-            var response = await PostInternal(url, body, credential, expectedCode);
+            var response = await PostInternalAsync(url, body, credential, expectedCode);
             return await response.Content.ReadAsAsync<T>();
         }
 
-        private static async Task<HttpResponseMessage> PostInternal(string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
+        private static async Task<HttpResponseMessage> PostInternalAsync(string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             using (HttpRequestMessage requestMessage = CreatePostRequest(url, credential, body))
             {
                 var response = await client.SendAsync(requestMessage);
-                await ControlResponse(response, expectedCode);
+                await ControlResponseAsync(response, expectedCode);
                 return response;
             }
         }
 
         public static async Task PostAsync(string url, object body, ApiBasicCredential credential)
         {
-            var response = await PostInternal(url, body, credential);
+            var response = await PostInternalAsync(url, body, credential);
         }
         #endregion
 
@@ -132,7 +132,7 @@ namespace XOMNI.SDK.Core.Providers
             using (HttpRequestMessage requestMessage = CreatePutRequest(url, credential, body))
             {
                 var response = await client.SendAsync(requestMessage);
-                await ControlResponse(response);
+                await ControlResponseAsync(response);
                 return await response.Content.ReadAsAsync<T>();
             }
         }
@@ -151,7 +151,7 @@ namespace XOMNI.SDK.Core.Providers
             using (HttpRequestMessage requestMessage = CreatePatchRequest(url, credential, body))
             {
                 var response = await client.SendAsync(requestMessage);
-                await ControlResponse(response, expectedCode);
+                await ControlResponseAsync(response, expectedCode);
                 return await response.Content.ReadAsAsync<T>();
             }
         }
@@ -170,7 +170,7 @@ namespace XOMNI.SDK.Core.Providers
             using (var requestMessage = CreateDeleteRequest(url, credential))
             {
                 var response = await client.SendAsync(requestMessage);
-                await ControlResponse(response, HttpStatusCode.Accepted);
+                await ControlResponseAsync(response, HttpStatusCode.Accepted);
             }
         }
 
@@ -181,7 +181,7 @@ namespace XOMNI.SDK.Core.Providers
             client.DefaultRequestHeaders.Add(headerName, value);
         }
 
-        internal async static Task ControlResponse(HttpResponseMessage response, HttpStatusCode expectedCode = HttpStatusCode.OK)
+        internal async static Task ControlResponseAsync(HttpResponseMessage response, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             if (response.StatusCode != expectedCode)
             {

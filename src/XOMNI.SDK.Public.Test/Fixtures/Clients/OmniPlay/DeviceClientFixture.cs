@@ -102,7 +102,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (DeviceClient c) => c.SubscribeToDevice("1"),
+              (DeviceClient c) => c.SubscribeToDeviceAsync("1"),
               notFoundHttpResponseMessage,
               expectedExceptionResult,piiUser:piiUser);
         }
@@ -111,7 +111,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task SubscribeToDeviceHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (DeviceClient c) => c.SubscribeToDevice("1"),
+                (DeviceClient c) => c.SubscribeToDeviceAsync("1"),
                 HttpMethod.Post, piiUser: piiUser
                 );
         }
@@ -120,7 +120,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task SubscribeToDeviceUriCheckTest()
         {
             await base.UriTestAsync(
-              (DeviceClient c) => c.SubscribeToDevice("1"),
+              (DeviceClient c) => c.SubscribeToDeviceAsync("1"),
               string.Format("/omniplay/devices/{0}", "1"), piiUser: piiUser);
         }
 
@@ -128,11 +128,11 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task SubscribeToDeviceParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-              (DeviceClient c) => c.SubscribeToDevice(""),
+              (DeviceClient c) => c.SubscribeToDeviceAsync(""),
               new ArgumentException(string.Format("{0} can not be empty or null.", "deviceId")), piiUser: piiUser);
 
             await base.SDKExceptionResponseTestAsync(
-              (DeviceClient c) => c.SubscribeToDevice(null),
+              (DeviceClient c) => c.SubscribeToDeviceAsync(null),
               new ArgumentException(string.Format("{0} can not be empty or null.", "deviceId")), piiUser: piiUser);
         }
 
@@ -140,7 +140,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task SubscribeToDeviceDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (DeviceClient c) => c.SubscribeToDevice("1"), piiUser: piiUser);
+                (DeviceClient c) => c.SubscribeToDeviceAsync("1"), piiUser: piiUser);
         }
         #endregion
     }

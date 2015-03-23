@@ -29,7 +29,7 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
 			}
 		}
 
-        public async Task SubscribeToDevice(string deviceId)
+        public async Task SubscribeToDeviceAsync(string deviceId)
         {
             ValidatePIIToken();
             Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
