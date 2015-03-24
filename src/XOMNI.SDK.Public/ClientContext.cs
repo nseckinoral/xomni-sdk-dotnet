@@ -8,6 +8,7 @@ using XOMNI.SDK.Public.Infrastructure;
 using XOMNI.SDK.Public.Models.OmniPlay;
 using XOMNI.SDK.Public.Models.PII;
 using System.Linq;
+using XOMNI.SDK.Public.Extensions;
 namespace XOMNI.SDK.Public
 {
     public class ClientContext : IDisposable
@@ -47,10 +48,9 @@ namespace XOMNI.SDK.Public
             omniSession = new OmniSession();
             piiUser = new User();
 
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(serviceUri))
-            {
-                throw new ArgumentNullException("username, password or service uri");
-            }
+            Validator.For(userName, "username").IsNotNullOrEmpty();
+            Validator.For(password, "password").IsNotNullOrEmpty();
+            Validator.For(serviceUri, "serviceUri").IsNotNullOrEmpty();            
 
             HttpMessageHandler innerHandler = null;
             var apiErrorHandler = new XOMNIPublicApiErrorHandler();
