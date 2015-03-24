@@ -21,7 +21,7 @@ namespace XOMNI.SDK.Public.Extensions
 
         public static Parameter<Nullable<double>> IsNotNull(this Parameter<Nullable<double>> item)
         {
-            if(!item.Value.HasValue)
+            if (!item.Value.HasValue)
             {
                 throw new ArgumentException(string.Format("{0} can not be null.", item.ArgName));
             }
@@ -42,7 +42,7 @@ namespace XOMNI.SDK.Public.Extensions
 
             if (!item.Value.Contains(character))
             {
-                throw new ArgumentException(string.Format("{0} must be include ';' character.", item.ArgName));
+                throw new ArgumentException(string.Format("{0} must be include '{1}' character.", item.ArgName, character));
             }
             return item;
         }
@@ -153,7 +153,7 @@ namespace XOMNI.SDK.Public.Extensions
         private static void ValidateItemSearchRequest(ItemSearchRequest itemSearchRequest)
         {
             Validator.For(itemSearchRequest.Skip, "skip").IsGreaterThanOrEqual(0);
-            Validator.For(itemSearchRequest.Take, "take").InRange(1,1000);
+            Validator.For(itemSearchRequest.Take, "take").InRange(1, 1000);
         }
 
         private static void ValidateSearchRequest(SearchRequest searchRequest)
