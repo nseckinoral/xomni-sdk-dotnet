@@ -48,12 +48,12 @@ namespace XOMNI.SDK.Public.Clients.Company
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<DeviceStorageItem>> PostAsync(string deviceId, DeviceStorageItem storageItem)
+        public async Task<ApiResponse<DeviceStorageItem>> PostAsync(DeviceStorageItem storageItem)
         {
-            Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
             Validator.For(storageItem, "storageItem").IsNotNull();
+            Validator.For(storageItem.DeviceId, "DeviceId").IsNotNullOrEmpty();
 
-            string path = string.Format("/company/devices/{0}/storage", deviceId);
+            string path = string.Format("/company/devices/{0}/storage", storageItem.DeviceId);
 
             using (var response = await Client.PostAsJsonAsync(path, storageItem).ConfigureAwait(false))
             {
@@ -61,12 +61,12 @@ namespace XOMNI.SDK.Public.Clients.Company
             }
         }
 
-        public async Task<ApiResponse<DeviceStorageItem>> PutAsync(string deviceId, DeviceStorageItem storageItem)
+        public async Task<ApiResponse<DeviceStorageItem>> PutAsync(DeviceStorageItem storageItem)
         {
-            Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
             Validator.For(storageItem, "storageItem").IsNotNull();
+            Validator.For(storageItem.DeviceId, "DeviceId").IsNotNullOrEmpty();
 
-            string path = string.Format("/company/devices/{0}/storage", deviceId);
+            string path = string.Format("/company/devices/{0}/storage", storageItem.DeviceId);
 
             using (var response = await Client.PutAsJsonAsync(path, storageItem).ConfigureAwait(false))
             {

@@ -50,7 +50,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         readonly DeviceStorageItem sampleDeviceStorageItem = new DeviceStorageItem()
         {
-            DeviceId = uniqeId,
+            DeviceId = uniqueId,
             Key = "SampleKey",
             Value = "SampleValue"
         };
@@ -76,7 +76,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (DeviceStorageClient c) => c.GetAsync("0","key",false),
+                (DeviceStorageClient c) => c.GetAsync("0", "key", false),
                 HttpMethod.Get
                 );
         }
@@ -85,11 +85,11 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (DeviceStorageClient p) => p.GetAsync("0","key",false),
+              (DeviceStorageClient p) => p.GetAsync("0", "key", false),
               string.Format("/company/devices/{0}/storage?key={1}&delete={2}", "0", "key", false));
 
             await base.UriTestAsync(
-                (DeviceStorageClient p) => p.GetAsync("0", delete:false),
+                (DeviceStorageClient p) => p.GetAsync("0", delete: false),
                 string.Format("/company/devices/{0}/storage?delete={1}", "0", false));
 
             await base.UriTestAsync(
@@ -105,11 +105,11 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.GetAsync("","key",false),
+              (DeviceStorageClient p) => p.GetAsync("", "key", false),
               new ArgumentException("deviceId can not be empty or null."));
 
             await base.SDKExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.GetAsync(null,"key",false),
+              (DeviceStorageClient p) => p.GetAsync(null, "key", false),
               new ArgumentException("deviceId can not be empty or null."));
         }
 
@@ -117,7 +117,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (DeviceStorageClient p) => p.GetAsync("0","key",false));
+                (DeviceStorageClient p) => p.GetAsync("0", "key", false));
         }
 
         [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -138,7 +138,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceStorageClient c) => c.PostAsync("0",sampleDeviceStorageItem),
+                (DeviceStorageClient c) => c.PostAsync(sampleDeviceStorageItem),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponseAndRequestForPostAndPutAsync)
@@ -151,14 +151,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncRequestParseTest()
         {
             await base.RequestParseTestAsync<DeviceStorageItem>(
-                (DeviceStorageClient c) => c.PostAsync("0", sampleDeviceStorageItem),validAPIRequest);
+                (DeviceStorageClient c) => c.PostAsync(sampleDeviceStorageItem), validAPIRequest);
         }
 
         [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (DeviceStorageClient c) => c.PostAsync("0",sampleDeviceStorageItem),
+                (DeviceStorageClient c) => c.PostAsync(sampleDeviceStorageItem),
                 HttpMethod.Post
                 );
         }
@@ -167,23 +167,25 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (DeviceStorageClient p) => p.PostAsync("0",sampleDeviceStorageItem),
-              string.Format("/company/devices/{0}/storage","0"));
+              (DeviceStorageClient p) => p.PostAsync(sampleDeviceStorageItem),
+              string.Format("/company/devices/{0}/storage", sampleDeviceStorageItem.DeviceId));
         }
 
         [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncParameterTest()
         {
+            sampleDeviceStorageItem.DeviceId = String.Empty;
             await base.SDKExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.PostAsync("",sampleDeviceStorageItem),
-              new ArgumentException("deviceId can not be empty or null."));
+              (DeviceStorageClient p) => p.PostAsync(sampleDeviceStorageItem),
+              new ArgumentException("DeviceId can not be empty or null."));
+
+            sampleDeviceStorageItem.DeviceId = null;
+            await base.SDKExceptionResponseTestAsync(
+              (DeviceStorageClient p) => p.PostAsync(sampleDeviceStorageItem),
+              new ArgumentException("DeviceId can not be empty or null."));
 
             await base.SDKExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.PostAsync(null,sampleDeviceStorageItem),
-              new ArgumentException("deviceId can not be empty or null."));
-
-            await base.SDKExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.PostAsync("0", null),
+              (DeviceStorageClient p) => p.PostAsync(null),
               new ArgumentNullException("storageItem can not be null."));
         }
 
@@ -191,7 +193,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (DeviceStorageClient p) => p.PostAsync("0",sampleDeviceStorageItem));
+                (DeviceStorageClient p) => p.PostAsync(sampleDeviceStorageItem));
         }
 
         [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
@@ -201,7 +203,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.PostAsync("0",sampleDeviceStorageItem),
+              (DeviceStorageClient p) => p.PostAsync(sampleDeviceStorageItem),
               notFoundHttpResponseMessage,
               expectedExceptionResult);
         }
@@ -213,7 +215,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.Conflict;
 
             await base.APIExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.PostAsync("0", sampleDeviceStorageItem),
+              (DeviceStorageClient p) => p.PostAsync(sampleDeviceStorageItem),
               conflictHttpResponseMessage,
               expectedExceptionResult);
         }
@@ -224,7 +226,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PutAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceStorageClient c) => c.PutAsync("0", sampleDeviceStorageItem),
+                (DeviceStorageClient c) => c.PutAsync(sampleDeviceStorageItem),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponseAndRequestForPostAndPutAsync)
@@ -238,14 +240,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PutAsyncRequestParseTest()
         {
             await base.RequestParseTestAsync<DeviceStorageItem>(
-                (DeviceStorageClient c) => c.PutAsync("0", sampleDeviceStorageItem), validAPIRequest);
+                (DeviceStorageClient c) => c.PutAsync(sampleDeviceStorageItem), validAPIRequest);
         }
 
         [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("PutAsync"), TestCategory("HTTP.POST")]
         public async Task PutAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (DeviceStorageClient c) => c.PutAsync("0", sampleDeviceStorageItem),
+                (DeviceStorageClient c) => c.PutAsync(sampleDeviceStorageItem),
                 HttpMethod.Put
                 );
         }
@@ -254,23 +256,25 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PutAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (DeviceStorageClient p) => p.PutAsync("0", sampleDeviceStorageItem),
-              string.Format("/company/devices/{0}/storage", "0"));
+              (DeviceStorageClient p) => p.PutAsync(sampleDeviceStorageItem),
+              string.Format("/company/devices/{0}/storage", sampleDeviceStorageItem.DeviceId));
         }
 
         [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("PutAsync"), TestCategory("HTTP.POST")]
         public async Task PutAsyncParameterTest()
         {
+            sampleDeviceStorageItem.DeviceId = String.Empty;
             await base.SDKExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.PutAsync("", sampleDeviceStorageItem),
-              new ArgumentException("deviceId can not be empty or null."));
+              (DeviceStorageClient p) => p.PutAsync(sampleDeviceStorageItem),
+              new ArgumentException("DeviceId can not be empty or null."));
+
+            sampleDeviceStorageItem.DeviceId = null;
+            await base.SDKExceptionResponseTestAsync(
+              (DeviceStorageClient p) => p.PutAsync(sampleDeviceStorageItem),
+              new ArgumentException("DeviceId can not be empty or null."));
 
             await base.SDKExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.PutAsync(null, sampleDeviceStorageItem),
-              new ArgumentException("deviceId can not be empty or null."));
-
-            await base.SDKExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.PutAsync("0", null),
+              (DeviceStorageClient p) => p.PutAsync(null),
               new ArgumentNullException("storageItem can not be null."));
         }
 
@@ -278,7 +282,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PutAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (DeviceStorageClient p) => p.PutAsync("0", sampleDeviceStorageItem));
+                (DeviceStorageClient p) => p.PutAsync(sampleDeviceStorageItem));
         }
 
         [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("PutAsync"), TestCategory("HTTP.POST")]
@@ -288,7 +292,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (DeviceStorageClient p) => p.PutAsync("0", sampleDeviceStorageItem),
+              (DeviceStorageClient p) => p.PutAsync(sampleDeviceStorageItem),
               notFoundHttpResponseMessage,
               expectedExceptionResult);
         }
