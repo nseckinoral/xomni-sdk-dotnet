@@ -15,5 +15,4 @@ namespace XOMNI.SDK.Public.Models.Social
         public string AvatarUrl { get; set; }
         public string SocialPlatformTokenStatus { get; set; }
     }
-
 }

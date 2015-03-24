@@ -14,6 +14,6 @@ namespace XOMNI.SDK.Public.Models.Social
         public DateTime CreatedDate { get; set; }
         public string Content { get; set; }
         public int RelatedItemId { get; set; }
-        public List<AvailableSocialPlatform> AvailablePlatforms { get; set; }
+        public List<SocialInteractionInfo> AvailablePlatforms { get; set; }
     }
 }

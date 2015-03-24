@@ -13,6 +13,6 @@ namespace XOMNI.SDK.Public.Models.Social
         public string Content { get; set; }
         public int RelatedItemId { get; set; }
         public List<SocialComment> Comments { get; set; }
-        public List<AvailableSocialPlatform> AvailablePlatforms { get; set; }
+        public List<SocialInteractionInfo> AvailablePlatforms { get; set; }
     }
 }

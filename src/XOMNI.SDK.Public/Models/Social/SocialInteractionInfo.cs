@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XOMNI.SDK.Public.Models.Social
 {
-    public class AvailableSocialPlatform
+    public class SocialInteractionInfo
     {
         public string Platform { get; set; }
         public string Status { get; set; }
