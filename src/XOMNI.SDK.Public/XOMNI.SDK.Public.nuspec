@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>XOMNI.SDK.Public</id>
-    <version>3.0.2</version>
+    <version>3.0.3</version>
     <authors>XOMNI Inc</authors>
     <owners>XOMNI Inc</owners>
     <licenseUrl>https://github.com/XomniCloud/xomni-sdk-dotnet/master/LICENSE</licenseUrl>
