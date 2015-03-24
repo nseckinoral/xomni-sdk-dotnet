@@ -482,7 +482,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               new ArgumentException(string.Format("{0} can not be empty or null.", "description")));
 
             await base.SDKExceptionResponseTestAsync(
-              (DeviceClient p) => p.PostAsync(new Device() { DeviceId = Guid.NewGuid().ToString(), Description = Guid.NewGuid().ToString() }),
+              (DeviceClient p) => p.PostAsync(new Device() { DeviceId = Guid.NewGuid().ToString(), Description = Guid.NewGuid().ToString(), DeviceTypeId = 0 }),
               new ArgumentException(string.Format("{0} must be greater than or equal to 1.", "deviceTypeId")));
         }
 

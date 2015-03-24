@@ -98,7 +98,7 @@ namespace XOMNI.SDK.Public.Clients.Company
         {
             Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
             ValidatePatch(devicePatch);
-            
+
             string path = string.Format("/company/devices/{0}", deviceId);
 
             using (var response = await Client.PatchAsJsonAsync(path, (object)devicePatch).ConfigureAwait(false))
@@ -109,11 +109,14 @@ namespace XOMNI.SDK.Public.Clients.Company
 
         public async Task<ApiResponse<Device>> PostAsync(Device device)
         {
-            Validator.For(device, "device").IsNotNull(); 
+            Validator.For(device, "device").IsNotNull();
             Validator.For(device.DeviceId, "deviceId").IsNotNullOrEmpty();
             Validator.For(device.Description, "description").IsNotNullOrEmpty();
-            Validator.For(device.DeviceTypeId, "deviceTypeId").IsGreaterThanOrEqual(1);
-            
+            if (device.DeviceTypeId.HasValue)
+            {
+                Validator.For(device.DeviceTypeId, "deviceTypeId").IsGreaterThanOrEqual(1);
+            }
+
             string path = "/company/devices";
 
             using (var response = await Client.PostAsJsonAsync(path, device).ConfigureAwait(false))
@@ -137,8 +140,8 @@ namespace XOMNI.SDK.Public.Clients.Company
             var invalidParameters = devicePatchProperties.Where(t => !deviceProperties.Any(p => p.Name == t.Name));
             if (invalidParameters.Any())
             {
-                throw new ArgumentException(string.Format("{0} parameter(s) invalid for device patch.", 
-                    string.Join(",", invalidParameters.Select(t => string.Format("'{0}'",t.Name))))
+                throw new ArgumentException(string.Format("{0} parameter(s) invalid for device patch.",
+                    string.Join(",", invalidParameters.Select(t => string.Format("'{0}'", t.Name))))
                 );
             }
         }
