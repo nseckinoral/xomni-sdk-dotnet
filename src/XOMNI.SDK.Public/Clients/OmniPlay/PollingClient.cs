@@ -39,8 +39,8 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
                 Validator.For(metadataKey, "metadataKey").IsNotNullOrEmpty();
                 Validator.For(metadataValue, "metadataValue").IsNotNullOrEmpty();
             }
+            
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-
 			{
                 return await response.Content.ReadAsAsync<ApiResponse<WishlistWithItems>>().ConfigureAwait(false);
 			}

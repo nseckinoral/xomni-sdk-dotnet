@@ -104,14 +104,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PutAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-             (ShoppingCartItemClient c) => c.PutAsync(Guid.Parse(uniqeId), 1),
-             string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&quantity={1}", uniqeId, 1),
+             (ShoppingCartItemClient c) => c.PutAsync(Guid.Parse(uniqueId), 1),
+             string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&quantity={1}", uniqueId, 1),
              piiUser: piiUser
              );
 
             await base.UriTestAsync(
-              (ShoppingCartItemClient c) => c.PutAsync(Guid.Parse(uniqeId), 1, validLocation),
-              string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&quantity={1}&longitude={2}&latitude={3}", uniqeId, 1, validLocation.Longitude, validLocation.Latitude),
+              (ShoppingCartItemClient c) => c.PutAsync(Guid.Parse(uniqueId), 1, validLocation),
+              string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&quantity={1}&longitude={2}&latitude={3}", uniqueId, 1, validLocation.Longitude, validLocation.Latitude),
               piiUser: piiUser
               );
         }
@@ -180,12 +180,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task DeleteShoppingCartItemAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (ShoppingCartItemClient c) => c.DeleteShoppingCartItemAsync(Guid.Parse(uniqeId)),
-              string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}", uniqeId), piiUser: piiUser);
+              (ShoppingCartItemClient c) => c.DeleteShoppingCartItemAsync(Guid.Parse(uniqueId)),
+              string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}", uniqueId), piiUser: piiUser);
 
             await base.UriTestAsync(
-              (ShoppingCartItemClient c) => c.DeleteShoppingCartItemAsync(Guid.Parse(uniqeId), validLocation),
-              string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&longitude={1}&latitude={2}", uniqeId, validLocation.Longitude, validLocation.Latitude), piiUser: piiUser
+              (ShoppingCartItemClient c) => c.DeleteShoppingCartItemAsync(Guid.Parse(uniqueId), validLocation),
+              string.Format("/pii/shoppingcartitem?shoppingCartItemUniqueKey={0}&longitude={1}&latitude={2}", uniqueId, validLocation.Longitude, validLocation.Latitude), piiUser: piiUser
               );
         }
 
@@ -252,12 +252,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task DeleteShoppingCartItemsAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (ShoppingCartItemClient c) => c.DeleteShoppingCartItemsAsync(Guid.Parse(uniqeId)),
-              string.Format("/pii/shoppingcartitems?shoppingCartUniqueKey={0}", uniqeId), piiUser: piiUser);
+              (ShoppingCartItemClient c) => c.DeleteShoppingCartItemsAsync(Guid.Parse(uniqueId)),
+              string.Format("/pii/shoppingcartitems?shoppingCartUniqueKey={0}", uniqueId), piiUser: piiUser);
 
             await base.UriTestAsync(
-              (ShoppingCartItemClient c) => c.DeleteShoppingCartItemsAsync(Guid.Parse(uniqeId), validLocation),
-              string.Format("/pii/shoppingcartitems?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString()), piiUser: piiUser
+              (ShoppingCartItemClient c) => c.DeleteShoppingCartItemsAsync(Guid.Parse(uniqueId), validLocation),
+              string.Format("/pii/shoppingcartitems?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString()), piiUser: piiUser
               );
         }
 
@@ -348,8 +348,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PostAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-             (ShoppingCartItemClient c) => c.PostAsync(Guid.Parse(uniqeId), sampleShoppingCartItem),
-             string.Format("/pii/shoppingcartitem?shoppingCartUniqueKey={0}", uniqeId),
+             (ShoppingCartItemClient c) => c.PostAsync(Guid.Parse(uniqueId), sampleShoppingCartItem),
+             string.Format("/pii/shoppingcartitem?shoppingCartUniqueKey={0}", uniqueId),
              piiUser: piiUser
              );
         }

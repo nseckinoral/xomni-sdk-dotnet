@@ -337,7 +337,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task DeleteAsyncWithUniqeKeyHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (ShoppingCartClient c) => c.DeleteAsync(Guid.Parse(uniqeId)),
+                (ShoppingCartClient c) => c.DeleteAsync(Guid.Parse(uniqueId)),
                 HttpMethod.Delete, piiUser: piiUser
                 );
         }
@@ -346,8 +346,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task DeleteAsyncWithUniqeKeyUriCheckTest()
         {
             await base.UriTestAsync(
-              (ShoppingCartClient c) => c.DeleteAsync(Guid.Parse(uniqeId)),
-              string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}", uniqeId), piiUser: piiUser);
+              (ShoppingCartClient c) => c.DeleteAsync(Guid.Parse(uniqueId)),
+              string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}", uniqueId), piiUser: piiUser);
 
         }
 
@@ -355,7 +355,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task DeleteAsyncWithUniqeKeyDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (ShoppingCartClient c) => c.DeleteAsync(Guid.Parse(uniqeId)), piiUser: piiUser);
+                (ShoppingCartClient c) => c.DeleteAsync(Guid.Parse(uniqueId)), piiUser: piiUser);
         }
 
         [TestMethod, TestCategory("ShoppingCartClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
@@ -365,7 +365,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (ShoppingCartClient c) => c.DeleteAsync(Guid.Parse(uniqeId)),
+              (ShoppingCartClient c) => c.DeleteAsync(Guid.Parse(uniqueId)),
               notFoundHttpResponseMessage,
               expectedExceptionResult, piiUser: piiUser);
         }
@@ -377,7 +377,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.Forbidden;
 
             await base.APIExceptionResponseTestAsync(
-              (ShoppingCartClient c) => c.DeleteAsync(Guid.Parse(uniqeId)),
+              (ShoppingCartClient c) => c.DeleteAsync(Guid.Parse(uniqueId)),
               forbiddenHttpResponseMessage,
               expectedExceptionResult, piiUser: piiUser);
         }
@@ -389,7 +389,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PostAccessAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (ShoppingCartClient c) => c.PostAccessAsync(Guid.Parse(uniqeId), true),
+                (ShoppingCartClient c) => c.PostAccessAsync(Guid.Parse(uniqueId), true),
                 HttpMethod.Post, piiUser: piiUser
                 );
         }
@@ -398,15 +398,15 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PostAccessAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (ShoppingCartClient c) => c.PostAccessAsync(Guid.Parse(uniqeId), true),
-              string.Format("/pii/shoppingcartaccess?shoppingCartUniqueKey={0}&isPublic={1}", uniqeId, true), piiUser: piiUser);
+              (ShoppingCartClient c) => c.PostAccessAsync(Guid.Parse(uniqueId), true),
+              string.Format("/pii/shoppingcartaccess?shoppingCartUniqueKey={0}&isPublic={1}", uniqueId, true), piiUser: piiUser);
         }
 
         [TestMethod, TestCategory("ShoppingCartClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAccessAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (ShoppingCartClient c) => c.PostAccessAsync(Guid.Parse(uniqeId), true), piiUser: piiUser);
+                (ShoppingCartClient c) => c.PostAccessAsync(Guid.Parse(uniqueId), true), piiUser: piiUser);
         }
 
         [TestMethod, TestCategory("ShoppingCartClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
@@ -416,7 +416,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (ShoppingCartClient c) => c.PostAccessAsync(Guid.Parse(uniqeId), true),
+              (ShoppingCartClient c) => c.PostAccessAsync(Guid.Parse(uniqueId), true),
               notFoundHttpResponseMessage,
               expectedExceptionResult, piiUser: piiUser);
         }
@@ -428,7 +428,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.Forbidden;
 
             await base.APIExceptionResponseTestAsync(
-              (ShoppingCartClient c) => c.PostAccessAsync(Guid.Parse(uniqeId), true),
+              (ShoppingCartClient c) => c.PostAccessAsync(Guid.Parse(uniqueId), true),
               forbiddenHttpResponseMessage,
               expectedExceptionResult, piiUser: piiUser);
         }
@@ -727,7 +727,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId)),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId)),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponseForGetAsync)
@@ -741,7 +741,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task GetAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId)),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId)),
                 HttpMethod.Get,
                 piiUser: piiUser
                 );
@@ -751,50 +751,50 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task GetAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId)),
-              string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&includeItemStaticProperties={1}&includeItemDynamicProperties={2}&includeCategoryMetadata={3}&imageAssetDetail={4}&videoAssetDetail={5}&documentAssetDetail={6}", uniqeId, true, false, false, 0, 0, 0),
+              (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId)),
+              string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&includeItemStaticProperties={1}&includeItemDynamicProperties={2}&includeCategoryMetadata={3}&imageAssetDetail={4}&videoAssetDetail={5}&documentAssetDetail={6}", uniqueId, true, false, false, 0, 0, 0),
               piiUser: piiUser
               );
 
             await base.UriTestAsync(
-              (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), sampleLocation),
-              string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqeId, 23, 22, true, false, false, 0, 0, 0, 0),
+              (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), sampleLocation),
+              string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqueId, 23, 22, true, false, false, 0, 0, 0, 0),
               piiUser: piiUser
               );
 
             await base.UriTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), sampleLocation, includeItemStaticProperties: false),
-              string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqeId, sampleLocation.Longitude, sampleLocation.Latitude, false, false, false, 0, 0, 0),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), sampleLocation, includeItemStaticProperties: false),
+              string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqueId, sampleLocation.Longitude, sampleLocation.Latitude, false, false, false, 0, 0, 0),
               piiUser: piiUser
               );
 
             await base.UriTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), sampleLocation, includeItemDynamicProperties: true),
-              string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqeId, sampleLocation.Longitude, sampleLocation.Latitude, true, true, false, 0, 0, 0),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), sampleLocation, includeItemDynamicProperties: true),
+              string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqueId, sampleLocation.Longitude, sampleLocation.Latitude, true, true, false, 0, 0, 0),
               piiUser: piiUser
               );
 
             await base.UriTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), sampleLocation, includeCategoryMetadata: true),
-               string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqeId, sampleLocation.Longitude, sampleLocation.Latitude, true, false, true, 0, 0, 0),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), sampleLocation, includeCategoryMetadata: true),
+               string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqueId, sampleLocation.Longitude, sampleLocation.Latitude, true, false, true, 0, 0, 0),
                piiUser: piiUser
                );
 
             await base.UriTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), sampleLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true),
-               string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqeId, sampleLocation.Longitude, sampleLocation.Latitude, false, true, true, 0, 0, 0),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), sampleLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true),
+               string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqueId, sampleLocation.Longitude, sampleLocation.Latitude, false, true, true, 0, 0, 0),
                piiUser: piiUser
                );
 
             await base.UriTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), sampleLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, imageAssetDetail: AssetDetailType.IncludeAll, videoAssetDetail: AssetDetailType.None, documentAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata),
-               string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqeId, sampleLocation.Longitude, sampleLocation.Latitude, false, true, true, 2, 0, 4),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), sampleLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, imageAssetDetail: AssetDetailType.IncludeAll, videoAssetDetail: AssetDetailType.None, documentAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata),
+               string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqueId, sampleLocation.Longitude, sampleLocation.Latitude, false, true, true, 2, 0, 4),
                piiUser: piiUser
                );
 
             await base.UriTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), sampleLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, imageAssetDetail: AssetDetailType.IncludeAll, videoAssetDetail: AssetDetailType.None, documentAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, metadataKey: "key", metadataValue: "value"),
-               string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqeId, sampleLocation.Longitude, sampleLocation.Latitude, false, true, true, 2, 0, 4, "key", "value"),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), sampleLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, imageAssetDetail: AssetDetailType.IncludeAll, videoAssetDetail: AssetDetailType.None, documentAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, metadataKey: "key", metadataValue: "value"),
+               string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqueId, sampleLocation.Longitude, sampleLocation.Latitude, false, true, true, 2, 0, 4, "key", "value"),
                piiUser: piiUser
                );
         }
@@ -806,7 +806,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId)),
+              (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId)),
               notFoundHttpResponseMessage,
               expectedExceptionResult,
               piiUser: piiUser
@@ -820,7 +820,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.Forbidden;
 
             await base.APIExceptionResponseTestAsync(
-              (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId)),
+              (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId)),
               forbiddenHttpResponseMessage,
               expectedExceptionResult,
               piiUser: piiUser
@@ -831,7 +831,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task GetAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId)),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId)),
                 piiUser: piiUser
                 );
         }
@@ -840,25 +840,25 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task GetAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), location: sampleLatitudeInvalidLocation),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), location: sampleLatitudeInvalidLocation),
                 new ArgumentOutOfRangeException("Latitude", 91, string.Format("{0} must be in range ({1} - {2}).", "Latitude", -90, 90)),
                 piiUser: piiUser
                 );
 
             await base.SDKExceptionResponseTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), location: sampleLongitudeInvalidLocation),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), location: sampleLongitudeInvalidLocation),
                 new ArgumentOutOfRangeException("Longitude", 181, string.Format("{0} must be in range ({1} - {2}).", "Longitude", -180, 180)),
                 piiUser: piiUser
                 );
 
             await base.SDKExceptionResponseTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), metadataKey: "key"),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), metadataKey: "key"),
                 new ArgumentException("metadataValue can not be empty or null."),
                 piiUser: piiUser
                 );
 
             await base.SDKExceptionResponseTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqeId), metadataValue: "value"),
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), metadataValue: "value"),
                 new ArgumentException("metadataKey can not be empty or null."),
                 piiUser: piiUser
                 );

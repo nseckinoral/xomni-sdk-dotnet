@@ -27,16 +27,16 @@ namespace XOMNI.SDK.Public.Test.Fixtures
         const string authorizationHeaderKey = "Authorization";
         const string versionHeaderKey = "Accept";
         const string piiTokenHeaderKey = "PIIToken";
-        const string xomniVersionPrefix= "application/vnd.xomni";
-        
-        protected const string uniqeId = "9ead1d3d-28c1-4dc4-b99e-3542401c9f77";
+        const string xomniVersionPrefix = "application/vnd.xomni";
+
+        protected const string uniqueId = "9ead1d3d-28c1-4dc4-b99e-3542401c9f77";
 
         protected const string genericErrorResponse = @"{
             'IdentifierGuid':'7358fe16-3925-4951-9a77-fca4f9e167b0',
             'IdentifierTick':635585478999549713,
             'FriendlyDescription':'Generic error friendly description.'
         }";
-        
+
         protected readonly HttpResponseMessage notFoundHttpResponseMessage = new HttpResponseMessage()
         {
             StatusCode = HttpStatusCode.NotFound,
@@ -87,12 +87,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures
         private TClient GetClientWithHandlers(IEnumerable<DelegatingHandler> handlers, User piiUser = null, OmniSession omniSession = null)
         {
             var clientContext = new ClientContext(userName, password, serviceUri, handlers);
-            
+
             if (piiUser != null)
             {
                 clientContext.PIIUser = piiUser;
             }
-            
+
             if (omniSession != null)
             {
                 clientContext.OmniSession = omniSession;
@@ -150,7 +150,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures
             AssertExtensions.AreDeeplyEqual(validAPIResponseByteArray, actualResponse);
         }
 
-        protected async Task RequestParseTestAsync<TRequest>(Func<TClient,Task> actAsync, string validAPIRequestJson, User piiUser = null, OmniSession omniSession = null)
+        protected async Task RequestParseTestAsync<TRequest>(Func<TClient, Task> actAsync, string validAPIRequestJson, User piiUser = null, OmniSession omniSession = null)
         {
             Action<HttpRequestMessage, CancellationToken> testCallback = (req, can) =>
             {
@@ -190,7 +190,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures
         {
             var mockedClient = InitalizeMockedClient(mockedHttpResponseMessage, piiUser: piiUser, omniSession: omniSession);
             bool exceptionRaised = true;
-            
+
             try
             {
                 await actAsync(mockedClient);
@@ -243,8 +243,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures
                     var piiUserName = piiTokenArray[0].Split(':')[1];
                     var piiPassword = piiTokenArray[1].Split(':')[1];
 
-                    Assert.AreEqual(piiUser.UserName,  piiUserName);
-                    Assert.AreEqual(piiUser.Password,  piiPassword);
+                    Assert.AreEqual(piiUser.UserName, piiUserName);
+                    Assert.AreEqual(piiUser.Password, piiPassword);
                 }
 
                 if (omniSession != null)

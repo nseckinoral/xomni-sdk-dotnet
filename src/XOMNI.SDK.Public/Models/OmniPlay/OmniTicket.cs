@@ -8,7 +8,6 @@ namespace XOMNI.SDK.Public.Models.OmniPlay
 {
     public class OmniTicket
     {
-        public Guid Ticket { get; set; }
-
+        public string Ticket { get; set; }
     }
 }

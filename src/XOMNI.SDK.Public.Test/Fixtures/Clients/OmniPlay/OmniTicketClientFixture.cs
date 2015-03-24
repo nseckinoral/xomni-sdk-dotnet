@@ -48,12 +48,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
 
         readonly OmniTicket sampleTicket = new OmniTicket()
         {
-            Ticket = Guid.Parse(uniqeId)
+            Ticket = uniqueId
         };
 
         readonly WishlistImportRequest sampleWishlistImportRequest = new WishlistImportRequest()
         {
-            OmniTicket = Guid.Parse(uniqeId),
+            OmniTicket = Guid.Parse(uniqueId),
             GpsLocation = new Location()
             {
                 Latitude = 23.32,
@@ -190,7 +190,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqeId)),
+                (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),
                 new HttpResponseMessage(HttpStatusCode.OK) 
                 {
                     Content = new MockedJsonContent(validAPIResponseForGetAndGetTicketAsync)
@@ -204,7 +204,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqeId)),
+                (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),
                 HttpMethod.Get,piiUser:piiUser 
                 );
         }
@@ -213,15 +213,15 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqeId)),
-              string.Format("/omniplay/wishlist/ticket?wishlistUniqueKey={0}",uniqeId),piiUser:piiUser);
+              (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),
+              string.Format("/omniplay/wishlist/ticket?wishlistUniqueKey={0}",uniqueId),piiUser:piiUser);
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqeId)),piiUser:piiUser);
+                (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),piiUser:piiUser);
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -231,7 +231,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqeId)),
+              (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),
               notFoundHttpResponseMessage,
               expectedExceptionResult,piiUser:piiUser
               );
@@ -244,7 +244,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.Forbidden;
 
             await base.APIExceptionResponseTestAsync(
-              (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqeId)),
+              (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),
               forbiddenHttpResponseMessage,
               expectedExceptionResult, piiUser: piiUser
               );
@@ -257,7 +257,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.BadRequest;
 
             await base.APIExceptionResponseTestAsync(
-              (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqeId)),
+              (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),
               badRequestHttpResponseMessage,
               expectedExceptionResult, piiUser: piiUser
               );
@@ -388,7 +388,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             await base.SDKExceptionResponseTestAsync(
                 (OmniTicketClient p) => p.PostImportAsync(new WishlistImportRequest()
                 {
-                    OmniTicket = Guid.Parse(uniqeId),
+                    OmniTicket = Guid.Parse(uniqueId),
                     GpsLocation = new Location()
                     {
                         Latitude = 112,
@@ -401,7 +401,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             await base.SDKExceptionResponseTestAsync(
                 (OmniTicketClient p) => p.PostImportAsync(new WishlistImportRequest()
                 {
-                    OmniTicket = Guid.Parse(uniqeId),
+                    OmniTicket = Guid.Parse(uniqueId),
                     GpsLocation = new Location()
                     {
                         Latitude = 23,

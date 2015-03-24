@@ -390,7 +390,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
 
         readonly OmniTicket sampleTicket = new OmniTicket()
         {
-            Ticket = Guid.Parse(uniqeId)
+            Ticket = uniqueId
         };
 
         readonly Location validLocation = new Location()
@@ -405,7 +405,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetWishlistAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId)),
+                (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId)),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponseForGetWishlistAsync)
@@ -418,7 +418,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetWishlistAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId)),
+                (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId)),
                 HttpMethod.Get
                 );
         }
@@ -427,33 +427,33 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetWishlistAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId)),
-              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&includeItemStaticProperties={1}&includeItemDynamicProperties={2}&includeCategoryMetadata={3}&imageAssetDetail={4}&videoAssetDetail={5}&documentAssetDetail={6}", uniqeId, true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None)
+              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId)),
+              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&includeItemStaticProperties={1}&includeItemDynamicProperties={2}&includeCategoryMetadata={3}&imageAssetDetail={4}&videoAssetDetail={5}&documentAssetDetail={6}", uniqueId, true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None)
               );
 
             await base.UriTestAsync(
-              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId), validLocation),
-              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None)
+              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId), validLocation),
+              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None)
               );
 
             await base.UriTestAsync(
-              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId), validLocation, metadataKey: "key", metadataValue: "value"),
-              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None, "key", "value")
+              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId), validLocation, metadataKey: "key", metadataValue: "value"),
+              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None, "key", "value")
               );
 
             await base.UriTestAsync(
-              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true),
-              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None)
+              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true),
+              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None)
               );
 
             await base.UriTestAsync(
-              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, metadataKey: "key", metadataValue: "value"),
-              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None, "key", "value")
+              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, metadataKey: "key", metadataValue: "value"),
+              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None, "key", "value")
               );
 
             await base.UriTestAsync(
-              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, metadataKey: "key", metadataValue: "value", imageAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, documentAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, videoAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata),
-              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, "key", "value")
+              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, metadataKey: "key", metadataValue: "value", imageAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, documentAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, videoAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata),
+              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, "key", "value")
               );
         }
 
@@ -461,7 +461,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetWishlistAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId))
+              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId))
               );
         }
 
@@ -469,16 +469,16 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetWishlistAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (PollingClient p) => p.GetWishlistAsync(Guid.Parse(uniqeId), new Location()
+                (PollingClient p) => p.GetWishlistAsync(Guid.Parse(uniqueId), new Location()
                 {
-                   Latitude = 100,
-                   Longitude = 23.32
+                    Latitude = 100,
+                    Longitude = 23.32
                 }),
                 new ArgumentOutOfRangeException("Latitude", 100, string.Format("{0} must be in range ({1} - {2}).", "Latitude", -90, 90))
             );
 
             await base.SDKExceptionResponseTestAsync(
-                 (PollingClient p) => p.GetWishlistAsync(Guid.Parse(uniqeId), new Location()
+                 (PollingClient p) => p.GetWishlistAsync(Guid.Parse(uniqueId), new Location()
                  {
                      Latitude = 34.23,
                      Longitude = 181.23
@@ -487,12 +487,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             );
 
             await base.SDKExceptionResponseTestAsync(
-                (PollingClient p) => p.GetWishlistAsync(Guid.Parse(uniqeId), metadataKey: "key"),
+                (PollingClient p) => p.GetWishlistAsync(Guid.Parse(uniqueId), metadataKey: "key"),
                new ArgumentException(string.Format("{0} can not be empty or null.", "metadataValue"))
              );
 
             await base.SDKExceptionResponseTestAsync(
-                (PollingClient p) => p.GetWishlistAsync(Guid.Parse(uniqeId), metadataValue: "value"),
+                (PollingClient p) => p.GetWishlistAsync(Guid.Parse(uniqueId), metadataValue: "value"),
                new ArgumentException(string.Format("{0} can not be empty or null.", "metadataKey"))
              );
         }
@@ -504,7 +504,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId)),
+              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId)),
               notFoundHttpResponseMessage,
               expectedExceptionResult
               );
@@ -517,7 +517,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.Forbidden;
 
             await base.APIExceptionResponseTestAsync(
-              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqeId)),
+              (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId)),
               forbiddenHttpResponseMessage,
               expectedExceptionResult
               );
@@ -531,7 +531,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetShoppingcartAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqeId)),
+                (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqueId)),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponseForGetShoppingcartAsync)
@@ -543,7 +543,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetShoppingcartAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqeId)),
+                (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqueId)),
                 HttpMethod.Get
                 );
         }
@@ -552,35 +552,35 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetShoppingcartAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqeId)),
-              string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&includeItemStaticProperties={1}&includeItemDynamicProperties={2}&includeCategoryMetadata={3}&imageAssetDetail={4}&videoAssetDetail={5}&documentAssetDetail={6}", uniqeId, true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None));
+              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqueId)),
+              string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&includeItemStaticProperties={1}&includeItemDynamicProperties={2}&includeCategoryMetadata={3}&imageAssetDetail={4}&videoAssetDetail={5}&documentAssetDetail={6}", uniqueId, true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None));
 
             await base.UriTestAsync(
-              (PollingClient p) => p.GetWishlistAsync(Guid.Parse(uniqeId), validLocation),
-              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None));
+              (PollingClient p) => p.GetWishlistAsync(Guid.Parse(uniqueId), validLocation),
+              string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None));
 
             await base.UriTestAsync(
-              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqeId), validLocation, metadataKey: "key", metadataValue: "value"),
-              string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None, "key", "value"));
+              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqueId), validLocation, metadataKey: "key", metadataValue: "value"),
+              string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), true, false, false, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None, "key", "value"));
 
             await base.UriTestAsync(
-              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqeId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true),
-              string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None));
+              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqueId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true),
+              string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None));
 
             await base.UriTestAsync(
-              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqeId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, metadataKey: "key", metadataValue: "value"),
-              string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None, "key", "value"));
+              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqueId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, metadataKey: "key", metadataValue: "value"),
+              string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.None, (int)AssetDetailType.None, (int)AssetDetailType.None, "key", "value"));
 
             await base.UriTestAsync(
-              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqeId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, metadataKey: "key", metadataValue: "value", imageAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, documentAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, videoAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata),
-              string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, "key", "value"));
+              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqueId), validLocation, includeItemStaticProperties: false, includeItemDynamicProperties: true, includeCategoryMetadata: true, metadataKey: "key", metadataValue: "value", imageAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, documentAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata, videoAssetDetail: AssetDetailType.IncludeOnlyDefaultWithMetadata),
+              string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&longitude={1}&latitude={2}&includeItemStaticProperties={3}&includeItemDynamicProperties={4}&includeCategoryMetadata={5}&imageAssetDetail={6}&videoAssetDetail={7}&documentAssetDetail={8}&metadataKey={9}&metadataValue={10}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString(), false, true, true, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, (int)AssetDetailType.IncludeOnlyDefaultWithMetadata, "key", "value"));
         }
 
         [TestMethod, TestCategory("PollingClient"), TestCategory("GetShoppingcartAsync"), TestCategory("HTTP.GET")]
         public async Task GetShoppingcartAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqeId))
+              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqueId))
               );
         }
 
@@ -588,7 +588,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetShoppingcartAsyncParameterTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqeId), new Location()
+                (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqueId), new Location()
                 {
                     Latitude = 100,
                     Longitude = 23.32
@@ -597,7 +597,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             );
 
             await base.SDKExceptionResponseTestAsync(
-                 (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqeId), new Location()
+                 (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqueId), new Location()
                  {
                      Latitude = 34.23,
                      Longitude = 181.23
@@ -606,12 +606,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             );
 
             await base.SDKExceptionResponseTestAsync(
-                (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqeId), metadataKey: "key"),
+                (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqueId), metadataKey: "key"),
                new ArgumentException(string.Format("{0} can not be empty or null.", "metadataValue"))
              );
 
             await base.SDKExceptionResponseTestAsync(
-                (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqeId), metadataValue: "value"),
+                (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqueId), metadataValue: "value"),
                new ArgumentException(string.Format("{0} can not be empty or null.", "metadataKey"))
              );
         }
@@ -623,7 +623,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.NotFound;
 
             await base.APIExceptionResponseTestAsync(
-              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqeId)),
+              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqueId)),
               notFoundHttpResponseMessage,
               expectedExceptionResult
               );
@@ -636,7 +636,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.Forbidden;
 
             await base.APIExceptionResponseTestAsync(
-              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqeId)),
+              (PollingClient c) => c.GetShoppingcartAsync(Guid.Parse(uniqueId)),
               forbiddenHttpResponseMessage,
               expectedExceptionResult
               );

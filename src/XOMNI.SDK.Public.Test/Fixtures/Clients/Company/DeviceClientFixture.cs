@@ -193,7 +193,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
 
         readonly Device sampleDevice = new Device()
         {
-            DeviceId = uniqeId,
+            DeviceId = uniqueId,
             Description = "sampleDescription",
             DeviceTypeId = 1,
             ExpirationDate = DateTime.Parse("2014-11-19T15:14:57.2212844+02:00")

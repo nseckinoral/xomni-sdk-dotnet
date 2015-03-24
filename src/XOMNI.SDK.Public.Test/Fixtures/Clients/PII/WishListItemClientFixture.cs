@@ -85,12 +85,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task DeleteWishlistItemAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (WishlistItemClient c) => c.DeleteWishlistItemAsync(Guid.Parse(uniqeId)),
-              string.Format("/pii/wishlistitem?wishlistItemUniqueKey={0}", uniqeId));
+              (WishlistItemClient c) => c.DeleteWishlistItemAsync(Guid.Parse(uniqueId)),
+              string.Format("/pii/wishlistitem?wishlistItemUniqueKey={0}", uniqueId));
 
             await base.UriTestAsync(
-              (WishlistItemClient c) => c.DeleteWishlistItemAsync(Guid.Parse(uniqeId), validLocation),
-              string.Format("/pii/wishlistitem?wishlistItemUniqueKey={0}&longitude={1}&latitude={2}", uniqeId, validLocation.Longitude, validLocation.Latitude));
+              (WishlistItemClient c) => c.DeleteWishlistItemAsync(Guid.Parse(uniqueId), validLocation),
+              string.Format("/pii/wishlistitem?wishlistItemUniqueKey={0}&longitude={1}&latitude={2}", uniqueId, validLocation.Longitude, validLocation.Latitude));
         }
 
         [TestMethod, TestCategory("WishlistItemClient"), TestCategory("DeleteWishlistItemAsync"), TestCategory("HTTP.DELETE")]
@@ -155,12 +155,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task DeleteWishlistItemsAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (WishlistItemClient c) => c.DeleteWishlistItemsAsync(Guid.Parse(uniqeId)),
-              string.Format("/pii/wishlistitems?wishlistUniqueKey={0}", uniqeId));
+              (WishlistItemClient c) => c.DeleteWishlistItemsAsync(Guid.Parse(uniqueId)),
+              string.Format("/pii/wishlistitems?wishlistUniqueKey={0}", uniqueId));
 
             await base.UriTestAsync(
-              (WishlistItemClient c) => c.DeleteWishlistItemsAsync(Guid.Parse(uniqeId), validLocation),
-              string.Format("/pii/wishlistitems?wishlistUniqueKey={0}&longitude={1}&latitude={2}", uniqeId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString()));
+              (WishlistItemClient c) => c.DeleteWishlistItemsAsync(Guid.Parse(uniqueId), validLocation),
+              string.Format("/pii/wishlistitems?wishlistUniqueKey={0}&longitude={1}&latitude={2}", uniqueId, validLocation.Longitude.ToString(), validLocation.Latitude.ToString()));
         }
 
         [TestMethod, TestCategory("WishlistItemClient"), TestCategory("DeleteWishlistItemsAsync"), TestCategory("HTTP.DELETE")]
@@ -247,8 +247,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PostAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-             (WishlistItemClient c) => c.PostAsync(Guid.Parse(uniqeId), sampleWishlistItem),
-             string.Format("/pii/wishlistitem?wishlistUniqueKey={0}", uniqeId),
+             (WishlistItemClient c) => c.PostAsync(Guid.Parse(uniqueId), sampleWishlistItem),
+             string.Format("/pii/wishlistitem?wishlistUniqueKey={0}", uniqueId),
              piiUser: piiUser
              );
         }
