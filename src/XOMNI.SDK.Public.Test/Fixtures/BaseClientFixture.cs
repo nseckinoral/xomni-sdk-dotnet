@@ -232,7 +232,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures
             Action<HttpRequestMessage, CancellationToken> testCallback = (req, can) =>
             {
                 Assert.AreEqual(req.Headers.GetValues(authorizationHeaderKey).First(), "Basic dGVzdFVzZXI6dGVzdFBhc3M=");
-                Assert.AreEqual(req.Headers.GetValues(versionHeaderKey).Where(t => t.StartsWith(xomniVersionPrefix)).First(), "application/vnd.xomni.api-v3_0");
+                Assert.AreEqual(req.Headers.GetValues(versionHeaderKey).Where(t => t.StartsWith(xomniVersionPrefix)).First(), "application/vnd.xomni.api-v3_1");
 
                 if (piiUser != null)
                 {

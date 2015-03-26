@@ -70,10 +70,10 @@ namespace XOMNI.SDK.Core.Providers
         private static void InitializeDefaultHttpHeaders(HttpRequestMessage requestMessage)
         {
             requestMessage.Headers.Accept.ParseAdd("application/json");
-            requestMessage.Headers.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v3_0"));
+            requestMessage.Headers.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v3_1"));
             requestMessage.Headers.Host = Configuration.Configuration.Host;
         }
-        
+
         #region Http Get Methods
         public static HttpRequestMessage CreateGetRequest(string url, ApiBasicCredential credential)
         {
@@ -92,7 +92,7 @@ namespace XOMNI.SDK.Core.Providers
         }
 
         #endregion
-        
+
         #region Http Post Methods
         public static HttpRequestMessage CreatePostRequest(string url, ApiBasicCredential credential, object body)
         {
@@ -146,7 +146,7 @@ namespace XOMNI.SDK.Core.Providers
             return CreateRequestMessage(new HttpMethod("PATCH"), url, credential, body);
         }
 
-        public static async Task<T> PatchAsync<T> (string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
+        public static async Task<T> PatchAsync<T>(string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             using (HttpRequestMessage requestMessage = CreatePatchRequest(url, credential, body))
             {

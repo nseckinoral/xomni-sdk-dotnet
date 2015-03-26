@@ -74,7 +74,7 @@ namespace XOMNI.SDK.Public
             this.HttpClient.BaseAddress = new Uri(serviceUri);
             this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthenticationSchema,
                 Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", userName, password))));
-            this.HttpClient.DefaultRequestHeaders.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v3_0"));
+            this.HttpClient.DefaultRequestHeaders.Accept.ParseAdd(string.Format("application/vnd.xomni.api-{0}", "v3_1"));
         }
 
         private void InitalizePIIToken(OmniSession value)
