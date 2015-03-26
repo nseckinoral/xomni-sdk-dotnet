@@ -8,7 +8,7 @@ namespace XOMNI.SDK.Management.Integration
 {
     public class EndpointManagement : ManagementBase
     {
-        protected readonly Endpoint endpointApi = new Endpoint();
+        private readonly Endpoint endpointApi = new Endpoint();
         public virtual Task CreateAsync(EndpointCreationRequest request)
         {
             return endpointApi.PostAsync(request, this.ApiCredential);

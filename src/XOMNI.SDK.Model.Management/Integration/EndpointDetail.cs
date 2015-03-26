@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-
+﻿
 namespace XOMNI.SDK.Model.Management.Integration
 {
     public class EndpointDetail
