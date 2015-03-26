@@ -115,9 +115,9 @@ namespace XOMNI.SDK.Core.Providers
             }
         }
 
-        public static async Task PostAsync(string url, object body, ApiBasicCredential credential)
+        public static async Task PostAsync(string url, object body, ApiBasicCredential credential, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
-            var response = await PostInternalAsync(url, body, credential);
+            var response = await PostInternalAsync(url, body, credential, expectedCode);
         }
         #endregion
 
