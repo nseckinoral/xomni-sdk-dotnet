@@ -275,7 +275,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
                 {
                     Content = new MockedJsonContent(validAPIResponseForPostSessionAsync)
                 },
-                validAPIResponseForPostSessionAsync, piiUser: piiUser
+                validAPIResponseForPostSessionAsync
             );
         }
 
@@ -287,8 +287,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             }";
             await base.RequestParseTestAsync<OmniTicket>(
                 (OmniTicketClient c) => c.PostSessionAsync(sampleTicket),
-                validRequest
-                , piiUser: piiUser);
+                validRequest);
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("PostSessionAsync"), TestCategory("HTTP.POST")]
@@ -296,8 +295,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         {
             await base.HttpMethodTestAsync(
                 (OmniTicketClient c) => c.PostSessionAsync(sampleTicket),
-                HttpMethod.Post, piiUser: piiUser
-                );
+                HttpMethod.Post);
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("PostSessionAsync"), TestCategory("HTTP.POST")]
@@ -305,14 +303,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         {
             await base.UriTestAsync(
               (OmniTicketClient p) => p.PostSessionAsync(sampleTicket),
-              "/omniplay/pii/session", piiUser: piiUser);
+              "/omniplay/pii/session");
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("PostSessionAsync"), TestCategory("HTTP.POST")]
         public async Task PostSessionAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (OmniTicketClient p) => p.PostSessionAsync(sampleTicket), piiUser: piiUser);
+                (OmniTicketClient p) => p.PostSessionAsync(sampleTicket));
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("PostSessionAsync"), TestCategory("HTTP.POST")]
@@ -324,7 +322,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             await base.APIExceptionResponseTestAsync(
               (OmniTicketClient p) => p.PostSessionAsync(sampleTicket),
               badRequestHttpResponseMessage,
-              expectedExceptionResult, piiUser: piiUser);
+              expectedExceptionResult);
         }
         #endregion
 
