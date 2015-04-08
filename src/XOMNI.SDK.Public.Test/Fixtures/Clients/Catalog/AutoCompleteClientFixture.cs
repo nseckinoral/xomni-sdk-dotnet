@@ -20,10 +20,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         const string validAPIResponse = @"{
             'Data': {
                 'SearchTerm': 'br',
-                'SearchType': 'All',
-                'TotalItemCount': 0,
-                'TotalBrandCount': 4,
-                'TotalCategoryCount': 0,
+                'SearchType': 'All',                
                 'Results': [
                     {
                         'Id': 1,
@@ -54,7 +51,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "Test", 1, 2, true),
+                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "Test", 2, true),
                 new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponse)
@@ -67,7 +64,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
-                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All,"Test",1,2,true),
+                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "Test", 2, true),
                 HttpMethod.Get);
         }
 
@@ -75,8 +72,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncUriCheckTest()
         {
             await base.UriTestAsync(
-              (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All,"Test",1,2,true),
-              "/catalog/autocomplete/All?searchTerm=Test&skip=1&take=2&includeOnlyMasterItems=True");
+              (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "Test", 2, true),
+              "/catalog/autocomplete/All?searchTerm=Test&top=2&includeOnlyMasterItems=True");
         }
 
         [TestMethod, TestCategory("AutoCompleteClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -86,7 +83,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             expectedExceptionResult.HttpStatusCode = HttpStatusCode.BadRequest;
 
             await base.APIExceptionResponseTestAsync(
-              (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All,"Test",1,2,true),
+              (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "Test", 2, true),
               badRequestHttpResponseMessage,
               expectedExceptionResult
             );
@@ -96,31 +93,37 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncSearchTermTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All,null,1,2,true),
+                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, null, 2, true),
                 new ArgumentException("searchTerm can not be empty or null.")
             );
 
             await base.SDKExceptionResponseTestAsync(
-                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "", 1, 2, true),
+                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "", 2, true),
                 new ArgumentException("searchTerm can not be empty or null.")
             );
-        }
 
-        [TestMethod, TestCategory("AutoCompleteClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncSkipTest()
-        {
             await base.SDKExceptionResponseTestAsync(
-                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "Test", -1, 2, true),
-                new ArgumentException("skip must be greater than or equal to 0.")
+                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "aa", 2, true),
+                new ArgumentOutOfRangeException("searchTerm length", 2, string.Format("{0} must be in range ({1} - {2}).", "searchTerm length", 3, 25))
+            );
+
+            await base.SDKExceptionResponseTestAsync(
+                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, new string(Enumerable.Repeat('a', 30).ToArray()), 2, true),
+                new ArgumentOutOfRangeException("searchTerm length", 30, string.Format("{0} must be in range ({1} - {2}).", "searchTerm length", 3, 25))
             );
         }
 
         [TestMethod, TestCategory("AutoCompleteClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
-        public async Task GetAsyncTakeTest()
+        public async Task GetAsyncTopTest()
         {
             await base.SDKExceptionResponseTestAsync(
-                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "Test", 1, 0, true),
-                new ArgumentOutOfRangeException("take", 0, string.Format("{0} must be in range ({1} - {2}).", "take", 1, 1000))
+                 (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "aaa", 0, true),
+                 new ArgumentOutOfRangeException("top", 0, string.Format("{0} must be in range ({1} - {2}).", "top", 1, 100))
+             );
+
+            await base.SDKExceptionResponseTestAsync(
+                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "aaa", 320, true),
+                new ArgumentOutOfRangeException("top", 320, string.Format("{0} must be in range ({1} - {2}).", "top", 1, 100))
             );
         }
 
@@ -128,7 +131,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All,"Test",1,2,true)
+                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "Test", 2, true)
             );
         }
         #endregion
