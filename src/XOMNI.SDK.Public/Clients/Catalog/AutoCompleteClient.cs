@@ -8,26 +8,26 @@ using XOMNI.SDK.Public.Extensions;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
-	public class AutoCompleteClient : BaseClient
-	{
-		public AutoCompleteClient(HttpClient httpClient)
-			: base(httpClient)
-		{
+    public class AutoCompleteClient : BaseClient
+    {
+        public AutoCompleteClient(HttpClient httpClient)
+            : base(httpClient)
+        {
 
-		}
+        }
 
-        public async Task<ApiResponse<AutoCompleteResult>> GetAsync(AutoCompleteSearchType searchType, string searchTerm, int skip, int take, bool includeOnlyMasterItems)
-		{
+        public async Task<ApiResponse<AutoCompleteResult>> GetAsync(AutoCompleteSearchType searchType, string searchTerm, int top, bool includeOnlyMasterItems)
+        {
             Validator.For(searchTerm, "searchTerm").IsNotNullOrEmpty();
-            Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
-            Validator.For(take, "take").InRange(1, 1000);
+            Validator.For(searchTerm.Length, "searchTerm length").InRange(3, 25);
+            Validator.For(top, "top").InRange(1, 100);
 
-			string path = string.Format("/catalog/autocomplete/{0}?searchTerm={1}&skip={2}&take={3}&includeOnlyMasterItems={4}", searchType, searchTerm, skip, take,includeOnlyMasterItems);
+            string path = string.Format("/catalog/autocomplete/{0}?searchTerm={1}&top={2}&includeOnlyMasterItems={3}", searchType, searchTerm, top, includeOnlyMasterItems);
 
-			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-			{
-				return await response.Content.ReadAsAsync<ApiResponse<AutoCompleteResult>>().ConfigureAwait(false);
-			}
-		}
-	}
+            using (var response = await Client.GetAsync(path).ConfigureAwait(false))
+            {
+                return await response.Content.ReadAsAsync<ApiResponse<AutoCompleteResult>>().ConfigureAwait(false);
+            }
+        }
+    }
 }
