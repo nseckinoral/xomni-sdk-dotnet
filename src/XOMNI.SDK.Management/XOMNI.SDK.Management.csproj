@@ -60,6 +60,7 @@
     <Compile Include="ApiAccess\Company\DeviceTypes.cs" />
     <Compile Include="ApiAccess\Configuration\ImageSizeProfile.cs" />
     <Compile Include="ApiAccess\Configuration\TrendingActionTypes.cs" />
+    <Compile Include="ApiAccess\Integration\MSG.cs" />
     <Compile Include="ApiAccess\Integration\Endpoint.cs" />
     <Compile Include="ApiAccess\Security\LicenceAudit.cs" />
     <Compile Include="ApiAccess\Social\FacebookDisplayTypes.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Configuration\ImageSizeProfileManagement.cs" />
     <Compile Include="Configuration\TrendingActionTypesManagement.cs" />
     <Compile Include="Integration\EndpointManagement.cs" />
+    <Compile Include="Integration\MSGManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Social\FacebookDisplayTypesManagement.cs" />
     <Compile Include="Security\LicenceManagement.cs" />
