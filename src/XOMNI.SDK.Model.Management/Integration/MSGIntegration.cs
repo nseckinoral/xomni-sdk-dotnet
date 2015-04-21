@@ -10,6 +10,7 @@ namespace XOMNI.SDK.Model.Management.Integration
     {
         public string Email { get; set; }
         public string SsoUrl { get; set; }
-
+        public string SubscriptionKey { get; set; }
+        public IEnumerable<string> Endpoints { get; set; }
     }
 }
