@@ -13,7 +13,7 @@ namespace XOMNI.SDK.Private.ApiAccess.Mail
     {
         protected override string SingleOperationBaseUrl
         {
-            get { return "private/mail/{0}/status"; }
+            get { return "private/mail/subscription/{0}/status"; }
         }
 
         protected override string ListOperationBaseUrl
