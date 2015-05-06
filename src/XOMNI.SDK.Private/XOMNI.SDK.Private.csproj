@@ -72,6 +72,7 @@
     <Compile Include="ApiAccess\Company\Store.cs" />
     <Compile Include="ApiAccess\Analytics\ServerAnalytics.cs" />
     <Compile Include="ApiAccess\Analytics\ServerAnalyticsSummary.cs" />
+    <Compile Include="ApiAccess\Mail\Status.cs" />
     <Compile Include="ApiAccess\Passbook\PassbookBarcodeType.cs" />
     <Compile Include="ApiAccess\Passbook\PassbookTemplate.cs" />
     <Compile Include="ApiAccess\PII\Loyalty.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Analytics\AnalyticsBaseManagement.cs" />
     <Compile Include="Analytics\ServerAnalyticsSummaryManagement.cs" />
     <Compile Include="Analytics\Log\WishlistByCreatedDateAnalyticsManagement.cs" />
+    <Compile Include="Mail\StatusManagement.cs" />
     <Compile Include="Passbook\PassbookBarcodeTypeManagement.cs" />
     <Compile Include="Passbook\PassbookTemplateManagement.cs" />
     <Compile Include="PII\LoyaltyManagement.cs" />

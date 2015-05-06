@@ -137,6 +137,15 @@ namespace XOMNI.SDK.Core.Providers
             }
         }
 
+        public static async Task PutAsync(string url, object body, ApiBasicCredential credential)
+        {
+            using (HttpRequestMessage requestMessage = CreatePutRequest(url, credential, body))
+            {
+                var response = await client.SendAsync(requestMessage);
+                await ControlResponseAsync(response);
+            }
+        }
+
         #endregion
 
         #region Http Patch Methods

@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XOMNI.SDK.Model.Private.Mail
+namespace XOMNI.SDK.Private.Mail
 {
-    public enum MailSubscriptionPurposeTypeEnum
+    class StatusManagement
     {
-        Wishlist = 1,
-        ShoppingCart
     }
 }

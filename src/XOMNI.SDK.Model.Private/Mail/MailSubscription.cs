@@ -10,7 +10,7 @@ namespace XOMNI.SDK.Model.Private.Mail
     {
         public string PIIFirstLastName { get; set; }
         public MailSubscriptionStatus SubscriptionStatusId { get; set; }
-        public MailSubscriptionPurposeTypeEnum PurposeTypeId { get; set; }
+        public MailSubscriptionPurposeType PurposeTypeId { get; set; }
         public bool Subscribable { get; set; }
     }
 }
