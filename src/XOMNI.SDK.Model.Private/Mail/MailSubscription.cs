@@ -8,9 +8,9 @@ namespace XOMNI.SDK.Model.Private.Mail
 {
     public class MailSubscription
     {
-        public string PIIFirstLastName { get; set; }
-        public MailSubscriptionStatus SubscriptionStatusId { get; set; }
+        public string PIIName { get; set; }
+        public MailSubscriptionStatus StatusId { get; set; }
         public MailSubscriptionPurposeType PurposeTypeId { get; set; }
-        public bool Subscribable { get; set; }
+        public bool IsSubscribable { get; set; }
     }
 }

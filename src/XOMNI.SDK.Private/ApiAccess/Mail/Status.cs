@@ -39,7 +39,6 @@ namespace XOMNI.SDK.Private.ApiAccess.Mail
         public XOMNIRequestMessage CreatePutRequest(string emailAddress, MailSubscriptionStatus subscriptionStatus, ApiBasicCredential credential)
         {
             return new XOMNIRequestMessage(HttpProvider.CreatePutRequest(string.Format(SingleOperationBaseUrl, emailAddress), credential, new { StatusId = (int)subscriptionStatus }));
-
         }
     }
 }
