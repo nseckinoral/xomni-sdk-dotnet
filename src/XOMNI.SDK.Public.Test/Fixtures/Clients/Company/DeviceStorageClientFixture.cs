@@ -24,12 +24,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               {  
                  'DeviceId':'9ead1d3d-28c1-4dc4-b99e-3542401c9f77',
                  'Key':'SampleKey',
-                 'Value':'SampleValue'
+                 'Value':'SampleValue',
+                 'IsPublic':true
               },
               {  
                  'DeviceId':'9ead1d3d-28c1-4dc4-b99e-3542401c9f77',
                  'Key':'SampleKey1',
-                 'Value':'SampleValue'
+                 'Value':'SampleValue',
+                 'IsPublic':true
               }
            ]
         }";
@@ -38,21 +40,24 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
            'Data':{  
               'DeviceId':'9ead1d3d-28c1-4dc4-b99e-3542401c9f77',
               'Key':'SampleKey11',
-              'Value':'SampleValue'
+              'Value':'SampleValue',
+              'IsPublic':true
            }
         }";
 
         const string validAPIRequest = @"{  
            'DeviceId':'9ead1d3d-28c1-4dc4-b99e-3542401c9f77',
            'Key':'SampleKey',
-           'Value':'SampleValue'
+           'Value':'SampleValue',
+           'IsPublic':true
         }";
 
         readonly DeviceStorageItem sampleDeviceStorageItem = new DeviceStorageItem()
         {
             DeviceId = uniqueId,
             Key = "SampleKey",
-            Value = "SampleValue"
+            Value = "SampleValue",
+            IsPublic = true
         };
 
         #endregion
