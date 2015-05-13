@@ -11,5 +11,6 @@ namespace XOMNI.SDK.Public.Models.Company
         public string DeviceId { get; set; }
         public string Key { get; set; }
         public string Value { get; set; }
+        public bool IsPublic { get; set; }
     }
 }
