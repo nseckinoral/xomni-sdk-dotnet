@@ -136,6 +136,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               notFoundHttpResponseMessage,
               expectedExceptionResult);
         }
+
         #endregion
 
         #region PostAsync
@@ -301,6 +302,18 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
               notFoundHttpResponseMessage,
               expectedExceptionResult);
         }
+
+        [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("PutAsync"), TestCategory("HTTP.POST")]
+        public async Task PutAsyncForbiddenTest()
+        {
+            var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
+            expectedExceptionResult.HttpStatusCode = HttpStatusCode.Forbidden;
+
+            await base.APIExceptionResponseTestAsync(
+              (DeviceStorageClient p) => p.PutAsync(sampleDeviceStorageItem),
+              forbiddenHttpResponseMessage,
+              expectedExceptionResult);
+        }
         #endregion
 
         #region DeleteAsync
@@ -355,6 +368,18 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
             await base.APIExceptionResponseTestAsync(
               (DeviceStorageClient p) => p.DeleteAsync("0", "key"),
               notFoundHttpResponseMessage,
+              expectedExceptionResult);
+        }
+
+        [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
+        public async Task DeleteAsyncForbiddenTest()
+        {
+            var expectedExceptionResult = JsonConvert.DeserializeObject<ExceptionResult>(genericErrorResponse);
+            expectedExceptionResult.HttpStatusCode = HttpStatusCode.Forbidden;
+
+            await base.APIExceptionResponseTestAsync(
+              (DeviceStorageClient p) => p.DeleteAsync("0"),
+              forbiddenHttpResponseMessage,
               expectedExceptionResult);
         }
         #endregion
