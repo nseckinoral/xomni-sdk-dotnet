@@ -62,6 +62,7 @@
     <Compile Include="Clients\Catalog\TagClient.cs" />
     <Compile Include="Clients\Catalog\TagMetadataClient.cs" />
     <Compile Include="Clients\Catalog\TrendingItemClient.cs" />
+    <Compile Include="Clients\Company\StoreStorageClient.cs" />
     <Compile Include="Clients\OmniPlay\DeviceClient.cs" />
     <Compile Include="Clients\OmniPlay\OmniTicketClient.cs" />
     <Compile Include="Clients\OmniPlay\PollingClient.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Models\Company\DeviceStorageItem.cs" />
     <Compile Include="Models\Company\DeviceType.cs" />
     <Compile Include="Models\Company\Store.cs" />
+    <Compile Include="Models\Company\StoreStorageItem.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\Company\Device.cs" />
