@@ -22,11 +22,11 @@ namespace XOMNI.SDK.Public.Clients.Company
         {
             Validator.For(storeId, "storeId").IsGreaterThanOrEqual(0);
 
-            string path = string.Format("/company/stores/{0}/storage?", storeId == 0 ? "current" : storeId.ToString());
+            string path = string.Format("/company/stores/{0}/storage", storeId == 0 ? "current" : storeId.ToString());
 
             if (!string.IsNullOrEmpty(key))
             {
-                path += string.Format("key={0}&", key);
+                path += string.Format("?key={0}", key);
             }
             
             using (var response = await Client.GetAsync(path).ConfigureAwait(false))
@@ -39,7 +39,7 @@ namespace XOMNI.SDK.Public.Clients.Company
         {
             Validator.For(storeId, "storeId").IsGreaterThanOrEqual(0);
 
-            string path = string.Format("/company/stores/{0}/storage?", storeId == 0 ? "current" : storeId.ToString());
+            string path = string.Format("/company/stores/{0}/storage", storeId == 0 ? "current" : storeId.ToString());
 
             if (!string.IsNullOrEmpty(key))
             {
@@ -64,8 +64,9 @@ namespace XOMNI.SDK.Public.Clients.Company
 
         public async Task<ApiResponse<StoreStorageItem>> PutAsync(StoreStorageItem storageItem)
         {
-            Validator.For(storageItem, "storageItem").IsNotNull(); 
+            Validator.For(storageItem, "storageItem").IsNotNull();
             Validator.For(storageItem.StoreId, "StoreId").IsGreaterThanOrEqual(0);
+            Validator.For(storageItem.TimeStamp, "TimeStamp").IsNotNull();
 
             string path = string.Format("/company/stores/{0}/storage", storageItem.StoreId == 0 ? "current" : storageItem.StoreId.ToString());
             
