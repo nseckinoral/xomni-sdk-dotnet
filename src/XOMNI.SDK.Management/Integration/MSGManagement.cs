@@ -26,6 +26,11 @@ namespace XOMNI.SDK.Management.Integration
             return msgApi.PostAsync(request, this.ApiCredential);
         }
 
+        public virtual Task DeleteAsync()
+        {
+            return msgApi.DeleteAsync(this.ApiCredential);
+        }
+
         public virtual XOMNIRequestMessage<MSGIntegration> CreateGetRequest()
         {
             return msgApi.CreateGetRequest(this.ApiCredential);
@@ -34,6 +39,11 @@ namespace XOMNI.SDK.Management.Integration
         public virtual XOMNIRequestMessage<MSGIntegrationResponse> CreatePostRequest(MSGIntegrationRequest request)
         {
             return msgApi.CreatePostRequest(request, this.ApiCredential);
+        }
+
+        public virtual XOMNIRequestMessage CreateDeleteRequest()
+        {
+            return msgApi.CreateDeleteRequest(this.ApiCredential);
         }
     }
 }
