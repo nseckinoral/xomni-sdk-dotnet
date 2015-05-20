@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Core.ApiAccess;
@@ -39,6 +40,16 @@ namespace XOMNI.SDK.Management.ApiAccess.Integration
         internal XOMNIRequestMessage<MSGIntegrationResponse> CreatePostRequest(MSGIntegrationRequest request, ApiBasicCredential credential)
         {
             return new XOMNIRequestMessage<MSGIntegrationResponse>(HttpProvider.CreatePostRequest(GenerateUrl(SingleOperationBaseUrl), credential, request));
+        }
+
+        internal Task DeleteAsync(ApiBasicCredential credential)
+        {
+            return HttpProvider.DeleteAsync(GenerateUrl(SingleOperationBaseUrl), credential);
+        }
+
+        internal XOMNIRequestMessage CreateDeleteRequest(ApiBasicCredential credential)
+        {
+            return new XOMNIRequestMessage(HttpProvider.CreateDeleteRequest(GenerateUrl(SingleOperationBaseUrl), credential), HttpStatusCode.Accepted);
         }
     }
 }
