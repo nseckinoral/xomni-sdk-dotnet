@@ -40,7 +40,7 @@ namespace XOMNI.SDK.Public.Extensions
         {
             IsNotNullOrEmpty(item);
 
-            if (!item.Value.Contains(character))
+            if (!item.Value.Contains(character.ToString()))
             {
                 throw new ArgumentException(string.Format("{0} must be include '{1}' character.", item.ArgName, character));
             }
