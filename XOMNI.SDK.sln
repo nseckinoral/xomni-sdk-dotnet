@@ -15,15 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOMNI.SDK.Management", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOMNI.SDK.Private", "src\XOMNI.SDK.Private\XOMNI.SDK.Private.csproj", "{EC2D1B4A-CB17-46F9-AACF-EA4E980BC34C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{9DC51F80-2B76-4755-A02A-F009FBFCB920}"
-	ProjectSection(SolutionItems) = preProject
-		scripts\build.cmd = scripts\build.cmd
-		scripts\build.msbuild = scripts\build.msbuild
-		scripts\build.ps1 = scripts\build.ps1
-		scripts\props.properties = scripts\props.properties
-		scripts\publish.ps1 = scripts\publish.ps1
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
