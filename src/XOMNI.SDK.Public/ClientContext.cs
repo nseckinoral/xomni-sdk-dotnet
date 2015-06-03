@@ -19,7 +19,7 @@ namespace XOMNI.SDK.Public
         public HttpClient HttpClient { get; private set; }
         public string UserName { get; private set; }
         public string Password { get; private set; }
-        public ConcurrentDictionary<Type, object> Clients { get; private set; }
+        public SafeDictionary<Type, object> Clients { get; private set; }
 
         private User piiUser { get; set; }
         public User PIIUser
@@ -50,7 +50,7 @@ namespace XOMNI.SDK.Public
 
             Validator.For(userName, "username").IsNotNullOrEmpty();
             Validator.For(password, "password").IsNotNullOrEmpty();
-            Validator.For(serviceUri, "serviceUri").IsNotNullOrEmpty();            
+            Validator.For(serviceUri, "serviceUri").IsNotNullOrEmpty();
 
             HttpMessageHandler innerHandler = null;
             var apiErrorHandler = new XOMNIPublicApiErrorHandler();
@@ -65,11 +65,11 @@ namespace XOMNI.SDK.Public
             {
                 innerHandler = HttpClientFactory.CreatePipeline(new HttpClientHandler(), new[] { apiErrorHandler });
             }
-            
+
             this.UserName = userName;
             this.Password = password;
-            this.Clients = new ConcurrentDictionary<Type, object>();
-         
+            this.Clients = new SafeDictionary<Type, object>();
+
             this.HttpClient = new HttpClient(innerHandler);
             this.HttpClient.BaseAddress = new Uri(serviceUri);
             this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthenticationSchema,
@@ -127,5 +127,9 @@ namespace XOMNI.SDK.Public
                 }
             }
         }
+
+
     }
+    
+
 }
