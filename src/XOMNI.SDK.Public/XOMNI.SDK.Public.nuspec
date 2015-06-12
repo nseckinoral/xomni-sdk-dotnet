@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>XOMNI.SDK.Public</id>
-    <version>3.1.1</version>
-    <authors>XOMNI Inc</authors>
-    <owners>XOMNI Inc</owners>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
     <licenseUrl>https://github.com/XomniCloud/xomni-sdk-dotnet/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/XomniCloud/xomni-sdk-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
