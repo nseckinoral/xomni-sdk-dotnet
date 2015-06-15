@@ -6,9 +6,9 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://github.com/XomniCloud/xomni-sdk-dotnet/master/LICENSE</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/XomniCloud/xomni-sdk-dotnet/dev/LICENSE</licenseUrl>
     <projectUrl>https://github.com/XomniCloud/xomni-sdk-dotnet</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright XOMNI Inc. 2014</copyright>
     <tags>xomni xomni-sdk-dotnet</tags>
