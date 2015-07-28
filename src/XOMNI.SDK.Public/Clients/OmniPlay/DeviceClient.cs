@@ -6,6 +6,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.OmniPlay;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.OmniPlay
 {
@@ -17,6 +18,7 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
 
 		}
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/omniplay/device/fetching-pii-user-omnitickets-on-omniplay-device-queue")]
 		public async Task<ApiResponse<List<OmniTicketDetail>>> GetIncomingsAsync(string deviceId)
 		{
             Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
@@ -29,6 +31,7 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
 			}
 		}
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/omniplay/device/subscribing-to-omniplay-device-queue")]
         public async Task SubscribeToDeviceAsync(string deviceId)
         {
             ValidatePIIToken();

@@ -6,6 +6,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -17,6 +18,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/category-asset/fetching-images-of-a-particular-category")]
         public async Task<ApiResponse<List<ImageAsset>>> GetImagesAsync(int categoryId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             Validator.For(categoryId, "categoryId").IsGreaterThanOrEqual(1);
@@ -41,6 +43,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/category-asset/fetching-videos-of-a-particular-category")]
         public async Task<ApiResponse<List<Asset>>> GetVideosAsync(int categoryId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             Validator.For(categoryId, "categoryId").IsGreaterThanOrEqual(1);
@@ -65,6 +68,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/category-asset/fetching-documents-of-a-particular-category")]
         public async Task<ApiResponse<List<Asset>>> GetDocumentsAsync(int categoryId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             Validator.For(categoryId, "categoryId").IsGreaterThanOrEqual(1);

@@ -7,6 +7,7 @@ using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
 using XOMNI.SDK.Public.Models.PII;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.PII
 {
@@ -18,6 +19,7 @@ namespace XOMNI.SDK.Public.Clients.PII
 
 		}
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist/clearing-all-wishlists")]
         public async Task DeleteAsync()
         {
             ValidatePIIToken();
@@ -26,6 +28,7 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist/deleting-a-wish-list")]
         public async Task DeleteAsync(Guid wishlistUniqueKey)
 		{
             ValidatePIIToken();
@@ -34,7 +37,8 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.DeleteAsync(path).ConfigureAwait(false);
 		}
 
-        public async Task<ApiResponse<WishlistWithItems>> GetAsync(Guid wishlistUniqueKey, Location location = null, bool includeItemStaticProperties = true, bool includeItemDynamicProperties = false, bool includeCategoryMetadata = false, AssetDetailType imageAssetDetail = AssetDetailType.None, AssetDetailType videoAssetDetail = AssetDetailType.None, AssetDetailType documentAssetDetail = AssetDetailType.None, string metadataKey = null, string metadataValue = null)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist/fetching-a-wish-list-with-a-wish-list-unique-key")]
+		public async Task<ApiResponse<WishlistWithItems>> GetAsync(Guid wishlistUniqueKey, Location location = null, bool includeItemStaticProperties = true, bool includeItemDynamicProperties = false, bool includeCategoryMetadata = false, AssetDetailType imageAssetDetail = AssetDetailType.None, AssetDetailType videoAssetDetail = AssetDetailType.None, AssetDetailType documentAssetDetail = AssetDetailType.None, string metadataKey = null, string metadataValue = null)
         {
             ValidatePIIToken();
             string path = string.Format("/pii/wishlist?wishlistUniqueKey={0}&", wishlistUniqueKey);
@@ -63,6 +67,7 @@ namespace XOMNI.SDK.Public.Clients.PII
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist/changing-wishlist-access-information")]
         public async Task PostAccessAsync(Guid wishlistUniqueKey, bool isPublic)
         {
             ValidatePIIToken();
@@ -70,7 +75,8 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.PostAsJsonAsync(path, string.Empty).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<List<Guid>>> GetAsync()
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist/fetching-all-wish-lists")]
+		public async Task<ApiResponse<List<Guid>>> GetAsync()
 		{
             ValidatePIIToken();
 			string path = "/pii/wishlists";
@@ -81,7 +87,8 @@ namespace XOMNI.SDK.Public.Clients.PII
 			}
 		}
 
-        public async Task<ApiResponse<Wishlist>> PostWishlistAsync(Wishlist wishlist)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist/creating-a-wish-list")]
+		public async Task<ApiResponse<Wishlist>> PostWishlistAsync(Wishlist wishlist)
 		{
             ValidatePIIToken();
             Validator.For(wishlist, "wishlist").IsNotNull();
@@ -100,7 +107,8 @@ namespace XOMNI.SDK.Public.Clients.PII
 			}
 		}
 
-        public async Task<ApiResponse<Wishlist>> PutAsync(Wishlist wishlist)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist/changing-wish-list-name")]
+		public async Task<ApiResponse<Wishlist>> PutAsync(Wishlist wishlist)
 		{
             ValidatePIIToken();
             Validator.For(wishlist, "wishlist").IsNotNull();
@@ -119,6 +127,7 @@ namespace XOMNI.SDK.Public.Clients.PII
 			}
 		}
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist/emailing-a-wish-list")]
         public async Task PostMailAsync(MailSendRequest mailSendRequest)
 		{
             ValidatePIIToken();

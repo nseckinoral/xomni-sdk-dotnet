@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Utility;
 
@@ -16,6 +17,7 @@ namespace XOMNI.SDK.Public.Clients.Utility
 
 		}
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/utility/qr-code/generate-qr-code")]
 		public async Task<byte[]> GetAsync(int moduleSize, string data, ErrorCorrectionLevel errorCorrectionLevel = ErrorCorrectionLevel.Quartile)
 		{
             Validator.For(moduleSize, "moduleSize").IsGreaterThanOrEqual(1);

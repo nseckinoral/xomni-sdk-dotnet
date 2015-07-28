@@ -8,6 +8,7 @@ using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
 using XOMNI.SDK.Public.Extensions;
 using System.Globalization;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -19,7 +20,8 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         }
 
-        public async Task<ApiResponse<List<GroupedInStoreMetadataContainer>>> GetAsync(int id, string key = null, string value = null, string keyPrefix = null, bool companyWide = false, Location location = null, double? searchDistance = null)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/item-in-store-metadata/fetching-the-in-store-metadata-of-an-item")]
+		public async Task<ApiResponse<List<GroupedInStoreMetadataContainer>>> GetAsync(int id, string key = null, string value = null, string keyPrefix = null, bool companyWide = false, Location location = null, double? searchDistance = null)
         {
             Validator.For(id, "id").IsGreaterThanOrEqual(1);
             string path = string.Format("/catalog/items/{0}/storemetadata?companyWide={1}", id, companyWide);

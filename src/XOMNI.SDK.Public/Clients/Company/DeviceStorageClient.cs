@@ -6,6 +6,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Company;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Company
 {
@@ -17,7 +18,8 @@ namespace XOMNI.SDK.Public.Clients.Company
 
         }
 
-        public async Task<ApiResponse<List<DeviceStorageItem>>> GetAsync(string deviceId, string key = null, bool delete = false)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/device-storage/fetching-storage-data-of-an-device-by-device-id")]
+		public async Task<ApiResponse<List<DeviceStorageItem>>> GetAsync(string deviceId, string key = null, bool delete = false)
         {
             Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
 
@@ -36,6 +38,7 @@ namespace XOMNI.SDK.Public.Clients.Company
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/device-storage/clearing-device-storage-data")]
         public async Task DeleteAsync(string deviceId, string key = null)
         {
             Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
@@ -48,7 +51,8 @@ namespace XOMNI.SDK.Public.Clients.Company
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<DeviceStorageItem>> PostAsync(DeviceStorageItem storageItem)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/device-storage/creating-a-new-data-storage-item")]
+		public async Task<ApiResponse<DeviceStorageItem>> PostAsync(DeviceStorageItem storageItem)
         {
             Validator.For(storageItem, "storageItem").IsNotNull();
             Validator.For(storageItem.DeviceId, "DeviceId").IsNotNullOrEmpty();
@@ -61,7 +65,8 @@ namespace XOMNI.SDK.Public.Clients.Company
             }
         }
 
-        public async Task<ApiResponse<DeviceStorageItem>> PutAsync(DeviceStorageItem storageItem)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/device-storage/updating-an-existing-device-storage-data")]
+		public async Task<ApiResponse<DeviceStorageItem>> PutAsync(DeviceStorageItem storageItem)
         {
             Validator.For(storageItem, "storageItem").IsNotNull();
             Validator.For(storageItem.DeviceId, "DeviceId").IsNotNullOrEmpty();

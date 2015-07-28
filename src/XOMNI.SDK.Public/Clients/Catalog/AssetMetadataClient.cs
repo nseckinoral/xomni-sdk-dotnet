@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
+using XOMNI.SDK.Public.Infrastructure;
 using XOMNI.SDK.Public.Models;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
@@ -14,6 +15,8 @@ namespace XOMNI.SDK.Public.Clients.Catalog
         {
 
         }
+
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/asset-metadata/fetching-image-assets-metadata")]
         public async Task<ApiResponse<List<Metadata>>> GetImageMetadataAsync(int assetId)
         {
             if (assetId <= 0)
@@ -29,6 +32,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/asset-metadata/fetching-video-assets-metadata")]
         public async Task<ApiResponse<List<Metadata>>> GetVideoMetadataAsync(int assetId)
         {
             if (assetId <= 0)
@@ -44,6 +48,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/asset-metadata/fetching-document-assets-metadata")]
         public async Task<ApiResponse<List<Metadata>>> GetDocumentMetadataAsync(int assetId)
         {
             if (assetId <= 0)

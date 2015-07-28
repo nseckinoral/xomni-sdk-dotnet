@@ -9,6 +9,7 @@ using XOMNI.SDK.Public.Models.Company;
 using XOMNI.SDK.Public.Extensions;
 using System.Reflection;
 using System.Dynamic;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Company
 {
@@ -26,6 +27,7 @@ namespace XOMNI.SDK.Public.Clients.Company
             get { return lazyDeviceProperties.Value; }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/device/unregistering-a-device-to-a-specific-license")]
         public async Task DeleteAsync(string deviceId)
         {
             Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
@@ -33,7 +35,8 @@ namespace XOMNI.SDK.Public.Clients.Company
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<List<Device>>> GetAsync(double searchDistance, Location gpsLocation, int? deviceTypeId = null, string metadataKey = null, string metadataValue = null, bool includeMetadata = false)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/device/fetching-a-list-of-devices-in-the-nearest-store-using-license")]
+		public async Task<ApiResponse<List<Device>>> GetAsync(double searchDistance, Location gpsLocation, int? deviceTypeId = null, string metadataKey = null, string metadataValue = null, bool includeMetadata = false)
         {
             Validator.For(searchDistance, "searchDistance").InRange(0, 1);
             Validator.For(gpsLocation, "gpsLocation").IsNotNull();
@@ -66,7 +69,8 @@ namespace XOMNI.SDK.Public.Clients.Company
             }
         }
 
-        public async Task<ApiResponse<List<Device>>> GetAsync(int? deviceTypeId = null, string metadataKey = null, string metadataValue = null, bool includeMetadata = false)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/device/fetching-a-list-of-devices-in-the-nearest-store-using-license")]
+		public async Task<ApiResponse<List<Device>>> GetAsync(int? deviceTypeId = null, string metadataKey = null, string metadataValue = null, bool includeMetadata = false)
         {
             string path = "/company/stores/devices?";
 
@@ -94,7 +98,8 @@ namespace XOMNI.SDK.Public.Clients.Company
             }
         }
 
-        public async Task<ApiResponse<Device>> PatchAsync(string deviceId, dynamic devicePatch)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/device/updating-the-particular-device-info-patch")]
+		public async Task<ApiResponse<Device>> PatchAsync(string deviceId, dynamic devicePatch)
         {
             Validator.For(deviceId, "deviceId").IsNotNullOrEmpty();
             ValidatePatch(devicePatch);
@@ -107,7 +112,8 @@ namespace XOMNI.SDK.Public.Clients.Company
             }
         }
 
-        public async Task<ApiResponse<Device>> PostAsync(Device device)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/device/registering-a-device-to-a-specific-license")]
+		public async Task<ApiResponse<Device>> PostAsync(Device device)
         {
             Validator.For(device, "device").IsNotNull();
             Validator.For(device.DeviceId, "deviceId").IsNotNullOrEmpty();

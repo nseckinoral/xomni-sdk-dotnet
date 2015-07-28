@@ -6,6 +6,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -16,7 +17,8 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 		{
 
 		}
-        
+
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/trending-items/fetching-a-list-of-trending-items")]
 		public async Task<ApiResponse<List<TrendingItem>>> GetAsync(int top, bool includeActionDetails = true)
 		{
             Validator.For(top, "top").IsGreaterThanOrEqual(1);
@@ -29,7 +31,8 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 			}
 		}
 
-        public async Task<ApiResponse<List<TrendingItem>>> GetByStoreAsync(int top, int storeId, bool includeActionDetails = true)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/trending-items/fetching-a-list-of-trending-items-by-storeid")]
+		public async Task<ApiResponse<List<TrendingItem>>> GetByStoreAsync(int top, int storeId, bool includeActionDetails = true)
 		{
             Validator.For(top, "top").IsGreaterThanOrEqual(1);
             Validator.For(storeId, "storeId").IsGreaterThanOrEqual(1);
@@ -41,7 +44,8 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 			}
 		}
 
-        public async Task<ApiResponse<List<TrendingItem>>> GetByBrandAsync(int top, int brandId, bool includeActionDetails = true)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/trending-items/fetching-a-list-of-trending-items-by-brandid")]
+		public async Task<ApiResponse<List<TrendingItem>>> GetByBrandAsync(int top, int brandId, bool includeActionDetails = true)
         {
             Validator.For(top, "top").IsGreaterThanOrEqual(1);
             Validator.For(brandId, "brandId").IsGreaterThanOrEqual(1);
@@ -53,7 +57,8 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
-        public async Task<ApiResponse<List<TrendingItem>>> GetByBrandAndStoreAsync(int top, int brandId, int storeId, bool includeActionDetails = true)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/trending-items/fetching-a-list-of-trending-items-by-brandid-and-storeid")]
+		public async Task<ApiResponse<List<TrendingItem>>> GetByBrandAndStoreAsync(int top, int brandId, int storeId, bool includeActionDetails = true)
 		{
             Validator.For(top, "top").IsGreaterThanOrEqual(1);
             Validator.For(brandId, "brandId").IsGreaterThanOrEqual(1);

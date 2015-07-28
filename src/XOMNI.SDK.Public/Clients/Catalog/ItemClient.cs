@@ -5,6 +5,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -16,6 +17,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/item/fetching-a-single-item")]
         public async Task<ApiResponse<SingleItemSearchResult<Item>>> GetAsync(int id, bool includeItemInStoreMetadata = false, bool includeItemStaticProperties = true, bool includeItemDynamicProperties = true, AssetDetailType imageAssetDetail = AssetDetailType.None, AssetDetailType videoAssetDetail = AssetDetailType.None, AssetDetailType documentAssetDetail = AssetDetailType.None)
         {
             Validator.For(id, "id").IsGreaterThanOrEqual(1);
@@ -28,6 +30,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/item/fetching-navigation-and-search-options-for-items")]
         public async Task<ApiResponse<Navigation>> GetSearchOptionsAsync(ItemSearchOptionsRequest itemSearchOptionsRequest)
         {
             Validator.For(itemSearchOptionsRequest, "itemSearchOptionsRequest").IsNotNull().IsValid();
@@ -40,6 +43,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/item/searching-items")]
         public async Task<ApiResponse<ItemSearchResult<MultipleItemSearchResult<Item>>>> SearchAsync(ItemSearchRequest itemSearchRequest, bool includeItemInStoreMetadata = false)
         {
             Validator.For(itemSearchRequest, "itemSearchRequest").IsNotNull().IsValid();

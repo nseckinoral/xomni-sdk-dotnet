@@ -6,6 +6,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -17,12 +18,13 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/brand-assets/fetching-images-of-a-particular-brand")]
         public async Task<ApiResponse<List<Asset>>> GetImagesAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             return await GetAssetAsync(brandId, AssetType.images, metadataKey, metadataValue, assetDetail);
         }
 
-        public async Task<ApiResponse<List<Asset>>> GetAssetAsync(int brandId, AssetType assetType, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
+        private async Task<ApiResponse<List<Asset>>> GetAssetAsync(int brandId, AssetType assetType, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             Validator.For(brandId, "brandId").IsGreaterThanOrEqual(1);
 
@@ -46,11 +48,13 @@ namespace XOMNI.SDK.Public.Clients.Catalog
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/brand-assets/fetching-videos-of-a-particular-brand")]
         public async Task<ApiResponse<List<Asset>>> GetVideosAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             return await GetAssetAsync(brandId, AssetType.videos, metadataKey, metadataValue, assetDetail);
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/brand-assets/fetching-documents-of-a-particular-brand")]
         public async Task<ApiResponse<List<Asset>>> GetDocumentsAsync(int brandId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
         {
             return await GetAssetAsync(brandId, AssetType.documents, metadataKey, metadataValue, assetDetail);

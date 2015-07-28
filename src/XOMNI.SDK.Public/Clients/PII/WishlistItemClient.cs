@@ -5,6 +5,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.PII;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.PII
 {
@@ -16,6 +17,7 @@ namespace XOMNI.SDK.Public.Clients.PII
 
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist-item/deleting-an-item-from-a-wish-list")]
         public async Task DeleteWishlistItemAsync(Guid wishlistItemUniqueKey, Location location = null)
         {
             string path = string.Format("/pii/wishlistitem?wishlistItemUniqueKey={0}", wishlistItemUniqueKey);
@@ -29,6 +31,7 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist-item/clearing-all-items-in-a-wish-list")]
         public async Task DeleteWishlistItemsAsync(Guid wishlistUniqueKey, Location location = null)
         {
             string path = string.Format("/pii/wishlistitems?wishlistUniqueKey={0}", wishlistUniqueKey);
@@ -42,7 +45,8 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<WishlistItem>> PostAsync(Guid wishlistUniqueKey, WishlistItem wishlistItem)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist-item/adding-an-item-to-a-wish-list")]
+		public async Task<ApiResponse<WishlistItem>> PostAsync(Guid wishlistUniqueKey, WishlistItem wishlistItem)
         {
             ValidatePIIToken();
             Validator.For(wishlistItem, "wishlistItem").IsNotNull();

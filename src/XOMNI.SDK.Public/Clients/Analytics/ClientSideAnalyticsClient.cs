@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XOMNI.SDK.Public.Models.Analytics;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Analytics
 {
@@ -31,15 +32,6 @@ namespace XOMNI.SDK.Public.Clients.Analytics
             }
 
             await Client.PostAsJsonAsync(path, clientLogs).ConfigureAwait(false);
-        }
-    }
-
-    public class DevPortalLinkAttribute : Attribute
-    {
-        public string Link { get; set; }
-        public DevPortalLinkAttribute(string link)
-        {
-            this.Link = link;
         }
     }
 }

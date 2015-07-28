@@ -5,6 +5,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -16,6 +17,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/auto-complete/auto-complete-for-brands-categories-and-items")]
         public async Task<ApiResponse<AutoCompleteResult>> GetAsync(AutoCompleteSearchType searchType, string searchTerm, int top, bool includeOnlyMasterItems)
         {
             Validator.For(searchTerm, "searchTerm").IsNotNullOrEmpty();

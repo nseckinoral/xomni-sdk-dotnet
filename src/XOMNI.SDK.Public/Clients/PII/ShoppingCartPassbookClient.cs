@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.PII
 {
@@ -15,7 +16,8 @@ namespace XOMNI.SDK.Public.Clients.PII
 
 		}
 
-        public async Task<ApiResponse<byte[]>> GetAsync(Guid shoppingCartUniqueKey, string templateName)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart-passbook/getting-passbook-file-of-a-particular-shopping-cart")]
+		public async Task<ApiResponse<byte[]>> GetAsync(Guid shoppingCartUniqueKey, string templateName)
 		{
             ValidatePIIToken();
 

@@ -5,6 +5,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Company;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Company
 {
@@ -16,7 +17,8 @@ namespace XOMNI.SDK.Public.Clients.Company
 
 		}
 
-        public async Task<ApiResponse<PaginatedContainer<DeviceType>>> GetAsync(int skip, int take)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/device-types/fetching-a-list-of-device-types")]
+		public async Task<ApiResponse<PaginatedContainer<DeviceType>>> GetAsync(int skip, int take)
 		{
             Validator.For(skip, "skip").IsGreaterThanOrEqual(0);
             Validator.For(take, "take").InRange(1, 1000);

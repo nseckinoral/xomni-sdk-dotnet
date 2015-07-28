@@ -6,28 +6,30 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
-	public class ItemAssetClient : BaseClient
-	{
-		public ItemAssetClient(HttpClient httpClient)
-			: base(httpClient)
-		{
+    public class ItemAssetClient : BaseClient
+    {
+        public ItemAssetClient(HttpClient httpClient)
+            : base(httpClient)
+        {
 
-		}
+        }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/item-asset/fetching-images-of-a-particular-item")]
         public async Task<ApiResponse<List<ImageAsset>>> GetImagesAsync(int itemId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
-		{
+        {
             Validator.For(itemId, "itemId").IsGreaterThanOrEqual(1);
 
-            string path = string.Format("/catalog/items/{0}/images?",itemId);
+            string path = string.Format("/catalog/items/{0}/images?", itemId);
 
-            if(!string.IsNullOrEmpty(metadataKey) && !string.IsNullOrEmpty(metadataValue))
+            if (!string.IsNullOrEmpty(metadataKey) && !string.IsNullOrEmpty(metadataValue))
             {
                 path += string.Format("metadataKey={0}&metadataValue={1}&", metadataKey, metadataValue);
             }
-            else if(!string.IsNullOrEmpty(metadataKey) || !string.IsNullOrEmpty(metadataValue))
+            else if (!string.IsNullOrEmpty(metadataKey) || !string.IsNullOrEmpty(metadataValue))
             {
                 Validator.For(metadataKey, "metadataKey").IsNotNullOrEmpty();
                 Validator.For(metadataValue, "metadataValue").IsNotNullOrEmpty();
@@ -35,14 +37,15 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
             path += string.Format("assetDetail={0}", (int)assetDetail);
 
-			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-			{
+            using (var response = await Client.GetAsync(path).ConfigureAwait(false))
+            {
                 return await response.Content.ReadAsAsync<ApiResponse<List<ImageAsset>>>().ConfigureAwait(false);
-			}
-		}
+            }
+        }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/item-asset/fetching-videos-of-a-particular-item")]
         public async Task<ApiResponse<List<Asset>>> GetVideosAsync(int itemId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
-		{
+        {
             Validator.For(itemId, "itemId").IsGreaterThanOrEqual(1);
 
             string path = string.Format("/catalog/items/{0}/videos?", itemId);
@@ -59,14 +62,15 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
             path += string.Format("assetDetail={0}", (int)assetDetail);
 
-			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-			{
+            using (var response = await Client.GetAsync(path).ConfigureAwait(false))
+            {
                 return await response.Content.ReadAsAsync<ApiResponse<List<Asset>>>().ConfigureAwait(false);
-			}
-		}
+            }
+        }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/item-asset/fetching-documents-of-a-particular-item")]
         public async Task<ApiResponse<List<Asset>>> GetDocumentrelationAsync(int itemId, string metadataKey = null, string metadataValue = null, AssetDetailType assetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata)
-		{
+        {
             Validator.For(itemId, "itemId").IsGreaterThanOrEqual(1);
 
             string path = string.Format("/catalog/documentrelation?itemId={0}&", itemId);
@@ -83,10 +87,10 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
             path += string.Format("assetDetail={0}", (int)assetDetail);
 
-			using (var response = await Client.GetAsync(path).ConfigureAwait(false))
-			{
+            using (var response = await Client.GetAsync(path).ConfigureAwait(false))
+            {
                 return await response.Content.ReadAsAsync<ApiResponse<List<Asset>>>().ConfigureAwait(false);
-			}
-		}
-	}
+            }
+        }
+    }
 }

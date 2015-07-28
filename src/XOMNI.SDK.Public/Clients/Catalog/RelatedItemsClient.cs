@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -16,6 +17,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
 		}
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/related-items/fetching-related-items-of-an-item")]
 		public async Task<ApiResponse<List<int>>> GetAsync(int itemId)
 		{
             Validator.For(itemId, "itemId").IsGreaterThanOrEqual(1);

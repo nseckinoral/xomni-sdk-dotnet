@@ -7,6 +7,7 @@ using XOMNI.SDK.Public.Models.OmniPlay;
 using XOMNI.SDK.Public.Models.PII;
 using XOMNI.SDK.Public.Extensions;
 using XOMNI.SDK.Public.Models.Catalog;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.OmniPlay
 {
@@ -18,7 +19,8 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
 
 		}
 
-        public async Task<ApiResponse<WishlistWithItems>> GetWishlistAsync(Guid wishlistUniqueKey, Location location = null, bool includeItemStaticProperties = true, bool includeItemDynamicProperties = false, bool includeCategoryMetadata = false, AssetDetailType imageAssetDetail = AssetDetailType.None, AssetDetailType videoAssetDetail = AssetDetailType.None, AssetDetailType documentAssetDetail = AssetDetailType.None, string metadataKey = null, string metadataValue = null)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/omniplay/polling/fetching-a-wish-list-with-a-wish-list-unique-key")]
+		public async Task<ApiResponse<WishlistWithItems>> GetWishlistAsync(Guid wishlistUniqueKey, Location location = null, bool includeItemStaticProperties = true, bool includeItemDynamicProperties = false, bool includeCategoryMetadata = false, AssetDetailType imageAssetDetail = AssetDetailType.None, AssetDetailType videoAssetDetail = AssetDetailType.None, AssetDetailType documentAssetDetail = AssetDetailType.None, string metadataKey = null, string metadataValue = null)
 		{
             string path = string.Format("/omniplay/wishlist?wishlistUniqueKey={0}&", wishlistUniqueKey.ToString());
 
@@ -46,7 +48,8 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
 			}
 		}
 
-        public async Task<ApiResponse<ShoppingCartWithItems>> GetShoppingcartAsync(Guid shoppingcartUniqueKey, Location location = null, bool includeItemStaticProperties = true, bool includeItemDynamicProperties = false, bool includeCategoryMetadata = false, AssetDetailType imageAssetDetail = AssetDetailType.None, AssetDetailType videoAssetDetail = AssetDetailType.None, AssetDetailType documentAssetDetail = AssetDetailType.None, string metadataKey = null, string metadataValue = null)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/omniplay/polling/fetching-a-shopping-cart-with-a-shopping-cart-unique-key")]
+		public async Task<ApiResponse<ShoppingCartWithItems>> GetShoppingcartAsync(Guid shoppingcartUniqueKey, Location location = null, bool includeItemStaticProperties = true, bool includeItemDynamicProperties = false, bool includeCategoryMetadata = false, AssetDetailType imageAssetDetail = AssetDetailType.None, AssetDetailType videoAssetDetail = AssetDetailType.None, AssetDetailType documentAssetDetail = AssetDetailType.None, string metadataKey = null, string metadataValue = null)
 		{
             string path = string.Format("/omniplay/shoppingcart?shoppingCartUniqueKey={0}&", shoppingcartUniqueKey.ToString());
             if (location != null)

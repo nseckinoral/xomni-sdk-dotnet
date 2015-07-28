@@ -5,6 +5,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Social;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Social
 {
@@ -16,7 +17,8 @@ namespace XOMNI.SDK.Public.Clients.Social
 
         }
 
-        public async Task<ApiResponse<SocialComment>> DeleteAsync(int commentId)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/social/comment/deleting-a-social-comment")]
+		public async Task<ApiResponse<SocialComment>> DeleteAsync(int commentId)
         {
             ValidatePIIToken();
             Validator.For(commentId, "commentId").IsGreaterThanOrEqual(1);
@@ -29,7 +31,8 @@ namespace XOMNI.SDK.Public.Clients.Social
             }
         }
 
-        public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToCommentRequest comment)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/social/comment/posting-a-comment-to-a-social-comment")]
+		public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToCommentRequest comment)
         {
             ValidatePIIToken();
             Validator.For(comment.TargetCommentId, "TargetCommentId").IsGreaterThanOrEqual(1);
@@ -43,7 +46,8 @@ namespace XOMNI.SDK.Public.Clients.Social
             }
         }
 
-        public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToPostRequest comment)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/social/comment/posting-a-comment-to-a-social-post")]
+		public async Task<ApiResponse<SocialComment>> PostCommentAsync(SocialCommentToPostRequest comment)
         {
             ValidatePIIToken();
             Validator.For(comment.TargetPostId, "TargetPostId").IsGreaterThanOrEqual(1);
@@ -57,7 +61,8 @@ namespace XOMNI.SDK.Public.Clients.Social
             }
         }
 
-        public async Task<ApiResponse<SocialPolicy>> GetPoliciesAsync(int? targetPostId = null, int? targetCommentId = null)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/social/comment/fetching-policies-for-social-post-operation")]
+		public async Task<ApiResponse<SocialPolicy>> GetPoliciesAsync(int? targetPostId = null, int? targetCommentId = null)
         {
             ValidatePIIToken();
 

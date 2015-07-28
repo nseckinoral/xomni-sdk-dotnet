@@ -5,6 +5,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.PII;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.PII
 {
@@ -16,7 +17,8 @@ namespace XOMNI.SDK.Public.Clients.PII
 
 		}
 
-        public async Task<ApiResponse<AnonymousUser>> PostAsync(AnonymousUserRequest anonymousUser)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/anonymous/requesting-an-anonymous-pii")]
+		public async Task<ApiResponse<AnonymousUser>> PostAsync(AnonymousUserRequest anonymousUser)
 		{
             Validator.For(anonymousUser.UserName, "UserName").IsNotNullOrEmpty();
 

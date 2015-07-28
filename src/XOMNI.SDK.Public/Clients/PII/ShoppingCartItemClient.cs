@@ -5,6 +5,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.PII;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.PII
 {
@@ -16,7 +17,8 @@ namespace XOMNI.SDK.Public.Clients.PII
 
         }
 
-        public async Task<ApiResponse<ShoppingCartItem>> PutAsync(Guid shoppingCartItemUniqueKey, int quantity, Location lastSeenLocation = null)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart-item/updating-a-shopping-cart-item")]
+		public async Task<ApiResponse<ShoppingCartItem>> PutAsync(Guid shoppingCartItemUniqueKey, int quantity, Location lastSeenLocation = null)
         {
             Validator.For(quantity, "quantity").IsGreaterThanOrEqual(0);
 
@@ -35,6 +37,7 @@ namespace XOMNI.SDK.Public.Clients.PII
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart-item/deleting-a-shopping-cart-item")]
         public async Task DeleteShoppingCartItemAsync(Guid shoppingCartItemUniqueKey, Location lastSeenLocation = null)
         {
             ValidatePIIToken();
@@ -50,6 +53,7 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart-item/clearing-all-items-in-a-shopping-cart")]
         public async Task DeleteShoppingCartItemsAsync(Guid shoppingCartUniqueKey, Location lastSeenLocation = null)
         {
             ValidatePIIToken();
@@ -65,7 +69,8 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<ShoppingCartItem>> PostAsync(Guid shoppingCartUniqueKey, ShoppingCartItem shoppingCartItem)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart-item/adding-an-item-to-a-shopping-cart")]
+		public async Task<ApiResponse<ShoppingCartItem>> PostAsync(Guid shoppingCartUniqueKey, ShoppingCartItem shoppingCartItem)
         {
             ValidatePIIToken();
             Validator.For(shoppingCartItem, "shoppingCartItem").IsNotNull();

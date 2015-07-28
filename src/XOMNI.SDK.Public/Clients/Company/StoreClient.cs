@@ -5,6 +5,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Company;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Company
 {
@@ -16,7 +17,8 @@ namespace XOMNI.SDK.Public.Clients.Company
 
 		}
 
-        public async Task<ApiResponse<PaginatedContainer<Store>>> GetAsync(Location locationInfo, double searchDistance, int skip, int take)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/company/store/fetching-nearby-active-stores-to-a-gps-location")]
+		public async Task<ApiResponse<PaginatedContainer<Store>>> GetAsync(Location locationInfo, double searchDistance, int skip, int take)
 		{
             Validator.For(locationInfo, "locationInfo").IsNotNull();
             Validator.For(locationInfo.Latitude, "Latitude").InRange(-90, 90);

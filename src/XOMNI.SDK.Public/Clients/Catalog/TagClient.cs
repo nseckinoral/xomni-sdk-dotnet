@@ -5,6 +5,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Catalog;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Catalog
 {
@@ -16,6 +17,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
 		}
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/tag/fetching-a-list-of-tags")]
 		public async Task<PaginatedContainer<Tag>> GetAsync(int skip, int take, bool includeMetadata = false)
 		{
             Validator.For(skip, "skip").IsGreaterThanOrEqual(0);

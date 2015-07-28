@@ -5,6 +5,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Social;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Social
 {
@@ -16,7 +17,8 @@ namespace XOMNI.SDK.Public.Clients.Social
 
         }
 
-        public async Task<ApiResponse<SocialPost>> GetAsync(int relatedItemId)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/social/post/getting-a-social-post-and-related-comments")]
+		public async Task<ApiResponse<SocialPost>> GetAsync(int relatedItemId)
         {
             ValidatePIIToken();
             Validator.For(relatedItemId, "relatedItemId").IsGreaterThanOrEqual(1);
@@ -29,7 +31,8 @@ namespace XOMNI.SDK.Public.Clients.Social
             }
         }
 
-        public async Task<ApiResponse<SocialPost>> DeleteAsync(int socialPostId)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/social/post/deleting-a-social-post")]
+		public async Task<ApiResponse<SocialPost>> DeleteAsync(int socialPostId)
         {
             ValidatePIIToken();
             Validator.For(socialPostId, "socialPostId").IsGreaterThanOrEqual(1);
@@ -43,7 +46,8 @@ namespace XOMNI.SDK.Public.Clients.Social
 
         }
 
-        public async Task<ApiResponse<SocialPost>> PostAsync(SocialPostRequest socialPostRequest)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/social/post/posting-a-social-message-for-a-product")]
+		public async Task<ApiResponse<SocialPost>> PostAsync(SocialPostRequest socialPostRequest)
         {
             Validator.For(socialPostRequest, "socialPostRequest").IsNotNull();
             Validator.For(socialPostRequest.RelatedItemId, "RelatedItemId").IsGreaterThanOrEqual(1);
@@ -57,7 +61,8 @@ namespace XOMNI.SDK.Public.Clients.Social
             }
         }
 
-        public async Task<ApiResponse<SocialPolicy>> GetPoliciesAsync()
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/social/post/fetching-policies-for-social-post-operation")]
+		public async Task<ApiResponse<SocialPolicy>> GetPoliciesAsync()
         {
             ValidatePIIToken();
 

@@ -6,6 +6,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.PII;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.PII
 {
@@ -17,7 +18,8 @@ namespace XOMNI.SDK.Public.Clients.PII
 
 		}
 
-        public async Task<ApiResponse<List<Guid>>> PostAsync(WishlistSearchRequest searchRequest)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/wishlist-search/fetching-nearby-active-wish-lists-to-a-gps-location")]
+		public async Task<ApiResponse<List<Guid>>> PostAsync(WishlistSearchRequest searchRequest)
 		{
             Validator.For(searchRequest, "searchRequest").IsNotNull();
             Validator.For(searchRequest.TimeInterval, "TimeInterval").InRange(0, 30);

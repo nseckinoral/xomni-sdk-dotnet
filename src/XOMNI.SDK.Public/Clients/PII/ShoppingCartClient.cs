@@ -7,6 +7,7 @@ using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.PII;
 using XOMNI.SDK.Public.Extensions;
 using XOMNI.SDK.Public.Models.Catalog;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.PII
 {
@@ -18,6 +19,7 @@ namespace XOMNI.SDK.Public.Clients.PII
 
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart/deleting-a-shopping-cart")]
         public async Task DeleteAsync(Guid shoppingCartUniqueKey)
         {
             ValidatePIIToken();
@@ -25,6 +27,7 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart/changing-shopping-cart-access-information")]
         public async Task PostAccessAsync(Guid shoppingCartUniqueKey, bool isPublic)
         {
             ValidatePIIToken();
@@ -32,7 +35,8 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.PostAsJsonAsync(path, string.Empty).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<List<Guid>>> GetAsync()
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart/fetching-all-shopping-carts")]
+		public async Task<ApiResponse<List<Guid>>> GetAsync()
         {
             string path = "/pii/shoppingcarts";
 
@@ -42,6 +46,7 @@ namespace XOMNI.SDK.Public.Clients.PII
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart/clearing-all-items-in-a-shopping-carts")]
         public async Task DeleteAsync()
         {
             ValidatePIIToken();
@@ -49,7 +54,8 @@ namespace XOMNI.SDK.Public.Clients.PII
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<ShoppingCartWithItems>> GetAsync(Guid shoppingCartUniqueKey, Location location = null, bool includeItemStaticProperties = true, bool includeItemDynamicProperties = false, bool includeCategoryMetadata = false, AssetDetailType imageAssetDetail = AssetDetailType.None, AssetDetailType videoAssetDetail = AssetDetailType.None, AssetDetailType documentAssetDetail = AssetDetailType.None, string metadataKey = null, string metadataValue = null)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart/fetching-a-shopping-cart-with-a-shopping-cart-unique-key")]
+		public async Task<ApiResponse<ShoppingCartWithItems>> GetAsync(Guid shoppingCartUniqueKey, Location location = null, bool includeItemStaticProperties = true, bool includeItemDynamicProperties = false, bool includeCategoryMetadata = false, AssetDetailType imageAssetDetail = AssetDetailType.None, AssetDetailType videoAssetDetail = AssetDetailType.None, AssetDetailType documentAssetDetail = AssetDetailType.None, string metadataKey = null, string metadataValue = null)
         {
             ValidatePIIToken();
             string path = string.Format("/pii/shoppingcart?shoppingCartUniqueKey={0}&",shoppingCartUniqueKey);
@@ -78,7 +84,8 @@ namespace XOMNI.SDK.Public.Clients.PII
             }
         }
 
-        public async Task<ApiResponse<ShoppingCart>> PostShoppingCartAsync(ShoppingCart shoppingCart)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart/creating-a-shopping-cart")]
+		public async Task<ApiResponse<ShoppingCart>> PostShoppingCartAsync(ShoppingCart shoppingCart)
         {
             ValidatePIIToken();
             Validator.For(shoppingCart, "shoppingCart").IsNotNull();
@@ -95,7 +102,8 @@ namespace XOMNI.SDK.Public.Clients.PII
             }
         }
 
-        public async Task<ApiResponse<ShoppingCart>> PutAsync(ShoppingCart shoppingCart)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart/changing-shopping-cart-name")]
+		public async Task<ApiResponse<ShoppingCart>> PutAsync(ShoppingCart shoppingCart)
         {
             ValidatePIIToken();
             Validator.For(shoppingCart, "shoppingCart").IsNotNull();
@@ -112,6 +120,7 @@ namespace XOMNI.SDK.Public.Clients.PII
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/pii/shopping-cart/emailing-a-shopping-cart")]
         public async Task PostMailAsync(MailSendRequest mailSendRequest)
         {
             ValidatePIIToken();

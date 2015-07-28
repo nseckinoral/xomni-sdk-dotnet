@@ -6,6 +6,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.OmniPlay;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.OmniPlay
 {
@@ -17,7 +18,8 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
 
         }
 
-        public async Task<ApiResponse<OmniTicket>> GetTicketAsync()
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/omniplay/omniticket/generating-omniticket-for-a-pii")]
+		public async Task<ApiResponse<OmniTicket>> GetTicketAsync()
         {
             ValidatePIIToken();
             string path = "/omniplay/pii/ticket";
@@ -28,7 +30,8 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
             }
         }
 
-        public async Task<ApiResponse<List<OmniSession>>> GetSessionAsync()
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/omniplay/omniticket/fetching-all-pii-sessions-generated-by-omniticket")]
+		public async Task<ApiResponse<List<OmniSession>>> GetSessionAsync()
         {
             ValidatePIIToken();
             string path = "/omniplay/pii/session";
@@ -39,6 +42,7 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
             }
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/omniplay/omniticket/deleting-pii-sessions")]
         public async Task DeleteAsync()
         {
             ValidatePIIToken();
@@ -46,7 +50,8 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
             await Client.DeleteAsync(path).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<OmniTicket>> GetAsync(Guid wishlistUniqueKey)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/omniplay/omniticket/generation-omniticket-for-a-wishlist")]
+		public async Task<ApiResponse<OmniTicket>> GetAsync(Guid wishlistUniqueKey)
         {
             ValidatePIIToken();
             string path = string.Format("/omniplay/wishlist/ticket?wishlistUniqueKey={0}", wishlistUniqueKey);
@@ -57,7 +62,8 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
             }
         }
 
-        public async Task<ApiResponse<OmniSession>> PostSessionAsync(OmniTicket omniTicket)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/omniplay/omniticket/using-omniticket-for-a-pii")]
+		public async Task<ApiResponse<OmniSession>> PostSessionAsync(OmniTicket omniTicket)
         {
             string path = "/omniplay/pii/session";
 
@@ -67,7 +73,8 @@ namespace XOMNI.SDK.Public.Clients.OmniPlay
             }
         }
 
-        public async Task<ApiResponse<WishlistImportResponse>> PostImportAsync(WishlistImportRequest wishlistImportRequest)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/omniplay/omniticket/using-omniticket-for-a-wishlist")]
+		public async Task<ApiResponse<WishlistImportResponse>> PostImportAsync(WishlistImportRequest wishlistImportRequest)
         {
             ValidatePIIToken();
 

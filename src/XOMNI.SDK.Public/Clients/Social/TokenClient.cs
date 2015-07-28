@@ -6,6 +6,7 @@ using XOMNI.SDK.Public.Clients;
 using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.Social;
 using XOMNI.SDK.Public.Extensions;
+using XOMNI.SDK.Public.Infrastructure;
 
 namespace XOMNI.SDK.Public.Clients.Social
 {
@@ -17,7 +18,8 @@ namespace XOMNI.SDK.Public.Clients.Social
 
 		}
 
-        public async Task<ApiResponse<Dictionary<string, string>>> GetAsync(SocialPlatformType socialPlatform)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/social/token/checking-if-xomni-has-a-valid-token")]
+		public async Task<ApiResponse<Dictionary<string, string>>> GetAsync(SocialPlatformType socialPlatform)
 		{
             ValidatePIIToken();
 			string path = string.Format("/social/token/{0}", socialPlatform.ToString().ToLowerInvariant());
@@ -28,7 +30,8 @@ namespace XOMNI.SDK.Public.Clients.Social
 			}
 		}
 
-        public async Task<ApiResponse<Dictionary<string, string>>> PostAsync(SocialPlatformType socialPlatform, string token = null,string oauthToken = null,string oauthVerifier = null)
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/social/token/assigning-a-social-token-for-a-pii-user")]
+		public async Task<ApiResponse<Dictionary<string, string>>> PostAsync(SocialPlatformType socialPlatform, string token = null,string oauthToken = null,string oauthVerifier = null)
 		{
             ValidatePIIToken();
             Dictionary<string, string> request = new Dictionary<string, string>();
