@@ -37,12 +37,28 @@ namespace XOMNI.SDK.Public.Test.Helpers
 
         protected async Task<string> GetSampleRequestAsync(DevPortalLinkAttribute devPortalLinkAttribute)
         {
-            return await httpClientForDevPortal.GetStringAsync(string.Format(developerPortalSampleRequestUrlFormat, devPortalLinkAttribute.Link));
+            var sampleRequestLink = string.Format(developerPortalSampleRequestUrlFormat, devPortalLinkAttribute.Link);
+            var retVal = await httpClientForDevPortal.GetStringAsync(sampleRequestLink);
+
+            if (retVal.Contains("The page you requested was not found"))
+            {
+                Assert.Fail("Sample request was not found on dev portal (" + sampleRequestLink+ ")");
+            }
+
+            return retVal;
         }
 
         protected async Task<string> GetSampleResponseAsync(DevPortalLinkAttribute devPortalLinkAttribute)
         {
-            return await httpClientForDevPortal.GetStringAsync(string.Format(developerPortalSampleResponseUrlFormat, devPortalLinkAttribute.Link));
+            var sampleResponseLink = string.Format(developerPortalSampleResponseUrlFormat, devPortalLinkAttribute.Link);
+            var retVal = await httpClientForDevPortal.GetStringAsync(string.Format(developerPortalSampleResponseUrlFormat, devPortalLinkAttribute.Link));
+            
+            if (retVal.Contains("The page you requested was not found"))
+            {
+                Assert.Fail("Sample response was not found on dev portal (" + sampleResponseLink + ")");
+            }
+
+            return retVal;
         }
     }
 }
