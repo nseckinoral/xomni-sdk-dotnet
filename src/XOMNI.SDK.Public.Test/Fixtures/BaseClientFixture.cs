@@ -23,6 +23,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures
 {
     public abstract class BaseClientFixture<TClient> where TClient : BaseClient
     {
+        readonly static DevPortalContentManager devPortalConentManager = new DevPortalContentManager();
         const string userName = "testUser";
         const string password = "testPass";
         const string serviceUri = "http://test.apistaging.xomni.com";
@@ -30,6 +31,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures
         const string versionHeaderKey = "Accept";
         const string piiTokenHeaderKey = "PIIToken";
         const string xomniVersionPrefix = "application/vnd.xomni";
+
 
         protected const string uniqueId = "9ead1d3d-28c1-4dc4-b99e-3542401c9f77";
 
@@ -166,18 +168,11 @@ namespace XOMNI.SDK.Public.Test.Fixtures
 
         protected async Task RequestParseTestAsync<TRequest>(Expression<Func<TClient, Task>> actExpressionAsync, User piiUser = null, OmniSession omniSession = null)
         {
-            var devPortalLinkAttribute = ((MethodCallExpression)actExpressionAsync.Body).Method.GetCustomAttributes(true).OfType<DevPortalLinkAttribute>().Single();
-            var sampleRequest = await new HttpClient().GetStringAsync(devPortalLinkAttribute.Link + "/requestsample?mimeType=application/json");
-
-            Func<TClient, Task> actAsync = actExpressionAsync.Compile();
-            Action<HttpRequestMessage, CancellationToken> testCallback = (req, can) =>
-            {
-                var actualRequest = req.Content.ReadAsAsync<TRequest>().Result;
-                AssertExtensions.AreDeeplyEqual(JsonConvert.DeserializeObject<TRequest>(sampleRequest), actualRequest);
-            };
-
-            var mockedClient = InitalizeMockedClient(testCallback: testCallback, piiUser: piiUser, omniSession: omniSession);
-            await actAsync(mockedClient);
+            var sampleRequest = await devPortalConentManager.GetSampleRequestAsync(actExpressionAsync);
+            
+            var actAsync = actExpressionAsync.Compile();            
+            
+            await RequestParseTestAsync<TRequest>(actAsync, sampleRequest, piiUser, omniSession);
         }
 
         protected async Task HttpMethodTestAsync(Func<TClient, Task> actAsync, HttpMethod expectedHttpMethod, User piiUser = null, OmniSession omniSession = null)

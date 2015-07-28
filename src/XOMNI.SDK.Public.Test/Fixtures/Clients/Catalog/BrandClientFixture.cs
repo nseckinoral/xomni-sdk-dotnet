@@ -384,8 +384,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetBrandsBySearchRequestAsyncRequestParseTest()
         {
             await base.RequestParseTestAsync<SearchRequest>(
-                (BrandClient c) => c.GetBrandsBySearchRequestAsync(searchRequest),
-                validAPIRequest
+                (BrandClient c) => c.GetBrandsBySearchRequestAsync(searchRequest)
             );
         }
 

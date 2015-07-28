@@ -313,19 +313,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         [TestMethod, TestCategory("PostClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncRequestParseTest()
         {
-            string requestJson = @"{
-                'RelatedItemId':'5',
-                'Content':'This is a sample comment'
-            }";
-
             await base.RequestParseTestAsync<SocialComment>(
                 (PostClient p) => p.PostAsync(new SocialPostRequest()
                     {
                         Content = "This is a sample comment",
                         RelatedItemId = 5
-                    })
-                    ,requestJson
-                    );
+                    }));
         }
         #endregion
 

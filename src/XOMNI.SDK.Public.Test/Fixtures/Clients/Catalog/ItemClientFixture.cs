@@ -1669,7 +1669,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchRequestParseTest()
         {
             await base.RequestParseTestAsync<ItemSearchRequest>(
-                (ItemClient c) => c.SearchAsync(sampleItemSearchRequest, false), validAPIRequestForSearch
+                (ItemClient c) => c.SearchAsync(sampleItemSearchRequest, false)
             );
         }
 

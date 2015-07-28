@@ -246,14 +246,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
             string sampleTwitterRequest = @"{'oauth_token' : 'oauthToken','oauth_verifier':'oauthVerifier'}";
 
             await base.RequestParseTestAsync<Dictionary<string, string>>(
-                (TokenClient t) => t.PostAsync(SocialPlatformType.Facebook, token: "token"),
-                 sampleFacebookRequest,
+                (TokenClient t) => t.PostAsync(SocialPlatformType.Facebook, "token", null, null),
                  piiUser: piiUser
              );
 
             await base.RequestParseTestAsync<Dictionary<string, string>>(
-                (TokenClient t) => t.PostAsync(SocialPlatformType.Twitter, oauthToken: "oauthToken", oauthVerifier: "oauthVerifier"),
-                sampleTwitterRequest,
+                (TokenClient t) => t.PostAsync(SocialPlatformType.Twitter, null, "oauthToken", "oauthVerifier"),
                 piiUser: piiUser
             );
         }

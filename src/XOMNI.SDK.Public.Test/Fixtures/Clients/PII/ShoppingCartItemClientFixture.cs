@@ -315,7 +315,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.RequestParseTestAsync<ShoppingCartItem>(
                 (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), sampleShoppingCartItem),
-                validAPIResponseForPostAsync,
                 piiUser: piiUser
                 );
         }

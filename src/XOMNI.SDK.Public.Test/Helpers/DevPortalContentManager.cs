@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using XOMNI.SDK.Public.Clients;
 using System.IO;
 using XOMNI.SDK.Public.Infrastructure;
+using System.Dynamic;
 
 namespace XOMNI.SDK.Public.Test.Helpers
 {
@@ -35,10 +36,12 @@ namespace XOMNI.SDK.Public.Test.Helpers
             var hashedUrl = Convert.ToBase64String(algorithm.ComputeHash(Encoding.UTF8.GetBytes(devPortalLink)));
             var folderDirectoryInfo = Directory.CreateDirectory(Path.Combine(dumpFilesPath, "DevPortalDumpFiles"));
             var filePath = Path.Combine(folderDirectoryInfo.FullName, hashedUrl);
-            
+
             if (refreshDevPortalDumpFiles || (!File.Exists(filePath)))
             {
-                retVal = await base.GetSampleRequestAsync(devPortalLinkAttribute);
+                var sample = await base.GetSampleRequestAsync(devPortalLinkAttribute);
+                dynamic deserializedJson = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(sample);
+                retVal = deserializedJson.Content;
                 File.WriteAllText(filePath, retVal);
             }
             else

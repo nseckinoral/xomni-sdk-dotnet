@@ -214,7 +214,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.RequestParseTestAsync<WishlistItem>(
                 (WishlistItemClient c) => c.PostAsync(Guid.NewGuid(), sampleWishlistItem),
-                validAPIRequest,
                 piiUser: piiUser
                 );
         }

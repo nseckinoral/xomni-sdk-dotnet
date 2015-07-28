@@ -103,7 +103,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.RequestParseTestAsync<SocialCommentToCommentRequest>(
                 (CommentClient c) => c.PostCommentAsync(sampleCommentToCommentRequest),
-                validSocialCommentRequest,
                 piiUser: piiUser);
         }
 
@@ -223,7 +222,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.RequestParseTestAsync<SocialCommentToCommentRequest>(
                 (CommentClient c) => c.PostCommentAsync(sampleCommentToPostRequest),
-                validSocialPostRequest,
                 piiUser: piiUser);
         }
 

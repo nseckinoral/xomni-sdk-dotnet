@@ -75,8 +75,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PostAsyncRequestParseTest()
         {
             await base.RequestParseTestAsync<ShoppingCartSearchRequest>(
-                (ShoppingCartSearchClient p) => p.PostAsync(sampleShoppingCartSearchRequest),
-                validAPIRequest);
+                (ShoppingCartSearchClient p) => p.PostAsync(sampleShoppingCartSearchRequest));
         }
 
         [TestMethod, TestCategory("ShoppingCartSearchClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]

@@ -578,8 +578,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PatchAsyncRequestParseTest()
         {
             await base.RequestParseTestAsync<Device>(
-                (DeviceClient c) => c.PatchAsync("1", new { Description = "description" }),
-                validAPIRequestPatchAsync
+                (DeviceClient c) => c.PatchAsync("1", new { Description = "description" })
             );
         }
 

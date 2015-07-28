@@ -157,7 +157,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncRequestParseTest()
         {
             await base.RequestParseTestAsync<DeviceStorageItem>(
-                (DeviceStorageClient c) => c.PostAsync(sampleDeviceStorageItem), validAPIRequest);
+                (DeviceStorageClient c) => c.PostAsync(sampleDeviceStorageItem));
         }
 
         [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
@@ -246,7 +246,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PutAsyncRequestParseTest()
         {
             await base.RequestParseTestAsync<DeviceStorageItem>(
-                (DeviceStorageClient c) => c.PutAsync(sampleDeviceStorageItem), validAPIRequest);
+                (DeviceStorageClient c) => c.PutAsync(sampleDeviceStorageItem));
         }
 
         [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("PutAsync"), TestCategory("HTTP.POST")]

@@ -72,16 +72,16 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
                 {
                     Content = new MockedJsonContent(validAPIResponseForGetAndGetTicketAsync)
                 },
-                validAPIResponseForGetAndGetTicketAsync,piiUser:piiUser
+                validAPIResponseForGetAndGetTicketAsync, piiUser: piiUser
                 );
         }
-    
+
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("GetTicketAsync"), TestCategory("HTTP.GET")]
         public async Task GetTicketAsyncHttpMethodTest()
         {
             await base.HttpMethodTestAsync(
                 (OmniTicketClient c) => c.GetTicketAsync(),
-                HttpMethod.Get,piiUser:piiUser
+                HttpMethod.Get, piiUser: piiUser
                 );
         }
 
@@ -90,14 +90,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         {
             await base.UriTestAsync(
               (OmniTicketClient c) => c.GetTicketAsync(),
-              string.Format("/omniplay/pii/ticket"),piiUser:piiUser);
+              string.Format("/omniplay/pii/ticket"), piiUser: piiUser);
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("GetTicketAsync"), TestCategory("HTTP.GET")]
         public async Task GetTicketAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (OmniTicketClient c) => c.GetTicketAsync(),piiUser:piiUser);
+                (OmniTicketClient c) => c.GetTicketAsync(), piiUser: piiUser);
         }
 
         #endregion
@@ -164,7 +164,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         {
             await base.HttpMethodTestAsync(
                 (OmniTicketClient c) => c.DeleteAsync(),
-                HttpMethod.Delete,piiUser:piiUser);
+                HttpMethod.Delete, piiUser: piiUser);
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("DeleteAsync"), TestCategory("HTTP.DELETE")]
@@ -191,12 +191,12 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         {
             await base.ResponseParseTestAsync(
                 (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),
-                new HttpResponseMessage(HttpStatusCode.OK) 
+                new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new MockedJsonContent(validAPIResponseForGetAndGetTicketAsync)
                 }
                 ,
-                validAPIResponseForGetAndGetTicketAsync,piiUser:piiUser
+                validAPIResponseForGetAndGetTicketAsync, piiUser: piiUser
                 );
         }
 
@@ -205,7 +205,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         {
             await base.HttpMethodTestAsync(
                 (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),
-                HttpMethod.Get,piiUser:piiUser 
+                HttpMethod.Get, piiUser: piiUser
                 );
         }
 
@@ -214,14 +214,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         {
             await base.UriTestAsync(
               (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),
-              string.Format("/omniplay/wishlist/ticket?wishlistUniqueKey={0}",uniqueId),piiUser:piiUser);
+              string.Format("/omniplay/wishlist/ticket?wishlistUniqueKey={0}", uniqueId), piiUser: piiUser);
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncDefaultRequestHeadersTest()
         {
             await base.DefaultRequestHeadersTestAsync(
-                (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),piiUser:piiUser);
+                (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)), piiUser: piiUser);
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -233,7 +233,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             await base.APIExceptionResponseTestAsync(
               (OmniTicketClient c) => c.GetAsync(Guid.Parse(uniqueId)),
               notFoundHttpResponseMessage,
-              expectedExceptionResult,piiUser:piiUser
+              expectedExceptionResult, piiUser: piiUser
               );
         }
 
@@ -286,8 +286,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
              'Ticket': '9ead1d3d-28c1-4dc4-b99e-3542401c9f77'
             }";
             await base.RequestParseTestAsync<OmniTicket>(
-                (OmniTicketClient c) => c.PostSessionAsync(sampleTicket),
-                validRequest);
+                (OmniTicketClient c) => c.PostSessionAsync(sampleTicket));
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("PostSessionAsync"), TestCategory("HTTP.POST")]
@@ -352,8 +351,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
             }";
             await base.RequestParseTestAsync<OmniTicket>(
                 (OmniTicketClient c) => c.PostImportAsync(sampleWishlistImportRequest),
-                validRequest,
-                piiUser: piiUser);
+                piiUser);
         }
 
         [TestMethod, TestCategory("OmniTicketClient"), TestCategory("PostImportAsync"), TestCategory("HTTP.POST")]
@@ -361,7 +359,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         {
             await base.HttpMethodTestAsync(
                 (OmniTicketClient c) => c.PostImportAsync(sampleWishlistImportRequest),
-                HttpMethod.Post, piiUser: piiUser
+                HttpMethod.Post,
+                piiUser: piiUser
                 );
         }
 

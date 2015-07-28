@@ -531,7 +531,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.RequestParseTestAsync<ShoppingCart>(
                 (ShoppingCartClient c) => c.PostShoppingCartAsync(sampleShoppingCartForPostAsync),
-                validAPIRequestForPostAsync, piiUser: piiUser
+                piiUser: piiUser
                 );
         }
 
@@ -589,7 +589,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.RequestParseTestAsync<ShoppingCart>(
                 (ShoppingCartClient c) => c.PutAsync(sampleShoppingCartForPutAsync),
-                validAPIRequestForPutAsync, piiUser: piiUser
+                 piiUser
                 );
         }
 
@@ -653,7 +653,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.RequestParseTestAsync<ShoppingCart>(
                 (ShoppingCartClient c) => c.PostMailAsync(sampleMailSendRequest),
-                validAPIRequestForPostMailAsync, piiUser: piiUser
+                piiUser: piiUser
                 );
         }
 
