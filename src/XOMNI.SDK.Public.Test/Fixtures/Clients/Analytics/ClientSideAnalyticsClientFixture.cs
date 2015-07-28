@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -44,8 +45,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Analytics
         [TestMethod, TestCategory("ClientSideAnalyticsClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncRequestParseTest()
         {
-            await base.RequestParseTestAsync<List<ClientLog>>(
-                (ClientSideAnalyticsClient c) => c.PostAsync(sampleClientLog), validAPIRequestJson);
+            Expression<Func<ClientSideAnalyticsClient, Task>> actExpression = (ClientSideAnalyticsClient c) => c.PostAsync(sampleClientLog);
+            await base.RequestParseTestAsync<List<ClientLog>>(actExpression);
         }
 
         [TestMethod, TestCategory("ClientSideAnalyticsClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]

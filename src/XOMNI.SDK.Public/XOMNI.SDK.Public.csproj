@@ -93,6 +93,7 @@
     <Compile Include="Extensions\Validator.cs" />
     <Compile Include="Extensions\ValidatorExtension.cs" />
     <Compile Include="Infrastructure\Constants.cs" />
+    <Compile Include="Infrastructure\DevPortalLinkAttribute.cs" />
     <Compile Include="Infrastructure\SafeDictionary.cs" />
     <Compile Include="Infrastructure\XOMNIPublicApiErrorHandler.cs" />
     <Compile Include="Models\Analytics\ClientLog.cs" />

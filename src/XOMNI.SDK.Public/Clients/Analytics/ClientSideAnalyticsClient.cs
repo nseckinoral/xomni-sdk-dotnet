@@ -17,6 +17,7 @@ namespace XOMNI.SDK.Public.Clients.Analytics
 
         }
 
+        [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/analytics/client-side-analytics/logging-client-side-analytics")]
         public async Task PostAsync(List<ClientLog> clientLogs)
         {
             Validator.For(clientLogs, "clientLogs").IsNotNull();
@@ -30,6 +31,15 @@ namespace XOMNI.SDK.Public.Clients.Analytics
             }
 
             await Client.PostAsJsonAsync(path, clientLogs).ConfigureAwait(false);
+        }
+    }
+
+    public class DevPortalLinkAttribute : Attribute
+    {
+        public string Link { get; set; }
+        public DevPortalLinkAttribute(string link)
+        {
+            this.Link = link;
         }
     }
 }

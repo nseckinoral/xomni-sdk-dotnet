@@ -16,6 +16,8 @@ using XOMNI.SDK.Public.Models;
 using XOMNI.SDK.Public.Models.PII;
 using XOMNI.SDK.Public.Models.OmniPlay;
 using System.Net;
+using System.Linq.Expressions;
+using XOMNI.SDK.Public.Clients.Analytics;
 
 namespace XOMNI.SDK.Public.Test.Fixtures
 {
@@ -156,6 +158,22 @@ namespace XOMNI.SDK.Public.Test.Fixtures
             {
                 var actualRequest = req.Content.ReadAsAsync<TRequest>().Result;
                 AssertExtensions.AreDeeplyEqual(JsonConvert.DeserializeObject<TRequest>(validAPIRequestJson), actualRequest);
+            };
+
+            var mockedClient = InitalizeMockedClient(testCallback: testCallback, piiUser: piiUser, omniSession: omniSession);
+            await actAsync(mockedClient);
+        }
+
+        protected async Task RequestParseTestAsync<TRequest>(Expression<Func<TClient, Task>> actExpressionAsync, User piiUser = null, OmniSession omniSession = null)
+        {
+            var devPortalLinkAttribute = ((MethodCallExpression)actExpressionAsync.Body).Method.GetCustomAttributes(true).OfType<DevPortalLinkAttribute>().Single();
+            var sampleRequest = await new HttpClient().GetStringAsync(devPortalLinkAttribute.Link + "/requestsample?mimeType=application/json");
+
+            Func<TClient, Task> actAsync = actExpressionAsync.Compile();
+            Action<HttpRequestMessage, CancellationToken> testCallback = (req, can) =>
+            {
+                var actualRequest = req.Content.ReadAsAsync<TRequest>().Result;
+                AssertExtensions.AreDeeplyEqual(JsonConvert.DeserializeObject<TRequest>(sampleRequest), actualRequest);
             };
 
             var mockedClient = InitalizeMockedClient(testCallback: testCallback, piiUser: piiUser, omniSession: omniSession);
