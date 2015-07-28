@@ -35,12 +35,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetIncomingsAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceClient c) => c.GetIncomingsAsync("1"),
-                new HttpResponseMessage(HttpStatusCode.OK) 
-                { 
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse
+                (DeviceClient c) => c.GetIncomingsAsync("1")
             );
         }
 

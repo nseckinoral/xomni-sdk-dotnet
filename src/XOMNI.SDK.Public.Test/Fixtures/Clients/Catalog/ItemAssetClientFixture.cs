@@ -76,9 +76,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetImagesAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemAssetClient c) => c.GetImagesAsync(1),
-                validHttpResponseMessage,
-                validAPIResponse
+                (ItemAssetClient c) => c.GetImagesAsync(1, null, null, Models.Catalog.AssetDetailType.None)
             );
         }
 
@@ -102,7 +100,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetImagesAsyncUriWithOptionalCheckTest()
         {
             await base.UriTestAsync(
-                (ItemAssetClient c) => c.GetImagesAsync(1,metadataKey:"key",metadataValue:"value"),
+                (ItemAssetClient c) => c.GetImagesAsync(1, metadataKey: "key", metadataValue: "value"),
               "/catalog/items/1/images?metadataKey=key&metadataValue=value&assetDetail=4");
         }
 
@@ -154,9 +152,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetVidesAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemAssetClient c) => c.GetVideosAsync(1),
-                validHttpResponseMessage,
-                validAPIResponse
+                (ItemAssetClient c) => c.GetVideosAsync(1, null, null, Models.Catalog.AssetDetailType.None)
             );
         }
 
@@ -232,9 +228,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetDocumentRelationAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemAssetClient c) => c.GetDocumentrelationAsync(1),
-                validHttpResponseMessage,
-                validAPIResponse
+                (ItemAssetClient c) => c.GetDocumentrelationAsync(1, null, null, Models.Catalog.AssetDetailType.None)
             );
         }
 

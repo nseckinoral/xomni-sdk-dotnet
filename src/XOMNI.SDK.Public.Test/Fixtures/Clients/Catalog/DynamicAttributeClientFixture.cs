@@ -137,12 +137,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetDynamicAttributeTypesAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DynamicAttributeClient c) => c.GetDynamicAttributeTypesAsync(1, 1),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForDynamicAttributeTypes)
-                },
-                validAPIResponseForDynamicAttributeTypes
+                (DynamicAttributeClient c) => c.GetDynamicAttributeTypesAsync(1, 1)
             );
         }
 
@@ -200,12 +195,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetDynamicAttributesAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DynamicAttributeClient c) => c.GetDynamicAttributesAsync(1, 2),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForDynamicAttributes)
-                },
-                validAPIResponseForDynamicAttributes
+                (DynamicAttributeClient c) => c.GetDynamicAttributesAsync(1, 2)
             );
         }
 
@@ -263,12 +253,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DynamicAttributeClient c) => c.GetAsync(1),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse
+                (DynamicAttributeClient c) => c.GetAsync(1)
             );
         }
 

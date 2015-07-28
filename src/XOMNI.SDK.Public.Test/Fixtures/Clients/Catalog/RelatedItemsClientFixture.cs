@@ -16,29 +16,14 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
     [TestClass]
     public class RelatedItemsClientFixture : BaseClientFixture<RelatedItemsClient>
     {
-        const string validAPIResponse = @"{
-            'Data': [
-                1,
-                2,
-                6
-            ]
-        }";
-
         #region GetAsync
-        protected readonly HttpResponseMessage validHttpResponseMessage = new HttpResponseMessage()
-        {
-            StatusCode = HttpStatusCode.OK,
-            Content = new MockedJsonContent(validAPIResponse)
-        };
-
+   
         [TestMethod, TestCategory("RelatedItemsClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (RelatedItemsClient c) => c.GetAsync(1),
-                validHttpResponseMessage,
-                validAPIResponse
-                );
+                (RelatedItemsClient c) => c.GetAsync(1)
+            );
         }
 
         [TestMethod, TestCategory("RelatedItemsClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]

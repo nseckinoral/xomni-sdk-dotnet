@@ -56,12 +56,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (StoreClient p) => p.GetAsync(location,1,1,1),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
-                },
-                validAPIResponseForGetAsync);
+                (StoreClient p) => p.GetAsync(location,1,1,1));
         }
 
         [TestMethod, TestCategory("StoreClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]

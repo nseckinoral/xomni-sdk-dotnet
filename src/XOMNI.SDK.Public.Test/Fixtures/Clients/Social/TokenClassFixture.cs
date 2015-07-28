@@ -37,11 +37,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.ResponseParseTestAsync(
                 (TokenClient t) => t.GetAsync(SocialPlatformType.Facebook),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
-                },
-                validAPIResponseForGetAsync,
                 piiUser: piiUser
             );
         }
@@ -101,12 +96,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         public async Task PostAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (TokenClient p) => p.PostAsync(SocialPlatformType.Facebook, "token"),
-                    new HttpResponseMessage(HttpStatusCode.OK)
-                    {
-                        Content = new MockedJsonContent(validAPIResponseForPostAsync)
-                    },
-                    validAPIResponseForPostAsync,
+                (TokenClient p) => p.PostAsync(SocialPlatformType.Facebook, "token", null, null),
                     piiUser: piiUser
             );
         }

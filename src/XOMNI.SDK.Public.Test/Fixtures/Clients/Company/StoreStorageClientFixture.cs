@@ -81,12 +81,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (StoreStorageClient c) => c.GetAsync(),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
-                },
-                validAPIResponseForGetAsync
+                (StoreStorageClient c) => c.GetAsync(0, null)
             );
         }
 
@@ -161,12 +156,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (StoreStorageClient c) => c.PostAsync(sampleStoreStorageItem),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseAndRequestForPostAsync)
-                },
-                validAPIResponseAndRequestForPostAsync
+                (StoreStorageClient c) => c.PostAsync(sampleStoreStorageItem)
             );
         }
 
@@ -233,12 +223,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PutAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (StoreStorageClient c) => c.PutAsync(sampleStoreStorageItem),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseAndRequestForPutAsync)
-                },
-                validAPIResponseAndRequestForPutAsync
+                (StoreStorageClient c) => c.PutAsync(sampleStoreStorageItem)
             );
         }
 

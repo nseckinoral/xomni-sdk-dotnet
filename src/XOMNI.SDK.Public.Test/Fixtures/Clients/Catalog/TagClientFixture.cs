@@ -73,10 +73,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (TagClient c) => c.GetAsync(1,1, false),
-                validHttpResponseMessage,
-                validAPIResponse
-                );
+                (TagClient c) => c.GetAsync(1,1, false)
+            );
         }
         [TestMethod, TestCategory("TagClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
         public async Task GetAsyncHttpMethodTest()

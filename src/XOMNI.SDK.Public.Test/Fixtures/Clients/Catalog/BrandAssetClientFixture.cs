@@ -68,12 +68,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetImagesAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (BrandAssetClient b) => b.GetImagesAsync(1),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse);
+                (BrandAssetClient b) => b.GetImagesAsync(1, null, null, Models.Catalog.AssetDetailType.None)
+            );
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
@@ -92,7 +88,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
               "/catalog/brands/1/images?assetDetail=4");
 
             await base.UriTestAsync(
-                (BrandAssetClient b) => b.GetImagesAsync(1, metadataKey: "Key",metadataValue:"Value"),
+                (BrandAssetClient b) => b.GetImagesAsync(1, metadataKey: "Key", metadataValue: "Value"),
                 "/catalog/brands/1/images?metadataKey=Key&metadataValue=Value&assetDetail=4");
         }
 
@@ -143,12 +139,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetVideosAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (BrandAssetClient b) => b.GetVideosAsync(1),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse);
+                (BrandAssetClient b) => b.GetVideosAsync(1, null, null, Models.Catalog.AssetDetailType.None)
+            );
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetVideosAsync"), TestCategory("HTTP.GET")]
@@ -217,12 +209,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetDocumentsAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (BrandAssetClient b) => b.GetDocumentsAsync(1),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse);
+                (BrandAssetClient b) => b.GetDocumentsAsync(1, null, null, Models.Catalog.AssetDetailType.None)
+            );
         }
 
         [TestMethod, TestCategory("BrandAssetClient"), TestCategory("GetDocumentsAsync"), TestCategory("HTTP.GET")]

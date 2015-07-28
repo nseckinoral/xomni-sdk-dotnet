@@ -260,13 +260,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetByLocationAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceClient c) => c.GetAsync(1, sampleLocation, 1, "test", "test", false),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetByLocationAsync)
-                },
-                validAPIResponseForGetByLocationAsync
-                );
+                (DeviceClient c) => c.GetAsync(1, sampleLocation, 1, "test", "test", false)
+            );
         }
 
         [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -360,13 +355,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetByLicenseAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceClient c) => c.GetAsync(1, "test", "test", false),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseGetByLicenseAsync)
-                },
-                validAPIResponseGetByLicenseAsync
-                );
+                (DeviceClient c) => c.GetAsync(1, "test", "test", false)
+            );
         }
 
         [TestMethod, TestCategory("Company.DeviceClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -440,12 +430,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceClient p) => p.PostAsync(sampleDevice),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponsePostAsync)
-                },
-                validAPIResponsePostAsync
+                (DeviceClient p) => p.PostAsync(sampleDevice)
             );
         }
 
@@ -501,12 +486,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PatchAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceClient c) => c.PatchAsync("1", sampleDevice),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponsePatchAsync)
-                },
-                validAPIResponsePatchAsync
+                (DeviceClient c) => c.PatchAsync("1", sampleDevice)
             );
         }
 

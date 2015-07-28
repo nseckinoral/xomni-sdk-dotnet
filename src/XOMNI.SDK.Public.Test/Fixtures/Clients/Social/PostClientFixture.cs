@@ -78,12 +78,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.ResponseParseTestAsync(
                 (PostClient p) => p.GetAsync(1),
-                    new HttpResponseMessage(HttpStatusCode.OK)
-                    {
-                        Content = new MockedJsonContent(validAPIResponseForGetPostAndDeleteAsync)
-                    },
-                    validAPIResponseForGetPostAndDeleteAsync,
-                    piiUser: piiUser
+                piiUser: piiUser
             );
         }
 
@@ -154,12 +149,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.ResponseParseTestAsync(
                 (PostClient p) => p.GetPoliciesAsync(),
-                    new HttpResponseMessage(HttpStatusCode.OK)
-                    {
-                        Content = new MockedJsonContent(validAPIResponseForGetPoliciesAsync)
-                    },
-                    validAPIResponseForGetPoliciesAsync,
-                    piiUser: piiUser
+                piiUser: piiUser
             );
         }
 
@@ -223,13 +213,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
                 {
                     RelatedItemId = 1,
                     Content = "Test"
-                }),
-                    new HttpResponseMessage(HttpStatusCode.OK)
-                    {
-                        Content = new MockedJsonContent(validAPIResponseForGetPostAndDeleteAsync)
-                    },
-                    validAPIResponseForGetPostAndDeleteAsync
-                    );
+                })
+            );
         }
 
         [TestMethod, TestCategory("PostClient"), TestCategory("PostAsync"), TestCategory("HTTP.POST")]
@@ -329,12 +314,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.ResponseParseTestAsync(
                 (PostClient p) => p.DeleteAsync(1),
-                    new HttpResponseMessage(HttpStatusCode.Accepted)
-                    {
-                        Content = new MockedJsonContent(validAPIResponseForGetPostAndDeleteAsync)
-                    },
-                    validAPIResponseForGetPostAndDeleteAsync,
-                    piiUser: piiUser
+                piiUser: piiUser
             );
         }
 

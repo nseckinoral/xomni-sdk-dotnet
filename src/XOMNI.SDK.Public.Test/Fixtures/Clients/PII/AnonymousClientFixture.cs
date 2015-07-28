@@ -43,12 +43,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PostAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (AnonymousClient c) => c.PostAsync(anonymousUserRequest),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse);
+                (AnonymousClient c) => c.PostAsync(anonymousUserRequest)
+            );
         }
 
         [TestMethod, TestCategory("AnonymousClient"), TestCategory("PostAsync"), TestCategory("HTTP.GET")]

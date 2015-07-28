@@ -104,12 +104,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (BrandClient c) => c.GetAsync(1, 2),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse
+                (BrandClient c) => c.GetAsync(1, 2)
             );
         }
 
@@ -187,12 +182,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetBrandsByCategoryAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (BrandClient c) => c.GetBrandsByCategoryAsync(1, 1, 2),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse
+                (BrandClient c) => c.GetBrandsByCategoryAsync(1, 1, 2)
             );
         }
 
@@ -279,12 +269,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetBrandsByTagAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (BrandClient c) => c.GetBrandsByTagAsync(1, 1, 2),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse
+                (BrandClient c) => c.GetBrandsByTagAsync(1, 1, 2)
             );
         }
 
@@ -371,12 +356,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetBrandsBySearchRequestAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (BrandClient c) => c.GetBrandsBySearchRequestAsync(searchRequest),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse
+                (BrandClient c) => c.GetBrandsBySearchRequestAsync(searchRequest)
             );
         }
 

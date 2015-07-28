@@ -77,9 +77,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemInStoreMetadataClient l) => l.GetAsync(1),
-                validHttpResponseMessage,
-                validAPIResponse
+                (ItemInStoreMetadataClient l) => l.GetAsync(1, null, null, null, false,null, null)
             );
         }
 

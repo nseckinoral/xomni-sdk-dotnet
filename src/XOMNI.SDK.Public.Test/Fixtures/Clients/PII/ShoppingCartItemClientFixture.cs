@@ -81,11 +81,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.ResponseParseTestAsync(
                 (ShoppingCartItemClient c) => c.PutAsync(Guid.NewGuid(), 1, validLocation),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForPutAsync)
-                },
-                validAPIResponseForPutAsync,
                 piiUser: piiUser
                 );
         }
@@ -324,11 +319,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.ResponseParseTestAsync(
                 (ShoppingCartItemClient c) => c.PostAsync(Guid.NewGuid(), sampleShoppingCartItem),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForPostAsync)
-                },
-                validAPIResponseForPostAsync,
                 piiUser: piiUser
                 );
         }

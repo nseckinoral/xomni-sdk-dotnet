@@ -48,8 +48,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.ResponseParseTestAsync<ApiResponse<LoyaltyUser>>(
                 (LoyaltyClient c) => c.GetAsync(),
-                validHttpResponseMessage,
-                validAPIResponse,
                 piiUser: piiUser);
         }
 

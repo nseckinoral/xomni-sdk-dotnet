@@ -51,12 +51,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "Test", 2, true),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse
+                (AutoCompleteClient c) => c.GetAsync(AutoCompleteSearchType.All, "Test", 2, true)
             );
         }
 

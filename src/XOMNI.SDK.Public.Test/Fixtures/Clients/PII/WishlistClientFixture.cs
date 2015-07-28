@@ -454,12 +454,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (WishlistClient c) => c.GetAsync(Guid.Parse(uniqueId)),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
-                },
-                validAPIResponseForGetAsync,
+                (WishlistClient c) => c.GetAsync(Guid.Parse(uniqueId), null, true, false, false, AssetDetailType.None, AssetDetailType.None, AssetDetailType.None, null, null),
                 piiUser : piiUser
                 );
         }
@@ -607,12 +602,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.ResponseParseTestAsync(
                 (WishlistClient c) => c.GetAsync(),
-                new HttpResponseMessage(HttpStatusCode.OK) 
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetNoParameterAsync)
-                },
-                validAPIResponseForGetNoParameterAsync,
-                piiUser: piiUser);
+                piiUser: piiUser
+            );
         }
 
         [TestMethod, TestCategory("WishlistClient"), TestCategory("GetNoParameterAsync"), TestCategory("HTTP.GET")]

@@ -29,11 +29,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.ResponseParseTestAsync(
                 (AuthorizationURLClient c) => c.GetAsync(SocialPlatformType.Facebook),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse,
                 piiUser: piiUser
             );
         }

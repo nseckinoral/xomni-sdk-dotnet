@@ -405,13 +405,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetWishlistAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId)),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetWishlistAsync)
-                },
-                validAPIResponseForGetWishlistAsync
-                );
+                (PollingClient c) => c.GetWishlistAsync(Guid.Parse(uniqueId), null, true, false, false, AssetDetailType.None, AssetDetailType.None, AssetDetailType.None, null, null)
+            );
         }
 
         [TestMethod, TestCategory("PollingClient"), TestCategory("GetWishlistAsync"), TestCategory("HTTP.GET")]
@@ -531,12 +526,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
         public async Task GetShoppingcartAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqueId)),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetShoppingcartAsync)
-                },
-                validAPIResponseForGetShoppingcartAsync);
+                (PollingClient p) => p.GetShoppingcartAsync(Guid.Parse(uniqueId), null, true, false, false, AssetDetailType.None, AssetDetailType.None, AssetDetailType.None, null, null)
+            );
         }
 
         [TestMethod, TestCategory("PollingClient"), TestCategory("GetShoppingcartAsync"), TestCategory("HTTP.GET")]

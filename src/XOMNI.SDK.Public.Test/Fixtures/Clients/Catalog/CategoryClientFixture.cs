@@ -307,10 +307,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetCategoryTreeAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (CategoryClient c) => c.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
-                validHttpResponseMessageForCategoryTreeItem,
-                validAPIResponseForCategoryTreeItem
-                );
+                (CategoryClient c) => c.GetCategoryTreeAsync(false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata)
+            );
         }
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetCategoryTreeAsync"), TestCategory("HTTP.GET")]
@@ -366,10 +364,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetSubCategoriesAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (CategoryClient c) => c.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata),
-                validHttpResponseMessageForSubCategories,
-                validAPIResponseForSubCategories
-                );
+                (CategoryClient c) => c.GetSubCategoriesAsync(1, false, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata, AssetDetailType.IncludeOnlyDefaultWithMetadata)
+            );
         }
 
         [TestMethod, TestCategory("CategoryClient"), TestCategory("GetSubCategoriesAsync"), TestCategory("HTTP.GET")]

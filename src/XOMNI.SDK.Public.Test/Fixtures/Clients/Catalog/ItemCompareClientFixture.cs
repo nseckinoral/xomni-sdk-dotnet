@@ -672,13 +672,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task CompareAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemCompareClient c) => c.CompareAsync(sampleRequest),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForCompare)
-                },
-                validAPIResponseForCompare
-                );
+                (ItemCompareClient c) => c.CompareAsync(sampleRequest)
+            );
         }
 
         [TestMethod, TestCategory("ItemCompareClient"), TestCategory("CompareAsync"), TestCategory("HTTP.POST")]
@@ -748,13 +743,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task CompareMatrixAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemCompareClient c) => c.CompareMatrixAsync(sampleRequest),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForCompareMatrix)
-                },
-                validAPIResponseForCompareMatrix
-                );
+                (ItemCompareClient c) => c.CompareMatrixAsync(sampleRequest)
+            );
         }
 
         [TestMethod, TestCategory("ItemCompareClient"), TestCategory("CompareMatrixAsync"), TestCategory("HTTP.POST")]

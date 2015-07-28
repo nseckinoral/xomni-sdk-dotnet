@@ -40,10 +40,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceTypesClient c) => c.GetAsync(1, 1),
-                validHttpResponseMessage,
-                validAPIResponse
-                );
+                (DeviceTypesClient c) => c.GetAsync(1, 1)
+            );
         }
 
         [TestMethod, TestCategory("DeviceTypesClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]

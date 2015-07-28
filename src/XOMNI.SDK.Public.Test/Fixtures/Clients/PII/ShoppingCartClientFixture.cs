@@ -480,12 +480,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task GetAsyncNoParameterResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsyncNoParameter)
-                },
-                validAPIResponseForGetAsyncNoParameter);
+                (ShoppingCartClient c) => c.GetAsync()
+            );
         }
 
         [TestMethod, TestCategory("ShoppingCartClient"), TestCategory("GetAsyncNoParameter"), TestCategory("HTTP.GET")]
@@ -727,12 +723,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId)),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
-                },
-                validAPIResponseForGetAsync,
+                (ShoppingCartClient c) => c.GetAsync(Guid.Parse(uniqueId), null, true, false, false, AssetDetailType.None, AssetDetailType.None, AssetDetailType.None, null, null),
                 piiUser: piiUser
                 );
         }

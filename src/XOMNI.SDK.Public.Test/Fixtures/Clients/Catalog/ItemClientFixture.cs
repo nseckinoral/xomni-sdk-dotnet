@@ -1574,12 +1574,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemClient c) => c.GetAsync(1),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
-                },
-                validAPIResponseForGetAsync
+                (ItemClient c) => c.GetAsync(1, false, true, true, Models.Catalog.AssetDetailType.None, Models.Catalog.AssetDetailType.None, Models.Catalog.AssetDetailType.None)
             );
         }
 
@@ -1656,12 +1651,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task SearchResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemClient c) => c.SearchAsync(sampleItemSearchRequest, false),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForSearch)
-                },
-                validAPIResponseForSearch
+                (ItemClient c) => c.SearchAsync(sampleItemSearchRequest, false)
             );
         }
 
@@ -1783,12 +1773,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetSearchOptionsResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ItemClient c) => c.GetSearchOptionsAsync(sampleItemSearchOptionsRequest),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetSearchOptions)
-                },
-                validAPIResponseForGetSearchOptions);
+                (ItemClient c) => c.GetSearchOptionsAsync(sampleItemSearchOptionsRequest)
+            );
         }
 
         [TestMethod, TestCategory("ItemClient"), TestCategory("GetSearchOptions"), TestCategory("HTTP.POST")]

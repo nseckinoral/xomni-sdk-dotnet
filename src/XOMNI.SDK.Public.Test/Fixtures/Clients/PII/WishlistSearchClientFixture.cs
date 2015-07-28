@@ -62,12 +62,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PostAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (WishlistSearchClient p) => p.PostAsync(sampleWishlistSearchRequest),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForPostAsync)
-                },
-                validAPIResponseForPostAsync
+                (WishlistSearchClient p) => p.PostAsync(sampleWishlistSearchRequest)
             );
         }
 

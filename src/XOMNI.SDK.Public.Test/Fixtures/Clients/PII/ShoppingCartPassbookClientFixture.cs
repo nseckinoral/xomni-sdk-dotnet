@@ -27,11 +27,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.ResponseParseTestAsync(
                 (ShoppingCartPassbookClient c) => c.GetAsync(Guid.NewGuid(), "test"),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse,
                 piiUser:piiUser);
         }
 

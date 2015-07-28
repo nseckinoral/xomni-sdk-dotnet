@@ -68,13 +68,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceStorageClient c) => c.GetAsync("0", "key", false),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
-                },
-                validAPIResponseForGetAsync
-                );
+                (DeviceStorageClient c) => c.GetAsync("0", "key", false)
+            );
         }
 
         [TestMethod, TestCategory("DeviceStorageClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -144,12 +139,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PostAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceStorageClient c) => c.PostAsync(sampleDeviceStorageItem),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseAndRequestForPostAndPutAsync)
-                },
-                validAPIResponseAndRequestForPostAndPutAsync
+                (DeviceStorageClient c) => c.PostAsync(sampleDeviceStorageItem)
             );
         }
 
@@ -232,12 +222,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PutAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (DeviceStorageClient c) => c.PutAsync(sampleDeviceStorageItem),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseAndRequestForPostAndPutAsync)
-                },
-                validAPIResponseAndRequestForPostAndPutAsync
+                (DeviceStorageClient c) => c.PutAsync(sampleDeviceStorageItem)
             );
         }
 

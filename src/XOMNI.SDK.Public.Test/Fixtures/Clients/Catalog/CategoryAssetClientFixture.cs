@@ -68,12 +68,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
        public async Task GetImagesAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (CategoryAssetClient b) => b.GetImagesAsync(1),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
-                },
-                validAPIResponseForGetAsync);
+                (CategoryAssetClient b) => b.GetImagesAsync(1, null, null, Models.Catalog.AssetDetailType.None));
         }
 
         [TestMethod, TestCategory("CategoryAssetClient"), TestCategory("GetImagesAsync"), TestCategory("HTTP.GET")]
@@ -142,12 +137,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetVideosAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (CategoryAssetClient b) => b.GetVideosAsync(1),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
-                },
-                validAPIResponseForGetAsync);
+                (CategoryAssetClient b) => b.GetVideosAsync(1, null, null, Models.Catalog.AssetDetailType.None));
         }
 
         [TestMethod, TestCategory("CategoryAssetClient"), TestCategory("GetVideosAsync"), TestCategory("HTTP.GET")]
@@ -216,12 +206,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetDocumentsAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (CategoryAssetClient b) => b.GetDocumentsAsync(1),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForGetAsync)
-                },
-                validAPIResponseForGetAsync);
+                (CategoryAssetClient b) => b.GetDocumentsAsync(1, null, null, Models.Catalog.AssetDetailType.None)
+            );
         }
 
         [TestMethod, TestCategory("CategoryAssetClient"), TestCategory("GetDocumentsAsync"), TestCategory("HTTP.GET")]

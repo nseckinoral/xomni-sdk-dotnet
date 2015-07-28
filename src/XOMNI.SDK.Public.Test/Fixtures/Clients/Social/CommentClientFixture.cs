@@ -83,9 +83,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.ResponseParseTestAsync(
                 (CommentClient c) => c.PostCommentAsync(sampleCommentToCommentRequest),
-                    validHttpResponseMessageForPostAndDeleteAsync,
-                    validAPIResponseForPostAndDeleteAsync,
-                    piiUser: piiUser
+                piiUser: piiUser
             );
         }
 
@@ -193,9 +191,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.ResponseParseTestAsync(
                 (CommentClient c) => c.PostCommentAsync(sampleCommentToPostRequest),
-                    validHttpResponseMessageForPostAndDeleteAsync,
-                    validAPIResponseForPostAndDeleteAsync,
-                    piiUser: piiUser
+                piiUser: piiUser
             );
         }
 
@@ -303,13 +299,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         public async Task GetPoliciesAsyncResponseParseTest()
         {        
             await base.ResponseParseTestAsync(
-                (CommentClient c) => c.GetPoliciesAsync(targetPostId: 1),
-                    new HttpResponseMessage(HttpStatusCode.OK)
-                    {
-                        Content = new MockedJsonContent(validAPIResponseForGetPoliciesAsync)
-                    },
-                    validAPIResponseForGetPoliciesAsync,
-                    piiUser: piiUser
+                (CommentClient c) => c.GetPoliciesAsync(1, null),
+                piiUser: piiUser
             );
         }
 
@@ -419,9 +410,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.ResponseParseTestAsync(
                 (CommentClient c) => c.DeleteAsync(1),
-                    validHttpResponseMessageForPostAndDeleteAsync,
-                    validAPIResponseForPostAndDeleteAsync,
-                    piiUser: piiUser
+                piiUser: piiUser
             );
         }
 

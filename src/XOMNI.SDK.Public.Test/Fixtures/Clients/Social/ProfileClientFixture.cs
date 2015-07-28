@@ -16,19 +16,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
     [TestClass]
     public class ProfileClientFixture : BaseClientFixture<ProfileClient>
     {
-        const string validAPIResponse = @"{
-            'Data': [
-                {
-                    'Platform': 'Facebook',
-                    'FirstName': 'XOMNI',
-                    'LastName': 'Guy',
-                    'DisplayName': 'XOMNI Guy',
-                    'AvatarUrl': 'http://graph.facebook.com/100005298216720/picture',
-                    'SocialPlatformTokenStatus': 'Valid'
-                }
-            ]
-        }";
-
         #region GetAsync
 
         [TestMethod, TestCategory("ProfileClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -36,11 +23,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         {
             await base.ResponseParseTestAsync(
                 (ProfileClient c) => c.GetAsync(),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse,
                 piiUser: piiUser
             );
         }

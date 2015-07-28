@@ -49,10 +49,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (TrendingItemClient c) => c.GetAsync(1, true),
-                validHttpResponseMessage,
-                validAPIResponse
-                );
+                (TrendingItemClient c) => c.GetAsync(1, true)
+            );
         }
 
         [TestMethod, TestCategory("TrendingItemClient"), TestCategory("GetAsync"), TestCategory("HTTP.GET")]
@@ -123,10 +121,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetForByStoreAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (TrendingItemClient c) => c.GetByStoreAsync(1, 1, true),
-                validHttpResponseMessageForGetByStoreAsync,
-                validAPIResponseForGetByStoreAsync
-                );
+                (TrendingItemClient c) => c.GetByStoreAsync(1, 1, true)
+            );
         }
 
         [TestMethod, TestCategory("TrendingItemClient"), TestCategory("GetByStoreAsync"), TestCategory("HTTP.GET")]
@@ -200,9 +196,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetForByBrandAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (TrendingItemClient c) => c.GetByBrandAsync(1, 1, true),
-                validHttpResponseMessageForGetByBrandAsync,
-                validAPIResponseForGetByBrandAsync
+                (TrendingItemClient c) => c.GetByBrandAsync(1, 1, true)
                 );
         }
 
@@ -277,10 +271,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         public async Task GetForByBrandAndStoreAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (TrendingItemClient c) => c.GetByBrandAndStoreAsync(1, 1, 1, true),
-                validHttpResponseMessageForGetByBrandAndStoreAsync,
-                validAPIResponseForGetByBrandAndStoreAsync
-                );
+                (TrendingItemClient c) => c.GetByBrandAndStoreAsync(1, 1, 1, true)
+            );
         }
 
         [TestMethod, TestCategory("TrendingItemClient"), TestCategory("GetByBrandAndStoreAsync"), TestCategory("HTTP.GET")]

@@ -223,11 +223,6 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         {
             await base.ResponseParseTestAsync(
                 (WishlistItemClient c) => c.PostAsync(Guid.NewGuid(), sampleWishlistItem),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponse)
-                },
-                validAPIResponse,
                 piiUser: piiUser
                 );
         }

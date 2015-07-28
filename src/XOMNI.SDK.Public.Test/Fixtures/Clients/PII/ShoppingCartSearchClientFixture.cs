@@ -62,12 +62,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         public async Task PostAsyncResponseParseTest()
         {
             await base.ResponseParseTestAsync(
-                (ShoppingCartSearchClient p) => p.PostAsync(sampleShoppingCartSearchRequest),
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new MockedJsonContent(validAPIResponseForPostAsync)
-                },
-                validAPIResponseForPostAsync
+                (ShoppingCartSearchClient p) => p.PostAsync(sampleShoppingCartSearchRequest)
             );
         }
 
