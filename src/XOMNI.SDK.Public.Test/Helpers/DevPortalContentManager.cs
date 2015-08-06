@@ -36,7 +36,7 @@ namespace XOMNI.SDK.Public.Test.Helpers
 
             var encodedUrl = System.Net.WebUtility.UrlEncode(devPortalLink);
             var folderDirectoryInfo = Directory.CreateDirectory(Path.Combine(dumpFilesPath, "DevPortalDumpFiles"));
-            var filePath = Path.Combine(folderDirectoryInfo.FullName, encodedUrl);
+            var filePath = Path.Combine(folderDirectoryInfo.FullName, encodedUrl + String.Format("-{0}", contentType.ToString()));
             
             if (refreshDevPortalDumpFiles || (!File.Exists(filePath)))
             {
