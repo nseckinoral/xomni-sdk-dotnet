@@ -294,7 +294,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         readonly ShoppingCart sampleShoppingCartForPutAsync = new ShoppingCart()
         {
             UniqueKey = Guid.Parse("f3924b10-02e2-4f9a-8f7c-d6fdcb5a9b92"),
-            Name = "Test ShoppingCart",
+            Name = "Test ShoppingCart1",
             LastSeenLocation = new Location()
             {
                 Longitude = -122.335197,
