@@ -301,8 +301,8 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
             await base.RequestParseTestAsync<SocialComment>(
                 (PostClient p) => p.PostAsync(new SocialPostRequest()
                     {
-                        Content = "This is a sample comment",
-                        RelatedItemId = 5
+                        Content = "This is a sample post",
+                        RelatedItemId = 1
                     }));
         }
         #endregion
