@@ -37,7 +37,15 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Analytics
                 CreatedDate = DateTime.Parse("2015-02-25T11:13:10.582049+02:00"),
                 DataBag = "Sample DataBag",
                 Value = 1
+            },
+            new ClientLog()
+            {
+                CounterName = "Sample CounterName",
+                CreatedDate = DateTime.Parse("2015-02-25T11:13:10.582049+02:00"),
+                DataBag = "Sample DataBag",
+                Value = 1
             }
+
         };
 
         #region PostAsync
