@@ -1504,8 +1504,10 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
         {
             Skip = 0,
             Take = 10,
-            OrderedPropertyName = OrderedProperty.Title,
-            OrderBy = OrderByType.Asc,
+            OrderedPropertyName = null,
+            OrderBy = null,
+            IncludeStaticNavigation = true,
+            IncludeDynamicNavigation = true,
             DefaultItemId = null,
             RFID = null,
             Name = null,
@@ -1524,13 +1526,13 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
             MaxPrice = null,
             DimensionTypeId = null,
             TagId = null,
-            DelimitedDynamicAttributeValues = "1:1",
+            DelimitedDynamicAttributeValues = "1:1;",
             IncludeOnlyMasterItems = false,
             ItemIds = new List<int>()
             {
                 1,2,3
             },
-            IncludeItemDynamicProperties = false,
+            IncludeItemDynamicProperties = true,
             IncludeItemStaticProperties = true,
             VideoAssetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata,
             ImageAssetDetail = AssetDetailType.IncludeOnlyDefaultWithMetadata,
