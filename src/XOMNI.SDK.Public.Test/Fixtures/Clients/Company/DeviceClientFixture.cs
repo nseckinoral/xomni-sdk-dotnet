@@ -558,7 +558,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Company
         public async Task PatchAsyncRequestParseTest()
         {
             await base.RequestParseTestAsync<Device>(
-                (DeviceClient c) => c.PatchAsync("1", new { Description = "description" })
+                (DeviceClient c) => c.PatchAsync("1", new { Description = "sample description", ExpirationDate = "2012-02-18T00:54:06.8447642Z" })
             );
         }
 
