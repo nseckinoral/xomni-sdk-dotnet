@@ -63,7 +63,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
         }
 
         [DevPortalLink("http://dev.xomni.com/v3-1/http-api/public-apis/catalog/brand/fetching-brands-of-a-set-of-products-matching-a-specified-search-criteria")]
-        public async Task<ApiResponse<PaginatedContainer<Brand>>> GetBrandsBySearchRequestAsync(SearchRequest searchRequest)
+        public async Task<ApiResponse<List<Brand>>> GetBrandsBySearchRequestAsync(SearchRequest searchRequest)
         {
             Validator.For(searchRequest, "searchRequest").IsNotNull().InRange();
             
@@ -71,7 +71,7 @@ namespace XOMNI.SDK.Public.Clients.Catalog
 
             using (var response = await Client.PostAsJsonAsync(path, searchRequest).ConfigureAwait(false))
             {
-                return await response.Content.ReadAsAsync<ApiResponse<PaginatedContainer<Brand>>>().ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<ApiResponse<List<Brand>>>().ConfigureAwait(false);
             }
         }
 	}
