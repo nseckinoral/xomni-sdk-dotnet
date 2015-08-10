@@ -103,17 +103,19 @@ namespace XOMNI.SDK.Public.Extensions
 
         public static Parameter<string> KeyValuePairValid(this Parameter<string> item, char firstSeparatorCharacter, char secondSeparatorCharacter)
         {
-            var keyValuePairs = item.Value.Split(firstSeparatorCharacter).Select(x => x.Split(secondSeparatorCharacter)).ToList();
+            var keyValuePairs = item.Value.Split(firstSeparatorCharacter).Where(t=> !string.IsNullOrWhiteSpace(t));
 
             foreach (var pair in keyValuePairs)
             {
-                if (pair.Count() != 2)
+                var parsedKeyValue = pair.Split(secondSeparatorCharacter);
+
+                if (parsedKeyValue.Count() != 2)
                 {
                     throw new ArgumentException("Given string format is not correct.");
                 }
 
-                string key = pair[0];
-                string value = pair[1];
+                string key = parsedKeyValue[0];
+                string value = parsedKeyValue[1];
 
                 if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value) && !string.IsNullOrWhiteSpace(key) && !string.IsNullOrWhiteSpace(value))
                 {
