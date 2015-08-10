@@ -48,7 +48,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.OmniPlay
 
         readonly OmniTicket sampleTicket = new OmniTicket()
         {
-            Ticket = uniqueId
+            Ticket = "bda570b0-cf86-4c86-830c-ac9445faf208"
         };
 
         readonly WishlistImportRequest sampleWishlistImportRequest = new WishlistImportRequest()
