@@ -231,20 +231,25 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Social
         [TestMethod, TestCategory("TokenClient"), TestCategory("PostRequestCommentToPostAsync"), TestCategory("HTTP.POST")]
         public async Task PostAsyncRequestParseTest()
         {
-            string sampleFacebookRequest = @"{'access_token':'token'}";
+            await base.RequestParseTestAsync<Dictionary<string, string>>(
+                (TokenClient t) => t.PostAsync(SocialPlatformType.Facebook, "AAADHTenCKrkBAOZCLcNfxaTzC32D4ZCLcK6SKPKZCRFmjLaCvV9gGBu5qmxBtEIOgw69HCKBcHXevZB1CVLikNcZByYbXPZAX5simVZBSA8PQZDZD", null, null),
+                 piiUser: piiUser
+             );
+        }
 
+        [TestMethod, TestCategory("TokenClient"), TestCategory("PostRequestCommentToPostAsync"), TestCategory("HTTP.POST")]
+        public async Task PostAsyncRequestParseTestForTwitter()
+        {
             string sampleTwitterRequest = @"{'oauth_token' : 'oauthToken','oauth_verifier':'oauthVerifier'}";
 
             await base.RequestParseTestAsync<Dictionary<string, string>>(
-                (TokenClient t) => t.PostAsync(SocialPlatformType.Facebook, "token", null, null),
-                 piiUser: piiUser
-             );
-
-            await base.RequestParseTestAsync<Dictionary<string, string>>(
                 (TokenClient t) => t.PostAsync(SocialPlatformType.Twitter, null, "oauthToken", "oauthVerifier"),
+                sampleTwitterRequest,
                 piiUser: piiUser
             );
         }
+
+
         #endregion
     }
 }
