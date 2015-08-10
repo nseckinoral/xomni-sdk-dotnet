@@ -1715,7 +1715,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.Catalog
                 {
                     Skip = 1,
                     Take = 4,
-                    DelimitedDynamicAttributeValues = "1:1;"
+                    DelimitedDynamicAttributeValues = "11"
                 }, false),
                 new ArgumentException("Given string format is not correct."));
 
