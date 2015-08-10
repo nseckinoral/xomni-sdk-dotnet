@@ -293,7 +293,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
 
         readonly Wishlist sampleWishlist = new Wishlist()
         {
-            Name = "Test Wishlist",
+            Name = "My Wishlist",
             LastSeenLocation = new Location()
             {
                 Longitude = -122.335197,
@@ -305,7 +305,7 @@ namespace XOMNI.SDK.Public.Test.Fixtures.Clients.PII
         readonly Wishlist sampleWishlistForPutAsync = new Wishlist()
         {
             UniqueKey = Guid.Parse("f3924b10-02e2-4f9a-8f7c-d6fdcb5a9b92"),
-            Name = "Test Wishlist",
+            Name = "Test Wishlist1",
             LastSeenLocation = new Location()
             {
                 Longitude = -122.335197,
